@@ -1,0 +1,46 @@
+routes:
+  /tag/midnight-radio/:
+    template: page-radio
+    redirect: /radio  
+  /notebook/:
+    controller: channel
+    filter: tag:notebook
+    template: tag-notebook
+    data: tag.notebook
+  /broadcasts/:
+    controller: channel
+    filter: tag:broadcasts
+    template: tag-broadcasts
+    data: tag.broadcasts
+  /design/:
+    controller: channel
+    filter: tag:design
+    template: tag-design
+    data: tag.design
+    order: featured desc, published_at desc
+  /art/:
+    controller: channel
+    filter: tag:artwork
+    template: tag-artwork
+    data: tag.artwork
+    order: featured desc, published_at desc
+  /books/:
+    controller: channel
+    filter: tag:books
+    template: tag-books
+    data: tag.books
+    order: published_at asc
+  /god/:
+    controller: channel
+    filter: tag:god
+    template: tag-god
+    data: tag.god
+    order: published_at asc
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

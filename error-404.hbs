@@ -1,0 +1,21 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default-blank.hbs template --}}
+
+{{#contentFor "blank-meta-title"}}{{statusCode}}{{/contentFor}}
+{{#if @site.cover_image}}
+    {{#contentFor "blank-background-image-style"}}
+        <style>.site:before { background-image: url({{img_url @site.cover_image}}); }</style>
+    {{/contentFor}}
+{{/if}}
+
+<div id="page" class="site">
+    <main id="main" class="content outer">
+        <div class="inner">
+            <div class="big-title">
+                <h1>{{t "Four Oh Four"}}</h1>
+                <p class="page-text">{{t "The thing you were searching for no longer exists. Perhaps it was too good for this world."}}</p>
+                <p class="page-home-link"><a class="button button-solid" href="#/search">Search for something better</a></p>
+            </div>
+        </div>
+    </main>
+</div>

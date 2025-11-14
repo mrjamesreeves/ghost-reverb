@@ -1,0 +1,21 @@
+{{!< default-blank}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default-blank.hbs template --}}
+
+{{#contentFor "blank-meta-title"}}{{statusCode}}{{/contentFor}}
+{{#if @site.cover_image}}
+    {{#contentFor "blank-background-image-style"}}
+        <style>.blank-template .site:before { background-image: url({{img_url @site.cover_image}}); }</style>
+    {{/contentFor}}
+{{/if}}
+
+<div id="page" class="site bg-dark">
+    <main id="main" class="content outer">
+        <div class="inner">
+            <div class="page-body">
+                <h1 class="page-title">{{statusCode}}</h1>
+                <p class="page-text">{{message}}</p>
+                <p class="page-home-link"><a class="button button-solid" href="{{@site.url}}">{{{t "Back to homepage"}}}</a></p>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,102 @@
+{{!< default}}
+
+<script>
+document.body.classList.add('has-hero');
+</script>
+
+<main id="main" class="content outer notebook-page">
+
+    {{#tag}}
+<div class="inner-wide">
+
+    <!-- NEW NOTEBOOK HERO LAYOUT - CENTERED -->
+    <div class="notebook-hero">
+        <!-- Left Column: Notebook Title -->
+        <div class="notebook-title-column">
+            <h1>Notebook</h1>
+        </div>
+        
+        <!-- Right Two-Column Span: Notebook Image -->
+        <div class="notebook-image-column">
+            <img src="{{asset "/img/notebook.webp" }}" alt="Notebook" class="notebook-hero-image" />
+        </div>
+    </div>
+</div>
+
+
+
+<div class="inner-wide">
+                <div class="grid notebook">
+            
+                    <article>
+                        <a href="{{@site.url}}/god" class="notecard-link">
+                        <div class="post-card bg-dark bg-full">
+                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/god.webp'}}" />
+                        </div>
+                        <div class="grid-text">
+                            Notes on God
+                            <p>Hell can be described a thousand ways but heaven remains impossible to grasp.</p>
+                        </div>
+                        </a>
+                    </article> 
+
+                    <article>
+                        <a href="{{@site.url}}/instructions" class="notecard-link">
+                        <div class="post-card bg-dark bg-full">
+                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/Reeves-Instructions.webp'}}" />
+                        </div>
+                        <div class="grid-text">
+                            Instructions for Myself
+                            <p>I should not confuse my beliefs, complaints, and politics with having a personality.</p>
+                        </div>
+                        </a>
+                    </article> 
+
+                    <article>
+                        <a href="{{@site.url}}/favorites" class="notecard-link">
+                        <div class="post-card bg-dark bg-full">
+                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/Reeves-Favorites.webp'}}" />
+                        </div>
+                        <div class="grid-text">
+                            Favorite Things
+                            <p>Reverb, peanut butter, Michael Clayton, and chili oil.</p>
+                        </div>
+                        </a>
+                    </article> 
+
+                </div>
+
+    <!-- HIGHLIGHTS -->
+    <section class="highlights">
+        <h3>Highlights</h3>
+        <div class="footer-tags">
+            <div class="highlights-grid">
+                {{#get "posts" filter="featured:true+tag:notebook" limit="12" include="tags"}}
+                    {{#foreach posts}}
+                        <div class="footer-tag-item is-visible" data-url="{{url}}">
+                            <span class="footer-tag-name">{{title}}</span>
+                            <span class="footer-tag-line"></span>
+                            <span class="count">{{date published_at format="YYYY"}}</span>
+                        </div>
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+    </section>
+
+    <!-- ORIGINAL POST LIST -->
+    <div class="inner-wide">
+        <h3 class="muted">lowlights</h3>
+        <div class="post-titles">
+{{#get "posts" include="tags" filter="tag:-midnight-radio+featured:false" limit="900"}}                {{#foreach posts}}
+                    <div class="post-title">
+                        <a href="{{url}}" class="post-title-name">{{title}}</a> / 
+                    </div>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
+
+    {{/tag}}
+
+</main>

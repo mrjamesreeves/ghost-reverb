@@ -1,0 +1,78 @@
+{
+  "name": "headlights",
+  "description": "The journal of James A. Reeves",
+  "demo": "https://jamesreeves.co/",
+  "version": "3.2.0",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "screenshots": {
+    "desktop": "assets/screenshot-desktop.jpg",
+    "mobile": "assets/screenshot-mobile.jpg"
+  },
+  "author": {
+    "name": "James Reeves",
+    "email": "james@jamesreeves.co",
+    "url": "https://jamesreeves.co"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 12,
+    "card_assets": {
+      "exclude": [
+        "blockquote",
+        "gallery"
+      ]
+    },
+    "image_sizes": {
+      "xxs": {
+        "width": 150
+      },
+      "xs": {
+        "width": 300
+      },
+      "s": {
+        "width": 600
+      },
+      "m": {
+        "width": 800
+      },
+      "l": {
+        "width": 1200
+      },
+      "xl": {
+        "width": 1600
+      },
+      "xxl": {
+        "width": 2000
+      }
+    },
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "Light",
+          "Dark"
+        ],
+        "default": "Light"
+      },
+      "enable_disqus": {
+        "type": "boolean",
+        "default": false,
+        "group": "post"
+      },
+      "disqus_shortname": {
+        "type": "text",
+        "default": "",
+        "group": "post"
+      }
+    }
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

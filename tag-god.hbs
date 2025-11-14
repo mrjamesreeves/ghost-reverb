@@ -1,0 +1,65 @@
+{{!< default}}
+
+
+
+<script>
+document.body.classList.add('has-hero');
+</script>
+
+<main id="main" class="content outer radio-page">
+    {{#tag}}
+
+    <div class="radio-hero-wrapper series-header">
+        <div class="image-slider">
+            {{#if feature_image}}
+                <img
+                    class="post-card-image bg-full-image bg-fade-in"
+                    srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
+                    sizes="(min-width: 1600px) 1600px, 100vw"
+                    src="{{img_url feature_image size="xl"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                />
+            {{/if}}
+        </div>        
+        <div class="radio-hero-content">
+            <h1>Notes on God</h1>
+            {{#if description}}
+                <p>{{description}}</p>
+            {{/if}}        
+        </div>
+    </div>
+  
+    <div class="post-header-caption">
+        Lee Ufan, Relatum-Silence (2010). Lee Ufan Museum, Naoshima
+    </div>
+
+</main>
+
+<main id="main" class="series content outer">
+    <div class="inner-wide">
+            {{#get "posts" limit="all" include="tags" filter="tag:{{slug}}"}}
+            {{#foreach posts visibility="all" limit="all"}}
+            <article class="{{post_class}} post-full">
+                <div class="post-content">
+                    <h1><a href="{{url}}">{{@number}}</a></h1>            
+                    {{content}}
+                </div>
+            </article>
+            {{/foreach}}
+            {{/get}}
+
+            {{#if @custom.enable_disqus}}
+                            {{#if @custom.disqus_shortname}}
+                                {{> "comments-disqus"}}
+                            {{/if}}
+                        {{!-- If Disqus not enabled and Ghost comments enabled, include ghost comments - partials/comments.hbs --}}
+                        {{else}}
+                            {{#if comments}}
+                                {{> comments}}
+                            {{/if}}
+                        {{/if}}
+                    {{!-- If the user has no access, show subscribe/upgrade cta --}}
+
+
+    {{/tag}}
+</main>

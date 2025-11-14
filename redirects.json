@@ -1,0 +1,48 @@
+[
+    {
+      "from": "^/tag/journal/?$",
+      "to": "/tag/notebook/",
+      "permanent": true
+    },
+    {
+      "from": "^/tag/journal/page/(\\d+)/?$",
+      "to": "/tag/notebook/page/$1/",
+      "permanent": true
+    },
+    {
+      "from": "^/journal/(.*)",
+      "to": "/notebook/$1",
+      "permanent": true
+    },
+        {
+      "from": "^/the-first-two-miles-are-always-murder",
+      "to": "/music-for-running",
+      "permanent": true
+    },
+    {
+      "from": "^/tag/midnight-radio/",
+      "to": "/radio",
+      "permanent": true
+    },
+    {
+      "from": "^/tag/reading",
+      "to": "/reading",
+      "permanent": true
+    },
+    {
+      "from": "^/tag/dreams",
+      "to": "/dreams",
+      "permanent": true
+    },
+    {
+      "from": "^/tag/god",
+      "to": "/god",
+      "permanent": true
+    }
+    ,
+    {
+      "from": "^/tag/midnight-radio",
+      "to": "/radio",
+      "permanent": true
+    }
+  ]

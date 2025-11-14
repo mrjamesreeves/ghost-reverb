@@ -1,0 +1,225 @@
+<!-- MINIMAL NAVIGATION -->
+<header class="minimal-nav">
+    <!-- Navigation Icon (changes state) -->
+    <button class="nav-icon" id="nav-toggle" aria-label="Open navigation">
+        <!-- Default icon (icon.svg) -->
+        <img src="{{asset "/img/icon.png"}}" alt="Menu" class="nav-icon-default" />
+        <!-- Close icon (x.svg) -->
+        <img src="{{asset "/img/x.svg"}}" alt="Close" class="nav-icon-close" />
+    </button>
+
+
+    
+
+    <!-- Navigation Overlay -->
+    <div class="nav-overlay" id="nav-overlay">
+        <div class="nav-card">
+            <!-- Bio Section -->
+            <div class="nav-bio">
+                <h2><a href="{{@site.url}}" class="nav-link">James A. Reeves</a></h2>
+                <p>A writer and designer in the Middle West who makes midnight mix tapes and writes about faith in the digital age.</p>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="nav-main">
+                <a href="{{@site.url}}/radio" class="nav-link">Midnight Radio</a>
+                <a href="{{@site.url}}/notebook" class="nav-link">Notebook</a>
+                <a href="{{@site.url}}/about" class="nav-link">About</a>
+            </nav>
+
+            <!-- Newsletter Signup -->
+            <div class="nav-newsletter">
+                <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+                <form class="nav-signup-form" data-members-form="subscribe">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Enter your email..." 
+                        class="nav-email-input"
+                        required
+                    />
+                    <button type="submit" class="nav-subscribe-btn">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="nav-social">
+                <a href="https://bsky.app/profile/jamesreeves.co" target="_blank" rel="noopener">Bluesky</a>
+                <a href="{{@site.url}}/rss" target="_blank">RSS</a>
+                <a href="mailto:james@jamesreeves.co">Email</a>
+            </div>
+
+            <div class="theme-toggle">
+                <button class="theme-switch" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-switch-track">
+                        <span class="theme-switch-thumb">
+                            <svg class="icon sun" width="20" height="20" viewBox="0 0 20 20" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.00078 9.96344C8.54624 9.96344 9.00987 9.77253 9.39169 9.39071C9.77351 9.0089 9.96442 8.54526 9.96442 7.9998C9.96442 7.45435 9.77351 6.99071 9.39169 6.6089C9.00987 6.22708 8.54624 6.03617 8.00078 6.03617C7.45533 6.03617 6.99169 6.22708 6.60987 6.6089C6.22805 6.99071 6.03714 7.45435 6.03714 7.9998C6.03714 8.54526 6.22805 9.0089 6.60987 9.39071C6.99169 9.77253 7.45533 9.96344 8.00078 9.96344ZM8.00078 11.2725C7.09533 11.2725 6.32351 10.9534 5.68533 10.3153C5.04714 9.67708 4.72805 8.90526 4.72805 7.9998C4.72805 7.09435 5.04714 6.32253 5.68533 5.68435C6.32351 5.04617 7.09533 4.72708 8.00078 4.72708C8.90624 4.72708 9.67805 5.04617 10.3162 5.68435C10.9544 6.32253 11.2735 7.09435 11.2735 7.9998C11.2735 8.90526 10.9544 9.67708 10.3162 10.3153C9.67805 10.9534 8.90624 11.2725 8.00078 11.2725ZM3.41896 8.65435H0.800781V7.34526H3.41896V8.65435ZM15.2008 8.65435H12.5826V7.34526H15.2008V8.65435ZM7.34624 3.41799V0.799805H8.65533V3.41799H7.34624ZM7.34624 15.1998V12.5816H8.65533V15.1998H7.34624ZM4.33533 5.21799L2.6826 3.63071L3.61533 2.66526L5.18624 4.30162L4.33533 5.21799ZM12.3862 13.3343L10.799 11.6816L11.6662 10.7816L13.319 12.3689L12.3862 13.3343ZM10.7826 4.33435L12.3699 2.68162L13.3353 3.61435L11.699 5.18526L10.7826 4.33435ZM2.66624 12.3853L4.31896 10.798L5.21896 11.6653L3.63169 13.318L2.66624 12.3853Z" fill="#CCCCCC"/>
+                            </svg>
+                            <svg class="icon moon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.27781 10.6077C4.52037 7.77621 4.89767 4.18632 6.99271 1.7998C6.35725 1.99194 5.74164 2.26497 5.16576 2.63913C1.7998 4.81329 0.787033 9.34363 2.92178 12.7717C5.05654 16.1998 9.50476 17.2212 12.8807 15.047C13.4665 14.6728 13.9728 14.2178 14.4097 13.7223C11.4012 14.6223 8.04519 13.4391 6.28774 10.6077H6.27781Z" fill="#F5F5F5"/>
+                                  
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.getElementById('nav-toggle');
+    const navOverlay = document.getElementById('nav-overlay');
+    const body = document.body;
+    const iconDefault = navToggle.querySelector('.nav-icon-default');
+    const iconClose = navToggle.querySelector('.nav-icon-close');
+
+    // Open navigation
+    navToggle.addEventListener('click', function() {
+        if (navOverlay.classList.contains('nav-open')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
+
+    function openNav() {
+        navOverlay.classList.add('nav-open');
+        body.classList.add('nav-is-open');
+        navToggle.classList.add('nav-active');
+        
+        // Switch icons
+        iconDefault.style.opacity = '0';
+        iconClose.style.opacity = '1';
+    }
+
+    function closeNav() {
+        navOverlay.classList.remove('nav-open');
+        body.classList.remove('nav-is-open');
+        navToggle.classList.remove('nav-active');
+        
+        // Switch icons back
+        iconDefault.style.opacity = '1';
+        iconClose.style.opacity = '0';
+    }
+
+    // Close on overlay click (outside card)
+    navOverlay.addEventListener('click', function(e) {
+        if (e.target === navOverlay) {
+            closeNav();
+        }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navOverlay.classList.contains('nav-open')) {
+            closeNav();
+        }
+    });
+
+    // Newsletter form handling (basic)
+    const signupForm = document.querySelector('.nav-signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your newsletter signup logic here
+            const email = this.querySelector('input[name="email"]').value;
+            console.log('Newsletter signup:', email);
+            // You can replace this with Ghost's members API call
+        });
+    }
+});
+// Add this to your existing script section
+let lastScrollY = 0;
+let ticking = false;
+
+window.addEventListener('scroll', function() {
+    if (!ticking) {
+        requestAnimationFrame(updateIconOpacity);
+        ticking = true;
+    }
+});
+
+function updateIconOpacity() {
+    const navIcon = document.getElementById('nav-toggle');
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > lastScrollY) {
+        // Scrolling down - slow fade out
+        navIcon.style.transition = 'opacity 0.8s ease-out';
+        navIcon.style.opacity = '0';
+    } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - quick fade in
+        navIcon.style.transition = 'opacity 0.3s ease-in';
+        navIcon.style.opacity = '1';
+    }
+    
+    // At top of page, always fully visible
+    if (currentScrollY <= 10) {
+        navIcon.style.opacity = '1';
+    }
+    
+    lastScrollY = currentScrollY;
+    ticking = false;
+}
+
+// ==========================================================================
+// THEME TOGGLE FUNCTIONALITY
+// ==========================================================================
+
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Check for saved theme preference or default to 'light' mode
+    const currentTheme = localStorage.getItem('theme');
+    
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    } else if (prefersDark.matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    
+    // Toggle functionality
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Add a little haptic feedback (on supported devices)
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+    }
+    
+    // Add click event listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Listen for system preference changes
+    prefersDark.addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+    });
+    
+    // Keyboard accessibility
+    if (themeToggle) {
+        themeToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleTheme();
+            }
+        });
+    }
+});
+
+// Add smooth transitions when theme changes
+document.documentElement.style.setProperty('--transition-duration', '0.3s');
+</script>

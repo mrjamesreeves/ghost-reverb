@@ -1,0 +1,98 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+<script>
+document.body.classList.add('has-hero');
+</script>
+
+<main id="main" class="content outer radio-page">
+
+    <div class="radio-hero-wrapper">
+        <div class="image-slider">
+            <img src="{{asset "/img/midnight.webp" }}" alt="Saint Jerome">
+        </div>
+        
+        <div class="radio-hero-content">
+            <h1>Midnight<br>Radio</h1>    
+            <div class="post-extract">
+                <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="radio-caption">
+        Caravaggio, Saint Jerome in His Study (1605)
+    </div>
+
+    <div class="inner-wide">
+
+        {{!-- Everything inside the #post tags pulls data from the page --}}
+        {{#post}}
+        <article class="{{post_class}} post-full is-page">
+          
+          
+            {{!-- If the user has access, show page content --}}
+            {{#if access}}
+                <div class="post-content">
+               {{content}}
+                </div>
+<br><br>
+                        {{> comments}}
+
+
+
+            {{!-- If the user has no access, show subscribe/upgrade cta --}}
+            {{else}}
+                {{> "post-content-cta"}}
+            {{/if}}
+        </article>
+
+        {{/post}}
+
+    </div>
+
+     <!-- EPISODES -->
+    <div class="inner-wide">
+        <div class="post-feed">
+            <div class="radio-grid">
+            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio" limit="all"}}
+            {{#foreach posts visibility="all"}}
+
+                <article class="post-card bg-dark bg-full">
+                        <a href="{{url}}" class="post-card-link">
+
+                        {{#if feature_image}}
+                            <img
+                                class="post-card-image bg-full-image bg-fade-in"
+                                srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
+                                sizes="(min-width: 1600px) 1600px, 100vw"
+                                src="{{img_url feature_image size="xl"}}"
+                                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                            />
+                        {{/if}}
+
+                        <div class="post-card-inside">
+                            <div class="post-card-content">          
+                                <div class="big-title">
+                                    <h5>
+                                        Midnight Radio 
+                                        {{#foreach tags visibility="internal"}}
+                                        {{#if (match slug "^hash-mr-")}}
+                                            <span class="episode-number" data-ep="{{slug}}"></span>
+                                        {{/if}}
+                                        {{/foreach}}
+                                    </h5>
+                                    <h2>{{title}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+ 
+                </article>
+            {{/foreach}}
+            {{/get}}
+            </div>
+        </div>
+    </div>
+
+</main>

@@ -1,0 +1,152 @@
+<footer class="content outer">
+
+  <h3 class="muted">Index</h3>
+
+  <!-- TAGS -->
+  <div class="footer-tags">
+      {{#get "tags" limit="12" order="count.posts desc" include="count.posts" filter="slug:-[notebook,books,artwork,albums,mix-tapes,broadcasts,design]"}}
+          <div class="footer-tags-grid">
+          {{#foreach tags}}
+              <div class="footer-tag-item" data-url="{{url}}">
+          
+              <span class="footer-tag-name">{{name}}</span>
+              <span class="footer-tag-line"></span>
+              <span class="count">{{count.posts}}</span>
+              </div>
+          {{/foreach}}
+          </div>
+      {{/get}}
+  </div>
+
+</footer>
+
+<footer class="simple-footer">
+    <div class="footer-name"><a href="{{@site.url}}">James A. Reeves</a></div>
+    <div class="footer-links">
+        <a href="{{@site.url}}/radio">Midnight Radio</a> • 
+        <a href="{{@site.url}}/notebook">Notebook</a> • 
+        <a href="{{@site.url}}/about">About</a> • 
+        <a href="https://bsky.app/profile/jamesreeves.co" target="_blank">Bluesky</a>
+    </div>
+</footer>
+
+
+
+{{!-- Footer Scripts --}}
+<script src="{{asset "js/smartquotes.js"}}"></script>
+<script>smartquotes();</script>
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+    // Apply smartquotes to the entire document body
+    smartquotes(document.body);
+
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.radio-item[data-url]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Don't trigger if clicking on an existing link
+            if (e.target.tagName !== 'A') {
+                window.location.href = item.dataset.url;
+            }
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.footer-tag-item[data-url]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Don't trigger if clicking on an existing link
+            if (e.target.tagName !== 'A') {
+                window.location.href = item.dataset.url;
+            }
+        });
+    });
+});
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.js-tags .ft-item').forEach(function (el) {
+            const count = parseInt(el.dataset.count, 10);
+            if (count < 3) {
+                el.remove(); // or el.style.display = 'none';
+            }
+        });
+    });
+
+</script>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  // Observe all recent radio items
+  document.querySelectorAll('.radio-item').forEach(item => {
+    observer.observe(item);
+  });
+  // Observe all footer tag items
+  document.querySelectorAll('.footer-tag-item').forEach(item => {
+    observer.observe(item);
+  });
+  // Also observe post titles
+  document.querySelectorAll('.post-title').forEach(title => {
+    observer.observe(title);
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('.episode-number').forEach(function(el) {
+    const raw = el.getAttribute('data-ep'); // Example: "hash-mr-14"
+    if (raw && raw.startsWith('hash-mr-')) {
+        const episodeNumber = raw.replace('hash-mr-', ''); // Remove "hash-mr-"
+        el.textContent = `${episodeNumber}`; // Set visible text
+    }
+});
+
+</script>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('toggle-header');
+    const mobileHeader = document.getElementById('mobile-header-info');
+    const backdrop = document.getElementById('mobile-header-backdrop');
+
+    toggleButton.addEventListener('click', function () {
+      const isOpen = mobileHeader.classList.toggle('open');
+      toggleButton.setAttribute('aria-expanded', isOpen);
+
+      // Show/hide the backdrop
+      if (isOpen) {
+        backdrop.classList.add('visible');
+      } else {
+        backdrop.classList.remove('visible');
+      }
+    });
+
+    // Optional: click the backdrop to close
+    backdrop.addEventListener('click', function () {
+      mobileHeader.classList.remove('open');
+      toggleButton.setAttribute('aria-expanded', false);
+      backdrop.classList.remove('visible');
+    });
+  });
+
+</script>

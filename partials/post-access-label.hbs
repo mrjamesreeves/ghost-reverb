@@ -1,0 +1,15 @@
+{{!-- The post access label --}}
+{{#if @site.members_enabled}}
+    {{^has visibility="public"}}
+        <span class="post-card-access">
+            {{> "icons/lock"}}
+            <span class="screen-reader-text">
+                {{#has visibility="members"}}
+                    {{t "Members only"}}
+                {{else}}
+                    {{t "Paid-members only"}}
+                {{/has}}
+            </span>
+        </span>
+    {{/has}}
+{{/if}}

@@ -1,0 +1,180 @@
+{{!< default}}
+
+<script>
+document.body.classList.add('has-hero');
+</script>
+
+<main id="main" class="content outer radio-page">
+    
+<!-- Latest Episode -->
+{{#get "posts" include="authors,tags,excerpt" filter="tag:midnight-radio" limit="1"}}
+    {{#foreach posts visibility="all"}}
+    <div class="radio-hero-wrapper">
+        <div class="image-slider">
+            {{#if feature_image}}
+                <img
+                    class="post-card-image bg-full-image bg-fade-in"
+                    srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
+                    sizes="(min-width: 1600px) 1600px, 100vw"
+                    src="{{img_url feature_image size="xl"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                />
+            {{/if}}
+        </div>
+        
+        <div class="radio-hero-content">
+            <h5>
+                Midnight Radio 
+                {{#foreach tags visibility="internal"}}
+                {{#if (match slug "^hash-mr-")}}
+                    <span class="episode-number" data-ep="{{slug}}"></span>
+                {{/if}}
+                {{/foreach}}
+            </h5>
+            <h1><a href="{{url}}">{{title}}</a></h1>    
+                <p>{{{custom_excerpt}}}</p>
+                <a href="{{url}}"><button>
+  Read + listen
+  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="8" viewBox="0 0 21 8" fill="none">
+    <path d="M20.3536 4.31644C20.5488 4.12118 20.5488 3.8046 20.3536 3.60934L17.1716 0.427355C16.9763 0.232093 16.6597 0.232093 16.4645 0.427355C16.2692 0.622617 16.2692 0.9392 16.4645 1.13446L19.2929 3.96289L16.4645 6.79132C16.2692 6.98658 16.2692 7.30316 16.4645 7.49842C16.6597 7.69369 16.9763 7.69369 17.1716 7.49842L20.3536 4.31644ZM0 3.96289L4.37114e-08 4.46289L20 4.46289L20 3.96289L20 3.46289L-4.37114e-08 3.46289L0 3.96289Z" fill="#181E28"/>
+  </svg>
+</button></a>
+        </div>
+    </div>
+    {{/foreach}}
+{{/get}}
+
+<!-- Recent Episode List -->
+<div class="recent-radio">
+    {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio" limit="11"}}
+        {{#foreach posts visibility="all"}}
+            {{#unless @first}}
+            <div class="radio-item" data-url="{{url}}">
+            <span class="footer-tag-name">{{title}}</span>
+            <span class="footer-tag-line"></span>
+            <span class="count">{{date published_at format="MMM DD"}}</span>
+            </div>
+            {{/unless}}
+        {{/foreach}}
+    {{/get}}
+</div>
+
+
+<!-- Three Cards -->
+<div class="inner-wide">     
+    <div class="grid notebook">
+
+        <!-- Slot 1 - Random -->
+        <div class="slot-1"></div>
+
+
+        <!-- Slot 2 - Always Notes on God -->
+        <article data-card="god">
+            <a href="{{@site.url}}/god" class="notecard-link">
+                <div class="post-card bg-dark bg-full">
+                    <img src="{{asset 'img/god.webp'}}" 
+                        class="post-card-image bg-full-image bg-fade-in"
+                        alt="Notes on God" />
+                </div>
+                <div class="grid-text">
+                    Notes on God
+                    <p>Hell can be described a thousand ways, but heaven remains impossible to grasp.</p>
+                </div>
+            </a>
+        </article>
+
+        <!-- Slot 3 - Random -->
+        <div class="slot-3"></div>
+
+        <!-- Hidden pool of random cards -->
+        <div style="display: none;">
+            <article class="random-card" data-card="instructions">
+                <a href="{{@site.url}}/instructions" class="notecard-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/Reeves-Instructions.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="Instructions for Myself" />
+                    </div>
+                    <div class="grid-text">
+                        Instructions for Myself
+                        <p>I should never confuse my beliefs, complaints, and politics with having a personality.</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="random-card" data-card="favorites">
+                <a href="{{@site.url}}/favorites" class="notecard-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/Reeves-Favorites.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="Favorite Things" />
+                    </div>
+                    <div class="grid-text">
+                        Favorite Things
+                        <p>Reverb, peanut butter, Michael Clayton, and chili oil.</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="random-card" data-card="running">
+                <a href="{{@site.url}}/music-for-running" class="notecard-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/Reeves-Running.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="The First Two Miles Are Always Murder" />
+                    </div>
+                    <div class="grid-text">
+                        The First Two Miles Are Always Murder
+                        <p>Reverb, peanut butter, Michael Clayton, and chili oil.</p>
+                    </div>
+                </a>
+            </article>
+
+            <article class="random-card" data-card="dreams">
+                <a href="{{@site.url}}/dreams" class="notecard-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/Notebook-Dreams.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="Dream Inventory" />
+                    </div>
+                    <div class="grid-text">
+                        Dream Inventory
+                        <p>Reverb, peanut butter, Michael Clayton, and chili oil.</p>
+                    </div>
+                </a>
+            </article>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const randomCards = Array.from(document.querySelectorAll('.random-card'));
+  const slot1 = document.querySelector('.slot-1');
+  const slot3 = document.querySelector('.slot-3');
+
+  // Shuffle the random cards
+  const shuffled = randomCards.sort(() => 0.5 - Math.random());
+
+  // Place first random card in slot 1
+  if (shuffled[0]) {
+    slot1.appendChild(shuffled[0].cloneNode(true));
+  }
+
+  // Place second random card in slot 3
+  if (shuffled[1]) {
+    slot3.appendChild(shuffled[1].cloneNode(true));
+  }
+});
+</script>
+
+
+</main>
+
