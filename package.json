@@ -73,6 +73,7 @@
     }
   },
   "dependencies": {
+    "better-sqlite3": "^12.4.1",
     "node-fetch": "^3.3.2"
   }
 }
