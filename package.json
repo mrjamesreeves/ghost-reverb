@@ -2,7 +2,7 @@
   "name": "headlights",
   "description": "The journal of James A. Reeves",
   "demo": "https://jamesreeves.co/",
-  "version": "3.2.0",
+  "version": "3.2.3",
   "engines": {
     "ghost": ">=5.0.0"
   },
