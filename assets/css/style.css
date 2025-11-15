@@ -77,7 +77,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
-  background: #000;
+  background: #000 !important;
   }
 
 /* Links */
@@ -940,7 +940,7 @@ body.has-hero .desktop-header {
   left: 0;
   width: 100%;
   z-index: 100;
-  background: transparent;
+  background: #000;
   }
 
 .has-hero .navbar-text,
@@ -5005,8 +5005,6 @@ html:not([data-theme]) .theme-switch .moon {
 
 /* Apply theme variables to body */
 body {
-  background-color: var(--theme-bg);
-  color: var(--theme-text);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
