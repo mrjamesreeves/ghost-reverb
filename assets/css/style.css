@@ -1099,20 +1099,20 @@ body.has-hero .desktop-header .hover-arrow {
 }
 
 .radio-page .radio-hero-content p {
-    font-size: 15px;
-    line-height: 1.45;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 40%;
-    font-weight: 500;
-    font-family: var(--font-sans);
-}
+  font-size: 22px;
+  line-height: 1.4;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 40%;
+  font-weight: 400;
+  font-family: var(--font-serif);
+  }
 
 /* Content flows normally after hero */
 .radio-page .radio-content-wrapper {
-    position: relative;
-    z-index: 1;
-}
+  position: relative;
+  z-index: 1;
+  }
 
 
 
@@ -2829,7 +2829,7 @@ h5:has(+ .kg-audio-card) {
 
 @media (min-width: 1026px) and (max-width: 1349px) {
   h1 {
-    font-size: calc(var(--type-h1) * 0.9);
+    font-size: calc(var(--type-h1) * 1.2);
       }
   .radio-post h1 {
     font-size: calc(var(--type-h1) * 1.2);
@@ -2850,10 +2850,10 @@ h5:has(+ .kg-audio-card) {
 
 @media (min-width: 1350px) {
   h1 {
-    font-size: var(--type-h1);
+    font-size: calc(var(--type-h1) * 1.44);
     }
   .radio-post h1 {
-    font-size: calc(var(--type-h1) * 1.4);
+    font-size: calc(var(--type-h1) * 1.44);
     }
   h2 {
     font-size: var(--type-h2);
