@@ -952,7 +952,7 @@ body.has-hero .desktop-header {
 .radio-hero-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 30/17;
+  aspect-ratio: 30/16;
   overflow: hidden;
   background: black;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.15);
@@ -1092,7 +1092,7 @@ body.has-hero .desktop-header .hover-arrow {
 
 .radio-page .radio-hero-content h1,
 .radio-page .radio-hero-content p {
-    width: 44%;
+    width: 52%;
 }
 
 .radio-page .radio-hero-content h5, .radio-page .radio-hero-content p {
