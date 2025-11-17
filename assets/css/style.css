@@ -1067,6 +1067,7 @@ body.has-hero .desktop-header .hover-arrow {
     opacity: 0;
     visibility: visible; /* Add this */
     animation: fadeIn 1.5s ease-in forwards;
+    border-radius: 0 !important;
 }
 
 @keyframes fadeIn {
