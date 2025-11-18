@@ -2228,7 +2228,7 @@ h6.song {
   font-size: 12px;
   line-height: 15px;
   padding-top: 5px;
-  display: inline-block;
+  display: block;
   color: var(--color-text-muted);
   font-style: italic;
 }
@@ -2765,7 +2765,7 @@ h5:has(+ .kg-audio-card) {
 
 @media (max-width: 700px) {
   p {
-    font-size: calc(var(--type-body) * 0.85);
+    font-size: calc(var(--type-body) * 0.92);
     line-height: 1.66;
     }
   h1 {
@@ -3708,6 +3708,11 @@ cite {
 
 /* Mobile */
 @media (max-width: 700px) {
+
+
+  .page-radio .post-feed {
+    padding-top: 50px;
+  }
 
   .recent-radio {
     display: flow;
@@ -4770,7 +4775,7 @@ body.nav-is-open {
     grid-template-columns: 1fr !important;
     gap: 0;
     line-height: 1.45;
-    margin-top: 10px;
+    margin-top: 15px;
     padding-left: 5px;
     padding-right: 0 !important;
     font-weight: 700;
