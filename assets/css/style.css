@@ -3257,8 +3257,13 @@ h5:has(+ .kg-audio-card) {
 
 .radio-page .radio-hero-content h1,
 .radio-page .radio-hero-content p {
-    width: 80% !important;
+    width: 50% !important;
     margin-top: 0;
+}
+
+.radio-page .radio-hero-content p {
+      font-size: 16px;
+
 }
 
   .quote p {
@@ -4499,7 +4504,21 @@ body.nav-is-open {
     display: table;
   }
   .midnight-blurb p {
-    font-size: 1.1rem;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+  }
+  #buzzsprout-large-player {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+  .kg-signup-card-form {
+    width: 85% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   .nav-icon {
     top: 16px;
@@ -4535,11 +4554,22 @@ body.nav-is-open {
   .nav-link {
     font-size: 1.2rem;
   }
+
+      .nav-icon img {
+        width: 60px;
+      }
+
+        .nav-icon {
+    width: 60px; /* Even smaller on small mobile */
+    top: 5%;
+    left: 10%;
+  }
+
 }
 
 @media (max-width: 480px) {
   .nav-icon {
-    width: 40px !important; /* Even smaller on small mobile */
+    width: 40px; /* Even smaller on small mobile */
     min-width: 35px;
     top: 4%;
     left: 10%;
@@ -4706,6 +4736,14 @@ body.nav-is-open {
   .content {
     width: 90%;
   }
+
+  .midnight-blurb p {
+    font-size: 16px;
+  }
+
+  .midnight-page {
+    gap: 60px;
+  }
   
   .notebook-hero {
     height: 30vh;
@@ -4736,7 +4774,7 @@ body.nav-is-open {
   }
 
   .grid.notebook, .grid {
-    gap: 15px
+    gap: 25px
   }
 
   .grid .post-card {
