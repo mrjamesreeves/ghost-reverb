@@ -57,7 +57,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 /* Light theme - the new addition */
 [data-theme="light"] {
   --color-text: #000;
-  --color-text-muted: #888;
+  --color-text-muted: #777;
   --color-hover: #444;
 }
 
@@ -2058,9 +2058,9 @@ h6.song {
 
 .kg-signup-card-button-default {
   color: black;
-  font-size: .7rem;
-  letter-spacing: 1px;
-  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
 }
   
 .footer-tags-grid {
@@ -2146,12 +2146,12 @@ h6.song {
   display: flex;
   align-items: center;
   width: 100%; /* Remove the 50% */
-  font-size: 1.2rem;
+  font-size: 20px;
   font-family: var(--font-big-alt);
   font-weight: 600;
   white-space: nowrap;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: .5px;
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.8s ease-out;
@@ -2206,8 +2206,8 @@ h6.song {
   }
 
 .grid-text.radio-text {
-    grid-template-columns: 0% 90%;
-}
+  grid-template-columns: 0% 90%;
+  }
 
 .grid-text p {
   font-size: 14px;
@@ -2223,14 +2223,13 @@ h6.song {
   border-left: var(--line)
   }
 
-
-  .grid-title {
-    font-size: 1.2rem;
-    font-family: var(--font-big-alt);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1.1;
+.grid-title {
+  font-size: 20px;
+  font-family: var(--font-big-alt);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
   }
 
 .grid-item .count {
@@ -2247,7 +2246,7 @@ h6.song {
   display: block;
   color: var(--color-text-muted);
   font-style: italic;
-}
+  }
 
   
 
@@ -2590,6 +2589,7 @@ h5:has(+ .kg-audio-card) {
   min-height: 60px;
   border: 1px solid var(--color-text-muted) !important;
   border-radius: 15px !important;
+  max-width: 500px;
   }
 
 
@@ -4188,8 +4188,8 @@ margin-bottom: 15px;
 }
 
 .midnight-blurb p {
-  line-height: 1.6;
-  font-size: 1.25rem;
+  line-height: 1.56;
+  font-size: 18px;
 }
 
 
@@ -5005,11 +5005,6 @@ body {
   color: var(--color-text);
 }
 
-[data-theme="light"] .footer-tag-name {
-  color: var(--color-text);
-  font-weight: 500;
-}
-
 [data-theme="light"] h3 {
   color: var(--color-text);
   font-weight: 600;
@@ -5148,10 +5143,6 @@ body {
 
 [data-theme="light"] .post-content h1, [data-theme="light"] .radio-item .footer-tag-name, [data-theme="light"] .radio-item .count {
     color: var(--color-text);
-}
-
-[data-theme="light"] .radio-item .footer-tag-name, .radio-item .count {
-    font-weight: 400;
 }
 
 [data-theme="light"] .nav-bio p,

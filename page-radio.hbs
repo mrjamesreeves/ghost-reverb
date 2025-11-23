@@ -31,14 +31,14 @@ document.body.classList.add('has-hero');
             <article class="midnight-page post-full is-page">
                 <div class="midnight-blurb">
                     {{content}}
-                </div>
-                <div>
 
-                    <div id='buzzsprout-large-player'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2541955.js?container_id=buzzsprout-large-player&player=large'></script>
-
-                    {{#if @member}}
+                    {{#if @member}}<em>Thank you for being a Midnight Radio Member.</em>
                     {{else}}{{> "signup"}}  
                     {{/if}}
+                </div>
+
+                <div id='buzzsprout-large-player'>
+                    <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2541955.js?container_id=buzzsprout-large-player&player=large'></script>
                 </div>
             </article>  
         </div>
