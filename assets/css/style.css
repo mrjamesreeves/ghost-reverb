@@ -891,6 +891,10 @@ textarea:focus {
   width: 80%;
   }
 
+.big-title h5 {
+  font-size: 10px;
+}
+
 .big-title p:last-child {
   margin-bottom: 0;
   }
@@ -2202,7 +2206,7 @@ h6.song {
   }
 
 .grid-text.radio-text {
-    grid-template-columns: 15% 75%;
+    grid-template-columns: 0% 90%;
 }
 
 .grid-text p {
@@ -5020,7 +5024,12 @@ body {
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);
 }
 
-[data-theme="light"] .big-title h5, [data-theme="light"] .count {
+[data-theme="light"] .big-title h5 {
+  color: var(--color-text-muted);
+}
+
+
+[data-theme="light"] .count {
   color: var(--color-text);
 }
 
