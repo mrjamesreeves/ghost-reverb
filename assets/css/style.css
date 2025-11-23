@@ -4997,6 +4997,10 @@ body {
   font-weight: 400;
 }
 
+[data-theme="light"] p a:hover {
+  color: var(--color-text);
+}
+
 [data-theme="light"] .footer-tag-name {
   color: var(--color-text);
   font-weight: 500;
@@ -5026,6 +5030,11 @@ body {
 
 [data-theme="light"] .tag-box h5 a {
   background: black;
+}
+
+
+[data-theme="light"] h1.post {
+  color: var(--color-text);
 }
 
 
