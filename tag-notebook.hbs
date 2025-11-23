@@ -34,7 +34,7 @@ document.body.classList.add('has-hero');
                             <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/god.webp'}}" />
                         </div>
                         <div class="grid-text">
-                            Notes on God
+                            <span class="grid-title">Notes on God</span>
                             <p>Hell can be described a thousand ways but heaven remains impossible to grasp.</p>
                         </div>
                         </a>
@@ -46,7 +46,7 @@ document.body.classList.add('has-hero');
                             <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/Reeves-Instructions.webp'}}" />
                         </div>
                         <div class="grid-text">
-                            Instructions for Myself
+                            <span class="grid-title">Instructions for Myself</span>
                             <p>I should not confuse my beliefs, complaints, and politics with having a personality.</p>
                         </div>
                         </a>
@@ -58,7 +58,7 @@ document.body.classList.add('has-hero');
                             <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/Reeves-Favorites.webp'}}" />
                         </div>
                         <div class="grid-text">
-                            Favorite Things
+                            <span class="grid-title">Favorite Things</span>
                             <p>Reverb, peanut butter, Michael Clayton, and chili oil.</p>
                         </div>
                         </a>
@@ -88,7 +88,8 @@ document.body.classList.add('has-hero');
     <div class="inner-wide">
         <h3 class="muted">lowlights</h3>
         <div class="post-titles">
-{{#get "posts" include="tags" filter="tag:-midnight-radio+featured:false" limit="900"}}                {{#foreach posts}}
+            {{#get "posts" include="tags" filter="tag:-midnight-radio+featured:false" limit="900"}}                
+                {{#foreach posts}}
                     <div class="post-title">
                         <a href="{{url}}" class="post-title-name">{{title}}</a> / 
                     </div>
