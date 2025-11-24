@@ -157,6 +157,20 @@ h1.post {
   text-align: left;
   }
 
+h1.project {
+  color: var(--color-text);
+  margin-bottom: 10px;
+  padding-right: 10%;
+  box-sizing: border-box;
+  line-height: .9;
+  font-size: 48px;
+  width: 100%;
+  max-width: 600px !important;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  }
+
 .post-content h1 a {
   color: var(--color-text);
   }
@@ -1093,7 +1107,7 @@ body.has-hero .desktop-header .hover-arrow {
 
 .radio-page .radio-hero-content h1,
 .radio-page .radio-hero-content p {
-    width: 52%;
+    width: 44%;
 }
 
 .radio-page .radio-hero-content h5, .radio-page .radio-hero-content p {
@@ -1448,12 +1462,9 @@ ul.section-items li::marker {
 
 .post-header-caption, caption,
 figcaption, .kg-card figcaption {
-  width: 90%;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
   color: var(--color-text-muted);
-  font-size: 11px;
+    font-size: 11px;
+    text-align: right;
   }
 
 
@@ -2205,7 +2216,7 @@ h6.song {
   }
 
 .grid-text.radio-text {
-  grid-template-columns: 0% 90%;
+  grid-template-columns: 0% 80%;
   }
 
 .grid-text p {
@@ -5031,7 +5042,7 @@ body {
   background: black;
 }
 
-[data-theme="light"] h1.post {
+[data-theme="light"] h1.post, h1.project {
   color: var(--color-text);
 }
 

@@ -1,44 +1,43 @@
 {{!< default}}
 
-<main id="main" class="content outer">
-    <div class="inner-wide">
+<script>
+document.body.classList.add('has-hero');
+</script>
 
-        {{!-- Everything inside the #post tags pulls data from the post --}}
-        {{#post}}
-        <article class="{{post_class}} post-full">
-
-            
-{{#has tag="hash-series"}}{{else}}
-<header class="post-header {{#if feature_image}}has-image{{else}}no-image{{/if}}">
-    <div class="post-header-inside{{#if feature_image}} bg-dark bg-full{{/if}}">
-        {{#if feature_image}}
-            <img
-            class="bg-full-image bg-fade-in"
-            srcset="{{img_url feature_image size="xs"}} 300w, 
-                    {{img_url feature_image size="s"}} 600w, 
-                    {{img_url feature_image size="m"}} 800w, 
-                    {{img_url feature_image size="l"}} 1200w, 
-                    {{img_url feature_image size="xl"}} 1600w, 
-                    {{img_url feature_image size="xxl"}} 2000w"
-            sizes="(min-width: 1600px) 1600px, 100vw"
-            src="{{img_url feature_image size="xl"}}"
-            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-            />
-        {{/if}}
+<main id="main" class="content outer radio-page">
+    {{#post}}
+    
+    <div class="radio-hero-wrapper">
+        <div class="image-slider">
+            {{#if feature_image}}
+                <img
+                    class="post-card-image bg-full-image bg-fade-in"
+                    srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
+                    sizes="(min-width: 1600px) 1600px, 100vw"
+                    src="{{img_url feature_image size="xl"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                />
+            {{/if}}
+        </div>
+        
     </div>
-    {{#if feature_image}}
-        {{#if feature_image_caption}}
-            <div class="post-header-caption">
-                {{feature_image_caption}}
-            </div>
-        {{/if}}
+            
+    {{#if feature_image_caption}}
+        <div class="post-header-caption">
+            {{feature_image_caption}}
+        </div>
     {{/if}}
-     <h1 class="post">{{title}}</h1>
-</header>
-{{/has}}
 
-
-
+    <div class="radio-content-wrapper">
+        <div class="inner-wide">
+            <article class="{{post_class}} post-full">
+                
+                <div class="post-header-content inner">
+                                <h1 class="project">{{title}}</h1>    
+                    <div class="post-extract">
+                        <h5>{{{custom_excerpt}}}<br><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="YYYY"}}</time></h5>
+                    </div>
+                </div>
 
                 <div class="post-content">
                     {{content}}
@@ -76,22 +75,14 @@
                     </div>
                 </div>
 
-                {{#if comments}}
-                        {{> comments}}
-                {{/if}}
-
-
+            </div>
         </article>
-        </div>
-
-        {{!-- Next/previous posts --}}
 
 
-
- <!-- EPISODES -->
+    <!-- EPISODES -->
     <div class="inner-wide">
         <div class="grid">
-            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio+id:-{{id}}" limit="3"}}
+            {{#get "posts" include="authors,tags,tiers" filter="tag:artwork+id:-{{id}}" limit="3"}}
                 {{#foreach posts visibility="all"}}
 
                     <article>
@@ -111,14 +102,6 @@
                             <div class="post-card-inside">
                                 <div class="post-card-content">          
                                     <div class="big-title">
-                                        <h5>
-                                            Midnight Radio 
-                                            {{#foreach tags visibility="internal"}}
-                                            {{#if (match slug "^hash-mr-")}}
-                                                <span class="episode-number" data-ep="{{slug}}"></span>
-                                            {{/if}}
-                                            {{/foreach}}
-                                        </h5>
                                         <h2>{{title}}</h2>
                                     </div>
                                 </div>
@@ -136,10 +119,8 @@
         </div>
     </div>
 
-
-    
-
 {{/post}}
-
-
 </main>
+<br>
+
+
