@@ -1079,7 +1079,7 @@ body.has-hero .desktop-header .hover-arrow {
 /* Reuse the same hero content styling */
 .radio-page .radio-hero-content {
     position: absolute;
-    bottom: 25%;
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -4906,7 +4906,6 @@ body.nav-is-open {
   fill: white;
 }
 
-/* Dark mode - show moon */
 [data-theme="dark"] .theme-switch .sun {
   opacity: 0;
 }
@@ -4915,7 +4914,6 @@ body.nav-is-open {
   opacity: 1;
 }
 
-/* Dark mode thumb positioning */
 [data-theme="dark"] .theme-switch-thumb {
   left: 26px; /* Move to right side */
   background: #1a1a1a; /* Dark background */
@@ -4987,7 +4985,6 @@ html:not([data-theme]) .theme-switch .moon {
   --theme-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Apply theme variables to body */
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -5022,7 +5019,6 @@ body {
   color: var(--color-text-muted);
 }
 
-
 [data-theme="light"] .count {
   color: var(--color-text);
 }
@@ -5034,7 +5030,6 @@ body {
 [data-theme="light"] .tag-box h5 a {
   background: black;
 }
-
 
 [data-theme="light"] h1.post {
   color: var(--color-text);
@@ -5093,10 +5088,6 @@ body {
   color: var(--color-hover);
 }
 
-.muted {
-  color: var(--color-text-muted) !important;
-}
-
 @media (max-width: 700px) {
   .simple-footer {
     flex-direction: column;
@@ -5150,8 +5141,6 @@ body {
 }
 
 [data-theme="light"] .nav-email-input {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
   color: white;
 }
 
@@ -5171,9 +5160,6 @@ body {
 [data-theme="light"] .gh-comment-content p, [data-theme="light"] .comments-bit, [data-theme="light"] .comments-bit h4, [data-theme="light"] .tag-midnight-radio .post-content h6 {
   color: #000 !important;
 }
-
-
-
 
 
 .kg-bookmark-card,
@@ -5208,12 +5194,6 @@ body {
     overflow: hidden;
 }
 
-.kg-bookmark-title {
-    font-size: 1.5rem;
-    line-height: 1.4em;
-    font-weight: 600;
-}
-
 .kg-bookmark-description {
     display: -webkit-box;
     font-size: 1.4rem;
@@ -5235,28 +5215,4 @@ body {
     font-size: 1.4rem;
     font-weight: 500;
     white-space: nowrap;
-}
-
-.kg-bookmark-metadata > *:not(img) {
-    opacity: 0.7;
-}
-
-.kg-bookmark-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 6px;
-}
-
-.kg-bookmark-author,
-.kg-bookmark-publisher {
-    display: inline;
-}
-
-.kg-bookmark-publisher {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 240px;
-    white-space: nowrap;
-    display: block;
-    line-height: 1.65em;
 }
