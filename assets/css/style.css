@@ -25,6 +25,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --font-serif: "ibm-plex-serif", Georgia, serif;
   --font-big:  "bebas-neue-pro", sans-serif;
   --font-big-alt: "bebas-neue-pro-semiexpanded", sans-serif;
+  --font-mono: "ibm-plex-mono", sans-serif;
 
   /* Type Sizes */
   --type-h1: 6.5rem;
@@ -2094,7 +2095,6 @@ h6.song {
   
 .footer-tag-name {
   margin-right: 0.5rem;
-  color: var(--color-text-muted);
   text-decoration: none;
   transition: all 0.6s ease-out;
   margin-bottom: -4px;
@@ -2116,10 +2116,9 @@ h6.song {
 .count {
   margin-left: 0.5rem;
   text-align: right;
-  color: var(--color-text-muted);
   font-size: 12px;
   font-weight: 600;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   margin-top: 10px;
   transition: all 0.6s ease-out;
   text-transform: uppercase;
@@ -2174,7 +2173,7 @@ h6.song {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 70px;
+  gap: 60px;
   margin-top: 25px;
   }
 
@@ -2224,7 +2223,7 @@ h6.song {
   }
 
 .grid-title {
-  font-size: 20px;
+  font-size: 18px;
   font-family: var(--font-big-alt);
   font-weight: 600;
   text-transform: uppercase;
@@ -5141,7 +5140,7 @@ body {
   color: white;
 }
 
-[data-theme="light"] .post-content h1, [data-theme="light"] .radio-item .footer-tag-name, [data-theme="light"] .radio-item .count {
+[data-theme="light"] .post-content h1, [data-theme="light"] .footer-tag-name, [data-theme="light"] .radio-item .count {
     color: var(--color-text);
 }
 
