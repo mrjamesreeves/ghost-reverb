@@ -1,21 +1,18 @@
 <footer class="content outer">
-
-  <!-- TAGS -->
-  <div class="footer-tags">
-      {{#get "tags" limit="12" order="count.posts desc" include="count.posts" filter="slug:-[notebook,books,artwork,albums,mix-tapes,broadcasts,design]"}}
-          <div class="footer-tags-grid">
-          {{#foreach tags}}
-              <div class="footer-tag-item" data-url="{{url}}">
-          
-              <span class="footer-tag-name">{{name}}</span>
-              <span class="footer-tag-line"></span>
-              <span class="count">{{count.posts}}</span>
-              </div>
-          {{/foreach}}
-          </div>
-      {{/get}}
-  </div>
-
+    <!-- TAGS -->
+    <div class="footer-tags">
+        {{#get "tags" limit="12" order="count.posts desc" include="count.posts" filter="slug:-[notebook,books,artwork,albums,mix-tapes,broadcasts,design]"}}
+            <div class="footer-tags-grid">
+            {{#foreach tags}}
+                <div class="footer-tag-item" data-url="{{url}}">
+                  <span class="footer-tag-name">{{name}}</span>
+                  <span class="footer-tag-line"></span>
+                  <span class="count">{{count.posts}}</span>
+                </div>
+            {{/foreach}}
+            </div>
+        {{/get}}
+    </div>
 </footer>
 
 <footer class="simple-footer">
@@ -117,11 +114,6 @@ document.querySelectorAll('.episode-number').forEach(function(el) {
     }
 });
 
-</script>
-
-
-
-<script>
   document.addEventListener('DOMContentLoaded', function () {
     const toggleButton = document.getElementById('toggle-header');
     const mobileHeader = document.getElementById('mobile-header-info');

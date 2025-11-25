@@ -1,6 +1,4 @@
-/**
- * Headlights
- */
+/* Headlights */
 
 /* 1. Reset
 ----------------------------- */
@@ -3174,8 +3172,6 @@ h5:has(+ .kg-audio-card) {
     }
 }
 
-
-
 /* Tablet Plus
 ----------------------------- */
 @media (min-width: 701px) {
@@ -3183,7 +3179,6 @@ h5:has(+ .kg-audio-card) {
     display: none;
     }
   h1 {
-    margin-bottom: 5px;
     margin-top: 5px;
     }
   .navbar {
@@ -3283,14 +3278,13 @@ h5:has(+ .kg-audio-card) {
 
 .radio-page .radio-hero-content h1,
 .radio-page .radio-hero-content p {
-    width: 50% !important;
-    margin-top: 0;
-}
+  width: 50% !important;
+  margin-top: 0;
+  }
 
 .radio-page .radio-hero-content p {
-      font-size: 16px;
-
-}
+  font-size: 16px;
+  }
 
   .quote p {
     text-indent: -8px;
@@ -3486,7 +3480,7 @@ a button {
 }
 
 /* ==========================================================================
-   ABOUT PAGE SPECIFIC STYLES
+   ABOUT PAGE
    ========================================================================== */
 
 .page-about .post-card:hover img {
@@ -3504,11 +3498,6 @@ a button {
   color: var(--color-text);
   text-decoration: underline !important;
 }
-
-/* ==========================================================================
-   BIO SECTION 
-   ========================================================================== */
-
 
 .grid.bio-photo {
   margin-top: 0 !important;
@@ -3575,18 +3564,6 @@ a button {
 /* ==========================================================================
    INDEX SECTION (Bottom)
    ========================================================================== */
-
-.index-section {
-  margin-top: 60px;
-  padding-top: 40px;
-}
-
-.index-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 60px;
-  max-width: 600px;
-}
 
 .index-column h4 {
   font-family: var(--font-big);
@@ -4095,16 +4072,14 @@ cite {
 /* Mobile */
 @media (max-width: 700px) {
 .radio-hero-content h5 {
-  padding-bottom: 3px;
-  font-size: 9px !important;
-}
-
+    padding-bottom: 3px;
+    font-size: 9px !important;
+  }
 .radio-page .radio-hero-content p {
-font-size: 13px;
-line-height: 1.5;
-margin-bottom: 15px;
-}
-
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
   button {
     font-size: 12px;
     min-width: 170px;
@@ -4168,14 +4143,6 @@ margin-bottom: 15px;
 
 /* Large screens */
 @media (min-width: 1026px) {
-  .bio h4,
-  .bio h4 a {
-    line-height: 1.4;
-    font-family: var(--font-sans) !important;
-    margin-top: 0;
-    font-weight: 500;
-    width: 80%;
-  }
 
   .about-hero-image-container {
     height: 70vh;
@@ -4201,9 +4168,6 @@ margin-bottom: 15px;
   line-height: 1.56;
   font-size: 18px;
 }
-
-
-
 
 /* ==========================================================================
    MINIMAL NAVIGATION SYSTEM - FIXED LAYERING
@@ -4507,16 +4471,15 @@ body.nav-is-open {
     font-size: 1.2rem;
   }
 
-      .nav-icon img {
-        width: 60px;
-      }
+  .nav-icon img {
+    width: 60px;
+  }
 
-        .nav-icon {
+  .nav-icon {
     width: 60px; /* Even smaller on small mobile */
     top: 5%;
     left: 10%;
   }
-
 }
 
 @media (max-width: 480px) {
@@ -4819,14 +4782,13 @@ body.nav-is-open {
     margin-bottom: 30px;
   }
 
-    .grid.bio-photo {
-      gap:0;
-    }
+  .grid.bio-photo {
+    gap:0;
+  }
 
-    .bio, .bio p {
-      margin-top: 0;
-    }
-
+  .bio, .bio p {
+    margin-top: 0;
+  }
 }
 
 /* Large screens */
@@ -5186,27 +5148,4 @@ body {
     justify-content: flex-start;
     padding: 20px;
     overflow: hidden;
-}
-
-.kg-bookmark-description {
-    display: -webkit-box;
-    font-size: 1.4rem;
-    line-height: 1.5em;
-    margin-top: 3px;
-    font-weight: 400;
-    max-height: 44px;
-    overflow-y: hidden;
-    opacity: 0.7;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.kg-bookmark-metadata {
-    display: flex;
-    align-items: center;
-    margin-top: 22px;
-    width: 100%;
-    font-size: 1.4rem;
-    font-weight: 500;
-    white-space: nowrap;
 }
