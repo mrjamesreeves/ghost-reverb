@@ -95,8 +95,9 @@
                 {{#foreach posts visibility="all"}}
 
                     <article>
+                                                    <a href="{{url}}" class="post-card-link">
+
                         <div class="post-card bg-dark bg-full">
-                            <a href="{{url}}" class="post-card-link">
 
                             {{#if feature_image}}
                                 <img
@@ -124,8 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid-text radio-text">
-                            <div></div>
+                        <div class="grid-text">
                             <p>{{{custom_excerpt}}}</p>
                         </div>
                         </a>

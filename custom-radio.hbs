@@ -118,8 +118,9 @@ document.body.classList.add('has-hero');
                 {{#foreach posts visibility="all"}}
 
                     <article>
-                        <div class="post-card bg-dark bg-full">
                             <a href="{{url}}" class="post-card-link">
+
+                        <div class="post-card bg-dark bg-full">
 
                             {{#if feature_image}}
                                 <img
@@ -147,8 +148,7 @@ document.body.classList.add('has-hero');
                                 </div>
                             </div>
                         </div>
-                        <div class="grid-text radio-text">
-                            <div></div>
+                        <div class="grid-text">
                             <p>{{{custom_excerpt}}}</p>
                         </div>
                         </a>
