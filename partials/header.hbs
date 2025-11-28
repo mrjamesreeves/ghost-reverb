@@ -67,71 +67,7 @@
     </div>
 </header>
 
-<!-- Navigation JavaScript -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navOverlay = document.getElementById('nav-overlay');
-    const body = document.body;
-    const iconDefault = navToggle.querySelector('.nav-icon-default');
-    const iconClose = navToggle.querySelector('.nav-icon-close');
-
-    // Open navigation
-    navToggle.addEventListener('click', function() {
-        if (navOverlay.classList.contains('nav-open')) {
-            closeNav();
-        } else {
-            openNav();
-        }
-    });
-
-    function openNav() {
-        navOverlay.classList.add('nav-open');
-        body.classList.add('nav-is-open');
-        navToggle.classList.add('nav-active');
-        
-        // Switch icons
-        iconDefault.style.opacity = '0';
-        iconClose.style.opacity = '1';
-    }
-
-    function closeNav() {
-        navOverlay.classList.remove('nav-open');
-        body.classList.remove('nav-is-open');
-        navToggle.classList.remove('nav-active');
-        
-        // Switch icons back
-        iconDefault.style.opacity = '1';
-        iconClose.style.opacity = '0';
-    }
-
-    // Close on overlay click (outside card)
-    navOverlay.addEventListener('click', function(e) {
-        if (e.target === navOverlay) {
-            closeNav();
-        }
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navOverlay.classList.contains('nav-open')) {
-            closeNav();
-        }
-    });
-
-    // Newsletter form handling (basic)
-    const signupForm = document.querySelector('.nav-signup-form');
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your newsletter signup logic here
-            const email = this.querySelector('input[name="email"]').value;
-            console.log('Newsletter signup:', email);
-            // You can replace this with Ghost's members API call
-        });
-    }
-});
-// Add this to your existing script section
 let lastScrollY = 0;
 let ticking = false;
 
@@ -144,15 +80,17 @@ window.addEventListener('scroll', function() {
 
 function updateIconOpacity() {
     const navIcon = document.getElementById('nav-toggle');
+    if (!navIcon) return;
+    
     const currentScrollY = window.scrollY;
     
     if (currentScrollY > lastScrollY) {
         // Scrolling down - slow fade out
-        navIcon.style.transition = 'opacity 0.8s ease-out';
+        navIcon.style.transition = 'opacity 1.8s ease-out';
         navIcon.style.opacity = '0';
     } else if (currentScrollY < lastScrollY) {
         // Scrolling up - quick fade in
-        navIcon.style.transition = 'opacity 0.3s ease-in';
+        navIcon.style.transition = 'opacity 1.8s ease-in';
         navIcon.style.opacity = '1';
     }
     
@@ -165,52 +103,128 @@ function updateIconOpacity() {
     ticking = false;
 }
 
-// ==========================================================================
-// THEME TOGGLE FUNCTIONALITY
-// ==========================================================================
-
-// Theme toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Navigation code with null checks
+    const navToggle = document.getElementById('nav-toggle');
+    const navOverlay = document.getElementById('nav-overlay');
+    const body = document.body;
+    
+    // Only proceed if navigation elements exist
+    if (navToggle && navOverlay) {
+        const iconDefault = navToggle.querySelector('.nav-icon-default');
+        const iconClose = navToggle.querySelector('.nav-icon-close');
+
+        // Navigation functionality
+        navToggle.addEventListener('click', function() {
+            if (navOverlay.classList.contains('nav-open')) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        });
+
+        function openNav() {
+            navOverlay.classList.add('nav-open');
+            body.classList.add('nav-is-open');
+            navToggle.classList.add('nav-active');
+            
+            if (iconDefault && iconClose) {
+                iconDefault.style.opacity = '0';
+                iconClose.style.opacity = '1';
+            }
+        }
+
+        function closeNav() {
+            navOverlay.classList.remove('nav-open');
+            body.classList.remove('nav-is-open');
+            navToggle.classList.remove('nav-active');
+            
+            if (iconDefault && iconClose) {
+                iconDefault.style.opacity = '1';
+                iconClose.style.opacity = '0';
+            }
+        }
+
+        // Close on overlay click
+        navOverlay.addEventListener('click', function(e) {
+            if (e.target === navOverlay) {
+                closeNav();
+            }
+        });
+
+        // Close on escape key  
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navOverlay.classList.contains('nav-open')) {
+                closeNav();
+            }
+        });
+    }
+
+    // Newsletter form handling
+    const signupForm = document.querySelector('.nav-signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[name="email"]').value;
+            console.log('Newsletter signup:', email);
+        });
+    }
+
+    // THEME TOGGLE - Always run this part
     const themeToggle = document.getElementById('theme-toggle');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     
-    // Check for saved theme preference or default to 'light' mode
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-    } else if (prefersDark.matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    function getTimeBasedTheme() {
+        const hour = new Date().getHours();
+        return (hour >= 7 && hour < 19) ? 'light' : 'dark';
     }
     
-    // Toggle functionality
+    function initializeTheme() {
+        const savedTheme = sessionStorage.getItem('theme-override');
+        
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+            const timeTheme = getTimeBasedTheme();
+            document.documentElement.setAttribute('data-theme', timeTheme);
+        }
+    }
+    
     function toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
         document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        sessionStorage.setItem('theme-override', newTheme);
         
-        // Add a little haptic feedback (on supported devices)
         if (navigator.vibrate) {
             navigator.vibrate(50);
         }
+        
+        console.log(`Theme manually switched to: ${newTheme}`);
     }
     
-    // Add click event listener
+    function checkTimeBasedTheme() {
+        const hasOverride = sessionStorage.getItem('theme-override');
+        
+        if (!hasOverride) {
+            const timeTheme = getTimeBasedTheme();
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (timeTheme !== currentTheme) {
+                document.documentElement.setAttribute('data-theme', timeTheme);
+                console.log(`Theme auto-switched to: ${timeTheme} based on time`);
+            }
+        }
+    }
+    
+    // Always initialize theme (even if toggle button doesn't exist on this page)
+    initializeTheme();
+    
+    // Theme toggle event listener - only if button exists
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
-    }
-    
-    // Listen for system preference changes
-    prefersDark.addEventListener('change', function(e) {
-        if (!localStorage.getItem('theme')) {
-            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-        }
-    });
-    
-    // Keyboard accessibility
-    if (themeToggle) {
+        
         themeToggle.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -218,8 +232,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Time-based checking - always active
+    setInterval(checkTimeBasedTheme, 30 * 60 * 1000);
+    
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            checkTimeBasedTheme();
+        }
+    });
+    
+    if (prefersDark) {
+        prefersDark.addEventListener('change', function(e) {
+            const hasOverride = sessionStorage.getItem('theme-override');
+            if (!hasOverride) {
+                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+    
+    // Debug log
+    console.log('Theme system initialized:', {
+        currentTime: new Date().toLocaleTimeString(),
+        timeBasedTheme: getTimeBasedTheme(),
+        hasOverride: !!sessionStorage.getItem('theme-override'),
+        activeTheme: document.documentElement.getAttribute('data-theme'),
+        hasNavigation: !!(navToggle && navOverlay),
+        hasThemeToggle: !!themeToggle
+    });
 });
 
-// Add smooth transitions when theme changes
-document.documentElement.style.setProperty('--transition-duration', '0.3s');
 </script>

@@ -75,9 +75,17 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: all 0.8s ease;
   overflow-x: hidden;
-  background: #000 !important;
+  }
+
+.bg {
+    background-image: linear-gradient(180deg, #1A1B1A 41.21%, #0E0E0E 68.52%, #000 96%);  
+  transition: all 0.8s ease;
+}
+
+[data-theme="light"] .bg {
+  background-image: linear-gradient(180deg, #ffffff 0%, #eaeaea 97%); /* Light override */
   }
 
 /* Links */
@@ -614,26 +622,6 @@ figure p {
   color: #000;
   }
 
-.bg-dark .button-outlined {
-  border-color: var(--color-border-highlight-inverse);
-  color: var(--color-text-highlight-inverse);
-  background: none;
-  }
-
-.bg-dark .button-outlined:hover {
-  border-color: var(--color-border-highlight-inverse);
-  color: var(--color-text-highlight-inverse);
-  background: none;
-  }
-
-.button-outlined:hover,
-.button-outlined:focus,
-.button-outlined:active {
-  background-color: #fff;
-  border-color: var(--color-text);
-  color: var(--color-text-on-accent);
-  }
-
 .button-clear {
   background-color: transparent;
   border: 0;
@@ -772,15 +760,6 @@ textarea:focus {
   overflow: hidden;
   position: relative;
   }
-
-.bg {
-  background: linear-gradient(180deg, #1A1B1A 0%, #111211 97%);  
-  background-attachment: fixed;
-  }
-
-[data-theme="light"] .bg, [data-theme="light"] .about-bg {
-  background: linear-gradient(180deg, #ffffff 0%, #eaeaea 97%); /* Light override */
-}
 
 .content {
   flex-grow: 1;
@@ -1044,10 +1023,6 @@ body.has-hero .desktop-header {
   font-size: 37px;
   }
 
-body.has-hero .desktop-header .hover-arrow {
-  filter: brightness(0) invert(1); /* Turns any color to white */
-  }
-
 .radio-caption {
   text-align: right;
   margin-bottom: 50px;
@@ -1110,13 +1085,13 @@ body.has-hero .desktop-header .hover-arrow {
 }
 
 .radio-page .radio-hero-content p {
-  font-size: 22px;
-  line-height: 1.4;
+  font-size: 20px;
+  line-height: 1.3;
   margin-top: 5px;
   margin-bottom: 20px;
   width: 40%;
-  font-weight: 400;
-  font-family: var(--font-serif);
+  font-weight: 300;
+  font-family: var(--font-sans);
   color: white;
   }
 
@@ -2134,7 +2109,7 @@ h6.song {
 .recent-radio {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(5, 1fr); /* Adjust based on your item count */
+  grid-template-rows: repeat(3, 1fr); /* Adjust based on your item count */
   grid-auto-flow: column;
   gap: .3rem 5rem;
   padding-top: 50px;
@@ -3458,7 +3433,7 @@ button {
   border-radius: 50px;
   padding: 12px 24px;
   padding-top: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-family: inherit;
   color: black;
   cursor: pointer;
@@ -3467,8 +3442,6 @@ button {
   justify-content: space-between;
   transition: all 0.3s ease;
   font-family: var(--font-sans);
-  text-transform: uppercase;
-  letter-spacing: 1px;
   font-weight: 600;
   }
 
@@ -3571,53 +3544,6 @@ a button {
 
 .about-columns-grid.colophon {
   gap: 10px;
-}
-
-
-
-/* ==========================================================================
-   INDEX SECTION (Bottom)
-   ========================================================================== */
-
-.index-column h4 {
-  font-family: var(--font-big);
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  color: var(--color-text);
-}
-
-.index-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.index-column li {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  font-family: var(--font-sans);
-}
-
-.index-column .topic {
-  color: var(--color-text);
-}
-
-.index-column .page-number {
-  color: var(--color-text-muted);
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-}
-
-.index-column a {
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color 0.3s ease;
 }
 
 .about-column p {
@@ -4703,7 +4629,6 @@ body.nav-is-open {
     padding-left: 0;
   }
 
-
   .grid.notebook, .grid {
     gap: 25px
   }
@@ -4711,6 +4636,7 @@ body.nav-is-open {
   .grid .post-card {
     border-radius: 10px;
   }
+
   .highlights {
     margin-top: 0;
   }
@@ -4733,20 +4659,14 @@ body.nav-is-open {
     width: 90%;
   }
 
-  .grid .post-card {
-    border-radius: 10px;
-  }
-
   .grid, .grid.notebook, .grid-text {
     grid-template-columns: 1fr !important;
   }
-    .grid-text {
+  
+  .grid-text {
     grid-template-columns: 1fr !important;
     gap: 0;
     line-height: 1.45;
-    margin-top: 15px;
-    padding-left: 5px;
-    padding-right: 0 !important;
     font-weight: 700;
   }
 
@@ -4754,9 +4674,7 @@ body.nav-is-open {
     border-left: none;
     padding-left: 0;
   }
-  .notebook article {
-    margin-bottom: 30px;
-  }
+
   .notebook-hero {
     grid-template-columns: 1fr; /* Stack on mobile */
     height: auto;
@@ -4957,11 +4875,6 @@ html:not([data-theme]) .theme-switch .moon {
    DARK/LIGHT
    ========================================================================== */
 
-
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 [data-theme="light"] .kg-signup-card-button-default {
   color: white;
 }
@@ -5112,3 +5025,53 @@ body {
 [data-theme="light"] .grid-text {
   background: #fff;
   }
+
+.index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.index-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--type-body-sm);
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease-out;
+    cursor: pointer;
+}
+
+.index-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.index-item:hover {
+    border-bottom: 1px solid #ccc;
+}
+
+[data-theme="light"] .index-item {
+    border-bottom: 1px solid #ccc;
+}
+
+[data-theme="light"] .index-item:hover {
+    border-bottom: 1px solid #333;
+}
+
+@media (max-width: 700px) {
+    .index {
+        display: grid;
+        grid-template-columns: 1fr;
+        column-gap: 100px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}

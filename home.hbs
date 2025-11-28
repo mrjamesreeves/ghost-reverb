@@ -33,7 +33,7 @@ document.body.classList.add('has-hero');
             </h5>
             <h1><a href="{{url}}">{{title}}</a></h1>    
                 <p>{{{custom_excerpt}}}</p>
-                <a href="{{url}}"><button>Read + listen
+                <a href="{{url}}"><button>Read and listen
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="8" viewBox="0 0 21 8" fill="none">
                         <path d="M20.3536 4.31644C20.5488 4.12118 20.5488 3.8046 20.3536 3.60934L17.1716 0.427355C16.9763 0.232093 16.6597 0.232093 16.4645 0.427355C16.2692 0.622617 16.2692 0.9392 16.4645 1.13446L19.2929 3.96289L16.4645 6.79132C16.2692 6.98658 16.2692 7.30316 16.4645 7.49842C16.6597 7.69369 16.9763 7.69369 17.1716 7.49842L20.3536 4.31644ZM0 3.96289L4.37114e-08 4.46289L20 4.46289L20 3.96289L20 3.46289L-4.37114e-08 3.46289L0 3.96289Z" fill="#181E28"/>
                     </svg>
@@ -45,7 +45,7 @@ document.body.classList.add('has-hero');
 
 <!-- Recent Episode List -->
 <div class="recent-radio">
-    {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio" limit="11"}}
+    {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio" limit="7"}}
         {{#foreach posts visibility="all"}}
             {{#unless @first}}
             <div class="radio-item" data-url="{{url}}">
@@ -73,7 +73,7 @@ document.body.classList.add('has-hero');
                 </div>
                 <div class="grid-text">
                     <span class="grid-title">Weather</span>
-                    <p>Reports from the Late Heavy Bombardment.</p>
+                     <p>Reports from the Late Heavy Bombardment: strange clouds, dreams, and new atmospheres</p>
                     <span class="grid-date">November 2025</span>
                 </div>
             </a>
@@ -89,7 +89,7 @@ document.body.classList.add('has-hero');
                 </div>
                 <div class="grid-text">
                     <span class="grid-title">Notes on God</span>
-                    <p>Hell can be described a thousand ways but heaven remains impossible to grasp.</p>
+                    <p>Because hell can be described a thousand ways but heaven remains impossible to grasp.</p>
                     <span class="grid-date">November 2025</span>
                 </div>
             </a>
@@ -113,26 +113,5 @@ document.body.classList.add('has-hero');
 
     </div>
 </div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const randomCards = Array.from(document.querySelectorAll('.random-card'));
-  const slot1 = document.querySelector('.slot-1');
-  const slot3 = document.querySelector('.slot-3');
-
-  // Shuffle the random cards
-  const shuffled = randomCards.sort(() => 0.5 - Math.random());
-
-  // Place first random card in slot 1
-  if (shuffled[0]) {
-    slot1.appendChild(shuffled[0].cloneNode(true));
-  }
-
-  // Place second random card in slot 3
-  if (shuffled[1]) {
-    slot3.appendChild(shuffled[1].cloneNode(true));
-  }
-});
-</script>
 
 </main>

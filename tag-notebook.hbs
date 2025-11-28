@@ -6,66 +6,21 @@ document.body.classList.add('has-hero');
 
 <main id="main" class="content outer notebook-page">
 
-    {{#tag}}
+{{#tag}}
 <div class="inner-wide">
-
-    <!-- NEW NOTEBOOK HERO LAYOUT - CENTERED -->
     <div class="notebook-hero">
-        <!-- Left Column: Notebook Title -->
         <div class="notebook-title-column">
             <h1>Notebook</h1>
         </div>
         
-        <!-- Right Two-Column Span: Notebook Image -->
         <div class="notebook-image-column">
             <img src="{{asset "/img/notebook.webp" }}" alt="Notebook" class="notebook-hero-image" />
         </div>
     </div>
 </div>
 
-
-
 <div class="inner-wide">
                 <div class="grid notebook">
-
-                    <!-- Instructions -->
-                    <article>
-                        <a href="{{@site.url}}/instructions" class="post-card-link">
-                        <div class="post-card bg-dark bg-full">
-                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/Reeves-Instructions.webp'}}" />
-                        </div>
-                        <div class="grid-text">
-                            <span class="grid-title">Instructions for Myself</span>
-                            <p>I should not confuse my beliefs, complaints, and politics with having a personality.</p>
-                        </div>
-                        </a>
-                    </article>  
-            
-                    <!-- God -->
-                    <article>
-                        <a href="{{@site.url}}/god" class="post-card-link">
-                        <div class="post-card bg-dark bg-full">
-                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/god.webp'}}" />
-                        </div>
-                        <div class="grid-text">
-                            <span class="grid-title">Notes on God</span>
-                            <p>Hell can be described a thousand ways but heaven remains impossible to grasp.</p>
-                        </div>
-                        </a>
-                    </article>    
-
-                    <!-- Running -->
-                    <article>
-                        <a href="{{@site.url}}/running" class="post-card-link">
-                        <div class="post-card bg-dark bg-full">
-                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/reeves-running.webp'}}" />
-                        </div>
-                        <div class="grid-text">
-                            <span class="grid-title">The First Two Miles Are Always Murder</span>
-                            <p>Beautiful music for ugly running.</p>
-                        </div>
-                        </a>
-                    </article>          
 
                     <!-- Weather -->
                     <article>
@@ -77,11 +32,25 @@ document.body.classList.add('has-hero');
                             </div>
                             <div class="grid-text">
                                 <span class="grid-title">Weather</span>
-                                <p>Reports from the Late Heavy Bombardment.</p>
+                                <p>Reports from the Late Heavy Bombardment: strange clouds, dreams, and new atmospheres</p>
                                 <span class="grid-date">November 2025</span>
                             </div>
                         </a>
                     </article>
+            
+                    <!-- God -->
+                    <article>
+                        <a href="{{@site.url}}/god" class="post-card-link">
+                        <div class="post-card bg-dark bg-full">
+                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset 'img/god.webp'}}" />
+                        </div>
+                        <div class="grid-text">
+                            <span class="grid-title">Notes on God</span>
+                            <p>Because hell can be described a thousand ways but heaven remains impossible to grasp.</p>
+                             <span class="grid-date">November 2025</span>
+                        </div>
+                        </a>
+                    </article>          
 
                     <!-- Art -->
                     <article>
@@ -99,34 +68,17 @@ document.body.classList.add('has-hero');
                         </a>
                     </article>
 
-                    <!-- Notebooks -->
-                    <article>
-                        <a href="{{@site.url}}/notebooks" class="post-card-link">
-                            <div class="post-card bg-dark bg-full">
-                                <img src="{{asset 'img/reeves-notebooks.webp'}}" 
-                                    class="post-card-image bg-full-image bg-fade-in"
-                                    alt="Notebooks" />
-                            </div>
-                            <div class="grid-text">
-                                <span class="grid-title">Notebooks</span>
-                                <p>Francis Bacon believed in “an area of the nervous system to which the texture of paint communicates more violently than anything else.”</p>
-                                <span class="grid-date">November 2025</span>
-                            </div>
-                        </a>
-                    </article>
-
                 </div>
 
     <!-- HIGHLIGHTS -->
     <section class="highlights">
         <h3>Highlights</h3>
         <div class="footer-tags">
-            <div class="highlights-grid">
+            <div class="index">
                 {{#get "posts" filter="featured:true+tag:notebook" limit="12" include="tags"}}
                     {{#foreach posts}}
-                        <div class="footer-tag-item is-visible" data-url="{{url}}">
-                            <span class="footer-tag-name">{{title}}</span>
-                            <span class="footer-tag-line"></span>
+                        <div class="index-item is-visible" data-url="{{url}}">
+                            <span class="index-name">{{title}}</span>
                             <span class="count">{{date published_at format="YYYY"}}</span>
                         </div>
                     {{/foreach}}
@@ -137,7 +89,7 @@ document.body.classList.add('has-hero');
 
     <!-- ORIGINAL POST LIST -->
     <div class="inner-wide">
-        <h3 class="muted">lowlights</h3>
+        <h3 class="muted">Lowlights</h3>
         <div class="post-titles">
             {{#get "posts" include="tags" filter="tag:-midnight-radio+featured:false" limit="900"}}                
                 {{#foreach posts}}

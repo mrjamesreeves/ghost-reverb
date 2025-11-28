@@ -1,16 +1,15 @@
 <footer class="content outer">
     <!-- TAGS -->
     <div class="footer-tags">
-        {{#get "tags" limit="12" order="count.posts desc" include="count.posts" filter="slug:-[notebook,books,artwork,albums,mix-tapes,broadcasts,design]"}}
-            <div class="footer-tags-grid">
-            {{#foreach tags}}
-                <div class="footer-tag-item" data-url="{{url}}">
-                  <span class="footer-tag-name">{{name}}</span>
-                  <span class="footer-tag-line"></span>
-                  <span class="count">{{count.posts}}</span>
-                </div>
-            {{/foreach}}
-            </div>
+     {{#get "tags" limit="8" order="count.posts desc" include="count.posts" filter="slug:-[notebook,books,artwork,albums,mix-tapes,broadcasts,design]"}}
+            <div class="index">
+    {{#foreach tags}}
+        <div class="index-item" data-url="{{url}}">
+            <span class="index-name">{{name}}</span>
+            <span class="index-count">{{count.posts}}</span>
+        </div>
+    {{/foreach}}
+</div>
         {{/get}}
     </div>
 </footer>
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.footer-tag-item[data-url]').forEach(item => {
+    document.querySelectorAll('.index-item[data-url]').forEach(item => {
         item.addEventListener('click', (e) => {
             // Don't trigger if clicking on an existing link
             if (e.target.tagName !== 'A') {
@@ -73,12 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-</script>
-
-
-
-
-<script>
 document.addEventListener("DOMContentLoaded", function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -95,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     observer.observe(item);
   });
   // Observe all footer tag items
-  document.querySelectorAll('.footer-tag-item').forEach(item => {
+  document.querySelectorAll('.index-item').forEach(item => {
     observer.observe(item);
   });
   // Also observe post titles
@@ -113,30 +106,4 @@ document.querySelectorAll('.episode-number').forEach(function(el) {
         el.textContent = `${episodeNumber}`; // Set visible text
     }
 });
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggleButton = document.getElementById('toggle-header');
-    const mobileHeader = document.getElementById('mobile-header-info');
-    const backdrop = document.getElementById('mobile-header-backdrop');
-
-    toggleButton.addEventListener('click', function () {
-      const isOpen = mobileHeader.classList.toggle('open');
-      toggleButton.setAttribute('aria-expanded', isOpen);
-
-      // Show/hide the backdrop
-      if (isOpen) {
-        backdrop.classList.add('visible');
-      } else {
-        backdrop.classList.remove('visible');
-      }
-    });
-
-    // Optional: click the backdrop to close
-    backdrop.addEventListener('click', function () {
-      mobileHeader.classList.remove('open');
-      toggleButton.setAttribute('aria-expanded', false);
-      backdrop.classList.remove('visible');
-    });
-  });
-
 </script>

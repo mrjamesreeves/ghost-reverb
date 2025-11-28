@@ -29,9 +29,7 @@
 
   gtag('config', 'G-W142JN2JXB');
 </script>
-    <body class="{{body_class}}">
-
-
+    <body class="{{body_class}} bg">
 
         <div id="page" class="site bg">
             {{!-- Includes the theme header - partials/header.hbs --}}
@@ -42,11 +40,6 @@
             {{> footer}}
         </div>
 
-        {{!-- Scripts --}}
-        <script src="{{asset "js/index.js"}}"></script>
-
-
-
         {{#is "post, page"}}
             <script src="{{asset "js/post.js"}}"></script>
         {{/is}}
@@ -54,8 +47,6 @@
 
         {{!-- Outputs important scripts and data --}}
         {{ghost_foot}}
-
-
 
     </body>
 </html>
