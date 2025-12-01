@@ -1676,7 +1676,7 @@ p a {
 	transition: all 0.6s ease-in-out;   
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-thickness: .5px;
+  text-decoration-thickness: 1px;
   }
 
 p a:hover {
