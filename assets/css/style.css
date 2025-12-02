@@ -1781,7 +1781,7 @@ p a:hover {
   color: var(--color-text-light);
   letter-spacing: 2px;
   font-weight: 600;
-  text-decoration-color: transparent;
+  text-decoration: underline;
   }
 .post-content h5 a {
   color: var(--color-blue);
