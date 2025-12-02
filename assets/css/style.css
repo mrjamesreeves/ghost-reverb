@@ -1778,7 +1778,7 @@ p a:hover {
 }
 
 .post-content h4 a {
-  color: var(--color-text-light);
+  color: var(--color-text);
   letter-spacing: 2px;
   font-weight: 600;
   text-decoration: underline;
