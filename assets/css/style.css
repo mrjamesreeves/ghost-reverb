@@ -1782,6 +1782,9 @@ p a:hover {
   letter-spacing: 2px;
   font-weight: 600;
   text-decoration: underline;
+  text-decoration-thickness: .5px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-text-light);
   }
 .post-content h5 a {
   color: var(--color-blue);
