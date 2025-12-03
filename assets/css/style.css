@@ -3491,6 +3491,7 @@ a button {
 
 .grid.bio-photo {
   margin-top: 0 !important;
+  gap: 60px;
 }
 
 .bio-photo .post-card-image {
