@@ -4538,6 +4538,7 @@ body.nav-is-open {
 .grid.notebook .grid-text {
   padding-top: 30px;
   padding-bottom: 30px;
+  font-weight: 600;
   }
 
 .grid.notebook .post-card {
@@ -5093,7 +5094,7 @@ html:not([data-theme]) .theme-switch .moon {
   text-transform: none;
   letter-spacing: normal;
   margin-bottom: 0 !important;
-  padding-bottom: 5px !important;
+  padding-bottom: 10px !important;
   font-size: 24px;
 }
 
