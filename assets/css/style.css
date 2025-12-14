@@ -1,3 +1,4 @@
+
 /* Headlights */
 
 /* 1. Reset
@@ -5078,4 +5079,10 @@ html:not([data-theme]) .theme-switch .moon {
         padding-top: 20px;
         padding-bottom: 20px;
     }
+}
+
+
+
+.controls-button.speed-control.icon-speed-1 {
+  display: none;
 }
