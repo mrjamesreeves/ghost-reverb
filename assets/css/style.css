@@ -349,10 +349,12 @@ li > ol {
 
 .post-content li a {
   color: var(--color-text-muted) !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
 .post-content li a:hover {
-  text-decoration: underline;
+  color: var(--color-text);
   }
 
 dl {
