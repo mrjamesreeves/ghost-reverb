@@ -40,7 +40,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   /* Lines */
   --line:  .5px solid #444644;
 
-  --max-w:  1350px;
+  --max-w:  1300px;
   --color-white:#fff;
   --body: rgba(255, 255, 255,0.6);
   --color-text-highlight: white;
