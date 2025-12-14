@@ -354,7 +354,7 @@ li > ol {
   }
 
 .post-content li a:hover {
-  color: var(--color-text);
+  color: var(--color-text) !important;
   }
 
 dl {
@@ -5087,4 +5087,16 @@ html:not([data-theme]) .theme-switch .moon {
 
 .controls-button.speed-control.icon-speed-1 {
   display: none !important;
+}
+
+.post h3 {
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: 0 !important;
+  padding-bottom: 5px !important;
+  font-size: 24px;
+}
+
+.post h5 {
+  margin-top: 0;
 }
