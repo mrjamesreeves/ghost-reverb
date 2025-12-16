@@ -5097,6 +5097,7 @@ html:not([data-theme]) .theme-switch .moon {
   font-size: 24px;
   white-space: auto;
   color: white
+}
 
 .post h5 {
   margin-top: 0;
@@ -5108,4 +5109,9 @@ html:not([data-theme]) .theme-switch .moon {
 
 .grid.bio-photo .post-card {
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.tag-heavy-rotation .kg-image-card {
+  width: 50%;
+  height: auto;
 }
