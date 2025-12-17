@@ -1755,7 +1755,6 @@ p a:hover {
   }
 
 .tag-midnight-radio .post-content h6 {
-  margin-top: 2.7rem !important;
   margin-bottom: -15px;
   font-weight: 500;
   font-size: 1.6rem !important;
@@ -1764,9 +1763,9 @@ p a:hover {
   line-height: 1;
   }
 
-.tag-midnight-radio .post-content h6:first-of-type {
-  margin-top: 0 !important;
-  }
+.tag-midnight-radio p + h3 {
+  margin-top: 60px;
+}
 
 .tag-midnight-radio ol li {
   font-size: .7em;
