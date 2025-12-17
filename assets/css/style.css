@@ -32,7 +32,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 18px;
+  --type-body: 19px;
   --type-body-sm: 15px;
   --type-excerpt: 1.05rem;
   --type-label: 13px;
@@ -297,7 +297,7 @@ b,strong{
 /* Paragraphs */
 p {
   margin: 1.5rem 0 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: var(--type-body);
   color: var(--color-text);
   font-weight: 300;
