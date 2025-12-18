@@ -373,8 +373,7 @@ dd {
   }
 
 ol li, .post-content ol li, .post-content ul li {
-  font-size: 1.05rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   }
 
 .post-content ol li::marker, .post-content ul li::marker {
@@ -1676,11 +1675,11 @@ h5.kg-toggle-heading-text {
 
 p a {
   color: var(--color-text);
-  text-decoration-color: var(--color-text-muted) !important;
+  text-decoration-color: var(--color-text) !important;
 	transition: all 0.6s ease-in-out;   
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: 3px;
   }
 
 p a:hover {
