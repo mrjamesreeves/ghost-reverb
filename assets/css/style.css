@@ -184,16 +184,6 @@ h1.project {
   color: var(--color-text-highlight);
   }
 
-h1.post:after {
-  content: '';
-  width: 50px;
-  display: block;
-  border: 0;
-  height: 1px;
-  border-bottom: 1px solid var(--color-text-muted);
-  margin-top: 30px;
-  }
-
 h1.post-title.no-line {
   letter-spacing: 0.25px;
   color: var(--color-text-highlight);
@@ -714,6 +704,8 @@ textarea:focus {
   top: 0;
   width: 100%;
   border: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 /* Image animations */
@@ -802,7 +794,7 @@ textarea:focus {
 ----------------------------- */
 
 .post {
-  max-width: 900px !important;
+  max-width: 1000px !important;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -1560,7 +1552,7 @@ h5.kg-toggle-heading-text {
 }
 
 .post-header-inside.bg-dark:before {
-  padding-bottom: 60%;
+  padding-bottom: 50%;
   content: '';
   float: left;
 }
@@ -1676,14 +1668,14 @@ h5.kg-toggle-heading-text {
 p a {
   color: var(--color-text);
   text-decoration-color: var(--color-text) !important;
-	transition: all 0.6s ease-in-out;   
+	transition: all 0.2s ease-in-out;   
   text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
   }
 
 p a:hover {
-  text-decoration-color: var(--color-text-light);
+  text-decoration-color: var(--color-text-light) !important;
   color: var(--color-text-light);
 }
 
@@ -2005,6 +1997,13 @@ h6.song {
 }
 
 
+
+.rotation h2 {
+  font-size: 72px;
+}
+.rotation strong {
+  font-family: var(--font-sans);
+}
 
 .highlights {
   margin-top: 100px;
@@ -4788,12 +4787,10 @@ body.nav-is-open {
   position: relative; /* Add this */
 }
 
-/* Remove the emoji ::before content */
 .theme-switch-thumb::before {
   display: none;
 }
 
-/* Position both icons in the same spot */
 .theme-switch .icon {
   position: absolute; /* Stack them */
   width: 22px;
@@ -4877,12 +4874,11 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 
-
 /* ==========================================================================
    DARK/LIGHT
    ========================================================================== */
 
-[data-theme="light"] .kg-signup-card-button-default {
+[data-theme="light"] .kg-signup-card-button-default, [data-theme="light"] .big-title h5 {
   color: white;
 }
 
@@ -4902,10 +4898,6 @@ html:not([data-theme]) .theme-switch .moon {
 [data-theme="light"] .recent-radio {
   background: white;
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="light"] .big-title h5 {
-  color: var(--color-text-muted);
 }
 
 [data-theme="light"] .count, [data-theme="light"] h1.post, h1.project, [data-theme="light"] p a:hover {
@@ -4976,6 +4968,7 @@ html:not([data-theme]) .theme-switch .moon {
   color: var(--color-text-muted);
   margin-bottom: 0;
   padding-bottom: 0;
+  margin-top: 10px;
 }
 
 .series {
@@ -5082,8 +5075,6 @@ html:not([data-theme]) .theme-switch .moon {
         padding-bottom: 20px;
     }
 }
-
-
 
 .controls-button.speed-control.icon-speed-1 {
   display: none !important;
