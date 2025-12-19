@@ -1691,7 +1691,6 @@ p a:hover {
 .post-content p + h2,
 .post-content p +h3,
 .post-content h4,
-.post-content h5,
 .post-content p + h6,
 .post-content hr,
 .post-content hr + * {
@@ -1812,7 +1811,6 @@ p a:hover {
   .post-content h2,
   .post-content h3,
   .post-content h4,
-  .post-content h5,
   .post-content h6,
   .post-content hr,
   .post-content hr + * {
