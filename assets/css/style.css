@@ -5040,8 +5040,8 @@ html:not([data-theme]) .theme-switch .moon {
   white-space: normal;
   color: var(--color-text);
   margin-top: 10px;
-  padding-right: 20%;
-  line-height: 0.95;
+  width: 50%;
+  line-height: 1;
 }
 
 .post h3 {
@@ -5068,7 +5068,7 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 .tag-heavy-rotation .kg-image-card {
-  width: 50%;
+  width: 60%;
   height: auto;
   margin-top: 100px;
 }
