@@ -901,6 +901,7 @@ textarea:focus {
 
 .big-title h5 {
   font-size: 10px;
+  color: #fff;
 }
 
 .big-title p:last-child {
@@ -2835,7 +2836,7 @@ h5:has(+ .kg-audio-card) {
     }
   .post p, .post li {
     font-size: calc(var(--type-body) * 0.9);
-    line-height: 1.6;
+    line-height: 1.66;
   }
   .post {
     width: 90%;
@@ -3200,8 +3201,19 @@ h5:has(+ .kg-audio-card) {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
+  .grid.bio-photo {
+    display: table;
+    }
   .grid h5 {
     font-size: 9px;
+  }
+  .grid.bio-photo .post-card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 5px;
+  }
+    .grid.bio-photo .post-card, .grid.bio-photo .post-header-caption {
+      width: 60%;
     }
 
 /* Style the image slider container like the hero image */
@@ -4583,9 +4595,6 @@ body.nav-is-open {
     grid-template-columns: 1fr !important;
     gap: 0;
     line-height: 1.45;
-    margin-top: 10px;
-    padding-left: 5px;
-    padding-right: 8%;
   }
 
   .grid-text p {
@@ -4596,11 +4605,9 @@ body.nav-is-open {
   .grid.notebook, .grid {
     gap: 25px
   }
-
   .grid .post-card {
     border-radius: 10px;
   }
-
   .highlights {
     margin-top: 0;
   }
@@ -4609,10 +4616,17 @@ body.nav-is-open {
     grid-auto-flow: inherit;
     gap: 1rem 5rem;
   }
-
   .grid.bio-photo .post-card {
-    aspect-ratio: 3/5;
-    margin-bottom: 30px;
+    aspect-ratio: 3/4;
+  }
+  .radio-hero-wrapper {
+    aspect-ratio: 3/2;
+  }
+  .post-header-content {
+    margin-top: 10px;
+  }
+  .bio {
+    margin-top: 0;
   }
 }
 
@@ -5054,4 +5068,8 @@ html:not([data-theme]) .theme-switch .moon {
 
 [data-theme="light"] h3 {
   color: #000;
+}
+
+.grid.grid-more article:last-of-type {
+  display: none;
 }
