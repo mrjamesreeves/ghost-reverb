@@ -973,7 +973,7 @@ body.has-hero .desktop-header {
 .tag-notebook .radio-page .radio-hero-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 30/10;
+  aspect-ratio: 30/16;
   overflow: hidden;
   background: black;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.15);
