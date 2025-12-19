@@ -1,8 +1,6 @@
 {{!< default}}
 
-<script>
-document.body.classList.add('has-hero');
-</script>
+
 
 <main id="main" class="content outer radio-page">
     {{#post}}
@@ -46,7 +44,7 @@ document.body.classList.add('has-hero');
                 <div class="post-header-content inner">
                     <div class="post-extract">
                         <h5><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="LL"}}</time></h5>
-                        <p>{{{custom_excerpt}}}</p>
+                        <h2>{{{custom_excerpt}}}</h2>
                     </div>
                 </div>
 
