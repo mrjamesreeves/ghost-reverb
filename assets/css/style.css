@@ -5030,7 +5030,7 @@ html:not([data-theme]) .theme-switch .moon {
   white-space: normal;
   color: var(--color-text);
   margin-top: 10px;
-  width: 6cap;
+  width: 60%;
   line-height: 1;
 }
 
