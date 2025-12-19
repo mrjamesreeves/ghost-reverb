@@ -26,7 +26,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --font-mono: "ibm-plex-mono", sans-serif;
 
   --type-h1: 6.5rem;
-  --type-h2: 3rem;
+  --type-h2: 48px;
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
@@ -261,6 +261,39 @@ h5 a:hover {
   color: var(--color-hover);
   }
 
+
+
+.post h2 {
+  font-family: var(--font-big-alt);
+  text-transform: none;
+  letter-spacing: -1.3px;
+  margin-bottom: 0 !important;
+  padding-bottom: 10px !important;
+  font-size: var(--type-h2);
+  font-weight: 600;
+  white-space: normal;
+  color: var(--color-text);
+  margin-top: 10px;
+  width: 60%;
+  line-height: 1;
+}
+
+.post h3 {
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: 0 !important;
+  padding-bottom: 10px !important;
+  font-size: 24px;
+  white-space: normal;
+  color: white;
+  margin-top: 10px;
+}
+
+.post h5 {
+  margin-top: 0;
+}
+
+
 b,strong{
   transition: all 0.6s; 
   font-weight: 600;
@@ -310,12 +343,12 @@ p {
 
 ol {
   margin: 2.5rem 0 0;
-  padding: 0 0 0 1.5em;
+  padding: 0 0 0 1em;
   }
 
 ul {
   margin: 1.5rem 0 0;
-  padding: 0 0 0 1.5em;
+  padding: 0 0 0 1em;
   list-style: disc;
   }
 
@@ -367,6 +400,7 @@ ol li, .post-content ol li, .post-content ul li {
 .post-content ol li, .post-content ul li {
   padding-left: 10px;
   padding-bottom: 15px;
+  font-weight: 300;
   }
 
 .post-content ol li::before {
@@ -1741,12 +1775,13 @@ p a:hover {
 
 .post-content h4 a {
   color: var(--color-text);
-  letter-spacing: 2px;
+  letter-spacing: 0;
   font-weight: 600;
   text-decoration: underline;
-  text-decoration-thickness: .5px;
+  text-decoration-thickness: 3px;
   text-underline-offset: 4px;
-  text-decoration-color: var(--color-text-light);
+  text-decoration-color: var(--color-text);
+  text-transform: none;
   }
 .post-content h5 a {
   color: var(--text);
@@ -2756,10 +2791,11 @@ h5:has(+ .kg-audio-card) {
     line-height: 1.6;
     }
   h1 {
-    font-size: calc(var(--type-h1) * 0.5);
+    font-size: calc(var(--type-h1) * 0.65);
     }
-  h2 {
+  h2, .post h2 {
     font-size: calc(var(--type-h2) * 0.7);
+    width: 90%;
     }
   h3 {
     font-size: calc(var(--type-h3) * 0.7);
@@ -2770,7 +2806,7 @@ h5:has(+ .kg-audio-card) {
     font-size: calc(var(--type-h4) * 0.9);
     }
   h5 {
-    font-size: 11px !important;
+    font-size: 9px !important;
     }
   .post-extract {
     margin-top: 15px;
@@ -2790,12 +2826,20 @@ h5:has(+ .kg-audio-card) {
   h1 {
     font-size: calc(var(--type-h1) * 0.7);
     }
-  h2 {
-    font-size: calc(var(--type-h2) * 0.65);
+  h2, .post h2 {
+    font-size: calc(var(--type-h2) * 0.75);
+    width: 80%;
     }
   h5 {
     font-size: calc(var(--type-label) * 0.8);
     }
+  .post p, .post li {
+    font-size: calc(var(--type-body) * 0.9);
+    line-height: 1.6;
+  }
+  .post {
+    width: 90%;
+  }
   }
 
 /* TYPE: MEDIUM */
@@ -2845,11 +2889,9 @@ h5:has(+ .kg-audio-card) {
   h1 {
     width: 90%;
     }
-
   .radio-post h1 {
     max-width: 250px;
-  }
-
+    }
   .quote {
     font-size: var(--type-excerpt);
     text-indent: -8px;
@@ -2867,35 +2909,29 @@ h5:has(+ .kg-audio-card) {
   .page-radio .post-content .kg-signup-card-form {
     margin-bottom: 50px !important;
     }
-    
   .line {
     border-left: 0;
     margin-bottom: 0;
     }
-
   .comments-area {
     margin-top: 0;
     }
-
   .outer {
     padding-top: 0;
     padding-left: 0rem;
     padding-right: 0rem;
     }
-
+  .post {
+    width: 90%;
+    }
   .outer.radio-post,  .outer.radio-page {
     padding-top: 0 !important;
-  }
-
-.radio-page .radio-hero-content h1,
-.radio-page .radio-hero-content p {
+    }
+  .radio-page .radio-hero-content h1,
+  .radio-page .radio-hero-content p {
     width: 80% !important;
     margin-top: 0;
-}
-
-
-
-/* Style the image slider container like the hero image */
+    }
 .radio-page .image-slider {
     position: absolute;
     left: 0 !important;
@@ -2905,27 +2941,18 @@ h5:has(+ .kg-audio-card) {
     z-index: 1;
     overflow: hidden;
 }
-
-/* Updated slider image styles that work with the new positioning */
 .radio-page .image-slider img {
-    position: absolute;
-    top: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important; /* Only translate X, not Y */
-    width: 100% !important;
+    width: auto !important;
     height: auto !important;
     object-fit: cover;
     opacity: 0;
     animation: crossfade 60s infinite;
     visibility: hidden;
-}
-
-
-/* Reuse the same hero content styling */
-.radio-page .radio-hero-content {
+    aspect-ratio: 3/3;
+    }
+  .radio-page .radio-hero-content {
     bottom: 5% !important;
-}
-
+    }
   .footer.outer {
     margin-top: 40px;
     }
@@ -2973,7 +3000,6 @@ h5:has(+ .kg-audio-card) {
   .big-title p {
     width: 100%;
     }
-
   .navbar-inside {
     align-items: center !important;
     }
@@ -2988,7 +3014,6 @@ h5:has(+ .kg-audio-card) {
   h1.post-title, h1.post-title.no-line {
     width: 90%;
     }
-
   .post-full:last-child {
     margin-bottom: .5rem !important;
     }
@@ -2996,15 +3021,12 @@ h5:has(+ .kg-audio-card) {
     margin-top: 0 !important;
     padding-top: 0 !important;
     }
-    
   .footer-header .navbar-menu:last-of-type {
     display: none;
     }
-    
   .tag-box h5 a, h5.kg-toggle-heading-text {
     font-size: 10px !important;     
     }
-    
   #main .kg-signup-card-content {
     padding-top: 0;
     padding-bottom: 0;
@@ -3040,7 +3062,6 @@ h5:has(+ .kg-audio-card) {
     margin-top: 20px;
     padding-left: 0;
     }
-    
   .featured-title {
     margin-bottom: 25px;
     }
@@ -3058,7 +3079,6 @@ h5:has(+ .kg-audio-card) {
     font-size: 1.9rem;
     line-height: .9;
     }
-    
   .footer-bottom-content li.menu-item, li.action-item {
     padding-bottom: 0;
     }
@@ -3093,7 +3113,7 @@ h5:has(+ .kg-audio-card) {
     letter-spacing: 0;
     font-weight: 300;
     line-height: 1.4;
-  }
+    }
   h5.section {
     margin-bottom: 10px;
     margin-top: 50px;
@@ -3576,7 +3596,7 @@ cite {
   }
 
   .radio-hero-wrapper {
-    aspect-ratio: 4/4;
+    aspect-ratio: 3/3;
   }
   .highlights-grid {
     display: flow;
@@ -3967,7 +3987,6 @@ cite {
   }
   button {
     font-size: 12px;
-    min-width: 170px;
     padding: 8px 14px;
     padding-top: 6px;
   }
@@ -5017,36 +5036,6 @@ html:not([data-theme]) .theme-switch .moon {
 
 .controls-button.speed-control.icon-speed-1 {
   display: none !important;
-}
-
-.post h2 {
-  font-family: var(--font-big-alt);
-  text-transform: none;
-  letter-spacing: -1.3px;
-  margin-bottom: 0 !important;
-  padding-bottom: 10px !important;
-  font-size: 48px;
-  font-weight: 600;
-  white-space: normal;
-  color: var(--color-text);
-  margin-top: 10px;
-  width: 60%;
-  line-height: 1;
-}
-
-.post h3 {
-  text-transform: none;
-  letter-spacing: normal;
-  margin-bottom: 0 !important;
-  padding-bottom: 10px !important;
-  font-size: 24px;
-  white-space: normal;
-  color: white;
-  margin-top: 10px;
-}
-
-.post h5 {
-  margin-top: 0;
 }
 
 .grid.bio-photo article {
