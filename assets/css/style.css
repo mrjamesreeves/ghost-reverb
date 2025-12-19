@@ -1,4 +1,3 @@
-
 /* Headlights */
 
 /* 1. Reset
@@ -26,7 +25,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --font-big-alt: "bebas-neue-pro-semiexpanded", sans-serif;
   --font-mono: "ibm-plex-mono", sans-serif;
 
-  /* Type Sizes */
   --type-h1: 6.5rem;
   --type-h2: 3rem;
   --type-h3: 1.7rem;
@@ -37,7 +35,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-excerpt: 1.05rem;
   --type-label: 13px;
 
-  /* Lines */
   --line:  .5px solid #444644;
 
   --max-w:  1300px;
@@ -53,14 +50,11 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-border-highlight-inverse: var(--color-white);
 }
 
-
-/* Light theme - the new addition */
 [data-theme="light"] {
   --color-text: #000;
   --color-text-muted: #777;
   --color-hover: #444;
 }
-
 
 
 /* 3. Base
@@ -81,15 +75,14 @@ body {
   }
 
 .bg {
-    background-image: linear-gradient(180deg, #15171a 20%, #101114 97%);  
+  background-image: linear-gradient(180deg, #15171a 20%, #101114 97%);  
   transition: all 0.8s ease;
-}
+  }
 
 [data-theme="light"] .bg {
   background-image: linear-gradient(180deg, #ffffff 0%, #eaeaea 97%); /* Light override */
   }
 
-/* Links */
 a {
 	transition: all 0.6s; 
 	-webkit-transition: all 0.6s;
@@ -257,6 +250,7 @@ h5 {
   letter-spacing: 2px;
   font-size: 11px;
   font-family: var(--font-sans);
+  color: var(--color-text);
   }
 
 h5.section {
@@ -265,13 +259,12 @@ h5.section {
 
 h5 a:hover {
   color: var(--color-hover);
-}
+  }
 
 b,strong{
   transition: all 0.6s; 
   font-weight: 600;
   }
-
 
 .label {
   font-size: var(--type-label);
@@ -280,10 +273,8 @@ b,strong{
   letter-spacing: 1.2px;
   text-transform: uppercase;
   font-weight: 600;
-}
-
+  }
   
-/* Paragraphs */
 p {
   margin: 1.5rem 0 0;
   font-family: var(--font-serif);
@@ -5028,7 +5019,6 @@ html:not([data-theme]) .theme-switch .moon {
   display: none !important;
 }
 
-
 .post h2 {
   font-family: var(--font-big-alt);
   text-transform: none;
@@ -5040,7 +5030,7 @@ html:not([data-theme]) .theme-switch .moon {
   white-space: normal;
   color: var(--color-text);
   margin-top: 10px;
-  width: 50%;
+  width: 6cap;
   line-height: 1;
 }
 
