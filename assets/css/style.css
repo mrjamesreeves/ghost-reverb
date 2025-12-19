@@ -1788,6 +1788,7 @@ p a:hover {
   text-decoration-color: var(--text);
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+  text-decoration: underline;
   }
 .post-content p a:hover, .post-content h6 a:hover, .post-content h4 a:hover {
   color: var(--color-text-light);
