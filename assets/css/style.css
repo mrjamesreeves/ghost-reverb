@@ -274,7 +274,7 @@ h5 a:hover {
   white-space: normal;
   color: var(--color-text);
   margin-top: 10px;
-  width: 60%;
+  width: 80%;
   line-height: 1;
 }
 
@@ -2795,7 +2795,7 @@ h5:has(+ .kg-audio-card) {
     }
   h2, .post h2 {
     font-size: calc(var(--type-h2) * 0.7);
-    width: 90%;
+    width: 95%;
     }
   h3 {
     font-size: calc(var(--type-h3) * 0.7);
@@ -5072,3 +5072,14 @@ html:not([data-theme]) .theme-switch .moon {
 .grid.grid-more article:last-of-type {
   display: none;
 }
+
+
+
+
+@media (max-width: 700px) {
+  .tag-heavy-rotation .kg-image-card {
+   margin-top: 40px !important;
+   width: 100%;
+   height: auto;
+  }
+   }
