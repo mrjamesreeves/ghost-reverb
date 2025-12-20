@@ -2737,6 +2737,7 @@ h5:has(+ .kg-audio-card) {
     }
   .post-extract {
     margin-top: 15px;
+    margin-bottom: 10px;
     }
   .post-header-caption, caption, figcaption, .kg-card figcaption {
     font-size: calc(var(--type-label) * 0.8);
