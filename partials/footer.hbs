@@ -30,14 +30,11 @@
 <script src="{{asset "js/smartquotes.js"}}"></script>
 <script>smartquotes();</script>
 <script>
-
-
     document.addEventListener('DOMContentLoaded', () => {
     // Apply smartquotes to the entire document body
     smartquotes(document.body);
 
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.radio-item[data-url]').forEach(item => {
@@ -61,16 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll('.js-tags .ft-item').forEach(function (el) {
-            const count = parseInt(el.dataset.count, 10);
-            if (count < 3) {
-                el.remove(); // or el.style.display = 'none';
-            }
-        });
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.js-tags .ft-item').forEach(function (el) {
+        const count = parseInt(el.dataset.count, 10);
+        if (count < 3) {
+            el.remove(); // or el.style.display = 'none';
+        }
     });
+});
 
 document.addEventListener("DOMContentLoaded", function() {
   const observer = new IntersectionObserver((entries) => {
