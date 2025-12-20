@@ -2705,7 +2705,7 @@ h5:has(+ .kg-audio-card) {
 
 @media (max-width: 700px) {
   p {
-    font-size: calc(var(--type-body) * 0.85);
+    font-size: calc(var(--type-body) * 0.9);
     line-height: 1.6;
     }
   h1 {
