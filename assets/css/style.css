@@ -4655,6 +4655,10 @@ html:not([data-theme]) .theme-switch .moon {
   color: #000;
 }
 
+[data-theme="light"] .post-content ol li, [data-theme="light"] .post-content ul li {
+  font-weight: 400;
+}
+
 .grid.grid-more article:last-of-type {
   display: none;
 }
