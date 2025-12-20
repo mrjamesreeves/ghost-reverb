@@ -407,6 +407,7 @@ ol li, .post-content ol li, .post-content ul li {
   padding-left: 10px;
   padding-bottom: 15px;
   font-weight: 300;
+  font-size: var(--type-body);
   }
 
 .post-content ol li::before {
@@ -2743,6 +2744,7 @@ h5:has(+ .kg-audio-card) {
     }
   h5 {
     font-size: 9px !important;
+    padding-top: 2px;
     }
   .post-extract {
     margin-top: 15px;
