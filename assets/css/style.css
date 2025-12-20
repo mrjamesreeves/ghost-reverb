@@ -31,6 +31,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
   --type-body: 17px;
+  --type-body-mobile: 15px;
   --type-body-sm: 14px;
   --type-excerpt: 1.05rem;
   --type-label: 13px;
@@ -2704,8 +2705,8 @@ h5:has(+ .kg-audio-card) {
 /* TYPE: TELEPHONE */
 
 @media (max-width: 700px) {
-  p {
-    font-size: calc(var(--type-body) * 0.9);
+  p, li {
+    font-size: var(--type-body-mobile);
     line-height: 1.6;
     margin: 18px 0 0;
     }
