@@ -3133,7 +3133,6 @@ h5:has(+ .kg-audio-card) {
   .grid h5 {
     font-size: 9px;
   }
-  /* Style the image slider container like the hero image */
   .radio-page .image-slider {
     position: absolute;
     left: 0 !important;
@@ -3143,7 +3142,6 @@ h5:has(+ .kg-audio-card) {
     z-index: 1;
     overflow: hidden;
   }
-/* Updated slider image styles that work with the new positioning */
 .radio-page .image-slider img {
     position: absolute;
     top: 0 !important;
@@ -3215,6 +3213,9 @@ h5:has(+ .kg-audio-card) {
   .overlay {
     padding: .7rem;
   }
+  .grid.grid-more article:last-of-type {
+  display: none;
+}
 }
 
 
@@ -4669,9 +4670,7 @@ html:not([data-theme]) .theme-switch .moon {
   font-weight: 400;
 }
 
-.grid.grid-more article:last-of-type {
-  display: none;
-}
+
 
 @media (max-width: 700px) {
   .tag-heavy-rotation .kg-image-card {
