@@ -4657,6 +4657,7 @@ html:not([data-theme]) .theme-switch .moon {
   height: auto;
   margin-top: 100px;
 }
+   .tag-heavy-rotation h3 { margin-top: 10px;}
 
 .tag-heavy-rotation .kg-image-card img {
   border-radius: 10px;
@@ -4670,8 +4671,6 @@ html:not([data-theme]) .theme-switch .moon {
   font-weight: 400;
 }
 
-
-
 @media (max-width: 700px) {
   .tag-heavy-rotation .kg-image-card {
    margin-top: 10px !important;
@@ -4679,6 +4678,7 @@ html:not([data-theme]) .theme-switch .moon {
    height: auto;
    border-radius: 5px;
   }
-   .tag-heavy-rotation h2 { margin-top: 50px; width: 100%;}
+   .tag-heavy-rotation h3 { margin-top: 10px;}
+  .tag-heavy-rotation h2 { margin-top: 50px; width: 100%;}
    .tag-heavy-rotation h2:first-of-type { padding-top: 0; width: 100%;}
 }
