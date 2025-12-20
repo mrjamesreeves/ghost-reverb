@@ -2711,7 +2711,7 @@ h5:has(+ .kg-audio-card) {
 /* TYPE: TELEPHONE */
 
 @media (max-width: 700px) {
-  p, li {
+  p, li, .post-content ol li, .post-content ul li {
     font-size: var(--type-body-mobile);
     line-height: 1.6;
     }
