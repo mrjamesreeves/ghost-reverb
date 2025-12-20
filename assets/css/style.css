@@ -2707,6 +2707,7 @@ h5:has(+ .kg-audio-card) {
   p {
     font-size: calc(var(--type-body) * 0.9);
     line-height: 1.6;
+    margin: 18px 0 0;
     }
   h1 {
     font-size: calc(var(--type-h1) * 0.65);
