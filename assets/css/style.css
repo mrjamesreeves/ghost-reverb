@@ -4664,6 +4664,6 @@ html:not([data-theme]) .theme-switch .moon {
    height: auto;
    border-radius: 5px;
   }
-   .tag-heavy-rotation h2 { padding-top: 60px; width: 100%;}
+   .tag-heavy-rotation h2 { margin-top: 50px; width: 100%;}
    .tag-heavy-rotation h2:first-of-type { padding-top: 0; width: 100%;}
 }
