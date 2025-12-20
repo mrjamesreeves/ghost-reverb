@@ -30,7 +30,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 17px;
+  --type-body: 18px;
   --type-body-mobile: 15px;
   --type-body-sm: 14px;
   --type-excerpt: 1.05rem;
@@ -318,7 +318,7 @@ p {
   font-family: var(--font-serif);
   font-size: var(--type-body);
   color: var(--color-text);
-  line-height: 1.66;
+  line-height: 1.8;
   font-weight: 300;
   }
 
