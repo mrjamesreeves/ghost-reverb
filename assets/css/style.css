@@ -252,7 +252,12 @@ h5.section {
   }
 
 h5 a {
-  transition: all 0.5s ease-in-out;   
+  transition: all 0.5s ease-in-out; 
+  text-decoration-color: var(--color-text) !important;
+  color: var(--color-text);
+  text-decoration-thickness: 2px;
+  text-decoration: underline;
+  text-underline-offset: 3px;  
   }
 
 h5 a:hover {
@@ -2708,6 +2713,8 @@ h5:has(+ .kg-audio-card) {
   p, li {
     font-size: var(--type-body-mobile);
     line-height: 1.6;
+    }
+  p {
     margin: 18px 0 0;
     }
   h1 {
