@@ -2,6 +2,10 @@
 
 
 <style>
+
+    .kg-toggle-heading {
+        margin-top: -40px !important;
+    }
     .content {
         padding-top: 15px;
     }
@@ -29,10 +33,20 @@
     h5.kg-toggle-heading-text {
         background: #333;
     }
+
+[data-theme="light"] h5.kg-toggle-heading-text {
+    background: #000;
+    color: #fff;
+}
+
     @media (max-width: 700px) {
         .radio-hero-wrapper {
             aspect-ratio: 16/9
         }
+    }
+
+    #main .kg-toggle-card-icon svg {
+        color: #fff;
     }
 </style>
 
@@ -67,14 +81,7 @@
 
                 <div class="meta inner">
 
-                    <div class="tag-box">
-                        {{#if tags}}
-                        {{#foreach tags}}
-                        <h5><a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a></h5>
-                        {{/foreach}}
-                        {{/if}}
-                    </div>
-
+                    
 
                     <div class="prev-next">
                         {{#prev_post}}
