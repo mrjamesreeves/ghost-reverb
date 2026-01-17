@@ -1,12 +1,11 @@
 routes:
   /tag/midnight-radio/:
     template: page-radio
-    redirect: /radio  
+    redirect: /radio
+  /favorites/:
+    template: page-favorites  
   /notebook/:
-    controller: channel
-    filter: tag:notebook
-    template: tag-notebook
-    data: tag.notebook
+    template: page-notebook
   /broadcasts/:
     controller: channel
     filter: tag:broadcasts

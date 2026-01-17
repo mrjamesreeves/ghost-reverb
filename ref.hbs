@@ -1,0 +1,133 @@
+<div class="featured-grid">
+    <!-- Weather -->
+    <article class="featured-card">
+        <a href="/weather">
+            <img src="{{asset 'img/reeves-weather.webp'}}" alt="Weather" class="featured-thumb" />
+            <div class="featured-text">
+                <span class="featured-title">Weather</span>
+                <p>Reports from the Late Heavy Bombardment: strange clouds, fever dreams, and new atmospheres.</p>
+            </div>
+        </a>
+    </article>
+
+    <!-- Notes on God -->
+    <article class="featured-card">
+        <a href="/god">
+            <img src="{{asset 'img/god.webp'}}" alt="Notes on God" class="featured-thumb" />
+            <div class="featured-text">
+                <span class="featured-title">Notes on God</span>
+                <p>Because hell can be described a thousand ways but heaven remains impossible to grasp.</p>
+            </div>
+        </a>
+    </article>
+
+    <!-- Art Diary -->
+    <article class="featured-card">
+        <a href="/art">
+            <img src="{{asset 'img/reeves-art.webp'}}" alt="Art Diary" class="featured-thumb" />
+            <div class="featured-text">
+                <span class="featured-title">Art Diary</span>
+                <p>Francis Bacon believed in "an area of the nervous system to which the texture of paint communicates more violently than anything else.”</p>
+            </div>
+        </a>
+    </article>
+
+    <!-- Favorite Things -->
+    <article class="featured-card">
+        <a href="/favorites">
+            <img src="{{asset 'img/reeves-favorites.webp'}}" alt="Favorite Things" class="featured-thumb" />
+            <div class="featured-text">
+                <span class="featured-title">Favorite Things</span>
+                <p>An ongoing inventory of the things that make me happy.</p>
+            </div>
+        </a>
+    </article>
+</div>
+
+
+<style>
+/* NOTEBOOK PAGE
+----------------------------- */
+
+.page-notebook {
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+
+/* Header: Title + Featured Grid side by side */
+.notebook-header {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 100px;
+}
+
+.notebook-title {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.notebook-title h1 {
+  font-family: var(--font-big);
+  font-size: var(--type-h1);
+  line-height: 0.9;
+  color: var(--color-hover);
+  margin: 0;
+  text-transform: uppercase;
+  padding-right: 20px;
+}
+
+/* Horizontal line from title to grid */
+.notebook-title::after {
+  content: '';
+  display: block;
+  width: 150px;
+  height: 1px;
+  background: #444644;
+  margin-left: 0;
+}
+
+/* Featured 2x2 grid with left border */
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 50px;
+  padding-left: 40px;
+  border-left: 1px solid;
+  border-image: linear-gradient(to bottom, transparent 0%, #444644 0%, #444644 100%) 1;
+}
+
+/* Individual featured card */
+.featured-card a {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  text-decoration: none;
+}
+
+.featured-thumb {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.featured-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.featured-text p {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-sm);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.44;
+}
+
+.featured-card a:hover .featured-title {
+  color: var(--color-blue);
+}
+</style>

@@ -112,7 +112,7 @@
     <!-- EPISODES -->
     <div class="inner-wide">
         <div class="grid grid-more">
-            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio+id:-{{id}}" limit="3"}}
+            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio+id:-{{id}}" limit="6"}}
             {{#foreach posts visibility="all"}}
                 <article>
                     <a href="{{url}}" class="post-card-link">
@@ -143,9 +143,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid-text">
-                        <p>{{{custom_excerpt}}}</p>
                     </div>
                     </a>
                 </article>                            

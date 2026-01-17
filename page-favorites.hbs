@@ -1,0 +1,36 @@
+{{!< default}}
+
+<main id="main" class="content outer page-favorites">
+    <div class="inner-wide">
+
+        <!-- Page Title -->
+        <header class="favorites-header">
+            <h1>Favorite<br>Things</h1>
+        </header>
+
+        <div class="favorites-layout">
+            <!-- Left Sidebar: Category Filters -->
+            <aside class="favorites-sidebar">
+                <nav class="favorites-nav">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="music">Music</button>
+                    <button class="filter-btn" data-category="books">Books</button>
+                    <button class="filter-btn" data-category="art">Art</button>
+                    <button class="filter-btn" data-category="movies">Movies</button>
+                    <button class="filter-btn" data-category="tv">TV</button>
+                    <button class="filter-btn" data-category="objects">Things</button>
+                </nav>
+            </aside>
+
+            <!-- Right Content: Entries -->
+            <div class="favorites-content">
+                <div id="favorites-container">
+                    <!-- JavaScript will populate this -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="{{asset "js/favorites.js"}}"></script>

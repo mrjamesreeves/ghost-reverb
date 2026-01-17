@@ -44,5 +44,10 @@
       "from": "^/tag/midnight-radio",
       "to": "/radio",
       "permanent": true
+    },
+    {
+      "from": "^/38",
+      "to": "/darkly-euphoric",
+      "permanent": true
     }
   ]
