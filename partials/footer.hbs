@@ -14,6 +14,24 @@
     </div>
 </footer>
 
+
+{{#if @member}}{{else}}
+
+<div class="signup content outer">
+    <div class="signup-image">
+        <img src="{{asset "/img/midnight-stickers.webp" }}" alt="Midnight Radio">
+    </div>
+    
+    <div class="signup-content">
+        <h2>Join Midnight Radio</h2>
+        <p>A short burst of late-nite ruminations and a mixtape delivered to your inbox on the first and fifteen of the month.</p>
+        {{> "signup"}}  
+    </div>
+</div>
+
+{{/if}}
+
+
 <footer class="simple-footer">
     <div class="footer-name"><a href="{{@site.url}}">James A. Reeves</a></div>
     <div class="footer-links">

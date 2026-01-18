@@ -9,7 +9,7 @@ document.body.classList.add('has-hero');
     
     <div class="radio-hero-wrapper">
         <div class="image-slider">
-            <img src="{{asset "/img/midnight.webp" }}" alt="Somewhere in Arkansas">
+            <img src="{{asset "/img/midnight.webp" }}" alt="Saint Jerome in His Study by Caravaggio"/>
         </div>
         
         <div class="radio-hero-content">
@@ -24,17 +24,17 @@ document.body.classList.add('has-hero');
     </div>
 
         <div class="midnight-info">
-                <div class="midnight-blurb">
-                    {{content}}
+            <div class="midnight-blurb">
+                {{content}}
 
-                    {{#if @member}}<br><em>Thank you for being a rare and wonderful Midnight Radio Member.</em>
-                    {{else}}{{> "signup"}}  
-                    {{/if}}
-                </div>
+                {{#if @member}}<br><em>Thank you for being a rare and wonderful Midnight Radio Member.</em>
+                {{else}}{{> "signup"}}  
+                {{/if}}
+            </div>
 
-                <div id='buzzsprout-large-player'>
-                    <div id='buzzsprout-large-player'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2541955.js?container_id=buzzsprout-large-player&player=large'></script>
-                </div>
+            <div id='buzzsprout-large-player'>
+                <div id='buzzsprout-large-player'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2541955.js?container_id=buzzsprout-large-player&player=large'></script>
+            </div>
         </div>
 
 

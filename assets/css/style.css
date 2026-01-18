@@ -4633,7 +4633,7 @@ html:not([data-theme]) .theme-switch .moon {
 .index {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 100px;
+    column-gap: 80px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -5429,4 +5429,89 @@ html:not([data-theme]) .theme-switch .moon {
 .page-radio .radio-hero-wrapper {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+
+
+.signup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    align-items: center;
+    border-radius: 15px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
+}
+
+[data-theme="light"] .signup {
+  background: #fff;
+}
+
+.signup-content .kg-signup-card-fields {
+    border: var(--line) !important;
+    padding: 3px !important;
+    border-radius: 5px !important;
+}
+
+.signup-image {
+    width: 100%;
+        box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
+
+}
+
+.signup-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+}
+
+.signup-content {
+    padding-right: 80px;
+}
+
+.signup-content h2 {
+    font-size: 3rem;
+    line-height: 0.9;
+    margin-bottom: 10px;
+    color: var(--color-hover);
+}
+
+.signup-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--color-text);
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+    .signup {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .signup-content {
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+
+    .signup-content p {
+      font-size: 14px;
+    }
+
+    .signup-content p, .signup-content h2 {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;    
+      }
+    
+    .signup-content h2 {
+        font-size: 2rem;
+    }
 }
