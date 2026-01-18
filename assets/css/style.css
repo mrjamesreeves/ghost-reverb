@@ -3708,6 +3708,7 @@ h3.about {
   }
 }
 
+
 /* ==========================================================================
    UTILITY CLASSES
    ========================================================================== */
@@ -4487,6 +4488,7 @@ html:not([data-theme]) .theme-switch .moon {
 
 [data-theme="light"] p {
   font-weight: 400;
+  color: var(--color-text);
 }
 
 [data-theme="light"] h3 {
