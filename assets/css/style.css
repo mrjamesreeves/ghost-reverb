@@ -5168,7 +5168,7 @@ html:not([data-theme]) .theme-switch .moon {
 
 /* Light mode */
 [data-theme="light"] .notebook-title h1,
-[data-theme="light"] .month-header {
+[data-theme="light"] .month-header, [data-theme="light"] .notebook-title h1 a {
   color: var(--color-hover);
 }
 
@@ -5570,4 +5570,13 @@ html:not([data-theme]) .theme-switch .moon {
         height: 300px;
         border-radius: 15px;
     }
+}
+
+h3 + p {
+  margin-top: 10px;
+}
+
+h3 {
+  padding-top: 30px;
+  font-size: 18px;
 }

@@ -3,6 +3,24 @@
 
 <style>
 
+    p {
+        font-family: var(--font-sans);
+        line-height: 1.6;
+        }
+
+    strong {
+        font-weight: 700;
+    }
+
+    ul, ol {
+        margin-top: 5px !important;
+    }
+
+    .post-content ol li, .post-content ul li {
+        font-family: var(--font-sans);
+        padding-bottom: 8px;
+        }
+
     .kg-button-card a.kg-btn-accent {
         padding: 20px 30px !important;
         font-size: 18px !important;
@@ -33,9 +51,6 @@
         width: 100%;
         height: auto;
         object-fit: fill;
-    }
-    ul {
-        margin-top: 10px;
     }
     h5.kg-toggle-heading-text {
         background: #000;
@@ -105,15 +120,11 @@
                     {{content}}
                 </div>
 
-                <div class="meta inner">
-
-                   <nav class="app-nav">
+                    <nav class="app-nav">
                         <a href="/spite/">Spite</a>
                         <a href="/spite-release-notes/">Release Notes</a>
                         <a href="/spite-privacy-policy/">Privacy</a>
                     </nav>
-                                    
-                </div>
 
                 {{#if comments}}
                         {{> comments}}
