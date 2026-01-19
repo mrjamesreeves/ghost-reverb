@@ -9,30 +9,6 @@
   let allFavorites = [];
 
   /**
-   * Parse CSV text into array of objects
-   */
-  function parseCSV(text) {
-    const lines = text.trim().split('\n');
-    if (lines.length < 2) return [];
-
-    const headers = parseCSVLine(lines[0]);
-    const items = [];
-
-    for (let i = 1; i < lines.length; i++) {
-      const values = parseCSVLine(lines[i]);
-      if (values.length === headers.length) {
-        const item = {};
-        headers.forEach((header, index) => {
-          item[header.trim()] = values[index];
-        });
-        items.push(item);
-      }
-    }
-
-    return items;
-  }
-
-  /**
    * Parse a single CSV line, handling quoted fields with commas
    */
   function parseCSVLine(line) {
@@ -58,14 +34,43 @@
   }
 
   /**
+   * Parse CSV text into array of objects
+   */
+  function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    if (lines.length < 2) return [];
+
+    const headers = parseCSVLine(lines[0]);
+    const items = [];
+
+    for (let i = 1; i < lines.length; i++) {
+      const values = parseCSVLine(lines[i]);
+      if (values.length === headers.length) {
+        const item = {};
+        headers.forEach((header, index) => {
+          item[header.trim()] = values[index];
+        });
+        items.push(item);
+      }
+    }
+
+    return items;
+  }
+
+  /**
    * Load favorites from CSV file
    */
   async function loadFavorites() {
     try {
       const response = await fetch('/assets/csv/favorites.csv');
-      if (!response.ok) throw new Error('Failed to load CSV');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const csvText = await response.text();
-      return parseCSV(csvText);
+      console.log('CSV loaded, length:', csvText.length);
+      const parsed = parseCSV(csvText);
+      console.log('Parsed favorites:', parsed.length, 'items');
+      return parsed;
     } catch (error) {
       console.error('Error loading favorites:', error);
       return [];
@@ -73,56 +78,14 @@
   }
 
   /**
-   * Render a single favorite item
-   */
-  function renderItem(item) {
-    const hasImage = item.Image && item.Image.trim() !== '';
-    const hasLink = item.Link && item.Link.trim() !== '';
-
-    // Determine if link is external
-    const isExternal = hasLink && (item.Link.startsWith('http://') || item.Link.startsWith('https://'));
-    const linkTarget = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-
-    // Build title - wrap in link if available
-    let titleHTML = item.Title;
-    if (hasLink) {
-      titleHTML = `<a href="${item.Link}"${linkTarget}>${item.Title}</a>`;
-    }
-
-    // Build image HTML if present - now appears above title
-    let imageHTML = '';
-    if (hasImage) {
-      const imgSrc = `/assets/img/favorites/${item.Image}`;
-      if (hasLink) {
-        imageHTML = `
-          <div class="favorite-image">
-            <a href="${item.Link}"${linkTarget}>
-              <img src="${imgSrc}" alt="${item.Title.replace(/<[^>]*>/g, '')}" loading="lazy">
-            </a>
-          </div>`;
-      } else {
-        imageHTML = `
-          <div class="favorite-image">
-            <img src="${imgSrc}" alt="${item.Title.replace(/<[^>]*>/g, '')}" loading="lazy">
-          </div>`;
-      }
-    }
-
-    return `
-      <article class="favorite-item${hasImage ? ' has-image' : ''}" data-category="${(item.Type || '').toLowerCase()}">
-        ${imageHTML}
-        <h3 class="favorite-title">${titleHTML}</h3>
-        <p class="favorite-blurb">${item.Blurb || ''}</p>
-      </article>
-    `;
-  }
-
-  /**
-   * Render all favorites, optionally filtered by category
+   * Render all favorites in grid layout
    */
   function renderFavorites(category = 'all') {
     const container = document.getElementById('favorites-container');
-    if (!container) return;
+    if (!container) {
+      console.error('Container #favorites-container not found');
+      return;
+    }
 
     // Filter items
     let items = allFavorites;
@@ -132,24 +95,92 @@
       );
     }
 
+    console.log('Rendering', items.length, 'items for category:', category);
+
     // Fade out
-    container.classList.add('fade-out');
+    container.style.opacity = '0';
 
     setTimeout(() => {
-      // Render items (reversed for chronological DESC - newest first)
-      const reversedItems = [...items].reverse();
-      container.innerHTML = reversedItems.map(renderItem).join('');
+      container.innerHTML = '';
+
+      // Render each item
+      items.forEach(item => {
+        const itemDiv = document.createElement('div');
+        const hasImage = item.Image && item.Image.trim() !== '';
+        const hasLink = item.Link && item.Link.trim() !== '';
+        itemDiv.className = hasImage ? 'favorite-item has-image' : 'favorite-item';
+
+        // Text column
+        const textDiv = document.createElement('div');
+        textDiv.className = 'favorite-text';
+
+        // Title (with HTML support for italics, wrapped in link if available)
+        if (hasLink) {
+          const titleLink = document.createElement('a');
+          titleLink.href = item.Link;
+          titleLink.className = 'favorite-title-link';
+          
+          const title = document.createElement('h3');
+          title.className = 'favorite-title';
+          title.innerHTML = item.Title || '';
+          
+          titleLink.appendChild(title);
+          textDiv.appendChild(titleLink);
+        } else {
+          const title = document.createElement('h3');
+          title.className = 'favorite-title';
+          title.innerHTML = item.Title || '';
+          textDiv.appendChild(title);
+        }
+
+        // Blurb (with HTML support for links)
+        const blurb = document.createElement('div');
+        blurb.className = 'favorite-blurb';
+        blurb.innerHTML = item.Blurb || '';
+        textDiv.appendChild(blurb);
+
+        itemDiv.appendChild(textDiv);
+
+        // Gap column
+        const gapDiv = document.createElement('div');
+        gapDiv.className = 'favorite-gap';
+        itemDiv.appendChild(gapDiv);
+
+        // Image column (wrapped in link if available)
+        const imageDiv = document.createElement('div');
+        imageDiv.className = 'favorite-image';
+
+        if (hasImage) {
+          if (hasLink) {
+            const imageLink = document.createElement('a');
+            imageLink.href = item.Link;
+            imageLink.className = 'favorite-image-link';
+            
+            const img = document.createElement('img');
+            img.src = `/assets/img/favorites/${item.Image}`;
+            img.alt = item.Title ? item.Title.replace(/<[^>]*>/g, '') : '';
+            img.loading = 'lazy';
+            
+            imageLink.appendChild(img);
+            imageDiv.appendChild(imageLink);
+          } else {
+            const img = document.createElement('img');
+            img.src = `/assets/img/favorites/${item.Image}`;
+            img.alt = item.Title ? item.Title.replace(/<[^>]*>/g, '') : '';
+            img.loading = 'lazy';
+            imageDiv.appendChild(img);
+          }
+        }
+
+        itemDiv.appendChild(imageDiv);
+        container.appendChild(itemDiv);
+      });
 
       // Fade in
-      container.classList.remove('fade-out');
-      container.classList.add('fade-in');
+      container.style.opacity = '1';
 
-      // Setup intersection observer for items
+      // Setup animations
       setupItemAnimations();
-
-      setTimeout(() => {
-        container.classList.remove('fade-in');
-      }, 300);
     }, 300);
   }
 
@@ -228,7 +259,7 @@
       if (btn) {
         btn.classList.add('active');
       } else {
-        document.querySelector('.filter-btn[data-category="all"]').classList.add('active');
+        document.querySelector('.filter-btn[data-category="all"]')?.classList.add('active');
       }
 
       renderFavorites(hash || 'all');
@@ -239,7 +270,14 @@
    * Initialize on page load
    */
   document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Favorites page initializing...');
     allFavorites = await loadFavorites();
+    console.log('Loaded', allFavorites.length, 'favorites');
+    
+    if (allFavorites.length === 0) {
+      console.error('No favorites loaded! Check CSV file path and format.');
+    }
+    
     setupFilters();
     setupPopState();
     initFromHash();

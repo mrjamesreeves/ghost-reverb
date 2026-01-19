@@ -1,36 +1,285 @@
 {{!< default}}
 
-<main id="main" class="content outer page-favorites">
+<main id="main" class="content outer page-favorites notebook-collection">
     <div class="inner-wide">
 
-        <!-- Page Title -->
-        <header class="favorites-header">
-            <h1>Favorite<br>Things</h1>
-        </header>
-
-        <div class="favorites-layout">
-            <!-- Left Sidebar: Category Filters -->
-            <aside class="favorites-sidebar">
-                <nav class="favorites-nav">
-                    <button class="filter-btn active" data-category="all">All</button>
-                    <button class="filter-btn" data-category="music">Music</button>
-                    <button class="filter-btn" data-category="books">Books</button>
-                    <button class="filter-btn" data-category="art">Art</button>
-                    <button class="filter-btn" data-category="movies">Movies</button>
-                    <button class="filter-btn" data-category="tv">TV</button>
-                    <button class="filter-btn" data-category="objects">Things</button>
-                </nav>
-            </aside>
-
-            <!-- Right Content: Entries -->
-            <div class="favorites-content">
-                <div id="favorites-container">
-                    <!-- JavaScript will populate this -->
-                </div>
+        <!-- Top Section: Title + Featured Pages -->
+        <div class="notebook-header">
+            <div class="notebook-title">
+                <h1><a href="{{@site.url}}/instructions/">Notebook</a></h1>
             </div>
+
+            <div class="featured-grid">
+                <section class="highlights">
+                    <div class="footer-tags">
+                        <div class="index"> 
+                            <div class="index-item is-visible {{#match "favorites"}}active{{/match}}" data-url="/favorites">
+                                <span class="index-name">Favorite Things</span>
+                                <span class="index-count">14</span>
+                            </div>
+                            <div class="index-item is-visible {{#match tag.slug "2025-rotation"}}active{{/match}}" data-url="/2025-rotation">
+                                <span class="index-name">Instructions for Myself</span>
+                                <span class="index-count">13</span>
+                            </div>    
+                            <div class="index-item is-visible {{#match tag.slug "dreams"}}active{{/match}}" data-url="/dreams">
+                                <span class="index-name">Dream Inventory</span>
+                                <span class="index-count">14</span>
+                            </div> 
+                            <div class="index-item is-visible {{#match tag.slug "art-diary"}}active{{/match}}" data-url="/art-diary">
+                                <span class="index-name">Art Diary</span>
+                                <span class="index-count">14</span>
+                            </div>
+                            <div class="index-item is-visible {{#match tag.slug "god"}}active{{/match}}" data-url="/god">
+                                <span class="index-name">Notes on God</span>
+                                <span class="index-count">03</span>
+                            </div>
+                            <div class="index-item is-visible {{#match tag.slug "weather"}}active{{/match}}" data-url="/weather">
+                                <span class="index-name">Weather</span>
+                                <span class="index-count">21</span>
+                            </div>  
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+        <!-- Category Filters -->
+        <nav class="favorites-nav">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="music">Music</button>
+            <button class="filter-btn" data-category="books">Books</button>
+            <button class="filter-btn" data-category="art">Art</button>
+            <button class="filter-btn" data-category="movies">Movies</button>
+            <button class="filter-btn" data-category="tv">TV</button>
+            <button class="filter-btn" data-category="objects">Things</button>
+            <button class="filter-btn" data-category="food">Food</button>
+        </nav>
+
+        <!-- Entries Container -->
+        <div id="favorites-container" class="favorites-grid">
+            <!-- JavaScript will populate this -->
         </div>
 
     </div>
 </main>
 
 <script src="{{asset "js/favorites.js"}}"></script>
+
+<style>
+    /* FAVORITES PAGE
+----------------------------- */
+
+.page-favorites {
+  /* Base styles */
+}
+
+.favorites-header {
+  margin-bottom: 60px;
+}
+
+.favorites-header h1 {
+  font-family: var(--font-big);
+  font-size: var(--type-h1);
+  margin-bottom: 40px;
+}
+
+/* Filter buttons */
+.favorites-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #333;
+  border: none;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--type-label);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto; /* ADD THIS */
+  flex-shrink: 0; /* ADD THIS */
+}
+
+.filter-btn:hover {
+  background: #444;
+  color: var(--color-hover);
+}
+
+.filter-btn.active {
+  background: white;
+  color: black;
+}
+
+/* Grid layout */
+.favorites-grid {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  transition: opacity 0.3s ease;
+}
+
+/* Each favorite item */
+.favorite-item {
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+  margin-bottom: 80px;
+  align-items: center;
+}
+
+/* Text column */
+.favorite-text {
+  max-width: 500px;
+  position: relative;
+}
+
+h3.favorite-title {
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--type-h4);
+  color: var(--color-hover);
+  margin: 0 0 5px 0;
+  line-height: 1.2;
+}
+
+.favorite-blurb {
+  font-family: var(--font-serif);
+  font-size: var(--type-body-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.favorite-blurb p {
+  margin: 0;
+}
+
+.favorite-blurb a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-muted);
+}
+
+.favorite-blurb a:hover {
+  color: var(--color-blue);
+  text-decoration-color: var(--color-blue);
+}
+
+/* Image column */
+.favorite-image {
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+  border-left: 1px solid red;
+}
+
+.favorite-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Connecting lines (only when image exists) */
+.favorite-gap {
+  display: flex;
+  align-items: center; /* Vertically centers the line */
+  justify-content: center;
+}
+
+/* Horizontal line that spans the gap */
+.has-image .favorite-gap::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: var(--bgline);
+  }
+
+/* Vertical line on image column */
+.favorite-image {
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+  border-left: var(--line)
+}
+
+/* Link styling for titles and images */
+.favorite-title-link,
+.favorite-image-link {
+  text-decoration: none;
+  color: inherit;
+    transition: all 0.3s ease;
+
+}
+
+.favorite-title-link:hover h3 {
+  text-decoration: underline;
+}
+
+.favorite-image-link {
+  display: block;
+}
+
+.favorite-image-link img {
+  transition: all 0.3s ease;
+}
+
+.favorite-image-link:hover img {
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .favorite-item {
+    grid-template-columns: 50% 10% 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .favorite-item {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .favorite-gap {
+  display: none
+}
+  
+  .favorite-text,
+  .favorite-image {
+    max-width: 100%;
+  }
+  
+  .favorites-nav {
+    gap: 8px;
+  }
+  
+  .filter-btn {
+    font-size: 0.65rem;
+    padding: 10px 18px;
+  }
+
+/* Vertical line on image column */
+.favorite-image {
+  align-items: center;
+  justify-content: center;
+  padding-left: 0;
+  border-left: none
+}
+
+}
+
+
+</style>

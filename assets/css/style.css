@@ -3358,6 +3358,11 @@ a button {
   color: #fff;
 }
 
+[data-theme="dark"] .radio-hero-content button {
+  background: #ffffffa0;
+  color: #000f;
+}
+
 [data-theme="dark"] button:hover {
   background: #fff;
   color: #000;
@@ -4730,193 +4735,6 @@ html:not([data-theme]) .theme-switch .moon {
 /* FAVORITES PAGE
 ----------------------------- */
 
-.page-favorites {
-  padding-top: 80px;
-  padding-bottom: 100px;
-}
-
-.favorites-header {
-  margin-bottom: 60px;
-}
-
-.favorites-header h1 {
-  font-family: var(--font-big);
-  font-size: var(--type-h1);
-  line-height: 0.9;
-  color: var(--color-hover);
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.favorites-layout {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 80px;
-}
-
-.favorites-sidebar {
-  position: sticky;
-  top: 150px;
-  height: fit-content;
-}
-
-.favorites-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.filter-btn {
-  background: none;
-  border: none;
-  padding: 0.4rem 0;
-  font-family: var(--font-sans);
-  font-size: var(--type-label);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text);
-  text-align: left;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.filter-btn:hover {
-  color: var(--color-hover);
-}
-
-.filter-btn.active {
-  color: var(--color-hover);
-}
-
-.favorites-content {
-  max-width: 700px;
-}
-
-#favorites-container {
-  transition: opacity 0.3s ease;
-}
-
-#favorites-container.fade-out {
-  opacity: 0;
-}
-
-#favorites-container.fade-in {
-  opacity: 1;
-}
-
-.favorite-item {
-  margin-bottom: 50px;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.favorite-item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.favorite-title {
-  font-family: var(--font-sans);
-  color: var(--color-hover);
-  margin: 0 0 0.5rem 0;
-  font-size: 18px;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 700 !important;
-}
-
-.favorite-title a {
-  color: var(--color-hover);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.favorite-title a:hover {
-  color: var(--color-blue);
-}
-
-.favorite-blurb {
-  font-family: var(--font-serif);
-  font-size: var(--type-body);
-  line-height: 1.6;
-  color: var(--color-text);
-  margin: 0;
-}
-
-.favorite-blurb a {
-  color: var(--color-text);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.favorite-blurb a:hover {
-  color: var(--color-blue);
-}
-
-.favorite-image {
-  margin-bottom: 15px;
-}
-
-.favorite-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* Light mode overrides */
-[data-theme="light"] .favorites-header h1 {
-  color: var(--color-hover);
-}
-
-[data-theme="light"] .filter-btn.active,
-[data-theme="light"] .filter-btn:hover {
-  color: var(--color-hover);
-}
-
-[data-theme="light"] .favorite-title,
-[data-theme="light"] .favorite-title a {
-  color: var(--color-hover);
-}
-
-/* Mobile responsive */
-@media (max-width: 700px) {
-  .page-favorites {
-    padding-top: 40px;
-  }
-
-  .favorites-header {
-    margin-bottom: 40px;
-  }
-
-  .favorites-header h1 {
-    font-size: 4rem;
-  }
-
-  .favorites-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .favorites-sidebar {
-    position: static;
-  }
-
-  .favorites-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.25rem 1rem;
-  }
-
-  .favorites-content {
-    max-width: 100%;
-  }
-
-  .favorite-item {
-    margin-bottom: 40px;
-  }
-}
-
 
 /* NOTEBOOK PAGE
 ----------------------------- */
@@ -4933,8 +4751,6 @@ html:not([data-theme]) .theme-switch .moon {
   gap: 0;
   margin-bottom: 100px;
 }
-
-
 
 .notebook-title {
   flex-shrink: 0;
@@ -5214,6 +5030,7 @@ html:not([data-theme]) .theme-switch .moon {
 
   .notebook-header {
     flex-direction: column;
+    grid-template-columns: 1fr;
     align-items: flex-start;
     gap: 30px;
   }
@@ -5554,7 +5371,7 @@ html:not([data-theme]) .theme-switch .moon {
 .collection-hero {
     width: 100%;
     max-width: 1300px;
-    margin: 0 auto 60px;
+    margin: 0 auto 10px;
 }
 
 .collection-hero img {
