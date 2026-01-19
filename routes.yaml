@@ -6,36 +6,59 @@ routes:
     template: page-favorites  
   /notebook/:
     template: page-notebook
+
+collections:
+  # Notebook collections
+  /god/:
+    permalink: /god/{slug}/
+    template: tag-notebook-collection
+    filter: tag:god
+    data: tag.god
+    
+  /weather/:
+    permalink: /weather/{slug}/
+    template: tag-notebook-collection
+    filter: tag:weather
+    data: tag.weather
+    
+  /art-diary/:
+    permalink: /art-diary/{slug}/
+    template: tag-notebook-collection
+    filter: tag:art-diary
+    data: tag.art-diary
+    
+  /dreams/:
+    permalink: /dreams/{slug}/
+    template: tag-notebook-collection
+    filter: tag:dreams
+    data: tag.dreams
+
+  # Other collections
   /broadcasts/:
-    controller: channel
+    permalink: /broadcasts/{slug}/
     filter: tag:broadcasts
     template: tag-broadcasts
     data: tag.broadcasts
+    
   /design/:
-    controller: channel
+    permalink: /design/{slug}/
     filter: tag:design
     template: tag-design
     data: tag.design
-    order: featured desc, published_at desc
+    
   /art/:
-    controller: channel
+    permalink: /art/{slug}/
     filter: tag:artwork
     template: tag-artwork
     data: tag.artwork
-    order: featured desc, published_at desc
+    
   /books/:
-    controller: channel
+    permalink: /books/{slug}/
     filter: tag:books
     template: tag-books
     data: tag.books
-    order: published_at asc
-  /god/:
-    controller: channel
-    filter: tag:god
-    template: tag-god
-    data: tag.god
-    order: published_at asc
-collections:
+
+  # Root collection (homepage)
   /:
     permalink: /{slug}/
     template: index

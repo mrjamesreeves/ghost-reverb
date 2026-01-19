@@ -36,9 +36,9 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-excerpt: 1.05rem;
   --type-label: 13px;
 
-  --line:  1px solid #191919;
-  --borderline: linear-gradient(to bottom, transparent 0%, #333 0%, #191919 100%) 1;
-  --bgline: #191919;
+  --line:  1px solid #1e1f1e;
+  --borderline: linear-gradient(to bottom, transparent 0%, #1e1f1e 0%, #1e1f1e 100%) 1;
+  --bgline: #1e1f1e;
 
 
   --max-w:  1300px;
@@ -4921,7 +4921,7 @@ html:not([data-theme]) .theme-switch .moon {
 /* NOTEBOOK PAGE
 ----------------------------- */
 
-.page-notebook {
+.page-notebook, .notebook-collection {
   padding-top: 80px;
   padding-bottom: 100px;
 }
@@ -5082,6 +5082,10 @@ html:not([data-theme]) .theme-switch .moon {
 .notebook-images {
   display: flex;
   flex-direction: column;
+}
+
+[data-theme="dark"] .notebook-images {
+  opacity: 0.75;
 }
 
 .notebook-scan {
@@ -5331,7 +5335,7 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 .episode-info ol li {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   padding-left: 5px;
 }
@@ -5340,36 +5344,36 @@ html:not([data-theme]) .theme-switch .moon {
   padding: 0;
   margin-left: 20px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .episode-info p {
   font-size: 16px;
   line-height: 1.6;
   font-weight: 400;
+  margin-top: 20px;
 }
 
-
 .episode-date {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 
 .episode-genre {
   font-style: italic;
   font-size: var(--type-label);
-  }
+}
 
 .episode-info h2 a {
-    color: var(--color-hover);
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: var(--color-hover);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .episode-info h2 a:hover {
-    color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .radio-blurb {
@@ -5473,16 +5477,15 @@ html:not([data-theme]) .theme-switch .moon {
 
 .signup-image {
     width: 100%;
-        box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
-
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
 }
 
 .signup-image img {
     width: 100%;
     height: auto;
     display: block;
-            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
 .signup-content {
@@ -5528,5 +5531,43 @@ html:not([data-theme]) .theme-switch .moon {
     
     .signup-content h2 {
         font-size: 2rem;
+    }
+}
+
+.episode-info a:hover svg {
+  fill: var(--color-text);
+    transform: translateX(4px);
+
+}
+.episode-info svg {
+  fill: var(--color-text-muted);
+  transition: all 0.4s cubic-bezier(0.68, -0.85, 0.265, 1.55);
+  transform: translateX(0);
+}
+/* Active state for notebook navigation */
+.notebook-header .index-item.active .index-name {
+    color: var(--color-hover) !important;
+}
+
+
+/* Collection hero image */
+.collection-hero {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 60px;
+}
+
+.collection-hero img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+@media (max-width: 700px) {
+    .collection-hero img {
+        height: 300px;
+        border-radius: 15px;
     }
 }

@@ -30,17 +30,6 @@
       "permanent": true
     },
     {
-      "from": "^/tag/dreams",
-      "to": "/dreams",
-      "permanent": true
-    },
-    {
-      "from": "^/tag/god",
-      "to": "/god",
-      "permanent": true
-    }
-    ,
-    {
       "from": "^/tag/midnight-radio",
       "to": "/radio",
       "permanent": true
