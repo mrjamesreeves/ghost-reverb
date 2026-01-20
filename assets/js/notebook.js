@@ -11,7 +11,9 @@
    */
   async function loadManifest() {
     try {
-      const response = await fetch('/assets/notes/manifest.json');
+      // Add timestamp to prevent CDN caching
+      const timestamp = new Date().getTime();
+      const response = await fetch(`/assets/notes/manifest.json?v=${timestamp}`);
       if (!response.ok) throw new Error('Failed to load manifest');
       return await response.json();
     } catch (error) {
@@ -25,7 +27,9 @@
    */
   async function loadMarkdownFile(filename) {
     try {
-      const response = await fetch(`/assets/notes/${filename}`);
+      // Add timestamp to prevent CDN caching
+      const timestamp = new Date().getTime();
+      const response = await fetch(`/assets/notes/${filename}?v=${timestamp}`);
       if (!response.ok) throw new Error(`Failed to load ${filename}`);
       const text = await response.text();
       return parseMarkdown(text);
