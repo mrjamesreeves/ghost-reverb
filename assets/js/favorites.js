@@ -62,7 +62,9 @@
    */
   async function loadFavorites() {
     try {
-      const response = await fetch('/assets/csv/favorites.csv');
+      // Add timestamp to prevent CDN caching
+      const timestamp = new Date().getTime();
+      const response = await fetch(`/assets/csv/favorites.csv?v=${timestamp}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
