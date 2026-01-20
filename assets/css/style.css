@@ -3358,7 +3358,7 @@ a button {
   color: #fff;
 }
 
-[data-theme="dark"] .radio-hero-content button {
+[data-theme="dark"] .radio-hero-content button, [data-theme="light"] .radio-hero-content button  {
   background: #ffffffa0;
   color: #000f;
 }
