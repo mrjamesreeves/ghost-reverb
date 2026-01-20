@@ -4929,7 +4929,7 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 .notebook-entry {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
   padding-left: 40px;
   position: relative;
   opacity: 0;
