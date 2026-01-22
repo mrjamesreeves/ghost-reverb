@@ -1,140 +1,290 @@
 {{!< default}}
 
-
 <style>
-
-    p {
-        font-family: var(--font-sans);
-        line-height: 1.6;
-        }
-
-    strong {
-        font-weight: 700;
+    h1 {
+        margin-top: 20px;
     }
-
+    blockquote {
+        border-left: var(--line); 
+        padding-left: 40px;
+        margin-top: 0;
+    }
+    blockquote h1 {
+        font-size: 60px;
+        line-height: .9;
+        color: #222
+    }
+    blockquote cite {
+        color: #333;
+    }
+    p {
+        margin-top: 5px;
+        color: #fff
+    }
     ul, ol {
         margin-top: 5px !important;
+        margin-left: 5px;
     }
-
+    li {
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-size: var(--type-body);
+    }
+    ul li::marker {
+    color: #444;
+}
     .post-content ol li, .post-content ul li {
         font-family: var(--font-sans);
         padding-bottom: 8px;
-        }
+    }
 
-    .kg-button-card a.kg-btn-accent {
-        padding: 20px 30px !important;
-        font-size: 18px !important;
-        letter-spacing: 0.02em !important;
-        border-radius: 8px !important;
-        text-transform: none !important;
-        }
-    .kg-toggle-heading {
-        margin-top: -40px !important;
-        }
-    .content {
-        padding-top: 15px;
-        }
-    .spite-img {
+    /* Spite Hero (only shows on main Spite page) */
+    .spite-hero {
         width: 100%;
-        max-width: 1200px;
-        height: auto;
+        max-width: 1300px;
+        margin: 0 auto 60px;
+        background: #1b1b1b;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         overflow: hidden;
-        margin-bottom: 30px;
-        margin-left: auto;
-        margin-right: auto; 
+        padding: 5%;
+        padding-bottom: 30px;
+        box-sizing: border-box;
         }
-    .radio-hero-wrapper {
-        background: none;
-        padding-top: 20px
-    }
-    .radio-page .image-slider img {
+
+    .spite-header {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        }
+
+    .spite-screenshot {
+        position: relative;
         width: 100%;
-        height: auto;
-        object-fit: fill;
-    }
-    h5.kg-toggle-heading-text {
-        background: #000;
+        aspect-ratio: 300 / 135;
+        overflow: hidden;
+        border-radius: 18px;
+        }
+
+    .spite-buttons {
+        margin-left: 5%
+        }
+
+    .spite-screenshot img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
     }
 
-    [data-theme="light"] h5.kg-toggle-heading-text {
-        background: #000;
-        color: #fff;
+    .spite-screenshot img:first-child {
+        position: relative;
+        opacity: 1;
+    }
+
+    .spite-screenshot img.active {
+        opacity: 1;
+    }
+
+    /* Left-aligned title and tagline */
+    .post-header-content {
+        text-align: left;
+    }
+
+    .post-header-content h1 {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .post-header-content + .post-content > p:first-child {
+        text-align: left;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+    }
+
+    /* Navigation */
+    .app-nav {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        justify-content: left;
+    }
+
+    .app-nav a {
+        font-size: 20px;
+        color: #3FA9FF;
+        border-bottom: 2px solid #3FA9FF;
+        padding-bottom: 4px;
+    }
+   .spite-sidebar button {
+        background: #3FA9FF!important;
+        color: #000 !important;
+        min-width: 250px;
+        font-size: 20px;
+        padding: 12px 30px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        padding-bottom: 14px;
+        font-weight: 700;
+    }
+    .spite-sidebar button:hover {
+        background: #fff !important;
+    }
+    .app-nav a:hover,
+    .app-nav a.active {
+        opacity: 1;
+        color: var(--color-hover);
+        border-bottom: 2px solid #fff;
     }
 
     @media (max-width: 700px) {
-        .radio-hero-wrapper {
-            aspect-ratio: 16/9
+        .spite-screenshot {
+            height: 400px;
         }
     }
 
-    #main .kg-toggle-card-icon svg {
-        color: #fff;
+.radio-page .radio-content-wrapper {
+    padding-left: 5%;
+    padding-right: 5%;
     }
-    .app-nav {
-    display: flex;
-    gap: 30px;
-    margin-top: 40px;
-    margin-bottom: 80px;
-    justify-content: left;
+
+.spite-columns {
+    display: grid;
+    grid-template-columns: 60% 35%;
+    gap: 5%;
+    align-items: start;
+    }
+
+.spite-copy {
+    padding-top: 20px;
+    }
+
+.spite-sidebar {
+    /* right column */
+    position: sticky;
+    top: 40px;
+    }
+
+.footer-tags {
+    display: none;
+    }
+
+h6 {
+    font-size: 13px;
+    font-weight: 500;
 }
 
-.app-nav a {
-    font-size: var(--type-label);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: var(--color-text);
-    text-decoration: underline;
+h6 a { color: #3FA9FF;
 }
 
-.app-nav a:hover {
-    color: var(--color-hover);
-}
-</style>
+@media (max-width: 900px) {
+    .spite-columns {
+        grid-template-columns: 1fr;
+    }
+}</style>
 
 <main id="main" class="content outer radio-page">
 
-        {{!-- Everything inside the #post tags pulls data from the post --}}
-        {{#post}}
-            
-            <div class="spite-img">
-                    {{#if feature_image}}
-                        <img
-                            class="bg-fade-in"
-                            srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
-                            sizes="(min-width: 1600px) 1600px, 100vw"
-                            src="{{img_url feature_image size="xl"}}"
-                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                        />
-                    {{/if}}
-                </div>
-
-
-    <div class="radio-content-wrapper">
-        <div class="inner-wide">
-            <article class="{{post_class}} post-full">
-
-                <div class="post-header-content inner">
-                    <h1 class="post">{{title}}</h1>
-                </div>
-                <div class="post-content">
-                    {{content}}
-                </div>
-
-                    <nav class="app-nav">
-                        <a href="/spite/">Spite</a>
-                        <a href="/spite-release-notes/">Release Notes</a>
-                        <a href="/spite-privacy-policy/">Privacy</a>
-                    </nav>
-
-                {{#if comments}}
-                        {{> comments}}
-                {{/if}}
-
-
-            </article>
+    <script>
+// Force dark mode on Spite pages
+document.documentElement.setAttribute('data-theme', 'dark');
+sessionStorage.setItem('theme-override', 'dark');
+</script>
+    {{#post}}
+    
+    <!-- Hero (only on main Spite page) -->
+    <div class="spite-hero">
+        <div class="spite-screenshot">
+            <img src="{{asset "spite/spite1.webp"}}" alt="Spite" class="active">
+            <img src="{{asset "spite/spite2.webp"}}" alt="Spite">
+            <img src="{{asset "spite/spite3.webp"}}" alt="Spite">
+            <img src="{{asset "spite/spite4.webp"}}" alt="Spite">
         </div>
     </div>
+        
 
-{{/post}}
+    <div class="radio-content-wrapper">
+        <div class="spite-header">
+            <h1>Spite</h1>
+            <p>A dead-simple music player like it's 2006 but a little nicer.</p>
+        </div>
+        <!-- Auto-detecting navigation -->
+        <nav class="app-nav">
+            <a href="/spite/" data-slug="spite">Features</a>
+            <a href="/spite-release-notes/" data-slug="spite-release-notes">Test Center</a>
+            <a href="/spite-privacy/" data-slug="spite-privacy">Privacy</a>
+        </nav>
+        <script>
+        // Highlight active nav item
+        (function() {
+            const currentSlug = '{{slug}}';
+            const links = document.querySelectorAll('.app-nav a[data-slug]');
+            links.forEach(link => {
+                if (link.getAttribute('data-slug') === currentSlug) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+        </script>
 
+        <div class="inner-wide">
+    <article class="spite-columns">
+        <div class="spite-copy">
+            {{content}}
+            
+            {{#if comments}}
+                {{> comments}}
+            {{/if}}
+        </div>
+
+        <div class="spite-sidebar">
+            {{#has slug="spite"}}
+                <!-- Simon Critchley quote -->
+                <blockquote><a href="#">
+                    <h1>It is impossible to be an atheist when listening to the music that one loves.</h1>
+                    <cite>Simon Critchley</cite></a>
+                </blockquote>
+            {{else}}
+                <!-- Download buttons -->
+                <div class="spite-buttons">
+                    <a href="https://testflight.apple.com/join/YOUR_CODE"><button>Download macOS</button></a>
+                    <a href="https://testflight.apple.com/join/YOUR_CODE"><button>Download iOS</button></a>
+                    <h6>Heavy duty thanks to Candy Chang, Oliver Farshi, Dan Parham, David Mead</h6>
+                </div>
+            {{/has}}
+        </div>
+    </article>
+</div>
+    </div>
+
+    {{/post}}
 </main>
+
+
+<script>
+(function() {
+    let imageIndex = 0;
+    const images = document.querySelectorAll('.spite-screenshot img');
+
+    console.log('Spite cycling initialized:', images.length, 'images');
+
+    function cycleImages() {
+        if (images.length <= 1) return;
+        images[imageIndex].classList.remove('active');
+        imageIndex = (imageIndex + 1) % images.length;
+        images[imageIndex].classList.add('active');
+        console.log('Cycled to image', imageIndex);
+    }
+
+    setInterval(cycleImages, 7000); // Cycle every 7 seconds
+})();
+</script>
