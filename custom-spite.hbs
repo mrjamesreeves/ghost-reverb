@@ -284,9 +284,9 @@ sessionStorage.setItem('theme-override', 'dark');
         <div class="spite-copy">
             {{content}}
             
-            {{#if comments}}
+            {{#has slug="spite-release-notes"}}
                 {{> comments}}
-            {{/if}}
+            {{/has}}
         </div>
 
         <div class="spite-sidebar">
