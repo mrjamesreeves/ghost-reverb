@@ -2,21 +2,16 @@
 
 <main id="main" class="content outer page-notebook">
     <div class="inner-wide">
+    
+    
+    {{> notebook-header}}
 
-                {{> notebook-header}}
-
-
-        <!-- Chronological Notebook Content -->
-        <div id="notebook-container">
-            <!-- JavaScript will populate this -->
-        </div>
-
-        <!-- HIGHLIGHTS -->
+        <!-- LOWLIGHTS -->
         <section class="highlights">
-            <h3 class="sect">Highlights</h3>
+            <h3 class="sect">Lowlights</h3>
             <div class="footer-tags">
                 <div class="index">
-                    {{#get "posts" filter="featured:true+tag:notebook" limit="8" include="tags"}}
+                    {{#get "posts" include="tags" filter="tag:-midnight-radio+featured:false+tag:notebook" limit="900"}}                
                         {{#foreach posts}}
                             <div class="index-item is-visible" data-url="{{url}}">
                                 <span class="index-name">{{title}}</span>
@@ -27,8 +22,6 @@
                 </div>
             </div>
         </section>
-
-
 
     </div>
 </main>

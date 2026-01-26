@@ -1,0 +1,59 @@
+<!-- Top Section + Featured Pages -->
+<div class="notebook-header">
+    <div class="notebook-title">
+        <h1><a href="{{@site.url}}/notebook/">Notebook</a></h1>
+    </div>
+
+    <div class="featured-grid">
+        <section class="highlights">
+            <div class="footer-tags">
+                <div class="index">
+                    <div class="index-item is-visible" data-url="/favorites">
+                        <span class="index-name">Favorite Things</span>
+                        <span class="index-count">01 2026</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/instructions">
+                        <span class="index-name">Instructions for Myself</span>
+                        <span class="index-count">07 2025</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/dreams">
+                        <span class="index-name">Dream Inventory</span>
+                        <span class="index-count">09 2025</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/art-diary">
+                        <span class="index-name">Art Diary</span>
+                        <span class="index-count">10 2025</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/god">
+                        <span class="index-name">Notes on God</span>
+                        <span class="index-count">03 2025</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/weather">
+                        <span class="index-name">Weather</span>
+                        <span class="index-count">02 2025</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/highlights">
+                        <span class="index-name">Highlights</span>
+                        <span class="index-count">2016-2025</span>
+                    </div>
+                    <div class="index-item is-visible" data-url="/lowlights">
+                        <span class="index-name">Lowlights</span>
+                        <span class="index-count">2013-2025</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+(function() {
+    const path = window.location.pathname.replace(/\/$/, ''); // remove trailing slash
+    const items = document.querySelectorAll('.notebook-header .index-item[data-url]');
+    items.forEach(item => {
+        if (item.dataset.url === path) {
+            item.classList.add('active');
+        }
+    });
+})();
+</script>

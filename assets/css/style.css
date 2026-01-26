@@ -4664,7 +4664,7 @@ html:not([data-theme]) .theme-switch .moon {
     align-items: center;
     font-size: var(--type-body-sm);
     font-family: var(--font-sans);
-    color: var(--color-text);
+    color: var(--color-text-muted);
     padding: 0.5rem 0;
     border-bottom: var(--line);
     opacity: 0;
@@ -4796,7 +4796,11 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 .featured-grid .index-count {
-  color: var(--bgline);
+  color: #444;
+}
+
+[data-theme="light"] .featured-grid .index-count {
+  color: #cbcbcb
 }
 
 .highlights-grid {
