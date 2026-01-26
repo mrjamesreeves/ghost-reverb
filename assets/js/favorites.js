@@ -1,12 +1,14 @@
 /**
  * Favorites Page - CSV Loading and Filtering
  * Loads favorite things from CSV, displays with category filtering
+ * Images positioned absolutely with SVG connector lines
  */
 
 (function() {
   'use strict';
 
   let allFavorites = [];
+  let resizeTimeout = null;
 
   /**
    * Parse a single CSV line, handling quoted fields with commas
@@ -62,7 +64,6 @@
    */
   async function loadFavorites() {
     try {
-      // Add timestamp to prevent CDN caching
       const timestamp = new Date().getTime();
       const response = await fetch(`/assets/csv/favorites.csv?v=${timestamp}`);
       if (!response.ok) {
@@ -80,12 +81,144 @@
   }
 
   /**
-   * Render all favorites in grid layout
+   * Draw SVG connector lines from text entries to their images
+   */
+  function drawConnectorLines() {
+    const svg = document.querySelector('.connector-lines');
+    const textColumn = document.querySelector('.favorites-text-column');
+    const imageColumn = document.querySelector('.favorites-image-column');
+
+    if (!svg || !textColumn || !imageColumn) return;
+
+    // Clear existing lines
+    svg.innerHTML = '';
+
+    // Get all text entries with images
+    const entries = textColumn.querySelectorAll('.favorite-entry[data-has-image="true"]');
+
+    entries.forEach(entry => {
+      const entryId = entry.dataset.entryId;
+      const image = imageColumn.querySelector(`.favorite-image[data-entry-id="${entryId}"]`);
+
+      if (!image) return;
+
+      // Get positions relative to the layout container
+      const layoutRect = document.querySelector('.favorites-layout').getBoundingClientRect();
+      const entryRect = entry.getBoundingClientRect();
+      const imageRect = image.getBoundingClientRect();
+
+      // Gap width (should match CSS margin-left on .favorites-image-column)
+      const gapWidth = 120;
+      const midPoint = gapWidth / 2;
+
+      // Calculate line coordinates
+      const startY = (entryRect.top + entryRect.height / 2) - layoutRect.top;
+      const endY = (imageRect.top + imageRect.height / 2) - layoutRect.top;
+
+      // Create horizontal line from text to midpoint
+      const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      hLine.setAttribute('x1', '0');
+      hLine.setAttribute('y1', startY);
+      hLine.setAttribute('x2', midPoint);
+      hLine.setAttribute('y2', startY);
+      svg.appendChild(hLine);
+
+      // If image is at different height, draw connecting path
+      if (Math.abs(startY - endY) > 5) {
+        // Vertical line
+        const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        vLine.setAttribute('x1', midPoint);
+        vLine.setAttribute('y1', startY);
+        vLine.setAttribute('x2', midPoint);
+        vLine.setAttribute('y2', endY);
+        svg.appendChild(vLine);
+
+        // Horizontal line to image
+        const hLine2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        hLine2.setAttribute('x1', midPoint);
+        hLine2.setAttribute('y1', endY);
+        hLine2.setAttribute('x2', gapWidth);
+        hLine2.setAttribute('y2', endY);
+        svg.appendChild(hLine2);
+      } else {
+        // Straight horizontal line
+        const hLineEnd = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        hLineEnd.setAttribute('x1', midPoint);
+        hLineEnd.setAttribute('y1', startY);
+        hLineEnd.setAttribute('x2', gapWidth);
+        hLineEnd.setAttribute('y2', startY);
+        svg.appendChild(hLineEnd);
+      }
+    });
+
+    // Update SVG height to match content
+    const layoutHeight = document.querySelector('.favorites-layout').offsetHeight;
+    svg.setAttribute('height', layoutHeight);
+  }
+
+  /**
+   * Position images absolutely aligned to their text entries
+   */
+  function positionImages() {
+    const textColumn = document.querySelector('.favorites-text-column');
+    const imageColumn = document.querySelector('.favorites-image-column');
+
+    if (!textColumn || !imageColumn) return;
+
+    // Check if we're in mobile view
+    if (window.innerWidth <= 768) {
+      // Reset to static positioning on mobile
+      const images = imageColumn.querySelectorAll('.favorite-image');
+      images.forEach(img => {
+        img.style.top = '';
+      });
+      return;
+    }
+
+    const entries = textColumn.querySelectorAll('.favorite-entry[data-has-image="true"]');
+    let lastImageBottom = 0;
+
+    entries.forEach(entry => {
+      const entryId = entry.dataset.entryId;
+      const image = imageColumn.querySelector(`.favorite-image[data-entry-id="${entryId}"]`);
+
+      if (!image) return;
+
+      // Get entry position relative to text column
+      const entryTop = entry.offsetTop;
+
+      // Position image to align with text entry, but don't overlap previous image
+      const targetTop = Math.max(entryTop, lastImageBottom + 20);
+      image.style.top = targetTop + 'px';
+
+      // Track bottom of this image for next iteration
+      lastImageBottom = targetTop + image.offsetHeight;
+    });
+
+    // Ensure image column is tall enough to contain all images (prevents footer overlap)
+    if (lastImageBottom > 0) {
+      imageColumn.style.minHeight = lastImageBottom + 'px';
+    }
+
+    // After positioning, draw connector lines
+    drawConnectorLines();
+  }
+
+  /**
+   * Render all favorites
    */
   function renderFavorites(category = 'all') {
     const container = document.getElementById('favorites-container');
     if (!container) {
       console.error('Container #favorites-container not found');
+      return;
+    }
+
+    const textColumn = container.querySelector('.favorites-text-column');
+    const imageColumn = container.querySelector('.favorites-image-column');
+
+    if (!textColumn || !imageColumn) {
+      console.error('Text or image column not found');
       return;
     }
 
@@ -103,29 +236,40 @@
     container.style.opacity = '0';
 
     setTimeout(() => {
-      container.innerHTML = '';
+      // Clear columns but preserve SVG
+      textColumn.innerHTML = '';
+      const svg = imageColumn.querySelector('.connector-lines');
+      imageColumn.innerHTML = '';
+      if (svg) imageColumn.appendChild(svg);
+
+      // Track images to load
+      const imagesToLoad = [];
 
       // Render each item
-      items.forEach(item => {
-        const itemDiv = document.createElement('div');
+      items.forEach((item, index) => {
         const hasImage = item.Image && item.Image.trim() !== '';
         const hasLink = item.Link && item.Link.trim() !== '';
-        itemDiv.className = hasImage ? 'favorite-item has-image' : 'favorite-item';
+        const entryId = `entry-${index}`;
 
-        // Text column
+        // Create text entry
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'favorite-entry';
+        entryDiv.dataset.entryId = entryId;
+        entryDiv.dataset.hasImage = hasImage ? 'true' : 'false';
+
         const textDiv = document.createElement('div');
         textDiv.className = 'favorite-text';
 
-        // Title (with HTML support for italics, wrapped in link if available)
+        // Title (with link if available)
         if (hasLink) {
           const titleLink = document.createElement('a');
           titleLink.href = item.Link;
           titleLink.className = 'favorite-title-link';
-          
+
           const title = document.createElement('h3');
           title.className = 'favorite-title';
           title.innerHTML = item.Title || '';
-          
+
           titleLink.appendChild(title);
           textDiv.appendChild(titleLink);
         } else {
@@ -135,51 +279,70 @@
           textDiv.appendChild(title);
         }
 
-        // Blurb (with HTML support for links)
+        // Blurb
         const blurb = document.createElement('div');
         blurb.className = 'favorite-blurb';
         blurb.innerHTML = item.Blurb || '';
         textDiv.appendChild(blurb);
 
-        itemDiv.appendChild(textDiv);
+        entryDiv.appendChild(textDiv);
+        textColumn.appendChild(entryDiv);
 
-        // Gap column
-        const gapDiv = document.createElement('div');
-        gapDiv.className = 'favorite-gap';
-        itemDiv.appendChild(gapDiv);
-
-        // Image column (wrapped in link if available)
-        const imageDiv = document.createElement('div');
-        imageDiv.className = 'favorite-image';
-
+        // Create image if exists
         if (hasImage) {
+          const imageDiv = document.createElement('div');
+          imageDiv.className = 'favorite-image';
+          imageDiv.dataset.entryId = entryId;
+
+          const img = document.createElement('img');
+          img.src = `/assets/img/favorites/${item.Image}`;
+          img.alt = item.Title ? item.Title.replace(/<[^>]*>/g, '') : '';
+          img.loading = 'lazy';
+
+          imagesToLoad.push(img);
+
           if (hasLink) {
             const imageLink = document.createElement('a');
             imageLink.href = item.Link;
             imageLink.className = 'favorite-image-link';
-            
-            const img = document.createElement('img');
-            img.src = `/assets/img/favorites/${item.Image}`;
-            img.alt = item.Title ? item.Title.replace(/<[^>]*>/g, '') : '';
-            img.loading = 'lazy';
-            
             imageLink.appendChild(img);
             imageDiv.appendChild(imageLink);
           } else {
-            const img = document.createElement('img');
-            img.src = `/assets/img/favorites/${item.Image}`;
-            img.alt = item.Title ? item.Title.replace(/<[^>]*>/g, '') : '';
-            img.loading = 'lazy';
             imageDiv.appendChild(img);
           }
-        }
 
-        itemDiv.appendChild(imageDiv);
-        container.appendChild(itemDiv);
+          imageColumn.appendChild(imageDiv);
+        }
       });
 
       // Fade in
       container.style.opacity = '1';
+
+      // Position images after they load
+      if (imagesToLoad.length > 0) {
+        let loadedCount = 0;
+        imagesToLoad.forEach(img => {
+          if (img.complete) {
+            loadedCount++;
+            if (loadedCount === imagesToLoad.length) {
+              positionImages();
+            }
+          } else {
+            img.addEventListener('load', () => {
+              loadedCount++;
+              if (loadedCount === imagesToLoad.length) {
+                positionImages();
+              }
+            });
+            img.addEventListener('error', () => {
+              loadedCount++;
+              if (loadedCount === imagesToLoad.length) {
+                positionImages();
+              }
+            });
+          }
+        });
+      }
 
       // Setup animations
       setupItemAnimations();
@@ -200,7 +363,7 @@
       threshold: 0.1
     });
 
-    document.querySelectorAll('.favorite-item').forEach(item => {
+    document.querySelectorAll('.favorite-entry').forEach(item => {
       observer.observe(item);
     });
   }
@@ -269,19 +432,32 @@
   }
 
   /**
+   * Handle window resize
+   */
+  function setupResize() {
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        positionImages();
+      }, 150);
+    });
+  }
+
+  /**
    * Initialize on page load
    */
   document.addEventListener('DOMContentLoaded', async () => {
     console.log('Favorites page initializing...');
     allFavorites = await loadFavorites();
     console.log('Loaded', allFavorites.length, 'favorites');
-    
+
     if (allFavorites.length === 0) {
       console.error('No favorites loaded! Check CSV file path and format.');
     }
-    
+
     setupFilters();
     setupPopState();
+    setupResize();
     initFromHash();
   });
 

@@ -53,13 +53,21 @@
             <div class="filter-btn" data-category="art">Art</div>
             <div class="filter-btn" data-category="movies">Movies</div>
             <div class="filter-btn" data-category="tv">TV</div>
-            <div class="filter-btn" data-category="objects">Things</div>
+            <div class="filter-btn" data-category="objects">Objects</div>
             <div class="filter-btn" data-category="food">Food</div>
         </nav>
 
         <!-- Entries Container -->
-        <div id="favorites-container" class="favorites-grid">
-            <!-- JavaScript will populate this -->
+        <div id="favorites-container" class="favorites-layout">
+            <div class="favorites-text-column">
+                <!-- JavaScript will populate text entries -->
+            </div>
+            <div class="favorites-image-column">
+                <!-- JavaScript will populate images (absolutely positioned) -->
+                <svg class="connector-lines" aria-hidden="true">
+                    <!-- JS will draw connector lines here -->
+                </svg>
+            </div>
         </div>
 
     </div>
@@ -103,9 +111,10 @@
   line-height: 1.2;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: auto; /* ADD THIS */
-  flex-shrink: 0; /* ADD THIS */
+  width: auto;
+  flex-shrink: 0;
   background: none !important;
+  font-weight: 600;
 }
 
 .filter-btn:hover {
@@ -117,25 +126,37 @@
   text-decoration: underline;
   text-underline-offset: 5px;
 }
- 
 
-/* Grid layout */
-.favorites-grid {
+/* Two-column layout container */
+.favorites-layout {
+  display: flex;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
+  position: relative;
   transition: opacity 0.3s ease;
 }
 
-/* Each favorite item */
-.favorite-item {
-  display: grid;
-  grid-template-columns: 45% 10% 45%;
-  margin-bottom: 50px;
-  align-items: center;
+/* Left column: text entries with consistent spacing */
+.favorites-text-column {
+  flex: 0 0 50%;
+  max-width: 550px;
 }
 
-/* Text column */
+/* Right column: images positioned absolutely */
+.favorites-image-column {
+  flex: 1;
+  position: relative;
+  margin-left: 120px;
+}
+
+/* Each text entry */
+.favorite-entry {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* Text content */
 .favorite-text {
   max-width: 500px;
   position: relative;
@@ -174,14 +195,12 @@ h3.favorite-title {
   text-decoration-color: var(--color-blue);
 }
 
-/* Image column */
+/* Images: absolutely positioned within their column */
 .favorite-image {
-  max-width: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  left: 0;
+  max-width: 500px;
   padding-left: 30px;
-  border-left: 1px solid red;
 }
 
 .favorite-image img {
@@ -190,29 +209,20 @@ h3.favorite-title {
   display: block;
 }
 
-/* Connecting lines (only when image exists) */
-.favorite-gap {
-  display: flex;
-  align-items: center; /* Vertically centers the line */
-  justify-content: center;
+/* SVG connector lines */
+.connector-lines {
+  position: absolute;
+  top: 0;
+  left: -120px;
+  width: 120px;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
 }
 
-/* Horizontal line that spans the gap */
-.has-image .favorite-gap::before {
-  content: '';
-  width: 100%;
-  height: 1px;
-  background: var(--bgline);
-  }
-
-/* Vertical line on image column */
-.favorite-image {
-  max-width: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 30px;
-  border-left: var(--line)
+.connector-lines line {
+  stroke: var(--bgline, #333);
+  stroke-width: 1;
 }
 
 /* Link styling for titles and images */
@@ -220,8 +230,7 @@ h3.favorite-title {
 .favorite-image-link {
   text-decoration: none;
   color: inherit;
-    transition: all 0.3s ease;
-
+  transition: all 0.3s ease;
 }
 
 .favorite-title-link:hover h3 {
@@ -242,51 +251,66 @@ h3.favorite-title {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .favorite-item {
-    grid-template-columns: 50% 10% 40%;
+  .favorites-text-column {
+    flex: 0 0 45%;
+  }
+
+  .favorite-image {
+    max-width: 400px;
   }
 }
 
 @media (max-width: 768px) {
-  .favorite-item {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin-bottom: 20px;
+  .favorites-layout {
+    flex-direction: column;
   }
 
-  .favorite-gap {
-  display: none
-}
-  
-  .favorite-text,
-  .favorite-image {
+  .favorites-text-column {
+    flex: none;
     max-width: 100%;
+    order: 2;
   }
-  
+
+  .favorites-image-column {
+    position: static;
+    margin-left: 0;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    order: 1;
+  }
+
+  .favorite-entry {
+    margin-bottom: 30px;
+  }
+
+  /* Mobile: images stack above, static positioning */
+  .favorite-image {
+    position: static;
+    max-width: 100%;
+    padding-left: 0;
+  }
+
+  .connector-lines {
+    display: none;
+  }
+
   .favorites-nav {
     gap: 8px;
   }
-  
+
   .filter-btn {
     font-size: 0.65rem;
     padding: 10px 18px;
   }
-
-/* Vertical line on image column */
-.favorite-image {
-  align-items: center;
-  justify-content: center;
-  padding-left: 0;
-  border-left: none
-}
-
 }
 
 h1.post {
   margin-left: 0;
   padding-bottom: 20px;
   max-width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   padding-right: 0;
 }
 
