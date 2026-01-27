@@ -5029,6 +5029,7 @@ html:not([data-theme]) .theme-switch .moon {
 @media (max-width: 720px) {
   .page-notebook {
     padding-top: 40px;
+    padding-bottom: 0;
   }
 
   .notebook-header {
@@ -5036,6 +5037,12 @@ html:not([data-theme]) .theme-switch .moon {
     grid-template-columns: 1fr;
     align-items: flex-start;
     gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .month-header {
+    font-size: 36px;
+    margin: 0 0 20px 0;;
   }
 
   .notebook-title::after {
@@ -5076,8 +5083,14 @@ html:not([data-theme]) .theme-switch .moon {
   }
 
   .notebook-entry {
-    margin-bottom: 50px;
-    padding-left: 30px;
+    margin-bottom: 30px;
+    padding-left: 0;
+    border-left: none;
+  }
+  
+
+  .entry-text p {
+    font-size: 16px;
   }
 
   .notebook-entry::before {
