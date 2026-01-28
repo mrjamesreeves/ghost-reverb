@@ -2044,11 +2044,15 @@ h6.song {
   margin-left: 0.5rem;
   text-align: right;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   font-family: var(--font-mono);
-  margin-top: 10px;
   transition: all 0.6s ease-out;
   text-transform: uppercase;
+  line-height: 1;
+  }
+
+.featured-grid .count {
+  color: var(--color-text-muted) !important;
   }
 
 .recent-radio {
@@ -4664,12 +4668,13 @@ html:not([data-theme]) .theme-switch .moon {
     font-size: var(--type-body-sm);
     font-family: var(--font-sans);
     color: var(--color-text-muted);
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     border-bottom: var(--line);
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.6s ease-out;
     cursor: pointer;
+    line-height: 1;
 }
 
 .index-item.is-visible {
@@ -5413,3 +5418,8 @@ h3 {
   padding-top: 30px;
   font-size: 18px;
 }
+
+
+[data-theme="light"] .highlights .index-item {
+  color: var(--color-text);
+} 
