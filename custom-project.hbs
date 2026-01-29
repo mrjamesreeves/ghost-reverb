@@ -4,7 +4,73 @@
 document.body.classList.add('has-hero');
 </script>
 
-<main id="main" class="content outer radio-page">
+<main id="main" class="content outer collection">
+    <div class="inner-wide">
+
+        <!-- Top Section + Featured Pages -->
+        <div class="notebook-header">
+            <div class="notebook-title">
+                <h1><a href="{{@site.url}}/projects/">Projects</a></h1>
+            </div>
+
+            <div class="featured-grid">
+                <section class="highlights">
+                    <div class="footer-tags">
+                        <div class="index">
+                            <div class="index-item is-visible" data-url="/spite">
+                                <span class="index-name">Spite</span>
+                                <span class="count">App</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/art/after-the-end/">
+                                <span class="index-name">After the End</span>
+                                <span class="count">Art Installation</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/art/the-nightly-news/">
+                                <span class="index-name">The Nightly News</span>
+                                <span class="count">Art Installation</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/art/light-the-barricades/">
+                                <span class="index-name">Light the Barricades</span>
+                                <span class="count">Art Installation</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/god">
+                                <span class="index-name">Notes on God</span>
+                                <span class="count">03 2025</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/weather">
+                                <span class="index-name">Weather</span>
+                                <span class="count">02 2025</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/highlights">
+                                <span class="index-name">Highlights</span>
+                                <span class="count">2016-2025</span>
+                            </div>
+                            <div class="index-item is-visible" data-url="/lowlights">
+                                <span class="index-name">Lowlights</span>
+                                <span class="count">2013-2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+<script>
+(function() {
+    const path = window.location.pathname.replace(/\/$/, ''); // remove trailing slash
+    const items = document.querySelectorAll('.notebook-header .index-item[data-url]');
+    items.forEach(item => {
+        if (item.dataset.url === path) {
+            item.classList.add('active');
+        }
+    });
+})();
+</script>
+
+
+
+    
     {{#post}}
     
     <div class="radio-hero-wrapper">

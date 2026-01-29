@@ -3831,8 +3831,8 @@ h3.about {
 .nav-card {
   background: rgba(255, 255, 255, 0.65); /* #D9D9D9 at 75% opacity */
   backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 35px;
+  border-radius: 12px;
+  padding: 30px;
   width: 100%;
   max-width: 300px;
   color: #000;
@@ -3841,7 +3841,7 @@ h3.about {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 .nav-overlay.nav-open .nav-card {
@@ -3877,9 +3877,7 @@ h3.about {
 
 /* Main Navigation */
 .nav-main {
-  margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.15);
 }
 
 .nav-link {
@@ -3894,6 +3892,7 @@ h3.about {
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-weight: 600;
   line-height: 1.2;
+    transform: translateX(0px);
 }
 
 .nav-link:hover {
@@ -4055,7 +4054,7 @@ body.nav-is-open {
   }
 
   .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .nav-icon img {
@@ -4079,7 +4078,6 @@ body.nav-is-open {
 
   .nav-card {
     padding: 28px;
-    margin: 20px;
   }
 
   .nav-signup-form {
@@ -4182,6 +4180,8 @@ body.nav-is-open {
 
 .grid.notebook .post-card {
   aspect-ratio: 44/50 !important;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   }
 
 .notebook-page .inner-wide {
@@ -4371,9 +4371,7 @@ body.nav-is-open {
 
 /* Add this to your nav card content */
 .theme-toggle {
-  margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid rgba(26, 26, 26, 0.15);
 }
 
 /* Toggle Switch */
@@ -4657,8 +4655,6 @@ html:not([data-theme]) .theme-switch .moon {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 80px;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .index-item {
@@ -4668,7 +4664,7 @@ html:not([data-theme]) .theme-switch .moon {
     font-size: var(--type-body-sm);
     font-family: var(--font-sans);
     color: var(--color-text-muted);
-    padding: 1rem 0;
+    padding: 0.6rem 0;
     border-bottom: var(--line);
     opacity: 0;
     transform: translateY(10px);
@@ -4743,7 +4739,7 @@ html:not([data-theme]) .theme-switch .moon {
 /* NOTEBOOK PAGE
 ----------------------------- */
 
-.page-notebook, .notebook-collection {
+.page-notebook, .notebook-collection, .collection {
   padding-top: 80px;
   padding-bottom: 100px;
 }
@@ -5093,7 +5089,9 @@ html:not([data-theme]) .theme-switch .moon {
     border-left: none;
   }
   
-
+.grid.notebook .post-card {
+    aspect-ratio: 1 / 1 !important; 
+}
   .entry-text p {
     font-size: 16px;
   }
@@ -5187,7 +5185,7 @@ html:not([data-theme]) .theme-switch .moon {
 
 .episode-info p {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   font-weight: 400;
   margin-top: 20px;
 }
@@ -5239,13 +5237,28 @@ html:not([data-theme]) .theme-switch .moon {
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 700px) {
     .radio-episode-row {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
         align-items: flex-start;
         margin-bottom: 80px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .episode-cover .post-card {
+      border-radius: 10px;
+    }
+
+    .episode-cover h2 {
+        font-size: 70px;
+    }
+
+    .episode-cover .post-card-inside {
+        padding: 20px;
     }
     
     .episode-spacer {
@@ -5261,10 +5274,31 @@ html:not([data-theme]) .theme-switch .moon {
         max-width: 100%;
         border-left: none;
     }
-    
+
+    .episode-info p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 10px;
+  }
+
+  .episode-info ol {
+    margin-top: 10px;
+  }
+
+  .episode-info ol li {
+    font-size: 13px;
+  }    
     .episode-info h2 {
         font-size: 2rem;
     }
+
+    .grid.notebook .grid-text {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+.signup {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .midnight-info {
@@ -5294,8 +5328,8 @@ html:not([data-theme]) .theme-switch .moon {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     align-items: center;
     border-radius: 15px;
     background: #000;
@@ -5349,7 +5383,7 @@ html:not([data-theme]) .theme-switch .moon {
 @media (max-width: 900px) {
     .signup {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 20px;
     }
     
     .signup-content {
@@ -5370,6 +5404,21 @@ html:not([data-theme]) .theme-switch .moon {
     .signup-content h2 {
         font-size: 2rem;
     }
+
+    .page-radio .content {
+      width: 100%;
+    }
+
+    .midnight-info {
+      display: table;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      width: 100%;
+    }
+    .midnight-blurb p {
+      line-height: 1.55
+    };
 }
 
 .episode-info a:hover svg {
@@ -5423,3 +5472,7 @@ h3 {
 [data-theme="light"] .highlights .index-item {
   color: var(--color-text);
 } 
+
+.episode-cover .post-card {
+  overflow: hidden;
+}
