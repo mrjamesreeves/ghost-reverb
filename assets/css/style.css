@@ -2906,9 +2906,10 @@ input::placeholder {
     animation: crossfade 60s infinite;
     visibility: hidden;
     aspect-ratio: 3/3;
+    object-position:calc(100% + 60px) center;
     }
   .radio-page .radio-hero-content {
-    bottom: 5% !important;
+    bottom: 35% !important;
     }
   .footer.outer {
     margin-top: 40px;
@@ -3803,6 +3804,64 @@ h3.about {
 
 .nav-icon-close {
   opacity: 0;
+}
+
+/* Mobile Navigation Bar - hidden on desktop */
+.nav-bar-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop circle icon on mobile */
+  .nav-icon-desktop {
+    display: none !important;
+  }
+
+  /* Show mobile pull-down bar */
+  button.nav-bar-mobile {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 0 0 16px 16px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: opacity 0.3s ease, background 0.2s ease;
+  }
+
+  .nav-bar-mobile:hover,
+  .nav-bar-mobile:active {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .nav-bar-mobile svg {
+    width: 12px;
+    height: auto;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+
+  .nav-bar-mobile svg path {
+    fill: rgba(255, 255, 255, 0.8);
+  }
+
+  .nav-bar-mobile:hover svg path,
+  .nav-bar-mobile:active svg path {
+    fill: rgba(255, 255, 255, 1);
+  }
+
+  /* Rotate arrow when nav is open */
+  .nav-bar-mobile.nav-active svg {
+    transform: rotate(180deg);
+  }
 }
 
 /* Navigation Overlay - BEHIND the icon */

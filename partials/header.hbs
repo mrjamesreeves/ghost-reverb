@@ -1,11 +1,18 @@
 <!-- MINIMAL NAVIGATION -->
 <header class="minimal-nav">
-    <!-- Navigation Icon (changes state) -->
-    <button class="nav-icon" id="nav-toggle" aria-label="Open navigation">
+    <!-- Desktop Navigation Icon (circle) -->
+    <button class="nav-icon nav-icon-desktop" id="nav-toggle" aria-label="Open navigation">
         <!-- Default icon (icon.svg) -->
         <img src="{{asset "/img/icon.png"}}" alt="Menu" class="nav-icon-default" />
         <!-- Close icon (x.svg) -->
         <img src="{{asset "/img/x.svg"}}" alt="Close" class="nav-icon-close" />
+    </button>
+
+    <!-- Mobile Navigation Bar (pull-down) -->
+    <button class="nav-bar-mobile" id="nav-toggle-mobile" aria-label="Open navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
+            <path d="M3.32858 14.3536C3.52384 14.5488 3.84042 14.5488 4.03568 14.3536L7.21766 11.1716C7.41293 10.9763 7.41293 10.6597 7.21766 10.4645C7.0224 10.2692 6.70582 10.2692 6.51056 10.4645L3.68213 13.2929L0.853702 10.4645C0.65844 10.2692 0.341858 10.2692 0.146595 10.4645C-0.0486667 10.6597 -0.0486667 10.9763 0.146595 11.1716L3.32858 14.3536ZM3.68213 0L3.18213 2.18557e-08L3.18213 14L3.68213 14L4.18213 14L4.18213 -2.18557e-08L3.68213 0Z" fill="rgba(255,255,255,0.6)"/>
+        </svg>
     </button>
 
 
@@ -82,25 +89,28 @@ window.addEventListener('scroll', function() {
 
 function updateIconOpacity() {
     const navIcon = document.getElementById('nav-toggle');
-    if (!navIcon) return;
-    
+    const navBarMobile = document.getElementById('nav-toggle-mobile');
+
     const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > lastScrollY) {
-        // Scrolling down - slow fade out
-        navIcon.style.transition = 'opacity 1.8s ease-out';
-        navIcon.style.opacity = '0';
-    } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - quick fade in
-        navIcon.style.transition = 'opacity 1.8s ease-in';
-        navIcon.style.opacity = '1';
+
+    // Desktop icon fade behavior
+    if (navIcon) {
+        if (currentScrollY > lastScrollY) {
+            navIcon.style.transition = 'opacity 1.8s ease-out';
+            navIcon.style.opacity = '0';
+        } else if (currentScrollY < lastScrollY) {
+            navIcon.style.transition = 'opacity 1.8s ease-in';
+            navIcon.style.opacity = '1';
+        }
+
+        if (currentScrollY <= 10) {
+            navIcon.style.opacity = '1';
+        }
     }
-    
-    // At top of page, always fully visible
-    if (currentScrollY <= 10) {
-        navIcon.style.opacity = '1';
-    }
-    
+
+    // Mobile bar - always visible (no scroll fade)
+    // The bar stays fixed at top, so no opacity change needed
+
     lastScrollY = currentScrollY;
     ticking = false;
 }
@@ -108,28 +118,21 @@ function updateIconOpacity() {
 document.addEventListener('DOMContentLoaded', function() {
     // Navigation code with null checks
     const navToggle = document.getElementById('nav-toggle');
+    const navToggleMobile = document.getElementById('nav-toggle-mobile');
     const navOverlay = document.getElementById('nav-overlay');
     const body = document.body;
-    
-    // Only proceed if navigation elements exist
-    if (navToggle && navOverlay) {
-        const iconDefault = navToggle.querySelector('.nav-icon-default');
-        const iconClose = navToggle.querySelector('.nav-icon-close');
 
-        // Navigation functionality
-        navToggle.addEventListener('click', function() {
-            if (navOverlay.classList.contains('nav-open')) {
-                closeNav();
-            } else {
-                openNav();
-            }
-        });
+    // Only proceed if navigation elements exist
+    if (navOverlay && (navToggle || navToggleMobile)) {
+        const iconDefault = navToggle ? navToggle.querySelector('.nav-icon-default') : null;
+        const iconClose = navToggle ? navToggle.querySelector('.nav-icon-close') : null;
 
         function openNav() {
             navOverlay.classList.add('nav-open');
             body.classList.add('nav-is-open');
-            navToggle.classList.add('nav-active');
-            
+            if (navToggle) navToggle.classList.add('nav-active');
+            if (navToggleMobile) navToggleMobile.classList.add('nav-active');
+
             if (iconDefault && iconClose) {
                 iconDefault.style.opacity = '0';
                 iconClose.style.opacity = '1';
@@ -139,12 +142,31 @@ document.addEventListener('DOMContentLoaded', function() {
         function closeNav() {
             navOverlay.classList.remove('nav-open');
             body.classList.remove('nav-is-open');
-            navToggle.classList.remove('nav-active');
-            
+            if (navToggle) navToggle.classList.remove('nav-active');
+            if (navToggleMobile) navToggleMobile.classList.remove('nav-active');
+
             if (iconDefault && iconClose) {
                 iconDefault.style.opacity = '1';
                 iconClose.style.opacity = '0';
             }
+        }
+
+        function toggleNav() {
+            if (navOverlay.classList.contains('nav-open')) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        }
+
+        // Desktop toggle
+        if (navToggle) {
+            navToggle.addEventListener('click', toggleNav);
+        }
+
+        // Mobile toggle
+        if (navToggleMobile) {
+            navToggleMobile.addEventListener('click', toggleNav);
         }
 
         // Close on overlay click
@@ -154,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Close on escape key  
+        // Close on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && navOverlay.classList.contains('nav-open')) {
                 closeNav();
