@@ -3855,26 +3855,30 @@ h3.about {
     transform: translate(-50%, 0) !important;
   }
 
-  /* Drawer handle - sits at bottom of card, moves with it */
+  /* Drawer handle - centered pill below card */
   button.nav-bar-mobile {
     display: flex;
     position: absolute;
     bottom: -36px;
-    left: 0;
-    width: 100%;
-    height: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    height: 26px;
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    transform: translateZ(0);
     isolation: isolate;
     border: none;
-    border-radius: 0 0 16px 16px;
+    border-radius: 20px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     pointer-events: auto;
   }
+
+  button.nav-bar-mobile svg path {
+    fill: #fff;
+    }
 
   button.nav-bar-mobile:active, button.nav-bar-mobile:hover {
     background: rgba(0, 0, 0, 0.65) !important;
@@ -3887,13 +3891,18 @@ h3.about {
     transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  button.nav-bar-mobile svg path {
-    fill: rgba(255, 255, 255, 0.5);
+  /* Hamburger/X icon swap */
+  button.nav-bar-mobile .nav-icon-hamburger {
+    display: block;
   }
-
-  /* Rotate arrow when open */
-  .nav-overlay.nav-open button.nav-bar-mobile svg {
-    transform: rotate(180deg);
+  button.nav-bar-mobile .nav-icon-x {
+    display: none;
+  }
+  .nav-overlay.nav-open button.nav-bar-mobile .nav-icon-hamburger {
+    display: none;
+  }
+  .nav-overlay.nav-open button.nav-bar-mobile .nav-icon-x {
+    display: block;
   }
 }
 
