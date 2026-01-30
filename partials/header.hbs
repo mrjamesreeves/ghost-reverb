@@ -8,19 +8,15 @@
         <img src="{{asset "/img/x.svg"}}" alt="Close" class="nav-icon-close" />
     </button>
 
-    <!-- Mobile Navigation Bar (pull-down) -->
-    <button class="nav-bar-mobile" id="nav-toggle-mobile" aria-label="Open navigation">
-        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
-            <path d="M3.32858 14.3536C3.52384 14.5488 3.84042 14.5488 4.03568 14.3536L7.21766 11.1716C7.41293 10.9763 7.41293 10.6597 7.21766 10.4645C7.0224 10.2692 6.70582 10.2692 6.51056 10.4645L3.68213 13.2929L0.853702 10.4645C0.65844 10.2692 0.341858 10.2692 0.146595 10.4645C-0.0486667 10.6597 -0.0486667 10.9763 0.146595 11.1716L3.32858 14.3536ZM3.68213 0L3.18213 2.18557e-08L3.18213 14L3.68213 14L4.18213 14L4.18213 -2.18557e-08L3.68213 0Z" fill="rgba(255,255,255,0.6)"/>
-        </svg>
-    </button>
-
-
-    
-
     <!-- Navigation Overlay -->
     <div class="nav-overlay" id="nav-overlay">
         <div class="nav-card">
+            <!-- Mobile drawer handle (inside card so they move together) -->
+            <button class="nav-bar-mobile" id="nav-toggle-mobile" aria-label="Toggle navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
+                    <path d="M3.32858 14.3536C3.52384 14.5488 3.84042 14.5488 4.03568 14.3536L7.21766 11.1716C7.41293 10.9763 7.41293 10.6597 7.21766 10.4645C7.0224 10.2692 6.70582 10.2692 6.51056 10.4645L3.68213 13.2929L0.853702 10.4645C0.65844 10.2692 0.341858 10.2692 0.146595 10.4645C-0.0486667 10.6597 -0.0486667 10.9763 0.146595 11.1716L3.32858 14.3536ZM3.68213 0L3.18213 2.18557e-08L3.18213 14L3.68213 14L4.18213 14L4.18213 -2.18557e-08L3.68213 0Z" fill="rgba(255,255,255,0.6)"/>
+                </svg>
+            </button>
             <!-- Bio Section -->
             <div class="nav-bio">
                 <h2><a href="{{@site.url}}" class="nav-link">James A. Reeves</a></h2>
@@ -131,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navOverlay.classList.add('nav-open');
             body.classList.add('nav-is-open');
             if (navToggle) navToggle.classList.add('nav-active');
-            if (navToggleMobile) navToggleMobile.classList.add('nav-active');
 
             if (iconDefault && iconClose) {
                 iconDefault.style.opacity = '0';
@@ -143,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navOverlay.classList.remove('nav-open');
             body.classList.remove('nav-is-open');
             if (navToggle) navToggle.classList.remove('nav-active');
-            if (navToggleMobile) navToggleMobile.classList.remove('nav-active');
 
             if (iconDefault && iconClose) {
                 iconDefault.style.opacity = '1';

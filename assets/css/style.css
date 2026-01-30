@@ -3817,49 +3817,82 @@ h3.about {
     display: none !important;
   }
 
-  /* Show mobile pull-down bar */
-  button.nav-bar-mobile {
-    display: flex;
+  /* Mobile: Drawer-style navigation */
+
+  /* Nav overlay - non-interactive when closed, clips content at top */
+  .nav-overlay {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block;
+    padding: 0;
+    pointer-events: none;
+    background: none;
+    transition: background 0.35s ease;
+    clip-path: inset(-36px 0 0 0); /* Allow handle to show below top edge */
+  }
+
+  .nav-overlay.nav-open {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.4);
+    clip-path: none;
+  }
+
+  /* Nav card - drawer that slides down from top */
+  .nav-card {
     position: fixed;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, calc(-100% - 20px)) !important;
+    opacity: 1 !important;
     width: 85%;
+    max-width: 400px;
+    visibility: visible !important;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding-bottom: 24px;
+  }
+
+  .nav-overlay.nav-open .nav-card {
+    transform: translate(-50%, 0) !important;
+  }
+
+  /* Drawer handle - sits at bottom of card, moves with it */
+  button.nav-bar-mobile {
+    display: flex;
+    position: absolute;
+    bottom: -36px;
+    left: 0;
+    width: 100%;
     height: 36px;
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    transform: translateZ(0);
+    isolation: isolate;
     border: none;
     border-radius: 0 0 16px 16px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1001;
-    transition: opacity 0.3s ease, background 0.2s ease;
+    pointer-events: auto;
   }
 
-  .nav-bar-mobile:hover,
-  .nav-bar-mobile:active {
-    background: rgba(255, 255, 255, 0.22);
-  }
+  button.nav-bar-mobile:active, button.nav-bar-mobile:hover {
+    background: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(80px);
+    }
 
-  .nav-bar-mobile svg {
-    width: 12px;
+  button.nav-bar-mobile svg {
+    width: 9px;
     height: auto;
-    transition: transform 0.3s ease, opacity 0.2s ease;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .nav-bar-mobile svg path {
-    fill: rgba(255, 255, 255, 0.8);
+  button.nav-bar-mobile svg path {
+    fill: rgba(255, 255, 255, 0.5);
   }
 
-  .nav-bar-mobile:hover svg path,
-  .nav-bar-mobile:active svg path {
-    fill: rgba(255, 255, 255, 1);
-  }
-
-  /* Rotate arrow when nav is open */
-  .nav-bar-mobile.nav-active svg {
+  /* Rotate arrow when open */
+  .nav-overlay.nav-open button.nav-bar-mobile svg {
     transform: rotate(180deg);
   }
 }
@@ -3886,7 +3919,7 @@ h3.about {
   visibility: visible;
 }
 
-/* Navigation Card */
+/* Navigation Card - Desktop only (mobile overridden in media query above) */
 .nav-card {
   background: rgba(255, 255, 255, 0.65); /* #D9D9D9 at 75% opacity */
   backdrop-filter: blur(20px);
@@ -3896,16 +3929,18 @@ h3.about {
   max-width: 300px;
   color: #000;
   position: relative;
-  transform: translateY(-20px) !important;
+  transform: translateY(-20px);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 20px;
 }
 
-.nav-overlay.nav-open .nav-card {
-  transform: translateY(0);
-  opacity: 1;
+@media (min-width: 769px) {
+  .nav-overlay.nav-open .nav-card {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Bio Section */
@@ -4100,7 +4135,8 @@ body.nav-is-open {
   .nav-card {
     max-width: 340px;
     padding: 32px;
-    border-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .nav-bio h2 {
@@ -4152,7 +4188,6 @@ body.nav-is-open {
   .nav-overlay {
     padding: 20px;
     align-items: flex-start;
-    padding-top: 80px;
   }
 }
 
