@@ -2325,7 +2325,6 @@ h5:has(+ .kg-audio-card) {
 }
 
 [data-theme="light"] .midnight-blurb .kg-signup-card-button.kg-style-accent, .midnight-blurb .kg-signup-card-button-default {
-  background-color: #fff !important;
   color: #000 !important;
 }
 
@@ -2908,7 +2907,7 @@ input::placeholder {
     aspect-ratio: 3/3;
     object-position:calc(100% + 60px) center;
     }
-  .radio-page .radio-hero-content {
+  .radio-page .midnight-intro.radio-hero-content {
     bottom: 35% !important;
     }
   .footer.outer {
@@ -3457,7 +3456,7 @@ cite {
   }
 
   .radio-item {
-    font-size: 1rem;
+    font-size: 20px;
   }
 
   .grid-item {
@@ -3837,32 +3836,14 @@ h3.about {
     clip-path: none;
   }
 
-  /* Nav card - drawer that slides down from top */
-  .nav-card {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, calc(-100% - 20px)) !important;
-    opacity: 1 !important;
-    width: 85%;
-    max-width: 400px;
-    visibility: visible !important;
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding-bottom: 24px;
-  }
 
-  .nav-overlay.nav-open .nav-card {
-    transform: translate(-50%, 0) !important;
-  }
 
   /* Drawer handle - centered pill below card */
   button.nav-bar-mobile {
     display: flex;
     position: absolute;
     bottom: -36px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30%;
+    right: 0;
     height: 26px;
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(20px);
@@ -3930,7 +3911,7 @@ h3.about {
 
 /* Navigation Card - Desktop only (mobile overridden in media query above) */
 .nav-card {
-  background: rgba(255, 255, 255, 0.65); /* #D9D9D9 at 75% opacity */
+  background: rgba(255, 255, 255, 0.55); /* #D9D9D9 at 75% opacity */
   backdrop-filter: blur(20px);
   border-radius: 12px;
   padding: 30px;
@@ -3941,7 +3922,6 @@ h3.about {
   transform: translateY(-20px);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 20px;
 }
 
@@ -4024,7 +4004,7 @@ h3.about {
   display: flex;
   gap: 8px;
   padding: 8px;
-  background: #79797992;
+  background: #777;
   border-radius: 5px;
 }
 
@@ -4037,7 +4017,7 @@ h3.about {
   font-size: 0.85rem;
   background: rgba(255, 255, 255, 0.9);
   transition: all 0.2s ease;
-  color: #1a1a1a;
+  color: #fff;
   font-weight: 500px;
 }
 
@@ -4144,8 +4124,6 @@ body.nav-is-open {
   .nav-card {
     max-width: 340px;
     padding: 32px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
   }
 
   .nav-bio h2 {
@@ -4178,6 +4156,24 @@ body.nav-is-open {
     min-width: 35px;
     top: 4%;
     left: 10%;
+  }
+
+    /* Nav card - drawer that slides down from top */
+  .nav-card {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, calc(-100% - 20px)) !important;
+    opacity: 1 !important;
+    width: 85%;
+    max-width: 400px;
+    visibility: visible !important;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding-bottom: 24px;
+  }
+
+  .nav-overlay.nav-open .nav-card {
+    transform: translate(-50%, 0) !important;
   }
 
   .nav-card {
@@ -4474,7 +4470,7 @@ body.nav-is-open {
 
 /* Add this to your nav card content */
 .theme-toggle {
-  padding-top: 20px;
+  padding-left: 50px;
 }
 
 /* Toggle Switch */
@@ -4559,7 +4555,7 @@ body.nav-is-open {
 
 /* Dark mode styles */
 [data-theme="dark"] .theme-switch-track {
-  background: #888;
+  background: #777;
 }
 
 [data-theme="dark"] .theme-switch-thumb {
@@ -4711,7 +4707,6 @@ html:not([data-theme]) .theme-switch .moon {
 [data-theme="light"] .nav-card {
   background: rgba(42, 42, 42, 0.9);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="light"] .nav-bio h2,
@@ -5241,7 +5236,7 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 .episode-cover h2 {
-    font-size: 110px;
+    font-size: 100px;
 }
 
 .episode-cover .post-card-inside {
@@ -5333,6 +5328,19 @@ html:not([data-theme]) .theme-switch .moon {
     margin-bottom: 0;
 }
 
+.midnight-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  gap: 100px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+      width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  margin-bottom: 50px;
+}
+
 /* Responsive */
 @media (max-width: 1400px) {
     .radio-episode-row {
@@ -5404,21 +5412,7 @@ html:not([data-theme]) .theme-switch .moon {
   margin-bottom: 40px;
 }
 
-.midnight-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-flow: column;
-  gap: 100px;
-  padding-top: 50px;
-  padding-bottom: 40px;
-  padding-left: 65px;
-  padding-right: 65px;
-  background: rgb(6, 6, 6);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.15);
-  margin-bottom: 50px;
-}
+
 
 .page-radio .radio-hero-wrapper {
   border-bottom-left-radius: 0;
