@@ -132,7 +132,7 @@ h1 {
   -webkit-font-smoothing: subpixel-antialiased;
   }
 
-h1 a, li a {
+h1 a {
   text-decoration: none;
   transition: all 0.8s;
   color: var(--color-text-highlight);
@@ -378,7 +378,6 @@ li > ol {
   }
 
 .post-content li a {
-  color: var(--color-text-muted) !important;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -1398,6 +1397,7 @@ figcaption, .kg-card figcaption {
   color: var(--color-text-muted);
     font-size: 11px;
     text-align: right;
+    padding-top: 10px;
   }
 
 .post-header-caption a {
@@ -1732,7 +1732,7 @@ p a:hover {
 .tag-midnight-radio ol li {
   line-height: 1.4;
   font-family: var(--font-sans);
-  color: var(--color-text-muted);
+  font-size: 14px;
 }
 
 .tag-midnight-radio ol li strong {
@@ -2898,8 +2898,6 @@ input::placeholder {
     overflow: hidden;
 }
 .radio-page .image-slider img {
-    width: auto !important;
-    height: auto !important;
     object-fit: cover;
     opacity: 0;
     animation: crossfade 60s infinite;
@@ -5341,6 +5339,66 @@ html:not([data-theme]) .theme-switch .moon {
   margin-bottom: 50px;
 }
 
+.signup {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.signup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    align-items: center;
+    border-radius: 15px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
+}
+
+.signup-content .kg-signup-card-fields {
+    border: var(--line) !important;
+    padding: 3px !important;
+    border-radius: 5px !important;
+}
+
+.signup-image {
+    width: 100%;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
+}
+
+.signup-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.signup-content {
+    padding-right: 80px;
+}
+
+.signup-content h2 {
+    font-size: 3rem;
+    line-height: 0.9;
+    margin-bottom: 10px;
+    color: var(--color-hover);
+}
+
+.signup-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--color-text);
+}
+
+[data-theme="light"] .signup {
+  background: #fff;
+}
+
 /* Responsive */
 @media (max-width: 1400px) {
     .radio-episode-row {
@@ -5407,10 +5465,7 @@ html:not([data-theme]) .theme-switch .moon {
     padding-top: 20px;
     padding-bottom: 15px;
 }
-.signup {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
+
 
 
 
@@ -5421,60 +5476,9 @@ html:not([data-theme]) .theme-switch .moon {
 
 
 
-.signup {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    align-items: center;
-    border-radius: 15px;
-    background: #000;
-    overflow: hidden;
-    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
-}
 
-[data-theme="light"] .signup {
-  background: #fff;
-}
 
-.signup-content .kg-signup-card-fields {
-    border: var(--line) !important;
-    padding: 3px !important;
-    border-radius: 5px !important;
-}
 
-.signup-image {
-    width: 100%;
-    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05)
-}
-
-.signup-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-}
-
-.signup-content {
-    padding-right: 80px;
-}
-
-.signup-content h2 {
-    font-size: 3rem;
-    line-height: 0.9;
-    margin-bottom: 10px;
-    color: var(--color-hover);
-}
-
-.signup-content p {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: var(--color-text);
-}
 
 /* Mobile responsive */
 @media (max-width: 900px) {
