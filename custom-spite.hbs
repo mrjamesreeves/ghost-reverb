@@ -352,17 +352,31 @@ sessionStorage.setItem('theme-override', 'dark');
 
 <script>
 (function() {
-    let imageIndex = 0;
-    const images = document.querySelectorAll('.spite-screenshot img');
+    const container = document.querySelector('.spite-screenshot');
+    const images = Array.from(container.querySelectorAll('img'));
 
-    console.log('Spite cycling initialized:', images.length, 'images');
+    // Shuffle images randomly
+    for (let i = images.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [images[i], images[j]] = [images[j], images[i]];
+    }
+
+    // Re-append in shuffled order
+    images.forEach(img => container.appendChild(img));
+
+    // Reset active state to first (now random) image
+    container.querySelectorAll('img').forEach((img, i) => {
+        img.classList.toggle('active', i === 0);
+    });
+
+    let imageIndex = 0;
+    const shuffledImages = container.querySelectorAll('img');
 
     function cycleImages() {
-        if (images.length <= 1) return;
-        images[imageIndex].classList.remove('active');
-        imageIndex = (imageIndex + 1) % images.length;
-        images[imageIndex].classList.add('active');
-        console.log('Cycled to image', imageIndex);
+        if (shuffledImages.length <= 1) return;
+        shuffledImages[imageIndex].classList.remove('active');
+        imageIndex = (imageIndex + 1) % shuffledImages.length;
+        shuffledImages[imageIndex].classList.add('active');
     }
 
     setInterval(cycleImages, 7000); // Cycle every 7 seconds
