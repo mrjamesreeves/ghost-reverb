@@ -377,7 +377,7 @@ li > ol {
   margin: 2.5rem 0 0;
   }
 
-.post-content li a {
+.post-content li a, .li a {
     text-decoration: underline;
     text-underline-offset: 2px;
   }
