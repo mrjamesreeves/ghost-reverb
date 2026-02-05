@@ -5579,3 +5579,11 @@ h3 {
 .episode-cover .post-card {
   overflow: hidden;
 }
+
+h3.sect {
+  padding-bottom: 20px;
+}
+
+.active .index-name{
+  color: var(--color-text) !important;
+}

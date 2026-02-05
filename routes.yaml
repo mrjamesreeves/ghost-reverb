@@ -3,7 +3,9 @@ routes:
     template: page-radio
     redirect: /radio
   /favorites/:
-    template: page-favorites  
+    template: page-favorites 
+  /art-diary/:
+    template: page-art-diary 
   /notebook/:
     template: page-notebook
 
@@ -20,12 +22,6 @@ collections:
     template: tag-notebook-collection
     filter: tag:weather
     data: tag.weather
-    
-  /art-diary/:
-    permalink: /art-diary/{slug}/
-    template: tag-notebook-collection
-    filter: tag:art-diary
-    data: tag.art-diary
     
   /dreams/:
     permalink: /dreams/{slug}/
