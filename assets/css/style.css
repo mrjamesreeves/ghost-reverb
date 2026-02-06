@@ -3934,7 +3934,7 @@ h3.about {
 
 /* Bio Section */
 .nav-bio {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .nav-bio h2 {
@@ -3942,14 +3942,13 @@ h3.about {
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  margin: 0 0 5px 0;
   color: #1a1a1a;
   font-weight: 600;
 }
 
 .nav-bio p {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 14px;
   line-height: 1.4;
   margin: 0;
   font-weight: 500;
@@ -3991,7 +3990,7 @@ h3.about {
 
 .nav-newsletter p {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 14px;
   line-height: 1.4;
   margin: 0 0 15px 0;
   font-weight: 500;
