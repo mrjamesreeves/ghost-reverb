@@ -4071,7 +4071,6 @@ h3.about {
   font-weight: 600;
 }
 
-/* Body state when nav is open */
 body.nav-is-open {
   overflow: hidden;
 }
