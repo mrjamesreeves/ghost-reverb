@@ -226,7 +226,7 @@
     let items = allFavorites;
     if (category !== 'all') {
       items = allFavorites.filter(item =>
-        (item.City || '').toLowerCase() === category.toLowerCase()
+        (item.Type || '').toLowerCase() === category.toLowerCase()
       );
     }
 

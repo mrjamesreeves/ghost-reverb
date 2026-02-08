@@ -1,16 +1,40 @@
 <footer class="content outer">
     <!-- TAGS -->
     <div class="footer-tags">
-     {{#get "tags" limit="8" order="count.posts desc" include="count.posts" filter="slug:-[notebook,books,artwork,albums,mix-tapes,broadcasts,design]"}}
-            <div class="index">
-    {{#foreach tags}}
-        <div class="index-item" data-url="{{url}}">
-            <span class="index-name">{{name}}</span>
-            <span class="index-count">{{count.posts}}</span>
+        <div class="index">
+            <div class="index-item is-visible" data-url="/favorites">
+                <span class="index-name">Favorite Things</span>
+                <span class="count">2026</span>
+            </div>
+            <div class="index-item is-visible" data-url="/instructions">
+                <span class="index-name">Instructions for Myself</span>
+                <span class="count">2025</span>
+            </div>
+            <div class="index-item is-visible" data-url="/dreams">
+                <span class="index-name">Dream Inventory</span>
+                <span class="count">2024-2025</span>
+            </div>
+            <div class="index-item is-visible" data-url="/art-diary">
+                <span class="index-name">Art Diary</span>
+                <span class="count">2024-2026</span>
+            </div>
+            <div class="index-item is-visible" data-url="/god">
+                <span class="index-name">Notes on God</span>
+                <span class="count">2017-2025</span>
+            </div>
+            <div class="index-item is-visible" data-url="/weather">
+                <span class="index-name">Weather</span>
+                <span class="count">2013-2023</span>
+            </div>
+            <div class="index-item is-visible" data-url="/highlights">
+                <span class="index-name">Highlights</span>
+                <span class="count">2016-2025</span>
+            </div>
+            <div class="index-item is-visible" data-url="/lowlights">
+                <span class="index-name">Lowlights</span>
+                <span class="count">2013-2025</span>
+            </div>
         </div>
-    {{/foreach}}
-</div>
-        {{/get}}
     </div>
 </footer>
 

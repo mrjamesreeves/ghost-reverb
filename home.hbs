@@ -6,10 +6,11 @@ document.body.classList.add('has-hero');
 
 <main id="main" class="content outer radio-page">
     
-<!-- Latest Episode -->
-{{#get "posts" include="authors,tags,excerpt" filter="tag:midnight-radio" limit="1"}}
+    <!-- Latest Episode -->
+    {{#get "posts" include="authors,tags,excerpt" filter="tag:midnight-radio" limit="1"}}
     {{#foreach posts visibility="all"}}
     <div class="radio-hero-wrapper">
+        <a href="{{url}}">
         <div class="image-slider">
             {{#if feature_image}}
                 <img
@@ -31,86 +32,66 @@ document.body.classList.add('has-hero');
                 {{/if}}
                 {{/foreach}}
             </h5>
-            <h1><a href="{{url}}">{{title}}</a></h1>    
-                <a href="{{url}}"><button>Read and listen
-                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="8" viewBox="0 0 21 8" fill="none">
-                        <path d="M20.3536 4.31644C20.5488 4.12118 20.5488 3.8046 20.3536 3.60934L17.1716 0.427355C16.9763 0.232093 16.6597 0.232093 16.4645 0.427355C16.2692 0.622617 16.2692 0.9392 16.4645 1.13446L19.2929 3.96289L16.4645 6.79132C16.2692 6.98658 16.2692 7.30316 16.4645 7.49842C16.6597 7.69369 16.9763 7.69369 17.1716 7.49842L20.3536 4.31644ZM0 3.96289L4.37114e-08 4.46289L20 4.46289L20 3.96289L20 3.46289L-4.37114e-08 3.46289L0 3.96289Z" fill="#181E28"/>
-                    </svg>
-                </button></a>
+            <h1>{{title}}</h1> 
+            <p>{{{custom_excerpt}}}</p>   
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="26" viewBox="0 0 15 26" fill="none">
+                <path d="M0.346436 0.360352C5.42325 5.24191 13.3464 12.8604 13.3464 12.8604L0.346436 25.3604" stroke="white"/>
+            </svg>
         </div>
+        </a>
     </div>
     {{/foreach}}
-{{/get}}
-
-<!-- Recent Episode List -->
-<div class="recent-radio">
-    {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio" limit="7"}}
-        {{#foreach posts visibility="all"}}
-            {{#unless @first}}
-            <div class="radio-item" data-url="{{url}}">
-            <span class="footer-tag-name">{{title}}</span>
-            <span class="footer-tag-line"></span>
-            <span class="count">{{date published_at format="MMM DD"}}</span>
-            </div>
-            {{/unless}}
-        {{/foreach}}
     {{/get}}
-</div>
 
+    <!-- Three Cards -->
+    <div class="inner-wide">     
+        <div class="grid notebook">
 
-<!-- Three Cards -->
-<div class="inner-wide">     
-    <div class="grid notebook">
+            <!-- Spite -->
+            <article>
+                <a href="{{@site.url}}/spite/" class="post-card-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/reeves-spite.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="Spite Music Player" />
+                    </div>
+                    <div class="grid-text">
+                        <span class="grid-title">Spite</span>
+                        <p>A dignified music player for macOS and iOS with big artwork and harmonious colors.</p>
+                    </div>
+                </a>
+            </article>
 
-        <!-- Weather -->
-        <article>
-            <a href="{{@site.url}}/instructions/" class="post-card-link">
-                <div class="post-card bg-dark bg-full">
-                    <img src="{{asset 'img/reeves-instruct.webp'}}" 
-                        class="post-card-image bg-full-image bg-fade-in"
-                        alt="Instructions for Myself" />
-                </div>
-                <div class="grid-text">
-                    <span class="grid-title">Instructions for Myself</span>
-                     <p>Write it down immediately. I will forget.</p>
-                    <span class="grid-date">November 2025</span>
-                </div>
-            </a>
-        </article>
+            <!-- Notebook -->
+            <article>
+                <a href="{{@site.url}}/notebook" class="post-card-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/reeves-notes.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="Notebook" />
+                    </div>
+                    <div class="grid-text">
+                        <span class="grid-title">Notebook</span>
+                        <p>An ongoing collection of impossible handwriting and daily sentences about the sacred and mundane.</p>
+                    </div>
+                </a>
+            </article>
 
-        <!-- God -->
-        <article>
-            <a href="{{@site.url}}/god" class="post-card-link">
-                <div class="post-card bg-dark bg-full">
-                    <img src="{{asset 'img/god.webp'}}" 
-                        class="post-card-image bg-full-image bg-fade-in"
-                        alt="Notes on God" />
-                </div>
-                <div class="grid-text">
-                    <span class="grid-title">Notes on God</span>
-                    <p>Because hell can be described a thousand ways but heaven remains impossible to grasp.</p>
-                    <span class="grid-date">November 2025</span>
-                </div>
-            </a>
-        </article>
+            <!-- Art -->
+            <article>
+                <a href="{{@site.url}}/art-diary" class="post-card-link">
+                    <div class="post-card bg-dark bg-full">
+                        <img src="{{asset 'img/god.webp'}}" 
+                            class="post-card-image bg-full-image bg-fade-in"
+                            alt="Art Diary" />
+                    </div>
+                    <div class="grid-text">
+                        <span class="grid-title">Art Diary</span>
+                        <p>Scattered scenes from museums. Now say it loud: "To every age its art, and to art its freedom."</p>
+                    </div>
+                </a>
+            </article>
 
-        <!-- Art -->
-        <article>
-            <a href="{{@site.url}}/notebook" class="post-card-link">
-                <div class="post-card bg-dark bg-full">
-                    <img src="{{asset 'img/reeves-notebook.webp'}}" 
-                        class="post-card-image bg-full-image bg-fade-in"
-                        alt="Notebook" />
-                </div>
-                <div class="grid-text">
-                    <span class="grid-title">Notebook</span>
-                    <p>Impossible handwriting and daily sentences.</p>
-                    <span class="grid-date">January 2026</span>
-                </div>
-            </a>
-        </article>
-
+        </div>
     </div>
-</div>
-
 </main>
