@@ -43,6 +43,11 @@
                         <h5><a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a></h5>
                         {{/foreach}}
                         {{/if}}
+
+                        
+                {{#if comments}}
+                        {{> comments}}
+                {{/if}}
                     </div>
 
 
@@ -67,9 +72,6 @@
                     </div>
                 </div>
 
-                {{#if comments}}
-                        {{> comments}}
-                {{/if}}
 
 
             </article>
