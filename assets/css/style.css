@@ -5149,6 +5149,7 @@ html:not([data-theme]) .theme-switch .moon {
     width: 100%;
     max-height: 250px;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .signup-image img {
@@ -5332,10 +5333,6 @@ h3.sect {
 
 .active .index-name{
   color: var(--color-text) !important;
-}
-
-.radio-hero-content svg path {
-  fill: #fff;
 }
 
 .collection-hero {

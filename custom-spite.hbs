@@ -6,6 +6,7 @@
         }
     h1 {
         margin-top: 20px;
+        color: var(--color-hover);
     }
     .comments-area.inner {
         max-width: 700px;
@@ -27,8 +28,9 @@
         padding-top: 30px;
     }
     blockquote {
-        padding-left: 40px;
-        margin-top: 20px;
+        padding-left: 0;
+        margin-top: 50px;
+        border-left: none;
     }
     blockquote h1 {
         font-size: 60px;
@@ -45,10 +47,10 @@
         font-family: var(--font-sans);
     }
     ul, ol {
-        margin-top: 40px;
-        margin-left: 25px;
+        margin-top: 30px;
+        margin-left: 10px;
         margin-right: 50px;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
     li {
         margin-bottom: 15px;
@@ -72,7 +74,6 @@
         background: #1b1b1b;
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         padding: 5%;
         padding-bottom: 30px;
@@ -83,6 +84,10 @@
         margin-top: 20px;
         margin-bottom: 30px;
         }
+
+    .spite-copy {
+        padding-top: 20px;
+    }
 
     .spite-screenshot {
         position: relative;
@@ -137,16 +142,28 @@
     .app-nav {
         display: flex;
         gap: 30px;
-        margin-top: 40px;
-        margin-bottom: 40px;
+        margin-top: 30px;
         justify-content: left;
     }
 
+    li::marker {
+    font-size: 13px; /* or whatever size you want */
+    }
+
     .app-nav a {
-        font-size: 20px;
-        color: #3FA9FF;
-        border-bottom: 2px solid #3FA9FF;
-        padding-bottom: 4px;
+        font-size: var(--type-body);
+        font-weight: 700;
+        color: var(--color-hover);
+        padding-bottom: 2px;
+    }
+
+    .app-nav button {
+        font-weight: 700;
+        background-color: #000;
+        border-bottom: none;
+        font-size: 14px;
+        margin-left: 30px;
+        color: #fff;
     }
    .spite-sidebar button {
         background: #3FA9FF!important;
@@ -170,7 +187,7 @@
     .app-nav a.active {
         opacity: 1;
         color: var(--color-hover);
-        border-bottom: 2px solid #fff;
+        border-bottom: 2px solid var(--color-text);
     }
 
     @media (max-width: 700px) {
@@ -214,7 +231,6 @@
         }
     }
 
-
     .radio-page .radio-content-wrapper {
         padding-left: 5%;
         padding-right: 5%;
@@ -222,8 +238,8 @@
 
     .spite-columns {
         display: grid;
-        grid-template-columns: 60% 35%;
-        gap: 5%;
+        grid-template-columns: 60% 30%;
+        gap: 10%;
         align-items: start;
         }
 
@@ -298,13 +314,15 @@ li a {
     <div class="radio-content-wrapper">
         <div class="spite-header">
             <h1>Spite</h1>
-            <p>A dead-simple music player like it's 2006 but a little nicer.</p>
+            <p>A dignified music player like it's 2006 but a little nicer.</p>
         </div>
         <!-- Auto-detecting navigation -->
         <nav class="app-nav">
             <a href="/spite/" data-slug="spite">Features</a>
             <a href="/spite-test-center/" data-slug="spite-test-center">Learning Center</a>
             <a href="/spite-privacy/" data-slug="spite-privacy">Privacy</a>
+            <button><a href="https://apps.apple.com/us/app/spite-music-player/id6757397964"></a>Download on the App Store</a></button>
+
         </nav>
         <script>
         // Highlight active nav item
@@ -332,7 +350,6 @@ li a {
         <div class="spite-sidebar">
             {{#has slug="spite"}}
                 <!-- Simon Critchley quote -->
-                <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964"><button>Download on the App Store</button></a>
                 <blockquote><a href="#">
                     <h1>It is impossible to be an atheist when listening to the music that one loves.</h1>
                     <cite>Simon Critchley</cite></a>
@@ -340,7 +357,6 @@ li a {
             {{else}}
                 <!-- Download buttons -->
                 <div class="spite-buttons">
-                    <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964"><button>Download on the App Store</button></a>
                     <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
                 </div>
             {{/has}}
@@ -351,7 +367,6 @@ li a {
 
     {{/post}}
 </main>
-
 
 <script>
 (function() {
