@@ -72,8 +72,8 @@
         max-width: 1300px;
         margin: 0 auto 60px;
         background: #1b1b1b;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
         overflow: hidden;
         padding: 5%;
         padding-bottom: 30px;
@@ -157,6 +157,10 @@
         padding-bottom: 2px;
     }
 
+    .mobile-download {
+        display: none;
+    }
+
     .app-nav button {
         font-weight: 700;
         background-color: #000;
@@ -165,6 +169,12 @@
         margin-left: 30px;
         color: #fff;
     }
+
+    [data-theme="dark"] .spite-header button {
+        background-color: #fff;
+        color: #000;
+    }   
+
    .spite-sidebar button {
         background: #3FA9FF!important;
         color: #000 !important;
@@ -196,13 +206,27 @@
         padding-top: 70px;
         }
 
+            .app-nav button {
+                display: none;
+            }
+
+       .mobile-download {
+        display: block;
+        margin-top: 20px;
+        font-size: 14px;
+        padding: 10px 26px;
+    }
+
         .spite-screenshot img {
             position: relative !important;
         }
 
         .spite-hero {
             padding: 0;
-            background: #000;
+            width: 88%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
         }
         ul, ol {
             margin-left: 0;
@@ -280,6 +304,7 @@ li a {
     @media (max-width: 900px) {
         .spite-columns {
             grid-template-columns: 1fr;
+            gap: 0;
         }
     }
 
@@ -315,6 +340,7 @@ li a {
         <div class="spite-header">
             <h1>Spite</h1>
             <p>A dignified music player like it's 2006 but a little nicer.</p>
+            <button class="mobile-download"><a href="https://apps.apple.com/us/app/spite-music-player/id6757397964"></a>Download on the App Store</a></button>
         </div>
         <!-- Auto-detecting navigation -->
         <nav class="app-nav">
