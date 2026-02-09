@@ -31,6 +31,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-body: 19px;
   --type-body-m: 16px;
   --type-body-sm: 14px;
+  --type-body-xs: 12px;
   --type-excerpt: 1.05rem;
   --type-label: 13px;
 
@@ -1900,7 +1901,6 @@ h6.song {
 ----------------------------- */
 .footer {
   color: var(--color-text-highlight);
-  font-family: var(--font-sans);
 	transition: all 1.8s ease-in; 
 	-webkit-transition: all 1.8s ease-in;
   display: table;
@@ -4482,7 +4482,7 @@ html:not([data-theme]) .theme-switch .moon {
 
 .footer-name, .footer-links {
   font-family: var(--font-sans);
-  font-size: var(--type-body-sm);
+  font-size: var(--type-body-xs);
   font-weight: 600;
   color: var(--color-text-muted);
 }
