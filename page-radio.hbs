@@ -7,21 +7,23 @@ document.body.classList.add('has-hero');
 <main id="main" class="content outer radio-page">
     {{#post}}
     
-    <div class="radio-hero-wrapper">
-        <div class="image-slider">
-            <img src="{{asset "/img/midnight.webp" }}" alt="Saint Jerome in His Study by Caravaggio"/>
+    <div class="radio-hero-container">
+        <div class="radio-hero-wrapper">
+            <div class="image-slider">
+                <img src="{{asset "/img/midnight.webp" }}" alt="Saint Jerome in His Study by Caravaggio"/>
+            </div>
+
+            <div class="midnight-intro radio-hero-content">
+                <h1>Midnight<br>Radio</h1>
+                <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+            </div>
         </div>
-        
-        <div class="midnight-intro radio-hero-content">
-            <h1>Midnight<br>Radio</h1>    
-            <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+        <div class="radio-hero-caption">
+            Caravaggio, Saint Jerome in His Study (1604)
         </div>
-            
     </div>
 
-    <div class="radio-caption">
-        Caravaggio, Saint Jerome in His Study (1604)
-            </div>
+
 
         <div class="midnight-info">
             <div class="midnight-blurb">

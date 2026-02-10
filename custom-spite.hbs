@@ -12,12 +12,10 @@
         max-width: 700px;
         }
     h3 {
-        color: #fff;
-        padding-bottom: 4px;
         font-size: 20px;
         letter-spacing: normal;
         text-transform: none;
-        font-weight: 600;
+        font-weight: 700 !important;
         margin-top: 50px;
     }
     h3:first-of-type {
@@ -141,9 +139,15 @@
     /* Navigation */
     .app-nav {
         display: flex;
-        gap: 30px;
+        gap: 40px;
         margin-top: 30px;
         justify-content: left;
+        border-radius: 30px;
+        width: 55%;
+        min-width: 300px;
+        background: #f0f0f0;
+        padding-left: 30px;
+        align-items: center;
     }
 
     li::marker {
@@ -151,10 +155,9 @@
     }
 
     .app-nav a {
-        font-size: var(--type-body);
+        font-size: var(--type-body-sm);
         font-weight: 700;
         color: var(--color-hover);
-        padding-bottom: 2px;
     }
 
     .mobile-download {
@@ -166,29 +169,22 @@
         background-color: #000;
         border-bottom: none;
         font-size: 14px;
-        margin-left: 30px;
+        margin-left: auto;
         color: #fff;
     }
 
-    [data-theme="dark"] .spite-header button {
+    [data-theme="dark"] .app-nav button {
         background-color: #fff;
         color: #000;
     }   
 
    .spite-sidebar button {
-        background: #3FA9FF!important;
-        color: #000 !important;
-        min-width: 250px;
-        width: 100%;
-        font-size: 20px;
-        padding: 12px 30px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        padding-bottom: 14px;
         font-weight: 700;
+        background-color: #000;
+        border-bottom: none;
+        font-size: 14px;
+        margin-left: 30px;
+        color: #fff;
     }
     .spite-sidebar button:hover {
         background: #fff !important;
@@ -197,7 +193,9 @@
     .app-nav a.active {
         opacity: 1;
         color: var(--color-hover);
-        border-bottom: 2px solid var(--color-text);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1.5px;
     }
 
     @media (max-width: 700px) {

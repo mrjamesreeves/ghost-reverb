@@ -5,37 +5,38 @@
 <main id="main" class="content outer radio-page">
     {{#post}}
     
-    <div class="radio-hero-wrapper">
-        <div class="image-slider">
-            {{#if feature_image}}
-                <img
-                    class="post-card-image bg-full-image bg-fade-in"
-                    srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
-                    sizes="(min-width: 1600px) 1600px, 100vw"
-                    src="{{img_url feature_image size="xl"}}"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                />
-            {{/if}}
-        </div>
-        
-        <div class="radio-hero-content">
-            <h5>
-                Midnight Radio 
-                {{#foreach tags visibility="internal"}}
-                {{#if (match slug "^hash-mr-")}}
-                    <span class="episode-number" data-ep="{{slug}}"></span>
+    <div class="radio-hero-container">
+        <div class="radio-hero-wrapper">
+            <div class="image-slider">
+                {{#if feature_image}}
+                    <img
+                        class="post-card-image bg-full-image bg-fade-in"
+                        srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
+                        sizes="(min-width: 1600px) 1600px, 100vw"
+                        src="{{img_url feature_image size="xl"}}"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                    />
                 {{/if}}
-                {{/foreach}}
-            </h5>
-            <h1>{{title}}</h1>    
+            </div>
+
+            <div class="radio-hero-content">
+                <a href="{{@site.url}}/radio"><h5>
+                    Midnight Radio
+                    {{#foreach tags visibility="internal"}}
+                    {{#if (match slug "^hash-mr-")}}
+                        <span class="episode-number" data-ep="{{slug}}"></span>
+                    {{/if}}
+                    {{/foreach}}
+                </h5></a>
+                <h1>{{title}}</h1>
+            </div>
         </div>
+        {{#if feature_image_caption}}
+            <div class="radio-hero-caption">
+                {{feature_image_caption}}
+            </div>
+        {{/if}}
     </div>
-            
-    {{#if feature_image_caption}}
-        <div class="post-header-caption">
-            {{feature_image_caption}}
-        </div>
-    {{/if}}
 
     <div class="radio-content-wrapper">
         <div class="inner-wide">
@@ -54,11 +55,9 @@
 
                 <div class="meta inner">
 
-                    <div class="tag-box">
-                        {{#if tags}}
-                        {{#foreach tags}}
-                        <h5><a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a></h5>
-                        {{/foreach}}
+                    <div class="comment-box">
+                        {{#if comments}}
+                            {{> comments}}
                         {{/if}}
                     </div>
 
@@ -77,24 +76,18 @@
                             <a href="{{url}}" class="circle-arrow next">
                                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="18" cy="18" r="17.5" transform="matrix(1 8.74228e-08 8.74228e-08 -1 0 36)" fill="black" stroke="black"/>
+                               
+                               
+                               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="26" viewBox="0 0 15 26" fill="none">
+                <path d="M0.346436 0.360352C5.42325 5.24191 13.3464 12.8604 13.3464 12.8604L0.346436 25.3604" stroke="white"/>
+            </svg>
+                               
                                 <path d="M25.7803 17.4697C26.0732 17.7626 26.0732 18.2374 25.7803 18.5303L21.0074 23.3033C20.7145 23.5962 20.2396 23.5962 19.9467 23.3033C19.6538 23.0104 19.6538 22.5355 19.9467 22.2426L24.1893 18L19.9467 13.7574C19.6538 13.4645 19.6538 12.9896 19.9467 12.6967C20.2396 12.4038 20.7145 12.4038 21.0074 12.6967L25.7803 17.4697ZM11 18L11 17.25L25.25 17.25L25.25 18L25.25 18.75L11 18.75L11 18Z" fill="white"/>
                                 </svg>
                             </a>
                         {{/next_post}}
                     </div>
                 </div>
-
-            {{!-- If Disqus enabled, includes the Disqus comments - partials/comments-disqus.hbs --}}
-            {{#if @custom.enable_disqus}}
-                {{#if @custom.disqus_shortname}}
-                    {{> "comments-disqus"}}
-                {{/if}}
-            {{!-- If Disqus not enabled and Ghost comments enabled, include ghost comments - partials/comments.hbs --}}
-            {{else}}
-                {{#if comments}}
-                    {{> comments}}
-                {{/if}}
-            {{/if}}
 
             {{#if @member}} {{else}}
             <div class="inner">

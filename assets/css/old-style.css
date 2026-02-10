@@ -16,7 +16,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-white-trans: rgba(255, 255, 255,0.6);
   --accent-dark: rgba(255, 255, 255,0.25);
   --color-hover: #fff;
-  --color-inverse: #000;
+  --color-blue: #94AAD3;
 
   /* Fonts */
   --font-sans:  "ibm-plex-sans", sans-serif;
@@ -28,7 +28,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 18px;
+  --type-body: 19px;
   --type-body-m: 16px;
   --type-body-sm: 14px;
   --type-body-xs: 12px;
@@ -40,7 +40,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 
   --max-w:  1300px;
   --element-below: 90px;
-
   --color-white:#fff;
   --body: rgba(255, 255, 255,0.6);
   --color-text-highlight: white;
@@ -50,6 +49,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-border: var(--color-gray-200);
   --color-border-highlight: var(--color-gray-900);
   --color-border-inverse: var(--color-gray-800);
+  --color-border-highlight-inverse: var(--color-white);
 }
 
 [data-theme="light"] {
@@ -58,7 +58,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-hover: #000;
   --line: 1px solid #d6d6d6;
   --bgline: #d6d6d6;
-  --color-inverse: #fff;
 }
 
 /* 3. Base
@@ -321,8 +320,31 @@ p {
   margin: 1.5rem 0 0;
   font-size: var(--type-body);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 300;
+  }
+
+.white {
+  color: var(--color-hover) !important; 
+  }
+
+.description {
+  margin-bottom: 80px;
+  width: 50%;
+  max-width: 500px;
+  }
+
+.description p {
+  margin-top: 8px;
+  }
+  
+.description a {
+  color: var(--color-text);
+  text-decoration: none;
+  }
+
+.description a:hover {
+  color: var(--color-blue);
   }
 
 /* Lists */
@@ -580,6 +602,11 @@ figure p {
   outline: 0;
   }
 
+.button-small {
+  font-size: 0.6rem;
+  padding: 0.25em 0.7em;
+  }
+
 .button-icon {
   font-size: 1.125rem;
   height: 1.5em;
@@ -595,17 +622,44 @@ figure p {
   width: 1em;
   }
 
+.action-item-search .button svg {
+  fill: var(--color-light-txt) !important;
+  }
+
 @media (min-width: 640px) {
   .button-icon {
     font-size: 1.25rem;
     }
 }
 
+
+.button-solid-alt:hover,
+.button-solid-alt:focus,
+.button-solid-alt:active {
+  border-color: var(--color-border-highlight-inverse);
+  color: var(--color-text-highlight-inverse);
+  }
+
 .button-outlined {
   border-color: rgba(0, 0, 0, 0.70);
   background-color: var(--color-text);
   color: #000;
   }
+
+.button-clear {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  transition: all .8s;
+}
+
+.button-clear:hover,
+.button-clear:focus,
+.button-clear:active {
+  background-color: transparent;
+  color: inherit;
+  opacity: .8;
+}
 
 /* Form fields */
 label {
@@ -699,6 +753,15 @@ textarea:focus {
   animation-name: fadeIn;
 }
 
+/* Avatars */
+.avatar {
+  border-radius: 100%;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 /* Text meant only for screen readers */
 .screen-reader-text {
   border-width: 0;
@@ -749,6 +812,13 @@ textarea:focus {
   padding-left: 30px;
   height: 150px;
   }
+
+.quote {
+  text-indent: -8px;
+  line-height: 1.3;
+  }
+
+
 
 /* STRUCTURE
 ----------------------------- */
@@ -1061,6 +1131,10 @@ h4 + h5 {
   padding-right: 5px;  
   }
 
+.coloimg {
+  aspect-ratio: 1/1 !important;
+  }
+
 ul.section-items {
   margin: .8rem 0 60px 0;
   font-family: var(--font-sans);
@@ -1108,6 +1182,7 @@ ul.section-items li::marker {
 }
 
 .page-favorites .post-content ul li a:hover, .page-favorites ul li a:hover strong {
+  color: var(--color-blue) !important;
   text-decoration: none !important;
   }
 
@@ -1227,7 +1302,7 @@ ul.section-items li::marker {
 /* 9. Post feed
 ----------------------------- */
 
-.comment-box {
+.tag-box {
   width: 85%;
   padding-top: 2px;
   float: left;
@@ -1285,13 +1360,13 @@ figcaption, .kg-card figcaption {
   margin-top: -1px;
   }
 
-.comment-box h5 {
+.tag-box h5 {
   display: inline-block;
   margin-bottom: 18px; 
   font-size: 9px;    
   }
 
-.comment-box h5 a {
+.tag-box h5 a {
   background-color: #333;
   color: #fff;
   line-height: 1.1;
@@ -1304,7 +1379,7 @@ figcaption, .kg-card figcaption {
   text-decoration: none;
   }
 
-.comment-box h5:hover a { 
+.tag-box h5:hover a { 
   color: var(--body); 
   background-color: var(--color-bg);
   }
@@ -1329,10 +1404,11 @@ h5.kg-toggle-heading-text {
     padding-left: 20px;
     padding-right: 20px;
     color: var(--color-text);
-    line-height: 1 !important;
+    line-height: 1.1 !important;
     padding-top: 11px;
     font-size: 9px !important;
     transition: all 0.3s ease, stroke 0.3s ease;
+    margin-top: 5px;
     border-radius: 5px;
     }
 
@@ -1569,24 +1645,11 @@ p a:hover {
   gap: 150px;
   }
 
-/* Hero Container - wraps hero + caption */
-.radio-hero-container,
-.post-hero-container {
-  margin-bottom: var(--element-below);
-}
-
 .radio-hero-wrapper {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-}
-
-.radio-hero-caption {
-  text-align: right;
-  font-size: 11px;
-  color: var(--color-text-muted);
-  padding-top: 8px;
-  padding-right: 5px;
-}
+  margin-bottom: var(--element-below);
+  }
 
 .tag-midnight-radio .post-content h6 {
   margin-bottom: -15px;
@@ -1785,7 +1848,7 @@ h6.song {
 }
 
 #main .kg-toggle-card-icon svg {
-  color: var(--color-inverse);
+  color: var(--color-text);
 }
 
 .kg-toggle-card-icon {
@@ -2428,6 +2491,12 @@ input::placeholder {
   }
 }
 
+.sub.button-solid {
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  }
+
+
 /* 19. Animations
 ----------------------------- */
 @keyframes fadeIn {
@@ -2625,6 +2694,14 @@ input::placeholder {
   .inner-wide {
     width: 88%;
     }
+  .quote {
+    font-size: var(--type-excerpt);
+    text-indent: -8px;
+    }
+  .description {
+    margin-bottom: 10px;
+    width: 100%;
+    }
   .post-header-content {
     margin-top: 0;
     }
@@ -2740,7 +2817,7 @@ input::placeholder {
   .footer-header .navbar-menu:last-of-type {
     display: none;
     }
-  .comment-box h5 a, h5.kg-toggle-heading-text {
+  .tag-box h5 a, h5.kg-toggle-heading-text {
     font-size: 10px !important;     
     }
   #main .kg-signup-card-content {
@@ -2832,6 +2909,9 @@ input::placeholder {
     }
   .footer .navbar-inside {
     margin-top: 0;
+    }
+  .quote {
+    display: none;
     }
   .footer .navbar-signup .navbar-text {
     max-width: 100%;
@@ -2942,6 +3022,16 @@ input::placeholder {
   .radio-page .radio-hero-content p {
     font-size: 16px;
     }
+  .quote p {
+    text-indent: -8px;
+    line-height: 1.4 !important;
+    padding-right: 40px;
+    }
+  .description {
+    width: 90%;
+    max-width: 650px;
+    margin-bottom: 60px;
+    }
   ul.section-items {
     margin-bottom: 40px;
     }
@@ -3034,7 +3124,7 @@ body.hidden-scroll{overflow:hidden}.sl-overlay{position:fixed;left:0;right:0;top
 .kg-card + p {
   margin-top: 0;
   margin-bottom: 0;
-}
+}å
 
 .speed-control, .speed-control svg { display: none !important;}
 
@@ -3254,6 +3344,17 @@ cite {
 
 
 /* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.line {
+  border-left: var(--line);
+  padding-left: 30px;
+  height: 150px;
+}
+
+
+/* ==========================================================================
    ABOUT PAGE
    ========================================================================== */
 
@@ -3263,19 +3364,23 @@ cite {
   gap: 60px;
 }
 
+h3.about {
+  padding-top: 100px;
+}
+
 .cv-entry {
-  margin: 20px 0 25px;
+  margin: 1.5rem 0 0
 }
 
 .cv-title {
-  font-size: var(--type-body-sm);
+  font-size: 17px;
   color: var(--color-text);
   line-height: 1.5;
-  font-weight: 500;
 }
 
 .cv-location {
   font-size: var(--type-body-sm);
+  font-family: var(--font-sans);
   color: var(--color-text-muted);
   line-height: 1.5;
 }
@@ -3322,16 +3427,6 @@ cite {
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
   text-decoration-color: var(--accent-dark) !important;
-}
-
-.about-column h3, h3.about {
-  font-family: var(--font-big-alt);
-  font-size: 24px;
-  letter-spacing: 0.8px;
-}
-
-h3.about {
-  padding-top: 100px;
 }
 
 
@@ -3472,6 +3567,16 @@ h3.about {
   }
 }
 
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.line {
+  border-left: var(--line);
+  padding-left: 30px;
+  height: 150px;
+}
 
 .midnight-blurb p {
   line-height: 1.7;
@@ -3918,6 +4023,20 @@ body.nav-is-open {
 }
 
 /* ==========================================================================
+   LEGACY CLEANUP - HIDE OLD NAVIGATION
+   ========================================================================== */
+
+/* Hide old desktop header */
+.desktop-header,
+.navbar,
+.navbar-inside,
+.navbar-bio,
+.navbar-signup,
+.navbar-menu {
+  display: none !important;
+}
+
+/* ==========================================================================
    REFINED ANIMATIONS
    ========================================================================== */
 
@@ -4341,7 +4460,7 @@ html:not([data-theme]) .theme-switch .moon {
   color: var(--color-text);
 }
 
-[data-theme="light"] .comment-box h5 a {
+[data-theme="light"] .tag-box h5 a {
   background: black;
 }
 
@@ -4576,6 +4695,10 @@ html:not([data-theme]) .theme-switch .moon {
   color: var(--color-text);
 }
 
+.featured-card a:hover .featured-title {
+  color: var(--color-blue);
+}
+
 /* Month Sections */
 .month-section {
   margin-bottom: 120px;
@@ -4698,7 +4821,7 @@ html:not([data-theme]) .theme-switch .moon {
 .entry-text {
   font-family: var(--font-sans);
   font-size: var(--type-body);
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--color-text);
 }
 
@@ -4935,6 +5058,10 @@ html:not([data-theme]) .theme-switch .moon {
   color: var(--color-hover);
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+.episode-info h2 a:hover {
+  color: var(--color-blue);
 }
 
 .radio-blurb {
@@ -5422,17 +5549,4 @@ h1.post {
   max-width: 100%;
   margin-bottom: 0;
   padding-right: 0;
-}
-
-.radio-hero-content h5 a {
-  color: #fff;
-}
-
-.bio .post-card img {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.bio .post-header-caption {
-  padding-top: 0px;
 }

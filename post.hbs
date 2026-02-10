@@ -9,16 +9,16 @@
         {{!-- Everything inside the #post tags pulls data from the post --}}
         {{#post}}
             
-        <div class="spite-img">
+        <div class="post-hero-container">
             {{#if feature_image}}
                 <div class="collection-hero">
                     <img src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
                 </div>
-            {{/if}}         
+            {{/if}}
             {{#if feature_image_caption}}
-            <div class="post-header-caption">
-                {{feature_image_caption}}
-            </div>
+                <div class="radio-hero-caption">
+                    {{feature_image_caption}}
+                </div>
             {{/if}}
         </div>
 
