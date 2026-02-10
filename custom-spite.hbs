@@ -389,8 +389,58 @@ li a {
     </div>
     <br>
 
+
+
+
+<!-- EPISODES -->
+    <div class="inner-wide">
+        <div class="grid grid-more">
+            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio+id:-{{id}}" limit="3"}}
+            {{#foreach posts visibility="all"}}
+                <article>
+                    <a href="{{url}}" class="post-card-link">
+                    <div class="post-card bg-dark bg-full">
+
+                        {{#if feature_image}}
+                            <img
+                                class="post-card-image bg-full-image bg-fade-in"
+                                srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
+                                sizes="(min-width: 1600px) 1600px, 100vw"
+                                src="{{img_url feature_image size="xl"}}"
+                                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                            />
+                        {{/if}}
+
+                        <div class="post-card-inside">
+                            <div class="post-card-content">          
+                                <div class="big-title">
+                                    <h5>
+                                        Midnight Radio 
+                                        {{#foreach tags visibility="internal"}}
+                                        {{#if (match slug "^hash-mr-")}}
+                                            <span class="episode-number" data-ep="{{slug}}"></span>
+                                        {{/if}}
+                                        {{/foreach}}
+                                    </h5>
+                                    <h2>{{title}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </article>                            
+
+            {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
     {{/post}}
+
+
 </main>
+
+
+
 
 <script>
 (function() {
