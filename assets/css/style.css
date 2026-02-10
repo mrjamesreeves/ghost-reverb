@@ -1049,8 +1049,7 @@ h4 + h5 {
 .bio h5 {
   list-style: none;
   display: inline-block;
-  font-size: 11px;
-  padding-top: 12px;
+  padding-top: 15px;
   font-weight: 700;
   }
 

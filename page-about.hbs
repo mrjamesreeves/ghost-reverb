@@ -22,6 +22,7 @@
                 <h5><a href="{{@site.url}}/radio">Newsletter</a></h5>
                 <h5><a href="https://bsky.app/profile/jamesreeves.co" target="_blank">Bluesky</a></h5>
                 <h5><a href="https://bookshop.org/shop/jamesreeves" target="_blank">Bookshop</a></h5>
+                <h5><a href="https://www.last.fm/user/jamesreevesco" target="_blank">Last.fm</a></h5>
             </div>
 
             <h3 class="about">Press</h3>
@@ -144,10 +145,7 @@
             <!-- Colophone -->
             <div class="about-column">
                 <div class="colophon-image-container">
-                    <article class="post-card bg-dark bg-full image-slider">
-                        <img src="{{asset "/img/NSWFL.webp" }}" alt="Somewhere in Arkansas" class="about-hero-image">
-                        <img src="{{asset "/img/NSARK.webp" }}" alt="Somewhere in the Mojave Desert" class="about-hero-image">
-                    </article>
+                    <img src="{{asset "/img/NSWFL.webp" }}" alt="Somewhere in Missouri" class="colophon-image">
                 </div>
                 <h3>Colophon</h3> 
                 <p>Built using a custom Ghost theme that I'm forever tuning. The current typography is Bebas Pro, Aktiv Grotesk, and IBM Plex Serif. Much of my thinking on typesetting comes from <a href="https://practicaltypography.com" target="_blank">Butterick's Practical Typography</a>. The <a href="{{@site.url}}/radio">Midnight Radio</a> mixes are produced with a seven-year-old version of Ableton Live, lots of reverb, cassette loops made on a <a href="https://www.boss.info/us/products/rc-30/">Boss RC 30 pedal</a>, and occasional field recordings of <a href="{{@site.url}}/destroyer-of-obstacles/">taiko drums</a> and <a href="{{@site.url}}/desire-is-a-demon/">philosophical friends</a>.</p>
@@ -174,3 +172,13 @@
 
         </div>
     </div>
+
+
+    <style>
+        h5 a {
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: var(--type-body-sm);
+            text-decoration: none;
+        }
+    </style>
