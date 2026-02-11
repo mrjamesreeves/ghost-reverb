@@ -1327,7 +1327,7 @@ h5.kg-toggle-heading-text {
     padding-bottom: 12px;
     padding-left: 20px;
     padding-right: 20px;
-    color: var(--color-text);
+    color: var(--color-inverse);
     line-height: 1 !important;
     padding-top: 11px;
     font-size: 9px !important;
