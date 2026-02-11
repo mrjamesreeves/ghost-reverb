@@ -3962,7 +3962,6 @@ body.nav-is-open {
 
 .grid.notebook {
   gap: 30px;
-  grid-template-columns: round(32%, 1px) round(32%, 1px) round(32%, 1px) !important;
   margin-bottom: var(--element-below);
   }
 
@@ -4300,7 +4299,7 @@ html:not([data-theme]) .theme-switch .moon {
    ========================================================================== */
 
 [data-theme="light"] .kg-signup-card-button-default, [data-theme="light"] .big-title h5 {
-  color: white;
+  color: white !important;
 }
 
 [data-theme="light"] p {
