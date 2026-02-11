@@ -3097,20 +3097,6 @@ a button {
   text-decoration: none;
 }
 
-[data-theme="light"] button {
-  background: var(--color-text);
-  color: #fff;
-}
-
-[data-theme="light"] button:hover {
-  background: #000;
-  color: #fff;
-}
-
-[data-theme="dark"] button {
-  background: #000;
-  color: #fff;
-}
 
 [data-theme="dark"] .radio-hero-content button, [data-theme="light"] .radio-hero-content button  {
   background: #ffffffa0;
