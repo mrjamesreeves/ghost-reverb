@@ -232,7 +232,7 @@ h3 {
   white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--color-text-muted);
+  color: var(--color-hover);
   }
 
 h4 {
