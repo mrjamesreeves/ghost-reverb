@@ -858,7 +858,7 @@ h4 + h5 {
 .radio-hero-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 30/16;
+  aspect-ratio: 30/18;
   overflow: hidden;
   background: black;
   }
@@ -1262,7 +1262,7 @@ figcaption, .kg-card figcaption {
   color: var(--color-text-muted);
     font-size: 11px;
     text-align: right;
-    padding-top: 10px;
+    padding-top: 5px;
   }
 
 .post-header-caption a {
@@ -2046,7 +2046,7 @@ h6.song {
 }
 
 .kg-audio-card {
-  margin-top: 1.5rem;
+  margin-top: 1.5rem !important;
   margin-bottom: 0 !important;
   }
 
@@ -3033,6 +3033,14 @@ body.hidden-scroll{overflow:hidden}.sl-overlay{position:fixed;left:0;right:0;top
 .kg-card + p {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.kg-card + h6 {
+  margin-top: 0;
+}
+
+.kg-card {
+  margin-top: var(--element-below);
 }
 
 .speed-control, .speed-control svg { display: none !important;}
