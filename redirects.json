@@ -38,5 +38,10 @@
       "from": "^/38",
       "to": "/darkly-euphoric",
       "permanent": true
+    },
+    {
+      "from": "^/40",
+      "to": "/bodies-without-organs",
+      "permanent": true
     }
   ]

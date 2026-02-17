@@ -4665,6 +4665,10 @@ html:not([data-theme]) .theme-switch .moon {
   transform: translateY(0);
 }
 
+.notebook-entry h3 {
+  padding-top: 0;
+}
+
 /* Horizontal connector - vertically centered, extends left toward images */
 .notebook-entry::before {
   content: '';
