@@ -5477,7 +5477,7 @@ h1.post {
 }
 
 .guest-list {
-  padding-top: 10px;
+  padding-top: 40px;
 }
 
 .guest-entry {
@@ -5502,6 +5502,7 @@ h1.post {
 .guest-entry .guest-episode {
   font-size: 12px;
   font-style: italic;
+  font-weight: 600gues;
   color: var(--color-hover);
 }
 
