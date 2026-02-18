@@ -15,7 +15,6 @@ document.body.classList.add('has-hero');
 
             <div class="midnight-intro radio-hero-content">
                 <h1>Midnight<br>Radio</h1>
-                <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
             </div>
         </div>
         <div class="radio-hero-caption">
@@ -27,15 +26,49 @@ document.body.classList.add('has-hero');
 
         <div class="midnight-info">
             <div class="midnight-blurb">
+                <p class="first">Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
                 {{content}}
-
                 {{#if @member}}<br><em>Thank you for being a rare and wonderful Midnight Radio Member.</em>
                 {{else}}{{> "signup"}}  
                 {{/if}}
             </div>
 
-            <div id='buzzsprout-large-player'>
-                <div id='buzzsprout-large-player'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2541955.js?container_id=buzzsprout-large-player&player=large'></script>
+            <div class="midnight-blurb">
+                <p>Starting this year, each episode on the 15th will feature a Very Special Guest who will share favorite songs and their thoughts on whether there is a god.</p>
+                <div class="kg-card kg-toggle-card" data-kg-toggle-state="close">
+                    <div class="kg-toggle-heading">
+                        <h5 class="kg-toggle-heading-text">Very Special Guest Archive
+                            <span class="kg-toggle-card-icon">
+                                <svg id="Regular" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path class="cls-1" d="M23.25,7.311,12.53,18.03a.749.749,0,0,1-1.06,0L.75,7.311"></path>
+                                </svg>
+                            </span>
+                        </h5>
+                    </div>
+                    <div class="kg-toggle-content">
+                        <div class="guest-list">
+                            <!-- Add guests here -->
+                            <div class="guest-entry">
+                                <h6>Michael Doyle</h6>
+                                <p>Culture enthusiast, co-founder of Dorkwave and Dethlab, the blog Burnlab, and a contributor to Core77 and Archinect back when the internet was exciting. Designed albums for Solvent and Matthew Dear for Ghostly International, and produced music events in Detroit because nobody else would fly artists like MOTOR and Vitalic at the time.</p>
+                                <a href="/darkly-euphoric" class="guest-episode">Midnight Radio 38: Darkly Euphoric</a>
+                            </div>
+                            <div class="guest-entry">
+                                <h6>Candy Chang</h6>
+                                <p>Artist and inspiration station.</p>
+                                <a href="/bodies-without-organs" class="guest-episode">Midnight Radio 40: Bodies Without Organs</a>
+                            </div>
+                            <div class="guest-entry">
+                                Upcoming:
+                                <h6>Martin Essig</h6>
+                                <h6>Stephen Baker</h6>
+                                <h6>Earl Carlson</h6>
+                                <h6>David Leo Rice</h6>
+                                <h6>Oliver Farshi</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -47,6 +80,44 @@ document.body.classList.add('has-hero');
         <div class="inner-wide">
             <div class="radio-episodes-container">
 
+                <!-- MR 40 -->
+                <article class="radio-episode-row">
+                    <div class="episode-cover">
+                        <a href="/bodies-without-organs">
+                        <div class="post-card bg-dark bg-full">
+                            <img class="post-card-image bg-full-image bg-fade-in" src="{{asset "/mr/MRI40.webp" }}" alt="Night Flight to Vienna"/>
+                            <div class="post-card-inside">
+                                <div class="post-card-content">          
+                                    <div class="big-title">
+                                        <h5>Midnight Radio 40</h5>
+                                        <h2>Bodies Without Organs</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="episode-spacer"></div>
+                    <div class="episode-info">
+                        <a href="/darkly-euphoric"> 
+                            <div class="episode-date">Feb 15</div>
+                            <div class="episode-genre">Slow grain pulse and dub</div>
+                            <p>Stripping the world down to studs and practicing the lectio divina with a deep winter chug.</p>
+                            <ol>
+                            <li>F.U.S.E. - Night Drive</li>
+                            <li>My Friend Earl - Snowblow</li>
+                            <li>A New Line (Related) - Crewe Away</li>
+                            <li>Monolake - Cyan (44% slower)</li>
+                            <li>Tropic of Cancer - Dive (Wheel of the Law)</li>
+                            <li>The Field - Leave It (31% slower)</li>
+                            <li>cv313 - Beyond the Clouds Reprise II (19% slower)</li>
+                            </ol>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="8" viewBox="0 0 21 8" fill="none">
+                                <path d="M20.3536 4.31644C20.5488 4.12118 20.5488 3.8046 20.3536 3.60934L17.1716 0.427355C16.9763 0.232093 16.6597 0.232093 16.4645 0.427355C16.2692 0.622617 16.2692 0.9392 16.4645 1.13446L19.2929 3.96289L16.4645 6.79132C16.2692 6.98658 16.2692 7.30316 16.4645 7.49842C16.6597 7.69369 16.9763 7.69369 17.1716 7.49842L20.3536 4.31644ZM0 3.96289L4.37114e-08 4.46289L20 4.46289L20 3.96289L20 3.46289L-4.37114e-08 3.46289L0 3.96289Z">
+                            </svg>
+                        </a>
+                    </div>
+                </article>
 
                 <!-- MR 39 -->
                 <article class="radio-episode-row">
@@ -71,6 +142,7 @@ document.body.classList.add('has-hero');
                             <div class="episode-date">Feb 1</div>
                             <div class="episode-genre">Slow grain pulse and dub</div>
                             <p>Stripping the world down to studs and practicing the lectio divina with a deep winter chug.</p>
+                            <ol>
                             <li>F.U.S.E. - Night Drive</li>
                             <li>My Friend Earl - Snowblow</li>
                             <li>A New Line (Related) - Crewe Away</li>
