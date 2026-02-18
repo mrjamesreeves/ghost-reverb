@@ -59,16 +59,6 @@
           "Dark"
         ],
         "default": "Light"
-      },
-      "enable_disqus": {
-        "type": "boolean",
-        "default": false,
-        "group": "post"
-      },
-      "disqus_shortname": {
-        "type": "text",
-        "default": "",
-        "group": "post"
       }
     }
   },
