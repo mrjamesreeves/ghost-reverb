@@ -5495,8 +5495,8 @@ h1.post {
 .guest-entry p {
   font-size: 13px;
   line-height: 1.5;
-  color: var(--color-text-muted);
   margin-bottom: 5px;
+  margin-top: 0;
 }
 
 .guest-entry .guest-episode {
