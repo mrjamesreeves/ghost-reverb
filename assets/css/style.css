@@ -879,11 +879,11 @@ h4 + h5 {
   }
 
 .radio-post .radio-hero-content {
-  position: absolute;
-  top: 4%;
-  left: 48%;
-  transform: translateX(-50%);
-  width: 90%;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 90%;
   max-width: 650px;
   display: flex;
   flex-direction: column;
@@ -955,10 +955,10 @@ h4 + h5 {
 
 .radio-page .radio-hero-content {
     position: absolute;
-    top: 25%;
-    left: 51%;
-    transform: translateX(-50%);
-    width: 90%;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 90%;
     max-width: 1250px;
     display: flex;
     flex-direction: column;
@@ -5156,11 +5156,11 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 .episode-info a:hover svg {
-  fill: var(--color-text);
-    transform: translateX(4px);
+    transform: translateX(60px);
 }
 .episode-info svg {
-  fill: var(--color-text-muted);
+  padding-top: 20px;
+  stroke: var(--color-text);
   transition: all 0.4s cubic-bezier(0.68, -0.85, 0.265, 1.55);
   transform: translateX(0);
 }
@@ -5455,7 +5455,12 @@ h1.post {
   color: #fff;
   display: block;
   padding: 10px 0;
-  margin: -10px 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.radio-hero-content h5 a {
+  text-decoration: none;
 }
 
 /* Guest Archive */
