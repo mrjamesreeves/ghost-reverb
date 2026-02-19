@@ -720,7 +720,7 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
   }
 
@@ -788,6 +788,7 @@ textarea:focus {
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.7);
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   height: 100%;
   }
@@ -2895,8 +2896,8 @@ input::placeholder {
 
 @media (min-width: 701px) and (max-width: 1025px) {
 
-  .radio-page .image-slider img {
-    position: relative !important;
+  .grid.notebook article:last-of-type {
+    display: none;
     }
   .footer.outer {
     width: 90%;
@@ -2923,26 +2924,6 @@ input::placeholder {
     }
   .grid h5 {
     font-size: 9px;
-  }
-  .radio-page .image-slider {
-    position: absolute;
-    left: 0 !important;
-    transform: none !important; /* Only translate X, not Y */
-    width: 100% !important;
-    height: 100% !important; /* 80% of wrapper height */
-    z-index: 1;
-    overflow: hidden;
-  }
-.radio-page .image-slider img {
-    position: absolute;
-    top: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important; /* Only translate X, not Y */
-    width: 100% !important;
-    height: auto !important;
-    object-fit: cover;
-    animation: crossfade 60s infinite;
-    visibility: hidden;
   }
   .radio-page .radio-hero-content {
     bottom: 5% !important; 
@@ -3225,6 +3206,8 @@ cite {
 
   .radio-hero-wrapper {
     aspect-ratio: 2/3;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
   .highlights-grid {
     display: flow;
@@ -3588,9 +3571,9 @@ h3.about {
     z-index: 10000;
     height: 36px;
     width: 46px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.4);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border: none;
     border-radius: 5px;
     justify-content: center;
@@ -3609,7 +3592,7 @@ h3.about {
   }
 
   button.nav-bar-mobile:active, button.nav-bar-mobile:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.55);
   }
 
   button.nav-bar-mobile svg {
@@ -3657,6 +3640,7 @@ h3.about {
 /* Navigation Card - Desktop only (mobile overridden in media query above) */
 .nav-card {
   background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-radius: 5px;
   padding: 30px;
