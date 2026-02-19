@@ -3561,7 +3561,7 @@ h3.about {
 
   /* Mobile: Drawer-style navigation */
 
-  /* Nav overlay - non-interactive when closed, clips content at top */
+  /* Nav overlay - non-interactive when closed */
   .nav-overlay {
     opacity: 1 !important;
     visibility: visible !important;
@@ -3570,49 +3570,51 @@ h3.about {
     pointer-events: none;
     background: none;
     transition: background 0.35s ease;
-    clip-path: inset(-36px 0 0 0); /* Allow handle to show below top edge */
   }
 
   .nav-overlay.nav-open {
     pointer-events: auto;
     background: rgba(0, 0, 0, 0.4);
-    clip-path: none;
   }
 
 
 
-  /* Drawer handle - centered pill below card */
+  /* Mobile hamburger - fixed, always on top */
   button.nav-bar-mobile {
     display: flex;
-    position: absolute;
-    height: 28px;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 10000;
+    height: 36px;
+    width: 36px;
     background: rgba(0, 0, 0, 0.65);
-    bottom: -55px;
-        right: -5px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    isolation: isolate;
     border: none;
     border-radius: 5px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     pointer-events: auto;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  button.nav-bar-mobile.nav-hidden {
+    transform: translateX(calc(100% + 20px));
   }
 
   button.nav-bar-mobile svg path {
     fill: #fff;
-    }
+  }
 
   button.nav-bar-mobile:active, button.nav-bar-mobile:hover {
-    background: rgba(0, 0, 0, 0.65) !important;
-    backdrop-filter: blur(80px);
-    }
+    background: rgba(0, 0, 0, 0.8);
+  }
 
   button.nav-bar-mobile svg {
     width: 15px;
     height: auto;
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   /* Hamburger/X icon swap */
@@ -3622,10 +3624,10 @@ h3.about {
   button.nav-bar-mobile .nav-icon-x {
     display: none;
   }
-  .nav-overlay.nav-open button.nav-bar-mobile .nav-icon-hamburger {
+  .nav-is-open button.nav-bar-mobile .nav-icon-hamburger {
     display: none;
   }
-  .nav-overlay.nav-open button.nav-bar-mobile .nav-icon-x {
+  .nav-is-open button.nav-bar-mobile .nav-icon-x {
     display: block;
   }
 }
