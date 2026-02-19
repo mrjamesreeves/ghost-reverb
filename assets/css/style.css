@@ -1280,7 +1280,8 @@ figcaption, .kg-card figcaption {
 
 .prev-next {
   float: right;
-  display: table;
+  display: flex;
+  gap: 6px;
   margin-top: -1px;
   }
 
@@ -1312,14 +1313,15 @@ figcaption, .kg-card figcaption {
     transition: fill 0.3s ease, stroke 0.3s ease;
     }
 .circle-arrow svg path {
-    transition: fill 0.3s ease;
+    transition: fill 0.3s ease, stroke 0.3s ease;
     }
 .circle-arrow:hover svg circle {
-    fill: none;   /* circle becomes clear */
-    stroke: var(--body); /* outline becomes visible */
+    fill: none;
+    stroke: var(--body);
     }
 .circle-arrow:hover svg path {
-    fill: var(--body);   /* arrow turns black */
+    fill: none;
+    stroke: var(--body);
     }
 
 h5.kg-toggle-heading-text {
