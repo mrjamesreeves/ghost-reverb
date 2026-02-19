@@ -3536,13 +3536,13 @@ h3.about {
   display: none;
 }
 
-@media (max-width: 768px) {
-  /* Hide desktop circle icon on mobile */
+@media (max-width: 1024px) {
+  /* Hide desktop circle icon on mobile/tablet */
   .nav-icon-desktop {
     display: none !important;
   }
 
-  /* Mobile: Drawer-style navigation */
+  /* Mobile/Tablet: Drawer-style navigation */
 
   /* Nav overlay - non-interactive when closed */
   .nav-overlay {
@@ -3558,6 +3558,7 @@ h3.about {
   .nav-overlay.nav-open {
     pointer-events: auto;
     background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
   }
 
 
@@ -3596,16 +3597,19 @@ h3.about {
   }
 
   button.nav-bar-mobile svg {
-    width: 25px;
-    height: auto;
+    flex-shrink: 0;
   }
 
   /* Hamburger/X icon swap */
   button.nav-bar-mobile .nav-icon-hamburger {
     display: block;
+    width: 18px;
+    height: 12px;
   }
   button.nav-bar-mobile .nav-icon-x {
     display: none;
+    width: 14px;
+    height: 14px;
   }
   .nav-is-open button.nav-bar-mobile .nav-icon-hamburger {
     display: none;
@@ -3622,6 +3626,7 @@ h3.about {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: none; /* NO site-wide background */
   display: flex;
   align-items: center;
@@ -3655,7 +3660,7 @@ h3.about {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .nav-overlay.nav-open .nav-card {
     transform: translateY(0);
     opacity: 1;
@@ -3727,50 +3732,51 @@ h3.about {
 
 .nav-signup-form {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
   padding: 6px;
   border: var(--line);
   border-radius: 5px;
 }
 
 .nav-email-input {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid rgba(26, 26, 26, 0.8);
-  border-radius: 5px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: transparent;
   transition: all 0.2s ease;
-  color: #fff;
-  font-weight: 500px;
+  color: #000;
+  font-weight: 500;
 }
 
 .nav-email-input:focus {
   outline: none;
-  border-color: #1a1a1a;
 }
 
 .nav-email-input::placeholder {
-  color: #000;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .nav-subscribe-btn {
-  padding: 2px 10px;
+  padding: 10px 16px;
   line-height: 1;
   background: #000;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 12px;
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-align: center;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-weight: 600;
 }
 
 .nav-subscribe-btn:hover {
-  background: #000;
-  transform: translateY(-1px);
+  background: #333;
 }
 
 /* Social Links */
@@ -3823,13 +3829,22 @@ body.nav-is-open {
     margin-left: auto !important;
     margin-right: auto !important;
   }
+}
+
+@media (max-width: 1024px) {
   .nav-icon {
     top: 16px;
     left: 16px;
   }
 
   .nav-icon img {
-    width: 40px; /* Smaller on mobile */
+    width: 60px;
+  }
+
+  .nav-icon {
+    width: 60px;
+    top: 5%;
+    left: 10%;
   }
 
   .nav-overlay {
@@ -3855,16 +3870,6 @@ body.nav-is-open {
 
   .nav-link {
     font-size: 1.4rem;
-  }
-
-  .nav-icon img {
-    width: 60px;
-  }
-
-  .nav-icon {
-    width: 60px; /* Even smaller on small mobile */
-    top: 5%;
-    left: 10%;
   }
 }
 
@@ -3896,11 +3901,6 @@ body.nav-is-open {
 
   .nav-card {
     padding: 28px;
-  }
-
-  .nav-signup-form {
-    flex-direction: column;
-    gap: 12px;
   }
 
   .nav-social {
