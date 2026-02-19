@@ -1316,12 +1316,12 @@ figcaption, .kg-card figcaption {
     transition: fill 0.3s ease, stroke 0.3s ease;
     }
 .circle-arrow:hover svg circle {
-    fill: none;
-    stroke: var(--body);
+    fill: white;
+    stroke: black;
     }
 .circle-arrow:hover svg path {
     fill: none;
-    stroke: var(--body);
+    stroke: black;
     }
 
 h5.kg-toggle-heading-text {
