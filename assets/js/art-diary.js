@@ -285,6 +285,17 @@
         blurb.innerHTML = item.Blurb || '';
         textDiv.appendChild(blurb);
 
+        // Location (City • Museum)
+        const city = (item.City || '').trim();
+        const museum = (item.Museum || '').trim();
+        if (city || museum) {
+          const location = document.createElement('div');
+          location.className = 'favorites-location';
+          const parts = [city, museum].filter(Boolean);
+          location.textContent = parts.join(' • ');
+          textDiv.appendChild(location);
+        }
+
         entryDiv.appendChild(textDiv);
         textColumn.appendChild(entryDiv);
 

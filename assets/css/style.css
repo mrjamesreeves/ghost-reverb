@@ -5312,6 +5312,13 @@ h3.favorite-title {
   margin: 0;
 }
 
+.favorites-location {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-xs);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
 .favorite-blurb a {
   color: var(--color-text);
   text-decoration: underline;
