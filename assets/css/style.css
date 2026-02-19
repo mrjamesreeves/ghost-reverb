@@ -3644,7 +3644,7 @@ h3.about {
 
 /* Navigation Card - Desktop only (mobile overridden in media query above) */
 .nav-card {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.9);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-radius: 5px;
@@ -3833,30 +3833,32 @@ body.nav-is-open {
 
 @media (max-width: 1024px) {
   .nav-icon {
-    top: 16px;
-    left: 16px;
+    width: 60px;
+    top: 5%;
+    left: 10%;
   }
 
   .nav-icon img {
     width: 60px;
   }
 
-  .nav-icon {
-    width: 60px;
-    top: 5%;
-    left: 10%;
-  }
-
   .nav-overlay {
-    padding-left: 20px;
-    padding-right: 20px;
-    justify-content: center;
-    width: 90%;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .nav-card {
+    box-sizing: border-box;
+    width: 85%;
     max-width: 340px;
     padding: 32px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nav-overlay.nav-open .nav-card {
+    transform: translateY(0);
+    opacity: 1;
   }
 
   .nav-bio h2 {
@@ -3875,32 +3877,26 @@ body.nav-is-open {
 
 @media (max-width: 480px) {
   .nav-icon {
-    width: 40px; /* Even smaller on small mobile */
+    width: 40px;
     min-width: 35px;
     top: 4%;
     left: 10%;
   }
 
-    /* Nav card - drawer that slides down from top */
+  /* Nav card - slide down from top, inherit centering from 1024px block */
   .nav-card {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, calc(-100% - 20px)) !important;
+    transform: translateY(calc(-100% - 20px)) !important;
     opacity: 1 !important;
-    width: 85%;
-    max-width: 400px;
     visibility: visible !important;
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 28px;
     padding-bottom: 24px;
+    background: white;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
 
   .nav-overlay.nav-open .nav-card {
-    transform: translate(-50%, 0) !important;
-  }
-
-  .nav-card {
-    padding: 28px;
+    transform: translateY(0) !important;
   }
 
   .nav-social {
@@ -3909,7 +3905,6 @@ body.nav-is-open {
   }
 
   .nav-overlay {
-    padding: 20px;
     align-items: flex-start;
   }
 }
