@@ -40,6 +40,8 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 
   --max-w:  1300px;
   --element-below: 90px;
+  --element-below-sm: 40px;
+
 
   --color-white:#fff;
   --body: rgba(255, 255, 255,0.6);
@@ -1227,7 +1229,7 @@ ul.section-items li::marker {
 ----------------------------- */
 
 .comment-box {
-  width: 85%;
+  width: 50%;
   padding-top: 2px;
   float: left;
   }
@@ -2524,7 +2526,7 @@ input::placeholder {
 
 @media (max-width: 700px) {
   p, li, .post-content ol li, .post-content ul li {
-    font-size: var(--type-body-sm);
+    font-size: var(--type-body-m);
     line-height: 1.6;
     }
   p {
@@ -5068,6 +5070,10 @@ html:not([data-theme]) .theme-switch .moon {
       margin-right: auto;
     }
 
+    .radio-hero-container,
+.post-hero-container {
+  margin-bottom: var(--element-below-sm);
+}
     .episode-cover h2 {
         font-size: 70px;
     }
