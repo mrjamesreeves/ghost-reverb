@@ -2,7 +2,8 @@
   'use strict';
 
   // ── Asset Base Path (set by Ghost template, empty string for standalone) ──
-  var BASE = window.STATIC_ASSET_BASE || '';
+  // Strip Ghost's ?v=hash cache-buster so path concatenation works
+  var BASE = (window.STATIC_ASSET_BASE || '').split('?')[0];
 
   // ── Config ──
   var TOTAL = 24;
