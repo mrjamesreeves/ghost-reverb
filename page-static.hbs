@@ -450,13 +450,8 @@
       <div style="text-align:center; max-width:400px; padding:2rem;">
         <h1 style="font-family:'bebas-neue-pro-semiexpanded', sans-serif; letter-spacing:0.25em; font-size:3rem; margin-bottom:1rem;">STATIC</h1>
         <p style="opacity:0.6; margin-bottom:2rem;">This pitch deck is available to registered viewers.</p>
-        <div id="ghost-portal-root"></div>
-        <script>
-          var portalBtn = document.createElement('div');
-          portalBtn.setAttribute('data-portal', 'signin');
-          portalBtn.innerHTML = '<a href="javascript:void(0)" data-portal="signin" style="display:inline-block;padding:0.75rem 2rem;border:1px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-size:0.85rem;">Sign In</a>';
-          document.getElementById('ghost-portal-root').appendChild(portalBtn);
-        </script>
+        <a href="#/portal/signup/free" data-portal="signup/free" style="display:inline-block;padding:0.75rem 2rem;border:1px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-size:0.85rem;cursor:pointer;transition:background 0.2s;">Sign Up to View</a>
+        <p style="opacity:0.4; margin-top:1.5rem; font-size:0.8rem;">Already have an account? <a href="#/portal/signin" data-portal="signin" style="color:#fff; text-decoration:underline;">Sign in</a></p>
       </div>
     </div>
   {{/if}}

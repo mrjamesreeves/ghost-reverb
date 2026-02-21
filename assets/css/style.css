@@ -3462,7 +3462,6 @@ h3.about {
   }
 }
 
-
 .midnight-blurb p {
   line-height: 1.7;
   font-size: 17px;
@@ -3479,13 +3478,11 @@ h3.about {
    MINIMAL NAVIGATION SYSTEM - FIXED LAYERING
    ========================================================================== */
 
-/* Reset any existing nav styles */
 .minimal-nav {
   position: relative;
   z-index: 1000;
 }
 
-/* Navigation Icon (fixed position, 50px left of centered content) */
 .nav-icon {
   position: fixed;
   top: 60px;
@@ -3504,7 +3501,6 @@ h3.about {
   padding: 0;
 }
 
-/* On wide screens, position 50px left of centered 1300px content */
 @media (min-width: 1540px) {
   .nav-icon {
     left: calc(50% - 650px - 50px - 70px);
@@ -3516,7 +3512,6 @@ h3.about {
   transform: scale(105%);
 }
 
-/* Icon images - clean, no backgrounds */
 .nav-icon img {
   transition: opacity 0.3s ease;
   position: absolute;
@@ -3531,20 +3526,15 @@ h3.about {
   opacity: 0;
 }
 
-/* Mobile Navigation Bar - hidden on desktop */
 .nav-bar-mobile {
   display: none;
 }
 
 @media (max-width: 1024px) {
-  /* Hide desktop circle icon on mobile/tablet */
   .nav-icon-desktop {
     display: none !important;
   }
 
-  /* Mobile/Tablet: Drawer-style navigation */
-
-  /* Nav overlay - non-interactive when closed */
   .nav-overlay {
     opacity: 1 !important;
     visibility: visible !important;
@@ -3561,9 +3551,6 @@ h3.about {
     backdrop-filter: blur(5px);
   }
 
-
-
-  /* Mobile hamburger - fixed, always on top */
   button.nav-bar-mobile {
     display: flex;
     position: fixed;
@@ -3600,7 +3587,6 @@ h3.about {
     flex-shrink: 0;
   }
 
-  /* Hamburger/X icon swap */
   button.nav-bar-mobile .nav-icon-hamburger {
     display: block;
     width: 18px;
