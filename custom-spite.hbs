@@ -2,50 +2,59 @@
 
 <style>
 
-    .kg-image-card img {
-margin-left: 0;
-width: 150px;
-margin-bottom: -50px;
-margin-top: 50px;
+.kg-image-card img {
+    margin-left: 0;
+    width: 150px;
+    margin-bottom: -50px;
+    margin-top: 50px;
     }
 
 #icon {
     margin-bottom: 10px !important;
-}
-    h1 {
-        margin-top: 20px;
-        color: var(--color-hover);
     }
-    .comments-area.inner {
-        max-width: 700px;
-        }
-    h3 {
-        font-size: 20px;
-        letter-spacing: normal;
-        text-transform: none;
-        font-weight: 700 !important;
-        margin-top: 50px;
+
+h1 {
+    margin-top: 20px;
+    color: var(--color-hover);
     }
-    h3:first-of-type {
-        margin-top: 0;
+
+.comments-area.inner {
+    max-width: 700px;
     }
-    h4 {
-        color: #fff;
-        padding-top: 30px;
+
+h3 {
+    font-size: 20px;
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 700 !important;
+    margin-top: 50px;
     }
-    blockquote {
-        padding-left: 0;
-        margin-top: 50px;
-        border-left: none;
+    
+h3:first-of-type {
+    margin-top: 0;
     }
-    blockquote h1 {
-        font-size: 60px;
-        line-height: .9;
-        color: #222
+
+h4 {
+    color: #fff;
+    padding-top: 30px;
     }
-    blockquote cite {
-        color: #333;
+
+blockquote {
+    padding-left: 0;
+    margin-top: 50px;
+    border-left: none;
     }
+
+blockquote h1 {
+    font-size: 60px;
+    line-height: .9;
+    color: #222
+    }
+
+blockquote cite {
+    color: #333;
+    }
+
     p {
         margin-top: 5px;
         margin-bottom: 25px;
@@ -72,40 +81,38 @@ margin-top: 50px;
         padding-bottom: 8px;
     }
 
-    /* Spite Hero (only shows on main Spite page) */
-    .spite-hero {
-        width: 100%;
-        max-width: 1300px;
-        margin: 0 auto 60px;
-        background: #f0f0f0;
-        border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 5px;
-        overflow: hidden;
-        padding: 5%;
-        padding-bottom: 30px;
-        box-sizing: border-box;
-        }
-
-    .spite-header {
-        margin-top: 20px;
-        margin-bottom: 30px;
-        }
-
-    .spite-copy {
-        padding-top: 20px;
+.spite-hero {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 60px;
+    background: #f0f0f0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: hidden;
+    padding: 5%;
+    padding-bottom: 30px;
+    box-sizing: border-box;
     }
 
-    .spite-screenshot {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 300 / 135;
-        overflow: hidden;
-        }
+.spite-header {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    }
 
-    .spite-buttons {
-        margin-left: 5%
-        }
+.spite-copy {
+    padding-top: 20px;
+    }
 
+.spite-screenshot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 300 / 135;
+    overflow: hidden;
+    }
+
+.spite-buttons {
+    margin-left: 5%
+    }
 
 .spite-screenshot img {
     width: 100%;
@@ -129,7 +136,6 @@ margin-top: 50px;
     opacity: 1;
     }
 
-/* Left-aligned title and tagline */
 .post-header-content {
     text-align: left;
     }
@@ -145,32 +151,31 @@ margin-top: 50px;
     margin-bottom: 40px;
     }
 
-    /* Navigation */
-    .app-nav {
-        display: flex;
-        gap: 40px;
-        margin-top: 30px;
-        justify-content: left;
-        border-radius: 30px;
-        width: 55%;
-        min-width: 300px;
-        background: #f0f0f0;
-        padding-left: 30px;
-        align-items: center;
+.app-nav {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    justify-content: left;
+    border-radius: 30px;
+    width: 55%;
+    min-width: 300px;
+    background: #f0f0f0;
+    padding-left: 30px;
+    align-items: center;
     }
 
-    li::marker {
+li::marker {
     font-size: 13px; /* or whatever size you want */
     }
 
-    .app-nav a {
-        font-size: var(--type-body-sm);
-        font-weight: 700;
-        color: var(--color-hover);
+.app-nav a {
+    font-size: var(--type-body-sm);
+    font-weight: 700;
+    color: var(--color-hover);
     }
 
-    .mobile-download {
-        display: none;
+.mobile-download {
+    display: none;
     }
 
     .app-nav button {
@@ -281,18 +286,21 @@ margin-top: 50px;
             border-left: none;
         }
 
-        .app-nav {
-            margin-bottom: 0;
+    .app-nav {
+        margin-bottom: 0;
         }
-        .spite-screenshot img, .spite-hero {
-    background: none;
-    border-radius: 0;
-    }
+        
+    .spite-screenshot img, .spite-hero {
+        background: none;
+        border-radius: 0;
+        }
 
     .radio-page .radio-content-wrapper {
         padding-left: 5%;
         padding-right: 5%;
         }
+
+    }
 
     .spite-columns {
         display: grid;
@@ -351,7 +359,8 @@ li a {
         font-weight: 600;
     }
     .kg-toggle-card-icon svg {
-        color: #fff;}
+        color: #fff;
+        }
 
     [data-theme="dark"] .kg-toggle-card-icon svg {
         color: #000;

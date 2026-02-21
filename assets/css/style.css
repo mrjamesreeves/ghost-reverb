@@ -3627,7 +3627,8 @@ h3.about {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: none; /* NO site-wide background */
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -3645,8 +3646,6 @@ h3.about {
 /* Navigation Card - Desktop only (mobile overridden in media query above) */
 .nav-card {
   background: rgba(255, 255, 255, 0.9);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
   border-radius: 5px;
   padding: 30px;
   width: 100%;
