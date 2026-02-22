@@ -3611,8 +3611,6 @@ h3.about {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
