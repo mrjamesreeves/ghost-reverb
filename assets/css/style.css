@@ -3623,6 +3623,9 @@ h3.about {
 .nav-overlay.nav-open {
   opacity: 1;
   visibility: visible;
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 /* Navigation Card - Desktop only (mobile overridden in media query above) */
