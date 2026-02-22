@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STATIC — A Series by James A. Reeves and Candy Chang</title>
-  <meta name="description" content="An eight-episode series mixing cosmic horror with the painfully human desire for answers. Created by James A. Reeves and Candy Chang.">
+  <title>Static: A Series by James A. Reeves and Candy Chang</title>
+  <meta name="description" content="An eight-episode series mixing cosmic horror with the painfully human need for answers. Created by James A. Reeves and Candy Chang.">
   <link rel="stylesheet" href="https://use.typekit.net/eer6kbs.css">
   <link rel="stylesheet" href="{{asset "css/static-style.css"}}">
   {{ghost_head}}
@@ -16,7 +16,7 @@
   <!-- Top Navigation Bar -->
   <nav class="topbar" id="topbar">
     <div class="topbar__left">
-      <a class="topbar__home" href="#slide-1" id="navHome">Static</a><span class="topbar__sep" id="navSep">:</span><span class="topbar__title" id="navTitle"></span>
+      <a class="topbar__home" href="#slide-1" id="navHome">Static</a><span class="topbar__sep" id="navSep">&#8226;</span><span class="topbar__title" id="navTitle"></span>
     </div>
     <div class="topbar__right">
       <button class="nav__prev" aria-label="Previous slide" id="prevBtn">&#8249;</button>
@@ -430,8 +430,8 @@
         <div class="contact-info">
           <p class="created-by">Created by</p>
           <p>James A. Reeves and Candy Chang</p>
-          <p><a href="https://ritualfields.com" target="_blank" rel="noopener">ritualfields.com</a></p>
-          <p><a href="mailto:james@atlasminor.com">james@atlasminor.com</a></p>
+          <p><a href="https://jamesreeves.co" target="_blank" rel="noopener">jamesreeves.co</a></p>
+          <p><a href="mailto:james@jamesreeves.co">james@jamesreeves.co</a></p>
           <p>+1 248 376 8334</p>
         </div>
       </div>
@@ -446,12 +446,12 @@
 
   {{else}}
     {{!-- Members-only gate: shown when user doesn't have access --}}
-    <div style="display:flex; align-items:center; justify-content:center; min-height:100vh; background:#0a0a0a; color:#fff; font-family:'IBM Plex Sans', sans-serif;">
-      <div style="text-align:center; max-width:400px; padding:2rem;">
-        <h1 style="font-family:'bebas-neue-pro-semiexpanded', sans-serif; letter-spacing:0.25em; font-size:3rem; margin-bottom:1rem;">STATIC</h1>
-        <p style="opacity:0.6; margin-bottom:2rem;">This pitch deck is available to registered viewers.</p>
-        <a href="#/portal/signup/free" data-portal="signup/free" style="display:inline-block;padding:0.75rem 2rem;border:1px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-size:0.85rem;cursor:pointer;transition:background 0.2s;">Sign Up to View</a>
-        <p style="opacity:0.4; margin-top:1.5rem; font-size:0.8rem;">Already have an account? <a href="#/portal/signin" data-portal="signin" style="color:#fff; text-decoration:underline;">Sign in</a></p>
+    <div class="static-gate">
+      <div class="static-gate__inner">
+        <h1 class="static-gate__title">STATIC</h1>
+        <p class="static-gate__subtitle">This pitch deck is available to registered viewers.</p>
+        <a href="#/portal/signup/free" data-portal="signup/free" class="static-gate__btn">Sign Up to View</a>
+        <p class="static-gate__signin">Already have an account? <a href="#/portal/signin" data-portal="signin">Sign in</a></p>
       </div>
     </div>
   {{/if}}
