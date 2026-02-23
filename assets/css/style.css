@@ -91,15 +91,33 @@ body {
   }
 
 a {
-	transition: all 0.6s; 
-	-webkit-transition: all 0.6s;
   text-decoration: none;
   color: var(--color-text);
+  background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.25s ease-in-out, color 0.25s ease-in-out;
   }
 
 a:hover,
 a:focus {
-  color: var(--color-hover);
+  background-size: 100% 1px;
+  }
+
+/* No sliding underline on image/card/button/nav wrapper links */
+a.post-card-link,
+a.favorite-image-link,
+a.nav-link,
+a.social-link,
+a.kg-signup-card-button,
+.post-card a,
+.nav-card a,
+.radio-hero-content a,
+.filter-btn {
+  background-image: none;
+  padding-bottom: 0;
   }
 
 /* Headings */
@@ -258,20 +276,19 @@ h5.section {
   }
 
 h5 a {
-  transition: all 0.5s ease-in-out; 
-  text-decoration-color: var(--color-text) !important;
   color: var(--color-text);
-  text-decoration-thickness: 2px;
   text-decoration: underline;
-  text-underline-offset: 3px;  
+  text-decoration-color: var(--color-text-muted);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease;
   }
 
 h5 a:hover {
-  text-decoration-color: var(--color-text) !important;
-  color: var(--color-text);
+  text-decoration-color: currentColor;
   text-decoration-thickness: 2px;
-  text-decoration: underline;
-  text-underline-offset: 3px;
   }
 
 .post h2 {
@@ -354,11 +371,17 @@ li > ol {
 
 .post-content li a, .li a {
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-text-muted);
+    background-image: none;
+    padding-bottom: 0;
+    transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease;
   }
 
 .post-content li a:hover {
-  color: var(--color-text) !important;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
   }
 
 dl {
@@ -1271,6 +1294,15 @@ figcaption, .kg-card figcaption {
 .post-header-caption a {
   color: var(--color-text-muted);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease;
+}
+
+.post-header-caption a:hover {
+  text-decoration-thickness: 2px;
 }
 
 .post-tags {
@@ -1504,19 +1536,18 @@ h5.kg-toggle-heading-text {
 }
 
 p a {
-  color: var(--color-text);
-  text-decoration-color: var(--color-text-muted) !important;
-	transition: all 0.5s ease-in-out;   
   text-decoration: underline;
-  text-underline-offset: 5px;
+  text-decoration-color: var(--color-text-muted);
+  text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease, color 0.25s ease-in-out;
   }
 
 p a:hover {
-  text-decoration-color: var(--color-text) !important;
-  color: var(--color-text);
+  text-decoration-color: currentColor;
   text-decoration-thickness: 2px;
-  color: var(--color-hover);
 }
 
 .post-content hr {
@@ -2242,6 +2273,11 @@ h5:has(+ .kg-audio-card) {
 #main .kg-callout-card-accent a {
   color: inherit;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease;
 }
 
 #main .kg-callout-card-accent a:hover,
@@ -3310,8 +3346,16 @@ cite {
   color: var(--color-text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 5px;
-  text-decoration-color: var(--accent-dark) !important;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-text-muted);
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.colophon-content a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
 }
 
 .about-column h3, h3.about {
@@ -3542,7 +3586,8 @@ h3.about {
     padding: 0;
     pointer-events: none;
     background: none;
-    transition: background 0.35s ease;
+    transition: background 0.4s ease,
+                backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
   }
 
   .nav-overlay.nav-open {
@@ -3617,13 +3662,16 @@ h3.about {
   padding-left: 80px;
   opacity: 0;
   visibility: hidden;
-  z-index: 999; /* BEHIND the icon */
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  z-index: 999;
+  transition: opacity 0.4s ease, visibility 0.4s ease,
+              backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
 }
 
 .nav-overlay.nav-open {
   opacity: 1;
   visibility: visible;
-
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
@@ -5306,7 +5354,17 @@ h3.favorite-title {
 .favorite-blurb a {
   color: var(--color-text);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
   text-decoration-color: var(--color-text-muted);
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.favorite-blurb a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
 }
 
 /* Images: absolutely positioned within their column */
@@ -5340,15 +5398,16 @@ h3.favorite-title {
 }
 
 /* Link styling for titles and images */
-.favorite-title-link,
+.favorite-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .favorite-image-link {
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s ease;
-}
-
-.favorite-title-link:hover h3 {
-  text-decoration: underline;
+  background-image: none;
+  padding-bottom: 0;
 }
 
 .favorite-image-link {
