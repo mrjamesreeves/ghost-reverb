@@ -398,6 +398,11 @@ strong, .bold { font-weight: 600; }
 }
 .char-col p:last-child { margin-bottom: 0; }
 
+.structure-intro {
+  max-width: 50%;
+  margin-bottom: 1.5rem;
+}
+
 /* --- Structure Acts Grid --- */
 .acts-grid {
   display: grid;
@@ -452,13 +457,22 @@ strong, .bold { font-weight: 600; }
 
 .lyrics-content__album {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lyrics-content__album img {
-  max-width: 400px;
+  max-width: 800px;
   width: 100%;
   border-radius: 2px;
+}
+
+.lyrics-content__caption {
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  line-height: 1.5;
+  opacity: 0.5;
+  margin-top: 1rem;
+  font-style: italic;
 }
 
 /* --- Location sub-headings --- */
@@ -633,6 +647,10 @@ strong, .bold { font-weight: 600; }
   line-height: 1.55;
 }
 
+.about-intro {
+  max-width: 50%;
+}
+
 .credits-small {
   font-size: clamp(0.7rem, 1vw, 0.8rem);
   color: var(--color-text-muted);
@@ -684,7 +702,7 @@ strong, .bold { font-weight: 600; }
 .topbar__home {
   font-family: var(--font-big);
   font-size: clamp(1rem, 2vw, 1.4rem);
-  letter-spacing: 0.25em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-white);
   text-decoration: none;
@@ -705,7 +723,7 @@ strong, .bold { font-weight: 600; }
 .topbar__title {
   font-family: var(--font-big);
   font-size: clamp(1rem, 2vw, 1.4rem);
-  letter-spacing: 0.25em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-white);
   opacity: 0.5;

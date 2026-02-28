@@ -26,7 +26,7 @@
     'The Characters',    // 9: Father Jim
     'The Characters',    // 10: Carly Dee
     'The Characters',    // 11: Tanner Whitney
-    'The Characters',    // 12: Eddie, Gold, Silver
+    'The Characters',    // 12: Leo, Gold, Silver
     'The Characters',    // 13: Manager, Zed, Ruby
     'Black Sunshine',    // 14
     'Structure',         // 15
@@ -92,24 +92,10 @@
     for (var n = i - PRELOAD; n <= i + PRELOAD; n++) loadBg(n);
   }
 
-  // ── Top Bar Auto-Hide ──
+  // ── Top Bar (always visible) ──
   function showBar() {
     topbar.classList.remove('is-hidden');
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(hideBar, HIDE_DELAY);
   }
-
-  function hideBar() {
-    if (tocOverlay.classList.contains('is-open')) return;
-    topbar.classList.add('is-hidden');
-  }
-
-  function resetHideTimer() {
-    showBar();
-  }
-
-  document.addEventListener('mousemove', resetHideTimer);
-  document.addEventListener('touchstart', resetHideTimer, { passive: true });
 
   // ── Navigation ──
   function goTo(i, instant) {
@@ -150,7 +136,7 @@
 
     var title = TITLES[current] || '';
     navTitle.textContent = title;
-    navSep.textContent = title ? ':' : '';
+    navSep.textContent = title ? '\u2022' : '';
   }
 
   // ── Keyboard ──
