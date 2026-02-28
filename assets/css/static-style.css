@@ -152,11 +152,11 @@ strong, .bold { font-weight: 600; }
   border: none;
   border-radius: 4px;
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  max-width: 620px;
+  max-width: 660px;
 }
 
 @supports not (backdrop-filter: blur(1px)) {
-  .glass-panel { background: rgba(0,0,0,0.82); }
+  .glass-panel { background: rgba(0,0,0,0.52); }
 }
 
 /* Viewport-aware height for all panels at smaller screens */
@@ -182,7 +182,7 @@ strong, .bold { font-weight: 600; }
 
 .glass-panel p {
   margin-bottom: 1em;
-  font-size: clamp(0.875rem, 1.5vw, 1.18rem);
+  font-size: clamp(0.875rem, 1.5vw, 1.15rem);
   line-height: 1.65;
 }
 .glass-panel p:last-child { margin-bottom: 0; }
@@ -258,6 +258,32 @@ strong, .bold { font-weight: 600; }
   height: auto;
   display: block;
   flex-shrink: 0;
+}
+
+.download-buttons {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  margin-top: 2rem;
+  z-index: 1;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 0.65rem 1.75rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.download-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
 }
 
 .radio-quotes {
@@ -337,11 +363,13 @@ strong, .bold { font-weight: 600; }
   background: rgba(0,0,0,0.88);
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.15) transparent;
+  box-sizing: border-box;
+  max-width: 750px;
 }
 
 .character__text p {
   margin-bottom: 1em;
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  font-size: clamp(0.85rem, 1.4vw, 1.15rem);
   line-height: 1.55;
 }
 .character__text p:last-child { margin-bottom: 0; }
@@ -562,9 +590,10 @@ strong, .bold { font-weight: 600; }
 }
 
 .slide__subtitle {
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   color: var(--color-text);
   max-width: 500px;
+  padding-top: 20px;
 }
 
 /* --- Soundtrack (slide 22) --- */
