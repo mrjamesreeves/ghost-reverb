@@ -182,7 +182,7 @@ strong, .bold { font-weight: 600; }
 
 .glass-panel p {
   margin-bottom: 1em;
-  font-size: clamp(0.875rem, 1.5vw, 1.08rem);
+  font-size: clamp(0.875rem, 1.5vw, 1.18rem);
   line-height: 1.65;
 }
 .glass-panel p:last-child { margin-bottom: 0; }
@@ -297,7 +297,7 @@ strong, .bold { font-weight: 600; }
 .slide.is-active .radio-quote:nth-child(3) { animation: fade-up 0.7s ease 0.8s both; }
 
 /* Radio dial image fade */
-.slide .radio-dial-img { opacity: 0; }
+.slide .radio-dial-img { opacity: 0; margin-bottom: 5%; }
 .slide.is-active .radio-dial-img { animation: fade-in 1s ease 0.1s both; }
 
 /* --- Character Splits (slides 9-12) --- */
@@ -647,7 +647,7 @@ strong, .bold { font-weight: 600; }
   line-height: 1.55;
 }
 
-.about-intro {
+.soundtrack-intro {
   max-width: 50%;
 }
 
@@ -661,7 +661,8 @@ strong, .bold { font-weight: 600; }
 .contact-info {
   font-size: clamp(1rem, 2vw, 1.5rem);
   color: var(--color-white);
-  line-height: 2;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .contact-info .created-by {
@@ -890,7 +891,7 @@ strong, .bold { font-weight: 600; }
 .slide .contact-info,
 .slide .style-quote {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(25px);
 }
 
 .slide.is-active .glass-panel         { animation: fade-up 0.7s ease 0.2s both; }
