@@ -2,7 +2,6 @@
   'use strict';
 
   // ── Asset Base Path (set by Ghost template, empty string for standalone) ──
-  // Strip Ghost's ?v=hash cache-buster so path concatenation works
   var BASE = (window.STATIC_ASSET_BASE || '').split('?')[0];
 
   // ── Config ──
@@ -11,7 +10,6 @@
   var DURATION = 800;
   var SWIPE_MIN = 50;
   var WHEEL_THRESHOLD = 80;
-  var HIDE_DELAY = 3000;
 
   // ── Mobile Detection ──
   var mql = window.matchMedia('(max-width: 768px)');
@@ -53,7 +51,6 @@
   var touchY = 0;
   var wheelAcc = 0;
   var wheelTimer = null;
-  var hideTimer = null;
 
   // ── DOM ──
   var deck = document.getElementById('deck');
@@ -99,53 +96,12 @@
     for (var n = i - PRELOAD; n <= i + PRELOAD; n++) loadBg(n);
   }
 
-  // ── Top Bar (always visible) ──
+  // ── Top Bar ──
   function showBar() {
     topbar.classList.remove('is-hidden');
   }
 
-  // ── Mobile Bottom Nav ──
-  function updateMobileNav() {
-    if (!mobilePrev || !mobileNext) return;
-    mobilePrev.style.visibility = (current === 0) ? 'hidden' : 'visible';
-    mobileNext.style.visibility = (current === TOTAL - 1) ? 'hidden' : 'visible';
-  }
-
-  // ── Navigation ──
-  function goTo(i, instant) {
-    if (i < 0 || i >= TOTAL) return;
-    if (transitioning && !instant) return;
-    if (i === current && !instant) return;
-
-    transitioning = true;
-    var prev = slides[current];
-    prev.classList.remove('is-active');
-    prev.classList.add('is-prev');
-
-    current = i;
-    var next = slides[current];
-    next.classList.add('is-active');
-
-    // Reset scroll position inside the slide content
-    var content = next.querySelector('.slide__content');
-    if (content) content.scrollTop = 0;
-
-    updateCounter();
-    preload(current);
-    showBar();
-    updateMobileNav();
-
-    setTimeout(function () {
-      prev.classList.remove('is-prev');
-      transitioning = false;
-    }, instant ? 0 : DURATION);
-
-    history.replaceState(null, '', '#slide-' + (current + 1));
-  }
-
-  function advance()  { if (current < TOTAL - 1) goTo(current + 1); }
-  function retreat()   { if (current > 0) goTo(current - 1); }
-
+  // ── Update title & counter ──
   function updateCounter() {
     var n = String(current + 1);
     if (n.length < 2) n = '0' + n;
@@ -158,7 +114,59 @@
     navSep.textContent = title ? '\u2022' : '';
   }
 
-  // ── Escape closes TOC on all devices ──
+  // ── Mobile Bottom Nav ──
+  function updateMobileNav() {
+    if (!mobilePrev || !mobileNext) return;
+    mobilePrev.disabled = (current === 0);
+    mobileNext.disabled = (current === TOTAL - 1);
+  }
+
+  // ── Navigation ──
+  function goTo(i, instant) {
+    if (i < 0 || i >= TOTAL) return;
+    if (i === current && !instant) return;
+
+    if (IS_MOBILE) {
+      // Mobile: simple show/hide — no transitions
+      slides[current].classList.remove('is-active');
+      current = i;
+      slides[current].classList.add('is-active');
+      window.scrollTo(0, 0);
+      updateCounter();
+      preload(current);
+      showBar();
+      updateMobileNav();
+      history.replaceState(null, '', '#slide-' + (current + 1));
+      return;
+    }
+
+    // Desktop: crossfade transition
+    if (transitioning && !instant) return;
+    transitioning = true;
+
+    var prev = slides[current];
+    prev.classList.remove('is-active');
+    prev.classList.add('is-prev');
+
+    current = i;
+    slides[current].classList.add('is-active');
+
+    updateCounter();
+    preload(current);
+    showBar();
+
+    setTimeout(function () {
+      prev.classList.remove('is-prev');
+      transitioning = false;
+    }, instant ? 0 : DURATION);
+
+    history.replaceState(null, '', '#slide-' + (current + 1));
+  }
+
+  function advance() { if (current < TOTAL - 1) goTo(current + 1); }
+  function retreat()  { if (current > 0) goTo(current - 1); }
+
+  // ── Escape closes TOC ──
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && tocOverlay.classList.contains('is-open')) closeToc();
   });
@@ -173,11 +181,10 @@
         e.preventDefault(); retreat(); break;
       case 'Home': e.preventDefault(); goTo(0); break;
       case 'End':  e.preventDefault(); goTo(TOTAL - 1); break;
-      case 'Escape': break;
     }
   });
 
-  // ── Touch / Swipe (both desktop and mobile) ──
+  // ── Touch / Swipe ──
   deck.addEventListener('touchstart', function (e) {
     touchX = e.changedTouches[0].screenX;
     touchY = e.changedTouches[0].screenY;
@@ -191,7 +198,7 @@
     }
   }, { passive: true });
 
-  // ── Scroll Wheel (desktop only — no mouse wheel on mobile) ──
+  // ── Scroll Wheel (desktop only) ──
   if (!IS_MOBILE) {
     deck.addEventListener('wheel', function (e) {
       var el = e.target;
@@ -225,7 +232,7 @@
   if (mobilePrev) mobilePrev.addEventListener('click', retreat);
   if (mobileNext) mobileNext.addEventListener('click', advance);
 
-  // ── Click to advance (desktop only — avoids conflict with mobile taps) ──
+  // ── Click to advance (desktop only) ──
   if (!IS_MOBILE) {
     deck.addEventListener('click', function (e) {
       if (e.target.closest('button, a, .glass-panel, .character__text, .video-embed, .toc-overlay, .topbar, .tracklist')) return;

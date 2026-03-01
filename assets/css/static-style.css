@@ -1289,34 +1289,69 @@ padding: clamp(2rem, 5vw, 4rem);
 }
 
 /* ===========================================
-   MOBILE: Paginated slides with bottom chevrons
+   MOBILE: Paginated scrollable pages
    =========================================== */
 
-/* Bottom nav — hidden on desktop */
+/* Bottom capsule nav — hidden on desktop */
 .mobile-nav {
   display: none;
 }
 
 @media (max-width: 768px) {
 
-  /* Slides stay stacked (desktop behaviour) but can scroll internally */
-  .slide__content {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 5rem; /* room for bottom chevrons */
+  /* Unlock scrolling — each slide is a normal page */
+  html { overflow: visible; overflow-x: hidden; }
+  body { overflow: visible; overflow-x: hidden; height: auto; }
+  .deck { height: auto; overflow: visible; }
+
+  /* Hide all slides by default */
+  .slide {
+    display: none;
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+    z-index: auto;
+    overflow: visible;
+    min-height: 100dvh;
+  }
+  /* Only the active slide is shown */
+  .slide.is-active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    z-index: auto;
+  }
+  .slide.is-prev {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
   }
 
-  /* Remove vh locks on tall content variants */
+  /* Content flows naturally, anchored to top */
+  .slide__content {
+    overflow: visible;
+    padding-bottom: 6rem; /* room for bottom capsule */
+    padding-top: 80px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .slide__content--center {
+    justify-content: center; /* keep title slides centered */
+  }
   .slide__content--radio {
     height: auto;
     min-height: 100dvh;
+    justify-content: flex-start;
+    padding-top: 80px;
   }
   .slide__content--split {
     height: auto;
     width: 100%;
   }
 
-  /* Kill entrance animations on mobile for snappy feel */
+  /* Kill entrance animations — instant content */
   .slide .glass-panel,
   .slide .character__portrait img,
   .slide .character__text,
@@ -1347,10 +1382,24 @@ padding: clamp(2rem, 5vw, 4rem);
     overflow-y: visible;
   }
 
-  /* Download buttons in flow */
+  /* Download buttons: stacked, vertically centered */
   .download-buttons {
     position: static;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 1rem;
     padding: 2rem 0;
+  }
+
+  /* Tracklist: single column on mobile */
+  .tracklist {
+    grid-template-columns: 1fr;
+  }
+  .tracklist > :nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   /* Width constraints loosen on mobile */
@@ -1362,35 +1411,61 @@ padding: clamp(2rem, 5vw, 4rem);
     max-width: 100%;
   }
 
-  /* --- Bottom chevron nav --- */
+  /* Buttons: swap Bebas for legible sans on mobile */
+  .download-btn,
+  .soundtrack-btn {
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    text-transform: capitalize;
+    font-size: 1rem;
+  }
+
+  /* Hide topbar prev/next + counter on mobile */
+  .nav__prev,
+  .nav__next,
+  .nav__counter {
+    display: none;
+  }
+
+  /* --- Bottom capsule nav --- */
   .mobile-nav {
     display: flex;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 1.5rem;
+    padding: 0.65rem 1.25rem;
     z-index: 102;
-    pointer-events: none;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 100px;
   }
   .mobile-nav__btn {
-    pointer-events: auto;
-    background: rgba(34, 34, 34, 0.8);
+    background: none;
     border: none;
     color: #fff;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    line-height: 1;
+    padding: 0.5rem;
     cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: background var(--t-fast);
+    line-height: 1;
   }
-  .mobile-nav__btn:active {
-    background: rgba(255, 255, 255, 0.15);
+  .mobile-nav__btn svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .mobile-nav__btn:active svg {
+    opacity: 0.5;
+  }
+  .mobile-nav__btn[disabled] {
+    opacity: 0;
+    pointer-events: none;
   }
 }
