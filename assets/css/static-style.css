@@ -146,7 +146,7 @@ strong, .bold { font-weight: 600; }
 
 /* --- Glass Panels --- */
 .glass-panel {
-  background: var(--glass-bg);
+  /* background: var(--glass-bg); */
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: none;
@@ -653,43 +653,48 @@ strong, .bold { font-weight: 600; }
   accent-color: #fff;
 }
 
-/* --- Soundtrack (slide 22) --- */
-.spotify-link {
+.slide .kg-audio-player-container input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Soundtrack buttons --- */
+.soundtrack-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0 1rem;
+}
+
+.soundtrack-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   font-family: var(--font-big);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-cyan);
+  color: #fff;
   text-decoration: none;
-  margin: 1.5rem 0;
-  transition: color var(--t-fast);
-}
-.spotify-link:hover { color: #fff; text-decoration: none; }
-
-.spotify-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 2.5px solid var(--color-cyan);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  padding-left: 3px;
-  flex-shrink: 0;
+  background: rgba(34, 34, 34, 0.8);
+  padding: 0.75rem 2.5rem;
+  border-radius: 100px;
   transition: background var(--t-fast);
 }
-.spotify-link:hover .spotify-icon { background: rgba(0,255,255,0.15); }
+.soundtrack-btn:hover {
+  background: rgba(34, 34, 34, 1);
+  text-decoration: none;
+}
+
+.soundtrack-btn__play {
+  font-size: 0.85em;
+}
 
 .tracklist {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
   row-gap: 0;
-  margin-top: 1rem;
+  margin-top: 4rem;
 }
 
 /* Side A (h4 + cards 1-4) → left column */
@@ -754,7 +759,7 @@ strong, .bold { font-weight: 600; }
 }
 
 .soundtrack-intro {
-  max-width: 50%;
+  max-width: 60%;
 }
 
 .credits-small {
