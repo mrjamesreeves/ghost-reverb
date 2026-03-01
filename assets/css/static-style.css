@@ -712,20 +712,21 @@ padding: clamp(2rem, 5vw, 4rem);
   margin-top: 4rem;
 }
 
-/* Side A (h4 + cards 1-4) → left column */
-.tracklist > :nth-child(-n+5) {
+/* Side A (h4 + 5 cards) → left column */
+.tracklist > :nth-child(-n+6) {
   grid-column: 1;
 }
 
-/* Side B (h4 + cards 5-8) → right column, pinned to top */
-.tracklist > :nth-child(n+6) {
+/* Side B (h4 + 5 cards) → right column, pinned to top */
+.tracklist > :nth-child(n+7) {
   grid-column: 2;
 }
-.tracklist > h4:nth-child(6)       { grid-row: 1; }
-.tracklist > :nth-child(7)         { grid-row: 2; }
-.tracklist > :nth-child(8)         { grid-row: 3; }
-.tracklist > :nth-child(9)         { grid-row: 4; }
-.tracklist > :nth-child(10)        { grid-row: 5; }
+.tracklist > h4:nth-child(7)       { grid-row: 1; }
+.tracklist > :nth-child(8)         { grid-row: 2; }
+.tracklist > :nth-child(9)         { grid-row: 3; }
+.tracklist > :nth-child(10)        { grid-row: 4; }
+.tracklist > :nth-child(11)        { grid-row: 5; }
+.tracklist > :nth-child(12)        { grid-row: 6; }
 
 .tracklist h4 {
   font-family: var(--font-big);
