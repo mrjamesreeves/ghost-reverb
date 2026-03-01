@@ -1137,7 +1137,7 @@ padding: clamp(2rem, 5vw, 4rem);
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #0a0a0a;
+  background: #000;
   color: #fff;
   font-family: 'IBM Plex Sans', sans-serif;
 }
@@ -1175,17 +1175,18 @@ padding: clamp(2rem, 5vw, 4rem);
 
 .static-gate__btn:hover {
   background: rgba(255,255,255,0.1);
+  text-decoration: none;
 }
 
 .static-gate__signin {
-  opacity: 0.4;
+  opacity: 0.6;
   margin-top: 1.5rem;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 .static-gate__signin a {
   color: #fff;
-  text-decoration: underline;
+  font-weight: 700;
 }
 
 /* --- PDF Password Overlay --- */
