@@ -1073,7 +1073,7 @@ padding: clamp(2rem, 5vw, 4rem);
     min-height: 100dvh;
   }
   .character__portrait {
-    max-height: 38vh;
+    height: 55vh;
   }
   .char-grid, .acts-grid {
     grid-template-columns: 1fr;
@@ -1329,6 +1329,12 @@ padding: clamp(2rem, 5vw, 4rem);
     visibility: hidden;
   }
 
+  /* Consistent margins + 15px body text */
+  :root {
+    --slide-padding: 1.5rem;
+  }
+  body { font-size: 15px; }
+
   /* Content flows naturally, anchored to top */
   .slide__content {
     overflow: visible;
@@ -1338,6 +1344,7 @@ padding: clamp(2rem, 5vw, 4rem);
     justify-content: flex-start;
   }
   .slide__content--center {
+    align-items: center;
     justify-content: center; /* keep title slides centered */
   }
   .slide__content--radio {
@@ -1382,15 +1389,17 @@ padding: clamp(2rem, 5vw, 4rem);
     overflow-y: visible;
   }
 
-  /* Download buttons: stacked, vertically centered */
+  /* Download buttons: stacked, centered both ways */
   .download-buttons {
     position: static;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    align-self: stretch;
     flex: 1;
     gap: 1rem;
     padding: 2rem 0;
+    width: 100%;
   }
 
   /* Tracklist: single column on mobile */
