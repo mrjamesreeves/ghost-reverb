@@ -383,8 +383,8 @@ strong, .bold { font-weight: 600; }
 
 .character__text p {
   margin-bottom: 1em;
-  font-size: clamp(0.85rem, 1.4vw, 1.15rem);
-  line-height: 1.55;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  line-height: 1.6;
 }
 .character__text p:last-child { margin-bottom: 0; }
 
@@ -434,8 +434,8 @@ strong, .bold { font-weight: 600; }
 }
 
 .char-col p {
-  font-size: clamp(0.8rem, 1.2vw, 0.92rem);
-  line-height: 1.5;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  line-height: 1.6;
   margin-bottom: 0.75em;
 }
 .char-col p:last-child { margin-bottom: 0; }
@@ -461,8 +461,8 @@ strong, .bold { font-weight: 600; }
 }
 
 .act-col p {
-  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
-  line-height: 1.5;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  line-height: 1.6;
 }
 
 /* --- Black Sunshine / Cosmic Membrane (slide 15) --- */
@@ -531,7 +531,8 @@ strong, .bold { font-weight: 600; }
 .location-sub:first-of-type { margin-top: 0; }
 
 .location-body p {
-  font-size: clamp(0.8rem, 1.2vw, 0.92rem);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  line-height: 1.6;
   margin-bottom: 0.75em;
 }
 
