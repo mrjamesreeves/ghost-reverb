@@ -1389,6 +1389,19 @@ padding: clamp(2rem, 5vw, 4rem);
     overflow-y: visible;
   }
 
+  /* 15px body text across all content */
+  .glass-panel p,
+  .character__text p,
+  .char-col p,
+  .act-col p,
+  .location-body p,
+  .about-text p,
+  .structure-intro p,
+  .soundtrack-intro p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
   /* Download buttons: stacked, centered both ways */
   .download-buttons {
     position: static;
