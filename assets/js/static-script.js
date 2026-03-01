@@ -69,6 +69,8 @@
   var navTitle = document.getElementById('navTitle');
   var navSep = document.getElementById('navSep');
   var navHome = document.getElementById('navHome');
+  var mobilePrev = document.getElementById('mobilePrev');
+  var mobileNext = document.getElementById('mobileNext');
 
   // ── Background Loading ──
   var loaded = {};
@@ -102,6 +104,13 @@
     topbar.classList.remove('is-hidden');
   }
 
+  // ── Mobile Bottom Nav ──
+  function updateMobileNav() {
+    if (!mobilePrev || !mobileNext) return;
+    mobilePrev.style.visibility = (current === 0) ? 'hidden' : 'visible';
+    mobileNext.style.visibility = (current === TOTAL - 1) ? 'hidden' : 'visible';
+  }
+
   // ── Navigation ──
   function goTo(i, instant) {
     if (i < 0 || i >= TOTAL) return;
@@ -117,9 +126,14 @@
     var next = slides[current];
     next.classList.add('is-active');
 
+    // Reset scroll position inside the slide content
+    var content = next.querySelector('.slide__content');
+    if (content) content.scrollTop = 0;
+
     updateCounter();
     preload(current);
     showBar();
+    updateMobileNav();
 
     setTimeout(function () {
       prev.classList.remove('is-prev');
@@ -149,37 +163,36 @@
     if (e.key === 'Escape' && tocOverlay.classList.contains('is-open')) closeToc();
   });
 
-  // ── Desktop-only Input Handlers ──
+  // ── Keyboard Navigation ──
+  document.addEventListener('keydown', function (e) {
+    if (tocOverlay.classList.contains('is-open')) return;
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown':
+        e.preventDefault(); advance(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp':
+        e.preventDefault(); retreat(); break;
+      case 'Home': e.preventDefault(); goTo(0); break;
+      case 'End':  e.preventDefault(); goTo(TOTAL - 1); break;
+      case 'Escape': break;
+    }
+  });
+
+  // ── Touch / Swipe (both desktop and mobile) ──
+  deck.addEventListener('touchstart', function (e) {
+    touchX = e.changedTouches[0].screenX;
+    touchY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  deck.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].screenX - touchX;
+    var dy = e.changedTouches[0].screenY - touchY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN) {
+      if (dx < 0) advance(); else retreat();
+    }
+  }, { passive: true });
+
+  // ── Scroll Wheel (desktop only — no mouse wheel on mobile) ──
   if (!IS_MOBILE) {
-    // Keyboard
-    document.addEventListener('keydown', function (e) {
-      if (tocOverlay.classList.contains('is-open')) return;
-      switch (e.key) {
-        case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown':
-          e.preventDefault(); advance(); break;
-        case 'ArrowLeft': case 'ArrowUp': case 'PageUp':
-          e.preventDefault(); retreat(); break;
-        case 'Home': e.preventDefault(); goTo(0); break;
-        case 'End':  e.preventDefault(); goTo(TOTAL - 1); break;
-        case 'Escape': break;
-      }
-    });
-
-    // Touch / Swipe
-    deck.addEventListener('touchstart', function (e) {
-      touchX = e.changedTouches[0].screenX;
-      touchY = e.changedTouches[0].screenY;
-    }, { passive: true });
-
-    deck.addEventListener('touchend', function (e) {
-      var dx = e.changedTouches[0].screenX - touchX;
-      var dy = e.changedTouches[0].screenY - touchY;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN) {
-        if (dx < 0) advance(); else retreat();
-      }
-    }, { passive: true });
-
-    // Scroll Wheel
     deck.addEventListener('wheel', function (e) {
       var el = e.target;
       while (el && el !== deck) {
@@ -202,12 +215,18 @@
       clearTimeout(wheelTimer);
       wheelTimer = setTimeout(function () { wheelAcc = 0; }, 200);
     }, { passive: false });
+  }
 
-    // Arrow Buttons
-    prevBtn.addEventListener('click', retreat);
-    nextBtn.addEventListener('click', advance);
+  // ── Arrow Buttons (topbar) ──
+  prevBtn.addEventListener('click', retreat);
+  nextBtn.addEventListener('click', advance);
 
-    // Click to advance (forward only)
+  // ── Mobile Bottom Chevrons ──
+  if (mobilePrev) mobilePrev.addEventListener('click', retreat);
+  if (mobileNext) mobileNext.addEventListener('click', advance);
+
+  // ── Click to advance (desktop only — avoids conflict with mobile taps) ──
+  if (!IS_MOBILE) {
     deck.addEventListener('click', function (e) {
       if (e.target.closest('button, a, .glass-panel, .character__text, .video-embed, .toc-overlay, .topbar, .tracklist')) return;
       advance();
@@ -217,11 +236,7 @@
   // ── Home link in topbar ──
   navHome.addEventListener('click', function (e) {
     e.preventDefault();
-    if (IS_MOBILE) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      goTo(0);
-    }
+    goTo(0);
   });
 
   // ── TOC ──
@@ -250,13 +265,7 @@
       e.preventDefault();
       var target = parseInt(this.getAttribute('data-slide'), 10);
       closeToc();
-      if (IS_MOBILE) {
-        setTimeout(function () {
-          slides[target].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 250);
-      } else {
-        setTimeout(function () { goTo(target); }, 250);
-      }
+      setTimeout(function () { goTo(target); }, 250);
     });
   }
 
@@ -275,58 +284,11 @@
     });
   }
 
-  // ── Mobile Scroll Setup ──
-  function initMobileScroll() {
-    // Lazy-load backgrounds as slides approach viewport
-    var bgObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var index = Array.prototype.indexOf.call(slides, entry.target);
-          loadBg(index);
-          bgObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '200px 0px' });
-
-    // Track which slide is in view for topbar title
-    var titleObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var index = Array.prototype.indexOf.call(slides, entry.target);
-          var title = TITLES[index] || '';
-          navTitle.textContent = title;
-          navSep.textContent = title ? '\u2022' : '';
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-
-    for (var i = 0; i < TOTAL; i++) {
-      bgObserver.observe(slides[i]);
-      titleObserver.observe(slides[i]);
-    }
-  }
-
   // ── Init ──
   function init() {
     var hash = window.location.hash;
-
-    if (IS_MOBILE) {
-      // Scroll to hash target if present
-      if (hash && hash.indexOf('#slide-') === 0) {
-        var target = document.querySelector(hash);
-        if (target) {
-          setTimeout(function () {
-            target.scrollIntoView({ block: 'start' });
-          }, 100);
-        }
-      }
-      initMobileScroll();
-      showBar();
-      return;
-    }
-
-    // Desktop: original slide-based init
     var start = 0;
+
     if (hash && hash.indexOf('#slide-') === 0) {
       var num = parseInt(hash.replace('#slide-', ''), 10);
       if (num >= 1 && num <= TOTAL) start = num - 1;
@@ -337,6 +299,7 @@
     updateCounter();
     preload(start);
     showBar();
+    updateMobileNav();
   }
 
   if (document.readyState === 'loading') {

@@ -1289,47 +1289,24 @@ padding: clamp(2rem, 5vw, 4rem);
 }
 
 /* ===========================================
-   MOBILE: Scrollable long-form layout
+   MOBILE: Paginated slides with bottom chevrons
    =========================================== */
+
+/* Bottom nav — hidden on desktop */
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  /* Unlock scrolling */
-  html {
-    overflow: visible;
-    overflow-x: hidden;
-  }
-  body {
-    overflow: visible;
-    overflow-x: hidden;
-    height: auto;
+
+  /* Slides stay stacked (desktop behaviour) but can scroll internally */
+  .slide__content {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5rem; /* room for bottom chevrons */
   }
 
-  /* Deck becomes flow container */
-  .deck {
-    height: auto;
-    overflow: visible;
-  }
-
-  /* Slides flow vertically instead of stacking */
-  .slide {
-    position: relative;
-    inset: auto;
-    opacity: 1;
-    visibility: visible;
-    transition: none;
-    z-index: auto;
-    overflow: visible;
-    min-height: 100dvh;
-    scroll-margin-top: 60px;
-  }
-  .slide.is-active,
-  .slide.is-prev {
-    opacity: 1;
-    visibility: visible;
-    transition: none;
-    z-index: auto;
-  }
-
-  /* Remove vh locks on content variants */
+  /* Remove vh locks on tall content variants */
   .slide__content--radio {
     height: auto;
     min-height: 100dvh;
@@ -1339,7 +1316,7 @@ padding: clamp(2rem, 5vw, 4rem);
     width: 100%;
   }
 
-  /* All content visible immediately (no entrance animations) */
+  /* Kill entrance animations on mobile for snappy feel */
   .slide .glass-panel,
   .slide .character__portrait img,
   .slide .character__text,
@@ -1370,13 +1347,6 @@ padding: clamp(2rem, 5vw, 4rem);
     overflow-y: visible;
   }
 
-  /* Hide slide counter & arrows */
-  .nav__prev,
-  .nav__next,
-  .nav__counter {
-    display: none;
-  }
-
   /* Download buttons in flow */
   .download-buttons {
     position: static;
@@ -1390,5 +1360,37 @@ padding: clamp(2rem, 5vw, 4rem);
   }
   .radio-quote {
     max-width: 100%;
+  }
+
+  /* --- Bottom chevron nav --- */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    z-index: 102;
+    pointer-events: none;
+  }
+  .mobile-nav__btn {
+    pointer-events: auto;
+    background: rgba(34, 34, 34, 0.8);
+    border: none;
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background var(--t-fast);
+  }
+  .mobile-nav__btn:active {
+    background: rgba(255, 255, 255, 0.15);
   }
 }
