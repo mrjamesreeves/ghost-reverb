@@ -264,26 +264,31 @@ strong, .bold { font-weight: 600; }
   display: flex;
   gap: 1.25rem;
   justify-content: center;
-  margin-top: 2rem;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
   z-index: 1;
 }
 
 .download-btn {
   display: inline-block;
   padding: 0.65rem 1.75rem;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
+  background: #fff;
+  border: 1px solid #fff;
+  color: #000;
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .download-btn:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.5);
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
 }
 
 .radio-quotes {
@@ -594,6 +599,58 @@ strong, .bold { font-weight: 600; }
   color: var(--color-text);
   max-width: 500px;
   padding-top: 20px;
+}
+
+/* --- Ghost Audio Cards (slide 21) --- */
+.slide .kg-audio-card {
+  background: #000;
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+  min-height: 40px;
+}
+
+.slide .kg-audio-thumbnail {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+}
+
+.slide .kg-audio-title {
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+  padding: 4px 8px;
+}
+
+.slide .kg-audio-player-container {
+  color: #fff;
+}
+
+.slide .kg-audio-current-time,
+.slide .kg-audio-duration,
+.slide .kg-audio-time {
+  color: rgba(255,255,255,0.5);
+}
+
+.slide .kg-audio-playback-rate {
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+}
+
+.slide .kg-audio-play-icon svg path,
+.slide .kg-audio-pause-icon svg path {
+  fill: #fff;
+}
+
+.slide .kg-audio-mute-icon svg path,
+.slide .kg-audio-unmute-icon svg path {
+  fill: rgba(255,255,255,0.5);
+}
+
+.slide .kg-audio-seek-slider,
+.slide .kg-audio-volume-slider {
+  accent-color: #fff;
 }
 
 /* --- Soundtrack (slide 22) --- */
@@ -1088,4 +1145,208 @@ strong, .bold { font-weight: 600; }
 .static-gate__signin a {
   color: #fff;
   text-decoration: underline;
+}
+
+/* --- PDF Password Overlay --- */
+
+.pdf-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-overlay__content {
+  background: #1a1a1a;
+  padding: 2.5rem;
+  border-radius: 4px;
+  max-width: 360px;
+  width: 90%;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pdf-overlay__content h3 {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+#pdf-password {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  box-sizing: border-box;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+#pdf-password:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.4);
+}
+
+.pdf-overlay__buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.pdf-overlay__submit,
+.pdf-overlay__cancel {
+  padding: 0.65rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 2px;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.pdf-overlay__submit {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.pdf-overlay__submit:hover {
+  background: #ddd;
+}
+
+.pdf-overlay__cancel {
+  background: transparent;
+  color: #fff;
+}
+
+.pdf-overlay__cancel:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.pdf-overlay__error {
+  color: #ff4444;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  display: none;
+}
+
+/* ===========================================
+   MOBILE: Scrollable long-form layout
+   =========================================== */
+@media (max-width: 768px) {
+  /* Unlock scrolling */
+  html {
+    overflow: visible;
+    overflow-x: hidden;
+  }
+  body {
+    overflow: visible;
+    overflow-x: hidden;
+    height: auto;
+  }
+
+  /* Deck becomes flow container */
+  .deck {
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Slides flow vertically instead of stacking */
+  .slide {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+    z-index: auto;
+    overflow: visible;
+    min-height: 100dvh;
+    scroll-margin-top: 60px;
+  }
+  .slide.is-active,
+  .slide.is-prev {
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+    z-index: auto;
+  }
+
+  /* Remove vh locks on content variants */
+  .slide__content--radio {
+    height: auto;
+    min-height: 100dvh;
+  }
+  .slide__content--split {
+    height: auto;
+    width: 100%;
+  }
+
+  /* All content visible immediately (no entrance animations) */
+  .slide .glass-panel,
+  .slide .character__portrait img,
+  .slide .character__text,
+  .slide .char-grid,
+  .slide .acts-grid,
+  .slide .epigraph,
+  .slide .lyrics-quote,
+  .slide .lyrics-content,
+  .slide .video-embed,
+  .slide .tracklist,
+  .slide .spotify-link,
+  .slide .about-text,
+  .slide .contact-info,
+  .slide .style-quote,
+  .slide .title-glow,
+  .slide .radio-quote,
+  .slide .radio-dial-img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  /* Glass panels flow naturally */
+  .glass-panel,
+  .glass-panel--full {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  /* Hide slide counter & arrows */
+  .nav__prev,
+  .nav__next,
+  .nav__counter {
+    display: none;
+  }
+
+  /* Download buttons in flow */
+  .download-buttons {
+    position: static;
+    padding: 2rem 0;
+  }
+
+  /* Width constraints loosen on mobile */
+  .structure-intro,
+  .soundtrack-intro {
+    max-width: 100%;
+  }
+  .radio-quote {
+    max-width: 100%;
+  }
 }
