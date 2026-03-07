@@ -22,7 +22,7 @@ h2 {
     color: var(--color-hover);
     margin-top: 50px;
     font-size: 36px;
-}
+    }
 
 h3 {
     font-size: 20px;
@@ -33,13 +33,12 @@ h3 {
     }
 
 h4 {
-    font-size: var(--type-body);
+    font-size: 20px;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 700 !important;
     margin-top: 25px;
     }
-}
     
 h3:first-of-type {
     margin-top: 0;
@@ -66,35 +65,38 @@ blockquote cite {
     color: #333;
     }
 
-
 .comments-area.inner {
     max-width: 700px;
     }
 
-    p {
-        margin-top: 5px;
-        margin-bottom: 25px;
-        font-weight: 400;
-        font-family: var(--font-sans);
+p {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-weight: 400;
+    font-family: var(--font-sans);
     }
-    ul, ol {
-        margin-top: 30px;
-        margin-left: 10px;
-        margin-right: 50px;
-        margin-bottom: 30px;
+
+ul, ol {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 50px;
+    margin-bottom: 30px;
     }
-    li {
-        margin-bottom: 15px;
-        line-height: 1.5;
-        font-size: var(--type-body);
-        font-family: var(--font-sans) !important;
+
+li {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: var(--type-body);
+    font-family: var(--font-sans) !important;
     }
-    ul li::marker {
+
+ul li::marker {
     color: #444;
-}
-    .post-content ol li, .post-content ul li {
-        font-family: var(--font-sans);
-        padding-bottom: 8px;
+    }
+    
+.post-content ol li, .post-content ul li {
+    font-family: var(--font-sans);
+    padding-bottom: 8px;
     }
 
 .spite-hero {
@@ -181,7 +183,7 @@ blockquote cite {
     }
 
 li::marker {
-    font-size: 13px; /* or whatever size you want */
+    font-size: 13px;
     }
 
 .app-nav a {
@@ -194,113 +196,155 @@ li::marker {
     display: none;
     }
 
-    .app-nav button {
-        font-weight: 700;
-        background-color: #000;
-        border-bottom: none;
-        font-size: 14px;
-        margin-left: auto;
-        color: #fff;
+.app-nav button {
+    font-weight: 700;
+    background-color: #000;
+    border-bottom: none;
+    font-size: 14px;
+    margin-left: auto;
+    color: #fff;
     }
 
-    [data-theme="dark"] .app-nav button {
-        background-color: #fff;
-        color: #000;
+[data-theme="dark"] .app-nav button {
+    background-color: #fff;
+    color: #000;
     }   
 
-    .app-nav button a, .app-nav button:hover a {
-        color: var(--color-inverse);
-        text-decoration: none;
+.app-nav button a, .app-nav button a:hover {
+    color: var(--color-inverse);
+    text-decoration: none !important;
     } 
 
-   .spite-sidebar button {
-        font-weight: 700;
-        background-color: #000;
-        border-bottom: none;
+.spite-sidebar button {
+    font-weight: 700;
+    background-color: #000;
+    border-bottom: none;
+    font-size: 14px;
+    margin-left: 30px;
+    color: #fff;
+    }
+
+.spite-sidebar button:hover {
+    background: #fff !important;
+    }
+
+.app-nav a:hover,
+.app-nav a.active {
+    opacity: 1;
+    color: var(--color-hover);
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-decoration-thickness: 3px;
+    }
+
+.spite-columns {
+    display: grid;
+    grid-template-columns: 60% 30%;
+    gap: 10%;
+    align-items: start;
+    }
+
+    .spite-sidebar {
+        position: sticky;
+        top: 40px;
+        }
+
+    .footer-tags {
+        display: none;
+        }
+
+h6 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.7;
+    padding-left: 20px;
+    border-left: 3px solid var(--color-text);
+    }
+
+h6 a { 
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.5px;
+    font-size: 12px;
+    font-weight: 500;
+    }
+
+li a { 
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.5px;
+    }
+
+h3 + ol, h3 + ul, h4 + ul {
+    margin-top: 25px !important;
+    }
+
+@media (max-width: 700px) {
+    .spite-screenshot {
+        height: auto;
+        padding-top: 50px;
+        }
+
+    .app-nav button {
+        display: none;
+        }
+
+    .mobile-download {
+        display: block;
+        margin-top: 20px;
         font-size: 14px;
-        margin-left: 30px;
-        color: #fff;
-    }
-    .spite-sidebar button:hover {
-        background: #fff !important;
-    }
-    .app-nav a:hover,
-    .app-nav a.active {
-        opacity: 1;
-        color: var(--color-hover);
-        text-decoration: underline;
-        text-underline-offset: 10px;
-        text-decoration-thickness: 3px;
-    }
-
-
-
-    @media (max-width: 700px) {
-        .spite-screenshot {
-            height: auto;
-            padding-top: 50px;
-            }
-
-        .app-nav button {
-            display: none;
-            }
-
-       .mobile-download {
-            display: block;
-            margin-top: 20px;
-            font-size: 14px;
-            padding: 10px 26px;
-            font-weight: 700;
-            background-color: var(--color-hover);
-            color: var(--color-inverse);
-            }
-
-        .mobile-download a {
-            color: var(--color-inverse);
-            }
-
-        .spite-screenshot img {
-            position: relative !important;
-            }
-
-        .spite-hero {
-            padding: 0;
-            width: 88%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 30px;
-            }
-
-        ul, ol {
-            margin-left: 0;
-            margin-right: 0;
-            margin-top: 0;
-            margin-bottom: 20px;
-            }
-
-        p, ul li, ol li { font-size: 14px;}
-
-        .app-nav a {
-            font-size: 14px;
-            }   
-
-        .app-nav {
-            width: 100%;
-            padding-left: 20px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            box-sizing: border-box;
+        padding: 10px 26px;
+        font-weight: 700;
+        background-color: var(--color-hover);
+        color: var(--color-inverse);
         }
 
-        p { margin-bottom: 10px;}
+    .mobile-download a {
+        color: var(--color-inverse);
+        }
 
-        blockquote h1 {
-            font-size: 30px;
+    .spite-screenshot img {
+        position: relative !important;
         }
-        blockquote {
-            padding-left: 0px;
-            border-left: none;
+
+    .spite-hero {
+        padding: 0;
+        width: 88%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
         }
+
+    ul, ol {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 20px;
+        }
+
+    p, ul li, ol li { font-size: 14px;}
+
+    .app-nav a {
+        font-size: 14px;
+        }   
+
+    .app-nav {
+        width: 100%;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    p { margin-bottom: 10px;}
+
+    blockquote h1 {
+        font-size: 30px;
+    }
+    blockquote {
+        padding-left: 0px;
+        border-left: none;
+    }
 
     .app-nav {
         margin-bottom: 0;
@@ -315,51 +359,9 @@ li::marker {
         padding-left: 5%;
         padding-right: 5%;
         }
+}
 
-    }
-
-    .spite-columns {
-        display: grid;
-        grid-template-columns: 60% 30%;
-        gap: 10%;
-        align-items: start;
-        }
-
-    .spite-sidebar {
-        /* right column */
-        position: sticky;
-        top: 40px;
-        }
-
-    .footer-tags {
-        display: none;
-        }
-
-    h6 {
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 1.7;
-        padding-left: 20px;
-        border-left: 3px solid var(--color-text);
-        }
-
-    h6 a { 
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        text-decoration-thickness: 0.5px;
-        font-size: 12px;
-        font-weight: 500;
-        }
-
-li a { 
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        text-decoration-thickness: 0.5px;
-        }
-
-    h3 + ol, h3 + ul, h4 + ul {
-        margin-top: 25px !important;
-    }
+ 
 
     @media (max-width: 900px) {
         .spite-columns {
@@ -415,7 +417,6 @@ li a {
             <a href="/spite-test-center/" data-slug="spite-test-center">Learning Center</a>
             <a href="/spite-privacy/" data-slug="spite-privacy">Privacy</a>
             <button><a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download on the App Store</a></button>
-
         </nav>
         <script>
         // Highlight active nav item
