@@ -46,7 +46,6 @@ h3:first-of-type {
 
 h4 {
     color: #fff;
-    padding-top: 30px;
     }
 
 blockquote {
@@ -192,6 +191,10 @@ li::marker {
     color: var(--color-hover);
     }
 
+.app-nav a:hover {
+    text-decoration: none;
+    }
+
 .mobile-download {
     display: none;
     }
@@ -287,9 +290,6 @@ strong {
     color: var(--color-hover);
     }
 
-h4 + p > strong {
-    padding-top: 20px;
-    }
 
 
 @media (max-width: 700px) {
@@ -429,7 +429,7 @@ h4 + p > strong {
         <nav class="app-nav">
             <a href="/spite/" data-slug="spite">Features</a>
             <a href="/spite-test-center/" data-slug="spite-test-center">Learning Center</a>
-            <a href="/spite-privacy/" data-slug="spite-terms-privacy">Privacy</a>
+            <a href="/spite-terms-privacy/" data-slug="spite-terms-privacy">Privacy</a>
             <button><a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download on the App Store</a></button>
         </nav>
         <script>
