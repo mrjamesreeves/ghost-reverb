@@ -244,14 +244,14 @@ li::marker {
     align-items: start;
     }
 
-    .spite-sidebar {
-        position: sticky;
-        top: 40px;
-        }
+.spite-sidebar {
+    position: sticky;
+    top: 40px;
+    }
 
-    .footer-tags {
-        display: none;
-        }
+.footer-tags {
+    display: none;
+    }
 
 h6 {
     font-size: 12px;
@@ -280,12 +280,17 @@ h3 + ol, h3 + ul, h4 + ul {
     }
 
 p + ul {
-    margin-top: 5px !important;
+    margin-top: -15px !important;
     }
 
 strong {
     color: var(--color-hover);
     }
+
+h4 + strong {
+    padding-top: 20px;
+    }
+
 
 @media (max-width: 700px) {
     .spite-screenshot {
@@ -342,19 +347,18 @@ strong {
         padding-top: 10px;
         padding-bottom: 10px;
         box-sizing: border-box;
-    }
+        }
 
     p { margin-bottom: 10px;}
 
-
-
     blockquote h1 {
         font-size: 30px;
-    }
+        }
+
     blockquote {
         padding-left: 0px;
         border-left: none;
-    }
+        }
 
     .app-nav {
         margin-bottom: 0;
