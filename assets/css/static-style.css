@@ -1104,7 +1104,7 @@ padding: clamp(2rem, 5vw, 4rem);
     padding: 0 1rem;
   }
   .topbar__title {
-    font-size: 0.9rem;
+    font-size: inherit; /* match STATIC size */
   }
   .toc-overlay__panel {
     padding: 2rem 1.5rem;
@@ -1440,6 +1440,16 @@ padding: clamp(2rem, 5vw, 4rem);
     letter-spacing: 0;
     text-transform: capitalize;
     font-size: 1rem;
+  }
+
+  /* Hide play icon from Spotify button on mobile */
+  .soundtrack-btn__play {
+    display: none;
+  }
+
+  /* Hide Side A / Side B headings on mobile */
+  .tracklist h4 {
+    display: none;
   }
 
   /* Hide topbar prev/next + counter on mobile */
