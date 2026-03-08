@@ -2,6 +2,8 @@
 
 <style>
 
+/* ---- Typography overrides ---- */
+
 .kg-image-card img {
     margin-left: 0;
     width: 150px;
@@ -38,19 +40,15 @@ h4 {
     text-transform: none;
     font-weight: 700 !important;
     margin-top: 20px;
+    color: #fff;
     }
 
 h5 + h2 {
     margin-top: 0px;
     }
-}
-    
+
 h3:first-of-type {
     margin-top: 0;
-    }
-
-h4 {
-    color: #fff;
     }
 
 blockquote {
@@ -62,7 +60,7 @@ blockquote {
 blockquote h1 {
     font-size: 60px;
     line-height: .9;
-    color: #222
+    color: #222;
     }
 
 blockquote cite {
@@ -97,191 +95,21 @@ li {
 ul li::marker {
     color: #444;
     }
-    
+
 .post-content ol li, .post-content ul li {
     font-family: var(--font-sans);
     padding-bottom: 8px;
-    }
-
-.spite-hero {
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto 60px;
-    background: #f0f0f0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    overflow: hidden;
-    padding: 5%;
-    padding-bottom: 30px;
-    box-sizing: border-box;
-    }
-
-.spite-header {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    }
-
-.spite-copy {
-    padding-top: 20px;
-    }
-
-.spite-screenshot {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 300 / 135;
-    overflow: hidden;
-    }
-
-.spite-buttons {
-    margin-left: 5%
-    }
-
-.spite-screenshot img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    position: absolute;
-    background: #f0f0f0;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    }
-
-.spite-screenshot img:first-child {
-    position: relative;
-    opacity: 1;
-    }
-
-.spite-screenshot img.active {
-    opacity: 1;
-    }
-
-.post-header-content {
-    text-align: left;
-    }
-
-.post-header-content h1 {
-    text-align: left;
-    margin-bottom: 20px;
-    }
-
-.post-header-content + .post-content > p:first-child {
-    text-align: left;
-    font-size: 1.1em;
-    margin-bottom: 40px;
-    }
-
-.app-nav {
-    display: flex;
-    gap: 40px;
-    margin-top: 30px;
-    justify-content: left;
-    border-radius: 30px;
-    width: 55%;
-    min-width: 300px;
-    background: #f0f0f0;
-    padding-left: 30px;
-    align-items: center;
     }
 
 li::marker {
     font-size: 13px;
     }
 
-.app-nav a {
-    font-size: var(--type-body-sm);
-    font-weight: 700;
-    color: var(--color-hover);
-    }
-
-.app-nav a:hover {
-    text-decoration: none;
-    }
-
 a, a:hover {
     background-image: none;
     }
 
-.mobile-download {
-    display: none;
-    }
-
-.app-nav button {
-    font-weight: 700;
-    background-color: #000;
-    border-bottom: none;
-    font-size: 14px;
-    margin-left: auto;
-    color: #fff;
-    }
-
-[data-theme="dark"] .app-nav button {
-    background-color: #fff;
-    color: #000;
-    }   
-
-.app-nav button a, .app-nav button a:hover {
-    color: var(--color-inverse);
-    text-decoration: none !important;
-    } 
-
-.spite-sidebar button {
-    font-weight: 700;
-    background-color: #000;
-    border-bottom: none;
-    font-size: 14px;
-    margin-left: 30px;
-    color: #fff;
-    }
-
-.spite-sidebar button:hover {
-    background: #fff !important;
-    }
-
-.app-nav a:hover,
-.app-nav a.active {
-    opacity: 1;
-    color: var(--color-hover);
-    text-decoration: underline;
-    text-underline-offset: 10px;
-    text-decoration-thickness: 3px;
-    }
-
-.spite-columns {
-    display: grid;
-    grid-template-columns: 60% 30%;
-    gap: 10%;
-    align-items: start;
-    }
-
-.spite-sidebar {
-    position: sticky;
-    top: 40px;
-    }
-
-.footer-tags {
-    display: none;
-    }
-
-h6 {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.7;
-    padding-left: 20px;
-    border-left: 3px solid var(--color-text);
-    }
-
-h6 a { 
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 0.5px;
-    font-size: 12px;
-    font-weight: 500;
-    }
-
-li a { 
+li a {
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 0.5px;
@@ -299,42 +127,260 @@ strong {
     color: var(--color-hover);
     }
 
+h6 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.7;
+    padding-left: 20px;
+    border-left: 3px solid var(--color-text);
+    }
 
+h6 a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.5px;
+    font-size: 12px;
+    font-weight: 500;
+    }
+
+h5.kg-toggle-heading-text {
+    font-size: 16px !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-weight: 600;
+}
+
+.kg-toggle-card-icon svg {
+    color: #fff;
+    }
+
+[data-theme="dark"] .kg-toggle-card-icon svg {
+    color: #000;
+}
+
+/* ---- Hide default post header ---- */
+
+.post-header-content {
+    text-align: left;
+    display: none;
+    }
+
+.post-header-content + .post-content > p:first-child {
+    display: none;
+    }
+
+.footer-tags {
+    display: none;
+    }
+
+/* ---- Hero ---- */
+
+.spite-hero {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 40px;
+    text-align: center;
+    padding: 60px 5% 0;
+    box-sizing: border-box;
+    }
+
+.spite-hero-header {
+    margin-bottom: 50px;
+    }
+
+.spite-hero-header h1 {
+    font-family: var(--font-big);
+    font-size: 7rem;
+    letter-spacing: 0.05em;
+    margin: 0 0 5px;
+    text-transform: uppercase;
+    }
+
+.spite-subhead {
+    font-size: 1.3rem;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 400;
+    }
+
+/* Download buttons (outline style) */
+
+.spite-download-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    }
+
+.spite-download-buttons a {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 1px solid var(--color-text);
+    border-radius: 6px;
+    font-size: var(--type-body-sm);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    color: var(--color-hover);
+    text-decoration: none;
+    background-image: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+.spite-download-buttons a:hover {
+    border-color: var(--color-hover);
+    background: rgba(255,255,255,0.05);
+    }
+
+[data-theme="light"] .spite-download-buttons a:hover {
+    background: rgba(0,0,0,0.05);
+    }
+
+/* Screenshot carousel */
+
+.spite-screenshot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 300 / 135;
+    overflow: hidden;
+    }
+
+.spite-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    }
+
+.spite-screenshot img:first-child {
+    position: relative;
+    opacity: 1;
+    }
+
+.spite-screenshot img.active {
+    opacity: 1;
+    }
+
+/* Price line */
+
+.spite-price {
+    text-align: center;
+    font-size: var(--type-body-sm);
+    color: var(--color-text-muted);
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-family: var(--font-sans);
+    }
+
+/* ---- Nav (pill buttons) ---- */
+
+.app-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: none;
+    padding: 0;
+    width: 100%;
+    }
+
+.app-nav a {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid var(--color-text-muted);
+    border-radius: 30px;
+    font-size: var(--type-body-sm);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    text-decoration: none;
+    background-image: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+.app-nav a:hover {
+    border-color: var(--color-hover);
+    color: var(--color-hover);
+    text-decoration: none;
+    background-size: 0;
+    }
+
+.app-nav a.active {
+    border-color: var(--color-hover);
+    color: var(--color-hover);
+    text-decoration: none;
+    }
+
+/* ---- Content (single centered column) ---- */
+
+.spite-content {
+    max-width: 650px;
+    margin: 0 auto;
+    padding-top: 20px;
+    }
+
+.spite-credits {
+    margin-top: 60px;
+    }
+
+/* Bottom download section */
+
+.spite-bottom-download {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    }
+
+/* ---- Responsive ---- */
 
 @media (max-width: 700px) {
+    .spite-hero {
+        padding: 40px 5% 0;
+        margin-bottom: 20px;
+        }
+
+    .spite-hero-header h1 {
+        font-size: 4.5rem;
+        }
+
+    .spite-subhead {
+        font-size: 1.1rem;
+        }
+
+    .spite-download-buttons {
+        flex-direction: column;
+        align-items: center;
+        }
+
+    .spite-download-buttons a {
+        width: 220px;
+        text-align: center;
+        }
+
     .spite-screenshot {
+        aspect-ratio: auto;
         height: auto;
-        padding-top: 50px;
-        }
-
-    .app-nav button {
-        display: none;
-        }
-
-    .mobile-download {
-        display: block;
-        margin-top: 20px;
-        font-size: 14px;
-        padding: 10px 26px;
-        font-weight: 700;
-        background-color: var(--color-hover);
-        color: var(--color-inverse);
-        }
-
-    .mobile-download a {
-        color: var(--color-inverse);
         }
 
     .spite-screenshot img {
         position: relative !important;
         }
 
-    .spite-hero {
-        padding: 0;
-        width: 88%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 30px;
+    .app-nav {
+        gap: 8px;
+        }
+
+    .app-nav a {
+        font-size: 13px;
+        padding: 7px 16px;
         }
 
     ul, ol {
@@ -344,39 +390,14 @@ strong {
         margin-bottom: 20px;
         }
 
-    p, ul li, ol li { font-size: 14px;}
+    p, ul li, ol li { font-size: 14px; }
 
-    .app-nav a {
-        font-size: 14px;
-        }   
+    p { margin-bottom: 10px; }
 
-    .app-nav {
-        width: 100%;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        box-sizing: border-box;
-        }
+    h2 { font-size: 36px; margin-top: 50px; }
 
-    p { margin-bottom: 10px;}
-
-    blockquote h1 {
-        font-size: 30px;
-        }
-
-    blockquote {
-        padding-left: 0px;
-        border-left: none;
-        }
-
-    .app-nav {
-        margin-bottom: 0;
-        }
-        
-    .spite-screenshot img, .spite-hero {
-        background: none;
-        border-radius: 0;
-        }
+    blockquote h1 { font-size: 30px; }
+    blockquote { padding-left: 0; border-left: none; }
 
     .radio-page .radio-content-wrapper {
         padding-left: 5%;
@@ -384,40 +405,23 @@ strong {
         }
 }
 
- 
-
-    @media (max-width: 900px) {
-        .spite-columns {
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
-    }
-
-    h5.kg-toggle-heading-text {
-        font-size: 16px !important;
-        text-transform: none !important;
-        letter-spacing: normal !important;
-        font-weight: 600;
-    }
-    .kg-toggle-card-icon svg {
-        color: #fff;
-        }
-
-    [data-theme="dark"] .kg-toggle-card-icon svg {
-        color: #000;
-    }
-
-[data-theme="dark"] .spite-screenshot img, [data-theme="dark"] .spite-hero, [data-theme="dark"] .app-nav {
-    background: #333;
-    }
 </style>
 
 <main id="main" class="content outer radio-page">
 
     {{#post}}
-    
-    <!-- Hero (only on main Spite page) -->
+
+    <!-- Hero: title, subhead, buttons, screenshots -->
     <div class="spite-hero">
+        <div class="spite-hero-header">
+            <h1>Spite</h1>
+            <p class="spite-subhead">A dignified music player.</p>
+            <div class="spite-download-buttons">
+                <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download for Mac</a>
+                <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download for iPhone</a>
+            </div>
+        </div>
+
         <div class="spite-screenshot">
             <img src="{{asset "spite/spite1.webp"}}" alt="Spite" class="active">
             <img src="{{asset "spite/spite2.webp"}}" alt="Spite">
@@ -425,21 +429,17 @@ strong {
             <img src="{{asset "spite/spite4.webp"}}" alt="Spite">
             <img src="{{asset "spite/spite5.webp"}}" alt="Spite">
         </div>
+
+        <p class="spite-price">$10 after a 30-day trial</p>
     </div>
-        
 
     <div class="radio-content-wrapper">
-        <div class="spite-header">
-            <h1>Spite</h1>
-            <p>A dignified music player like it's 2006 but a little nicer.</p>
-            <button class="mobile-download"><a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download on the App Store</a></button>
-        </div>
-        <!-- Auto-detecting navigation -->
+        <!-- Pill navigation -->
         <nav class="app-nav">
             <a href="/spite/" data-slug="spite">Features</a>
-            <a href="/spite-test-center/" data-slug="spite-test-center">Learning Center</a>
-            <a href="/spite-terms-privacy/" data-slug="spite-terms-privacy">Privacy</a>
-            <button><a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download on the App Store</a></button>
+            <a href="/spite-test-center/" data-slug="spite-test-center">Updates + Support</a>
+            <a href="/spite-terms-privacy/" data-slug="spite-terms-privacy">Terms + Privacy</a>
+            <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download</a>
         </nav>
         <script>
         // Highlight active nav item
@@ -455,35 +455,34 @@ strong {
         </script>
 
         <div class="inner-wide">
-    <article class="spite-columns">
-        <div class="spite-copy">
-            {{content}}
-            
-            {{#has slug="spite-test-center"}}
-                {{> comments}}
-            {{/has}}
-        </div>
+            <div class="spite-content">
+                {{content}}
 
-        <div class="spite-sidebar">
-            {{#has slug="spite"}}
-                <!-- Simon Critchley quote -->
-                <blockquote><a href="#">
-                    <h1>It is impossible to be an atheist when listening to the music that one loves.</h1>
-                    <cite>Simon Critchley</cite></a>
-                </blockquote>
-            {{else}}
-                <!-- Download buttons -->
-                <div class="spite-buttons">
-                    <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
-                </div>
-            {{/has}}
+                {{#has slug="spite-test-center"}}
+                    {{> comments}}
+                {{/has}}
+
+                {{#has slug="spite"}}
+                    <div class="spite-bottom-download">
+                        <div class="spite-download-buttons">
+                            <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download for Mac</a>
+                            <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download for iPhone</a>
+                        </div>
+                    </div>
+                {{/has}}
+
+                {{#has slug="spite-test-center"}}
+                {{else}}
+                    {{#has slug="spite"}}
+                    {{else}}
+                        <div class="spite-credits">
+                            <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
+                        </div>
+                    {{/has}}
+                {{/has}}
+            </div>
         </div>
-    </article>
-</div>
     </div>
-    <br>
-
-
 
 
 <!-- EPISODES -->
@@ -506,10 +505,10 @@ strong {
                         {{/if}}
 
                         <div class="post-card-inside">
-                            <div class="post-card-content">          
+                            <div class="post-card-content">
                                 <div class="big-title">
                                     <h5>
-                                        Midnight Radio 
+                                        Midnight Radio
                                         {{#foreach tags visibility="internal"}}
                                         {{#if (match slug "^hash-mr-")}}
                                             <span class="episode-number" data-ep="{{slug}}"></span>
@@ -522,7 +521,7 @@ strong {
                         </div>
                     </div>
                     </a>
-                </article>                            
+                </article>
 
             {{/foreach}}
             {{/get}}

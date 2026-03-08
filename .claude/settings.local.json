@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:2368/spite/)",
+      "Bash(curl -s http://localhost:2371/spite/)"
     ]
   }
 }
