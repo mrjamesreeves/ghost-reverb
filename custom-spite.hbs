@@ -315,6 +315,21 @@ h5.kg-toggle-heading-text {
     background-color: #444;
     }
 
+[data-theme="light"] .app-nav a {
+    background-color: #ddd;
+    color: #222;
+    }
+
+[data-theme="light"] .app-nav a.active {
+    color: #000;
+    background-color: #b8b8b8;
+    }
+
+[data-theme="light"] .app-nav a:hover{
+    color: #000;
+    background-color: #999;
+    }
+
 /* ---- Content (single centered column) ---- */
 
 .spite-content {
@@ -325,9 +340,12 @@ h5.kg-toggle-heading-text {
 
 .spite-credits {
     margin-top: 60px;
-    margin-bottom: 160px;
+    margin-bottom: 60px;
     }
 
+.meta.inner {
+    margin-bottom: 60px;
+    }
 /* Bottom download section */
 
 .spite-bottom-download {
@@ -475,14 +493,12 @@ h5.kg-toggle-heading-text {
     </div>
 
 
-        {{/post}}
 
 
 </main>
 
 <style>
   :root {
-    --color-text: #aaa;
     --color-bg: #111;
     --strip-height: 460px;
     --strip-height-mobile: 260px;
@@ -666,8 +682,7 @@ h5.kg-toggle-heading-text {
         <div class="inner-wide">
             <div class="spite-content">
                 
-                <h3 id="features-conditions">Features</h3>
-                <h4>Version 5.2 • March 10, 2026</h4>
+                <h3 id="features-conditions">Version 5.2 • March 10, 2026</h3>
                 <ul>
                     <li>Apple only. Requires iCloud or Dropbox for telephone sync.</li>
                     <li>Supports all the good extensions: mp3, flac, wav, aiff, aac, m4a, and opus.</li>
@@ -695,11 +710,14 @@ h5.kg-toggle-heading-text {
                         </div>
                     </div>
 
-
-
-
                         <div class="spite-credits">
                             <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
+                        </div>
+
+                        <div class="meta inner">
+                            <div class="comment-box">
+                                {{> comments}}
+                            </div>
                         </div>
 
             </div>
@@ -777,6 +795,7 @@ h5.kg-toggle-heading-text {
 
         </div>
     </div>
+        {{/post}}
 
 
 </main>
