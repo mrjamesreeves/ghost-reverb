@@ -185,21 +185,21 @@ h5.kg-toggle-heading-text {
     }
 
 .spite-hero-header {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
     }
 
 .spite-hero-header h1 {
     font-family: var(--font-big);
-    font-size: 7rem;
-    letter-spacing: 0.05em;
+    font-size: 9rem;
+    padding-top: 50px;
     margin: 0 0 5px;
     text-transform: uppercase;
     }
 
 .spite-subhead {
-    font-size: 1.3rem;
+    font-size: 2rem;
     font-family: var(--font-sans);
-    color: var(--color-text);
+    color: var(--color-hover);
     margin-top: 0;
     margin-bottom: 30px;
     font-weight: 400;
@@ -216,25 +216,23 @@ h5.kg-toggle-heading-text {
 
 .spite-download-buttons a {
     display: inline-block;
-    padding: 10px 24px;
-    border: 1px solid var(--color-text);
-    border-radius: 6px;
-    font-size: var(--type-body-sm);
-    font-weight: 600;
+    padding: 8px 24px 10px 24px;
+    border: 1px solid var(--color-hover);
+    background-color: var(--color-hover);
+    border-radius: 10px;
+    font-weight: 700;
     font-family: var(--font-sans);
-    color: var(--color-hover);
+    color: var(--color-inverse) !important;
     text-decoration: none;
-    background-image: none;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    transition: all 0.2s ease;
+    line-height: 1;
+    letter-spacing: -.2px;
     }
 
 .spite-download-buttons a:hover {
-    border-color: var(--color-hover);
-    background: rgba(255,255,255,0.05);
-    }
-
-[data-theme="light"] .spite-download-buttons a:hover {
-    background: rgba(0,0,0,0.05);
+    border: 1px solid var(--color-hover);
+    background: var(--color-inverse);
+    color: var(--color-hover) !important;
     }
 
 /* Screenshot carousel */
@@ -270,11 +268,10 @@ h5.kg-toggle-heading-text {
 /* Price line */
 
 .spite-price {
-    text-align: center;
-    font-size: var(--type-body-sm);
-    color: var(--color-text-muted);
+    text-align: left;
+    font-size: 1.5rem;
+    color: var(--color-text-hover);
     margin-top: 30px;
-    margin-bottom: 0;
     font-family: var(--font-sans);
     }
 
@@ -282,9 +279,9 @@ h5.kg-toggle-heading-text {
 
 .app-nav {
     display: flex;
-    gap: 10px;
-    margin-top: 40px;
-    margin-bottom: 10px;
+    gap: 5px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     justify-content: center;
     flex-wrap: wrap;
     background: none;
@@ -293,30 +290,29 @@ h5.kg-toggle-heading-text {
     }
 
 .app-nav a {
-    display: inline-block;
-    padding: 8px 20px;
-    border: 1px solid var(--color-text-muted);
-    border-radius: 30px;
-    font-size: var(--type-body-sm);
-    font-weight: 600;
+    flex: auto;
+    text-align: center;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 700;
     font-family: var(--font-sans);
-    color: var(--color-text);
+    color: var(--color-hover);
     text-decoration: none;
-    background-image: none;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    background-color: #222;
+    transition: all 0.2s ease;
     }
 
 .app-nav a:hover {
-    border-color: var(--color-hover);
     color: var(--color-hover);
     text-decoration: none;
     background-size: 0;
+    background-color: #333;
     }
 
 .app-nav a.active {
-    border-color: var(--color-hover);
     color: var(--color-hover);
     text-decoration: none;
+    background-color: #444;
     }
 
 /* ---- Content (single centered column) ---- */
@@ -329,14 +325,18 @@ h5.kg-toggle-heading-text {
 
 .spite-credits {
     margin-top: 60px;
+    margin-bottom: 160px;
     }
 
 /* Bottom download section */
 
 .spite-bottom-download {
     text-align: center;
-    margin-top: 60px;
-    margin-bottom: 40px;
+    margin-top: 50px;
+    }
+
+.spite-bottom-download .spite-download-buttons {
+    justify-content: flex-start;
     }
 
 /* ---- Responsive ---- */
@@ -349,6 +349,7 @@ h5.kg-toggle-heading-text {
 
     .spite-hero-header h1 {
         font-size: 4.5rem;
+        width: 100%;
         }
 
     .spite-subhead {
@@ -356,17 +357,15 @@ h5.kg-toggle-heading-text {
         }
 
     .spite-download-buttons {
-        flex-direction: column;
         align-items: center;
         }
 
     .spite-download-buttons a {
-        width: 220px;
+        font-size: 14px;
         text-align: center;
         }
 
     .spite-screenshot {
-        aspect-ratio: auto;
         height: auto;
         }
 
@@ -403,6 +402,16 @@ h5.kg-toggle-heading-text {
         padding-left: 5%;
         padding-right: 5%;
         }
+.spite-hero-header {
+    margin-bottom: 20px;
+}
+        .spite-price {
+    text-align: left;
+    font-size: 16px;
+    color: var(--color-text-hover);
+    margin-top: 20px;
+    font-family: var(--font-sans);
+    }
 }
 
 </style>
@@ -427,95 +436,296 @@ h5.kg-toggle-heading-text {
             <img src="{{asset "spite/spite2.webp"}}" alt="Spite">
             <img src="{{asset "spite/spite3.webp"}}" alt="Spite">
             <img src="{{asset "spite/spite4.webp"}}" alt="Spite">
-            <img src="{{asset "spite/spite5.webp"}}" alt="Spite">
         </div>
 
-        <p class="spite-price">$10 after a 30-day trial</p>
     </div>
 
     <div class="radio-content-wrapper">
-        <!-- Pill navigation -->
-        <nav class="app-nav">
-            <a href="/spite/" data-slug="spite">Features</a>
-            <a href="/spite-test-center/" data-slug="spite-test-center">Updates + Support</a>
-            <a href="/spite-terms-privacy/" data-slug="spite-terms-privacy">Terms + Privacy</a>
-            <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download</a>
-        </nav>
-        <script>
-        // Highlight active nav item
-        (function() {
-            const currentSlug = '{{slug}}';
-            const links = document.querySelectorAll('.app-nav a[data-slug]');
-            links.forEach(link => {
-                if (link.getAttribute('data-slug') === currentSlug) {
-                    link.classList.add('active');
-                }
-            });
-        })();
-        </script>
 
         <div class="inner-wide">
             <div class="spite-content">
+                
+                <p class="spite-price">Try it for 30 days, then it's $15 for Mac + iOS forever.</p>
+
+                <!-- Pill navigation -->
+                <nav class="app-nav">
+                    <a href="/spite/" data-slug="spite">Features</a>
+                   <!-- <a href="/spite-test-center/" data-slug="spite-test-center">Updates + Support</a> -->
+                    <a href="/spite-terms-privacy/" data-slug="spite-terms-privacy">Terms + Privacy</a>
+                    <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download</a>
+                </nav>
+                <script>
+                // Highlight active nav item
+                (function() {
+                    const currentSlug = '{{slug}}';
+                    const links = document.querySelectorAll('.app-nav a[data-slug]');
+                    links.forEach(link => {
+                        if (link.getAttribute('data-slug') === currentSlug) {
+                            link.classList.add('active');
+                        }
+                    });
+                })();
+                </script>
+
                 {{content}}
+            </div>
 
-                {{#has slug="spite-test-center"}}
-                    {{> comments}}
-                {{/has}}
+        </div>            
 
-                {{#has slug="spite"}}
+    </div>
+
+
+        {{/post}}
+
+
+</main>
+
+<style>
+  :root {
+    --color-text: #aaa;
+    --color-bg: #111;
+    --strip-height: 460px;
+    --strip-height-mobile: 260px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  /* ── Strip wrapper ── */
+
+  .spite-strip-outer {
+    width: 100%;
+    overflow: hidden;         /* hides scrollbar chrome */
+    position: relative;
+    padding-top: 60px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  /* Fade-out on the right to hint more content */
+  .spite-strip-outer::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px;
+    height: calc(var(--strip-height) + 36px); /* image + label */
+    background: linear-gradient(to right, transparent, var(--color-bg));
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .spite-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;           /* Firefox */
+    padding: 0 5% 0 5%;             /* left indent matches your site padding */
+    padding-right: calc(5% + 80px); /* extra right so last card isn't hidden by fade */
+  }
+
+  .spite-strip::-webkit-scrollbar { display: none; }
+  .spite-strip.is-grabbing { cursor: grabbing; }
+
+  /* ── Cards ── */
+
+  .spite-strip-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .spite-strip-image {
+    height: var(--strip-height);
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Card width is driven by the image's natural aspect ratio */
+  .spite-strip-image img {
+    height: 100%;
+    width: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .spite-strip-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+    padding-left: 2px;
+    text-align: center;
+  }
+
+  /* ── Responsive ── */
+
+  @media (max-width: 700px) {
+    :root { --strip-height: 260px; }
+
+    .spite-strip-outer::after {
+      width: 50px;
+      height: calc(var(--strip-height) + 36px);
+    }
+  }
+</style>
+
+<div class="spite-strip-outer">
+  <div class="spite-strip" id="spiteStrip">
+
+    <!-- 
+      Each card's width is determined by the image's aspect ratio at the fixed height.
+      Landscape images (CarPlay) → wide card.
+      Portrait images (iPhone)   → narrow card.
+      Square-ish (Mac)           → medium card.
+      No width needed on the card itself — it follows the image naturally.
+    -->
+
+
+
+    <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-custom.webp"}}" alt="Spite Custom">
+      </div>
+      <p class="spite-strip-label">Customize your mixtapes</p>
+    </div>
+
+
+
+       <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-labels.webp"}}" alt="RecordLabels">
+      </div>
+      <p class="spite-strip-label">Organize by record label</p>
+    </div>
+
+        <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-carplay.webp"}}" alt="Spite CarPlay">
+      </div>
+      <p class="spite-strip-label">CarPlay</p>
+    </div>
+
+     <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-ipad.webp"}}" alt="Spite iPad">
+      </div>
+      <p class="spite-strip-label">Customize the background across devices</p>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+// Mouse drag to scroll
+(function () {
+  const strip = document.getElementById('spiteStrip');
+  let isDown = false, startX, scrollLeft;
+
+  strip.addEventListener('mousedown', e => {
+    isDown = true;
+    strip.classList.add('is-grabbing');
+    startX = e.pageX;    
+    scrollLeft = strip.scrollLeft;
+  });
+
+  strip.addEventListener('mouseleave', () => {
+    isDown = false;
+    strip.classList.remove('is-grabbing');
+  });
+
+  strip.addEventListener('mouseup', () => {
+    isDown = false;
+    strip.classList.remove('is-grabbing');
+  });
+
+  strip.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const walk = (x - startX) * 1.5;
+    strip.scrollLeft = scrollLeft - walk;
+  });
+})();
+</script>
+
+
+<main id="main" class="content outer radio-page">
+
+
+    <div class="radio-content-wrapper">
+
+        <div class="inner-wide">
+            <div class="spite-content">
+                
+                <h3 id="features-conditions">Features</h3>
+                <h4>Version 5.2 • March 10, 2026</h4>
+                <ul>
+                    <li>Apple only. Requires iCloud or Dropbox for telephone sync.</li>
+                    <li>Supports all the good extensions: mp3, flac, wav, aiff, aac, m4a, and opus.</li>
+                    <li>A streamlined interface that keeps artwork big and playlists central.</li>
+                    <li>Add custom artwork for your playlists and dig the harmonious accent colors.</li>
+                    <li>Everything you like is fantastic, so there's no need for hearts or stars—just a delete button to ruthlessly clear out the cruft.</li>
+                    <li>XML is the way. Playlists live in a folder you can see.</li>
+                    <li>Works with CarPlay.</li>
+                    <li>Looks nice on an iPad.</li>
+                    <li>Last.FM integration. Wire it up under 'Settings' and set your scrobbles for the heart of the sun.&nbsp;</li>
+                    <li>Deepen your relationships (or destroy them) by sharing your music library. Everything the other person adds or deletes will affect you and vice versa. It's a good conversation starter.</li>
+                    <li>Built by a tremendous music nerd who wants to organize albums by record label, quickly shuffle new acquisitions, and easily access a metadata editor. You're welcome.</li>
+                    <li>After a 30-day trial, Spite costs $14.99—then it's unlocked on your desktop, iPhone, and iPad, free forever and ever with ongoing updates from a compulsive tinkerer.</li>
+                    <li>No subscriptions, ads, creepy data harvesting, upsells, freemium bullshit, or passwords. Ever.</li>
+                </ul>
+                <figure class="kg-card kg-image-card"><img src="https://www.jamesreeves.co/content/images/2026/02/spite-icon.webp" class="kg-image" alt="" loading="lazy" width="544" height="544"></figure>
+                <h3 id="icon">Icon</h3>
+                <p>This fragmented head of a colossal boy from two thousand years ago captures today’s psychic shred and shear better than anything I’ve seen.</p>
+
+
                     <div class="spite-bottom-download">
                         <div class="spite-download-buttons">
                             <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download for Mac</a>
                             <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download for iPhone</a>
                         </div>
                     </div>
-                {{/has}}
 
-                {{#has slug="spite-test-center"}}
-                {{else}}
-                    {{#has slug="spite"}}
-                    {{else}}
+
+
+
                         <div class="spite-credits">
                             <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
                         </div>
-                    {{/has}}
-                {{/has}}
+
             </div>
-        </div>
+
+        </div>            
+
     </div>
 
 
 <!-- EPISODES -->
     <div class="inner-wide">
         <div class="grid grid-more">
-            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio+id:-{{id}}" limit="3"}}
-            {{#foreach posts visibility="all"}}
                 <article>
-                    <a href="{{url}}" class="post-card-link">
+                    <a href="/conversations-with-the-drum/" class="post-card-link">
                     <div class="post-card bg-dark bg-full">
 
-                        {{#if feature_image}}
-                            <img
-                                class="post-card-image bg-full-image bg-fade-in"
-                                srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
-                                sizes="(min-width: 1600px) 1600px, 100vw"
-                                src="{{img_url feature_image size="xl"}}"
-                                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                            />
-                        {{/if}}
+                            <img class="post-card-image bg-full-image bg-fade-in" srcset="/content/images/size/w300/2026/03/MR-B41.webp 300w, /content/images/size/w600/2026/03/MR-B41.webp 600w, /content/images/size/w800/2026/03/MR-B41.webp 800w, /content/images/size/w1200/2026/03/MR-B41.webp 1200w, /content/images/size/w1600/2026/03/MR-B41.webp 1600w, /content/images/size/w2000/2026/03/MR-B41.webp 2000w" sizes="(min-width: 1600px) 1600px, 100vw" src="/content/images/size/w1600/2026/03/MR-B41.webp" alt="Conversations With the Drum">
 
                         <div class="post-card-inside">
                             <div class="post-card-content">
                                 <div class="big-title">
                                     <h5>
                                         Midnight Radio
-                                        {{#foreach tags visibility="internal"}}
-                                        {{#if (match slug "^hash-mr-")}}
-                                            <span class="episode-number" data-ep="{{slug}}"></span>
-                                        {{/if}}
-                                        {{/foreach}}
+                                            <span class="episode-number" data-ep="hash-mr-41">41</span>
                                     </h5>
-                                    <h2>{{title}}</h2>
+                                    <h2>Conversations With the Drum</h2>
                                 </div>
                             </div>
                         </div>
@@ -523,16 +733,53 @@ h5.kg-toggle-heading-text {
                     </a>
                 </article>
 
-            {{/foreach}}
-            {{/get}}
+                <article>
+                    <a href="/bodies-without-organs/" class="post-card-link">
+                    <div class="post-card bg-dark bg-full">
+
+                            <img class="post-card-image bg-full-image bg-fade-in" srcset="/content/images/size/w300/2026/02/MRB40-1.webp 300w, /content/images/size/w600/2026/02/MRB40-1.webp 600w, /content/images/size/w800/2026/02/MRB40-1.webp 800w, /content/images/size/w1200/2026/02/MRB40-1.webp 1200w, /content/images/size/w1600/2026/02/MRB40-1.webp 1600w, /content/images/size/w2000/2026/02/MRB40-1.webp 2000w" sizes="(min-width: 1600px) 1600px, 100vw" src="/content/images/size/w1600/2026/02/MRB40-1.webp" alt="Bodies Without Organs">
+
+                        <div class="post-card-inside">
+                            <div class="post-card-content">
+                                <div class="big-title">
+                                    <h5>
+                                        Midnight Radio
+                                            <span class="episode-number" data-ep="hash-mr-40">40</span>
+                                    </h5>
+                                    <h2>Bodies Without Organs</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </article>
+
+                <article>
+                    <a href="/night-flight-to-vienna/" class="post-card-link">
+                    <div class="post-card bg-dark bg-full">
+
+                            <img class="post-card-image bg-full-image bg-fade-in" srcset="/content/images/size/w300/2026/02/MRB39-1.webp 300w, /content/images/size/w600/2026/02/MRB39-1.webp 600w, /content/images/size/w800/2026/02/MRB39-1.webp 800w, /content/images/size/w1200/2026/02/MRB39-1.webp 1200w, /content/images/size/w1600/2026/02/MRB39-1.webp 1600w, /content/images/size/w2000/2026/02/MRB39-1.webp 2000w" sizes="(min-width: 1600px) 1600px, 100vw" src="/content/images/size/w1600/2026/02/MRB39-1.webp" alt="Night Flight to Vienna">
+
+                        <div class="post-card-inside">
+                            <div class="post-card-content">
+                                <div class="big-title">
+                                    <h5>
+                                        Midnight Radio
+                                            <span class="episode-number" data-ep="hash-mr-39">39</span>
+                                    </h5>
+                                    <h2>Night Flight to Vienna</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </article>
+
         </div>
     </div>
-    {{/post}}
 
 
 </main>
-
-
 
 
 <script>
