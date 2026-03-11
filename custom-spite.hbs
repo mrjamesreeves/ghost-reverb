@@ -138,8 +138,8 @@ strong {
     }
 
 h6 {
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 400;
     line-height: 1.7;
     padding-left: 20px;
     border-left: 3px solid var(--color-text);
@@ -149,8 +149,8 @@ h6 a {
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 0.5px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 400;
     }
 
 h5.kg-toggle-heading-text {
@@ -228,7 +228,7 @@ h5.kg-toggle-heading-text {
     padding: 8px 24px 10px 24px;
     border: 1px solid var(--color-hover);
     background-color: var(--color-hover);
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 700;
     font-family: var(--font-sans);
     color: var(--color-inverse) !important;
@@ -302,42 +302,31 @@ h5.kg-toggle-heading-text {
 .app-nav a {
     flex: auto;
     text-align: center;
-    padding: 10px 24px;
-    border-radius: 10px;
+    padding: 7px 24px 8px 24px;
+    border-radius: 12px;
     font-weight: 700;
     font-family: var(--font-sans);
-    color: var(--color-hover);
+    color: var(--color-inverse);
     text-decoration: none;
-    background-color: #222;
+    border: 1px solid var(--color-hover);
+    background-color: var(--color-hover);
     transition: all 0.2s ease;
     }
 
 .app-nav a:hover {
-    color: var(--color-hover);
+    color: var(--color-hover) !important;
     text-decoration: none;
     background-size: 0;
-    background-color: #333;
+    background-color: transparent;
+    border: 1px solid var(--color-hover);
     }
 
 .app-nav a.active {
-    color: var(--color-hover);
+    color: var(--color-hover) !important;
     text-decoration: none;
-    background-color: #444;
-    }
-
-[data-theme="light"] .app-nav a {
-    background-color: #ddd;
-    color: #222;
-    }
-
-[data-theme="light"] .app-nav a.active {
-    color: #000;
-    background-color: #b8b8b8;
-    }
-
-[data-theme="light"] .app-nav a:hover{
-    color: #000;
-    background-color: #999;
+    background-size: 0;
+    background-color: transparent;
+    border: 1px solid var(--color-hover);
     }
 
 /* ---- Content (single centered column) ---- */
@@ -435,16 +424,23 @@ html {
         padding-left: 5%;
         padding-right: 5%;
         }
-.spite-hero-header {
-    margin-bottom: 20px;
-}
-        .spite-price {
-    text-align: left;
-    font-size: 16px;
-    color: var(--color-text-hover);
-    margin-top: 20px;
-    font-family: var(--font-sans);
-    }
+
+    .spite-hero-header {
+        margin-bottom: 20px;
+        }
+
+    .spite-price {
+        text-align: left;
+        font-size: 12px;
+        font-weight: 600 !important;
+        color: var(--color-text-hover);
+        margin-top: 20px;
+        font-family: var(--font-sans);
+        }
+
+    .spite-content {
+        padding-top: 0px;  
+        }
 }
 
 /* Hide strip + features block on non-features pages */
