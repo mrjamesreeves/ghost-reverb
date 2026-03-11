@@ -442,7 +442,14 @@ html {
     }
 }
 
+/* Hide strip + features block on non-features pages */
+body.page-spite-terms-privacy .spite-features-only {
+    display: none;
+    }
+
 </style>
+
+<script>document.body.classList.add('page-{{slug}}');</script>
 
 <main id="main" class="content outer radio-page">
 
@@ -603,7 +610,7 @@ html {
   }
 </style>
 
-<div class="spite-strip-outer">
+<div class="spite-strip-outer spite-features-only">
   <div class="spite-strip" id="spiteStrip">
 
     <!-- 
@@ -684,14 +691,14 @@ html {
 </script>
 
 
-<main id="main" class="content outer radio-page">
+<main class="content outer radio-page spite-features-only">
 
 
     <div class="radio-content-wrapper">
 
         <div class="inner-wide">
             <div class="spite-content">
-                
+
                 <h3 id="features-conditions">Version 5.2 • March 10, 2026</h3>
                 <ul>
                     <li>Apple only. Requires iCloud or Dropbox for telephone sync.</li>
