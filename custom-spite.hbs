@@ -336,6 +336,11 @@ h5.kg-toggle-heading-text {
     max-width: 650px;
     margin: 0 auto;
     padding-top: 20px;
+    scroll-margin-top: 30px;
+    }
+
+html {
+    scroll-behavior: smooth;
     }
 
 .spite-credits {
@@ -461,15 +466,15 @@ h5.kg-toggle-heading-text {
     <div class="radio-content-wrapper">
 
         <div class="inner-wide">
-            <div class="spite-content">
-                
+            <div class="spite-content" id="spite-content">
+
                 <p class="spite-price">Try it free for 30 days, then buy it for $15 for Mac + iOS. No subscriptions. No freemium bullshit.</p>
 
                 <!-- Pill navigation -->
                 <nav class="app-nav">
-                    <a href="/spite/" data-slug="spite">Features</a>
+                    <a href="/spite/#spite-content" data-slug="spite">Features</a>
                    <!-- <a href="/spite-test-center/" data-slug="spite-test-center">Updates + Support</a> -->
-                    <a href="/spite-terms-privacy/" data-slug="spite-terms-privacy">Terms + Privacy</a>
+                    <a href="/spite-terms-privacy/#spite-content" data-slug="spite-terms-privacy">Terms + Privacy</a>
                     <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download</a>
                 </nav>
                 <script>
