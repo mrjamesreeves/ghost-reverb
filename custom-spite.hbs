@@ -197,7 +197,6 @@ h5.kg-toggle-heading-text {
     font-family: var(--font-big);
     font-size: 9rem;
     padding-top: 50px;
-    margin: 0 0 5px;
     text-transform: uppercase;
     }
 
@@ -206,7 +205,7 @@ h5.kg-toggle-heading-text {
     font-family: var(--font-sans);
     color: var(--color-hover);
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-weight: 400;
     }
 
@@ -533,18 +532,6 @@ body.page-spite-terms-privacy .spite-features-only {
     padding-top: 60px;
     padding-left: 5%;
     padding-right: 5%;
-  }
-
-  /* Fade-out on the right to hint more content */
-  .spite-strip-outer::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 80px;
-    height: calc(var(--strip-height) + 36px); /* image + label */
-    background: linear-gradient(to right, transparent, var(--color-bg));
-    pointer-events: none;
-    z-index: 2;
   }
 
   .spite-strip {
