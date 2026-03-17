@@ -817,3 +817,14 @@ body.page-spite-terms-privacy .spite-features-only {
 <script>
   Paddle.Initialize({ token: 'live_87db8b6708c91d594bbce4ab043' });
 </script>
+<script>
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const priceId = params.get('price_id');
+    if (priceId) {
+      window.addEventListener('load', function() {
+        Paddle.Checkout.open({ items: [{ priceId: priceId, quantity: 1 }] });
+      });
+    }
+  })();
+</script>
