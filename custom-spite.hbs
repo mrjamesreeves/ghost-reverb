@@ -822,9 +822,7 @@ body.page-spite-terms-privacy .spite-features-only {
     const params = new URLSearchParams(window.location.search);
     const priceId = params.get('price_id');
     if (priceId) {
-      window.addEventListener('load', function() {
-        Paddle.Checkout.open({ items: [{ priceId: priceId, quantity: 1 }] });
-      });
+      Paddle.Checkout.open({ items: [{ priceId: priceId, quantity: 1 }] });
     }
   })();
 </script>
