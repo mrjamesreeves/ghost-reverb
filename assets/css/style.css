@@ -5054,6 +5054,7 @@ html:not([data-theme]) .theme-switch .moon {
     margin-bottom: 5px;
     color: var(--color-text);
     letter-spacing: 0.5px;
+    margin-top: 0;
 }
 
 .signup-content p {
