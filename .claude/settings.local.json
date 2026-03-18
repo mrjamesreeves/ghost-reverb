@@ -3,7 +3,8 @@
     "allow": [
       "Bash(grep:*)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:2368/spite/)",
-      "Bash(curl -s http://localhost:2371/spite/)"
+      "Bash(curl -s http://localhost:2371/spite/)",
+      "WebFetch(domain:3bl.com)"
     ]
   }
 }

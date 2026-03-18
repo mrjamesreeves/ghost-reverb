@@ -462,7 +462,7 @@ body.page-spite-terms-privacy .spite-features-only {
             <p class="spite-subhead">A dignified music player.</p>
             <div class="spite-download-buttons">
                 <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
-                <a href="https://storage.ghost.io/c/85/bb/85bbc222-eb2e-4bcf-8b92-f241768e9260/content/files/2026/03/Spite.dmg?ref=jamesreeves.co">Download Mac only</a>
+                <a href="https://jamesreeves.work/files/Spite.dmg?ref=jamesreeves.co">Download Mac only</a>
             </div>
         </div>
 
@@ -536,7 +536,7 @@ body.page-spite-terms-privacy .spite-features-only {
 
   .spite-strip {
     display: flex;
-    gap: 12px;
+    gap: 30px;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -585,10 +585,51 @@ body.page-spite-terms-privacy .spite-features-only {
     text-align: center;
   }
 
+  /* ── Scrollbar indicator ── */
+
+  .spite-strip-scrollbar {
+    position: relative;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 30px 60px 0 60px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  [data-theme="light"] .spite-strip-scrollbar {
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .spite-strip-scrollbar-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 5px;
+    border-radius: 6px;
+    background: var(--color-text-muted);
+    transition: background 0.2s ease;
+    cursor: grab;
+    left: 0;
+    min-width: 40px;
+  }
+
+  .spite-strip-scrollbar-thumb:hover,
+  .spite-strip-scrollbar-thumb.is-dragging {
+    background: var(--color-hover);
+  }
+
+  .spite-strip-scrollbar-thumb.is-dragging {
+    cursor: grabbing;
+  }
+
   /* ── Responsive ── */
 
   @media (max-width: 700px) {
     :root { --strip-height: 260px; }
+
+    .spite-strip-scrollbar {
+      margin: 20px 20px 0 20px;
+    }
 
     .spite-strip-outer::after {
       width: 50px;
@@ -614,7 +655,7 @@ body.page-spite-terms-privacy .spite-features-only {
       <div class="spite-strip-image">
         <img src="{{asset "spite/spite-custom.webp"}}" alt="Spite Custom">
       </div>
-      <p class="spite-strip-label">Customize your mixtapes</p>
+      <p class="spite-strip-label">Customize your mixtapes with your own artwork</p>
     </div>
 
 
@@ -624,6 +665,13 @@ body.page-spite-terms-privacy .spite-features-only {
         <img src="{{asset "spite/spite-labels.webp"}}" alt="RecordLabels">
       </div>
       <p class="spite-strip-label">Organize by record label</p>
+    </div>
+
+            <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite6.webp"}}" alt="Spite iPad">
+      </div>
+      <p class="spite-strip-label">Looks smart on an iPad</p>
     </div>
 
         <div class="spite-strip-card">
@@ -640,6 +688,9 @@ body.page-spite-terms-privacy .spite-features-only {
       <p class="spite-strip-label">Customize the background across devices</p>
     </div>
 
+  </div>
+  <div class="spite-strip-scrollbar">
+    <div class="spite-strip-scrollbar-thumb" id="spiteStripThumb"></div>
   </div>
 </div>
 
@@ -677,6 +728,88 @@ body.page-spite-terms-privacy .spite-features-only {
 })();
 </script>
 
+<script>
+// Scrollbar indicator
+(function () {
+  const strip = document.getElementById('spiteStrip');
+  const thumb = document.getElementById('spiteStripThumb');
+  const track = thumb.parentElement;
+
+  function updateThumb() {
+    const scrollW = strip.scrollWidth - strip.clientWidth;
+    if (scrollW <= 0) { track.style.display = 'none'; return; }
+    const ratio = strip.clientWidth / strip.scrollWidth;
+    const thumbW = Math.max(40, track.clientWidth * ratio);
+    const maxLeft = track.clientWidth - thumbW;
+    const progress = strip.scrollLeft / scrollW;
+    thumb.style.width = thumbW + 'px';
+    thumb.style.left = (maxLeft * progress) + 'px';
+  }
+
+  strip.addEventListener('scroll', updateThumb);
+  window.addEventListener('resize', updateThumb);
+  updateThumb();
+
+  // Click on track to jump
+  track.addEventListener('click', function (e) {
+    if (e.target === thumb) return;
+    const rect = track.getBoundingClientRect();
+    const clickRatio = (e.clientX - rect.left) / rect.width;
+    const scrollW = strip.scrollWidth - strip.clientWidth;
+    strip.scrollTo({ left: scrollW * clickRatio, behavior: 'smooth' });
+  });
+
+  // Drag the thumb
+  let isDragging = false, dragStartX, dragStartScroll;
+
+  thumb.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartScroll = strip.scrollLeft;
+    thumb.classList.add('is-dragging');
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    const trackW = track.clientWidth;
+    const ratio = strip.scrollWidth / trackW;
+    strip.scrollLeft = dragStartScroll + dx * ratio;
+  });
+
+  document.addEventListener('mouseup', function () {
+    if (isDragging) {
+      isDragging = false;
+      thumb.classList.remove('is-dragging');
+    }
+  });
+
+  // Touch drag on thumb
+  thumb.addEventListener('touchstart', function (e) {
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartScroll = strip.scrollLeft;
+    thumb.classList.add('is-dragging');
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function (e) {
+    if (!isDragging) return;
+    const dx = e.touches[0].clientX - dragStartX;
+    const trackW = track.clientWidth;
+    const ratio = strip.scrollWidth / trackW;
+    strip.scrollLeft = dragStartScroll + dx * ratio;
+  });
+
+  document.addEventListener('touchend', function () {
+    if (isDragging) {
+      isDragging = false;
+      thumb.classList.remove('is-dragging');
+    }
+  });
+})();
+</script>
+
 
 <main class="content outer radio-page spite-features-only">
 
@@ -696,8 +829,9 @@ body.page-spite-terms-privacy .spite-features-only {
                     <li>XML is the way. Playlists live in a folder you can see.</li>
                     <li>Works with CarPlay.</li>
                     <li>Looks nice on an iPad.</li>
-                    <li>Last.FM integration. Wire it up under 'Settings' and set your scrobbles for the heart of the sun.&nbsp;</li>
+                    <li>Last.FM integration like it's 2006. Wire it up under 'Settings' and set your scrobbles for the heart of the sun.&nbsp;</li>
                     <li>Deepen your relationships (or destroy them) by sharing your music library. Everything the other person adds or deletes will affect you and vice versa. It's a good conversation starter.</li>
+                    <li>Spite has been tested for up to 20,000 songs. It should still fly with more than that, but really, if your library has over 20,000 songs that’s too many songs. That’s like three solid months of music not including sleep. But there's a 30-day trial period for you to decide if Spite is good for digital hoarding.</li>
                     <li>Built by a tremendous music nerd who wants to organize albums by record label, quickly shuffle new acquisitions, and easily access a metadata editor. You're welcome.</li>
                     <li>After a 30-day trial, Spite costs $15—then it's unlocked on your desktop, iPhone, and iPad, free forever and ever with ongoing updates from a compulsive tinkerer.</li>
                     <li>Or skip the App Store's stranglehold and pay $10 for the desktop version if you don't care about the telephone. (The license includes a discount for iOS if you ever decide otherwise.)</li>
@@ -718,7 +852,7 @@ body.page-spite-terms-privacy .spite-features-only {
                     <div class="spite-bottom-download">
                         <div class="spite-download-buttons">
                             <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
-                            <a href="https://storage.ghost.io/c/85/bb/85bbc222-eb2e-4bcf-8b92-f241768e9260/content/files/2026/03/Spite.dmg?ref=jamesreeves.co">Download Mac only</a>
+                            <a href="https://jamesreeves.work/files/Spite.dmg?ref=jamesreeves.co">Download Mac only</a>
                         </div>
                     </div>
 
@@ -784,7 +918,7 @@ body.page-spite-terms-privacy .spite-features-only {
     </div>
         {{/post}}
 
-
+<br>
 </main>
 
 
