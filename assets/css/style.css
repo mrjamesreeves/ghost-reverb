@@ -5145,6 +5145,7 @@ html:not([data-theme]) .theme-switch .moon {
     .signup-content {
         padding-right: 0;
         padding-bottom: 20px;
+        padding-top: 20px;
     }
 
     .signup-content p {
@@ -5156,7 +5157,7 @@ html:not([data-theme]) .theme-switch .moon {
     }
 
   .signup-content .kg-signup-card-form {
-    width: 100%;
+    width: 100% !important;
   }
 
     .page-radio .content {
