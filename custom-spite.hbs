@@ -593,7 +593,8 @@ body.page-spite-terms-privacy .spite-features-only {
     position: relative;
     height: 1px;
     background: rgba(255, 255, 255, 0.15);
-    margin: 30px 60px 0 60px;
+    max-width: 60vw;
+    margin: 30px auto 0;
     border-radius: 6px;
     cursor: pointer;
   }
@@ -740,6 +741,7 @@ body.page-spite-terms-privacy .spite-features-only {
   function updateThumb() {
     const scrollW = strip.scrollWidth - strip.clientWidth;
     if (scrollW <= 0) { track.style.display = 'none'; return; }
+    track.style.display = '';
     const ratio = strip.clientWidth / strip.scrollWidth;
     const thumbW = Math.max(40, track.clientWidth * ratio);
     const maxLeft = track.clientWidth - thumbW;
@@ -751,6 +753,11 @@ body.page-spite-terms-privacy .spite-features-only {
   strip.addEventListener('scroll', updateThumb);
   window.addEventListener('resize', updateThumb);
   updateThumb();
+
+  // Recalculate once images load (scrollWidth changes)
+  strip.querySelectorAll('img').forEach(function (img) {
+    img.addEventListener('load', updateThumb);
+  });
 
   // Click on track to jump
   track.addEventListener('click', function (e) {
