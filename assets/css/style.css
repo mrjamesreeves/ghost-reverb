@@ -5149,7 +5149,7 @@ html:not([data-theme]) .theme-switch .moon {
     }
 
     .signup-content p {
-  font-size: var(--type-body-sm);
+        font-size: var(--type-body-sm);
     }
     
     .signup-content h2 {
