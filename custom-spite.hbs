@@ -246,6 +246,11 @@ h5.kg-toggle-heading-text {
 
 /* Screenshot carousel */
 
+.spite-screenshot-mobile {
+    display: none;
+    width: 100%;
+    }
+
 .spite-screenshot {
     position: relative;
     width: 100%;
@@ -400,7 +405,11 @@ html {
         }
 
     .spite-screenshot {
-        height: auto;
+        display: none;
+        }
+
+    .spite-screenshot-mobile {
+        display: block;
         }
 
     .spite-screenshot img {
@@ -490,6 +499,7 @@ body.page-spite-terms-privacy .spite-features-only {
             <img src="{{asset "spite/spite3.webp"}}" alt="Spite">
             <img src="{{asset "spite/spite4.webp"}}" alt="Spite">
         </div>
+        <img src="{{asset "spite/spite-mobile.webp"}}" alt="Spite" class="spite-screenshot-mobile">
 
     </div>
 
