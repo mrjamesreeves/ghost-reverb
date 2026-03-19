@@ -362,6 +362,17 @@ html {
     justify-content: flex-start;
     }
 
+.icon .icon-img {
+    width: 80px;
+    margin-top: 40px;
+    border-radius: 12px;
+}
+
+.icon h3 {
+    padding-top: 10px;
+    }
+
+
 /* ---- Responsive ---- */
 
 @media (max-width: 700px) {
@@ -401,8 +412,8 @@ html {
         }
 
     .app-nav a {
-        font-size: 13px;
-        padding: 7px 16px;
+        font-size: 12px;
+        padding: 5px 16px 6px;
         }
 
     ul, ol {
@@ -414,17 +425,15 @@ html {
 
     p, ul li, ol li { font-size: 14px; }
 
+     ul li, ol li { padding-left: 5px; }
+
+
     p { margin-bottom: 10px; }
 
     h2 { font-size: 36px; margin-top: 50px; }
 
     blockquote h1 { font-size: 30px; }
     blockquote { padding-left: 0; border-left: none; }
-
-    .radio-page .radio-content-wrapper {
-        padding-left: 5%;
-        padding-right: 5%;
-        }
 
     .spite-hero-header {
         margin-bottom: 20px;
@@ -446,13 +455,16 @@ html {
     .mob-hide {
         display: none;
         }
+
+    .kg-card {
+        margin-top: 0px;
 }
 
 /* Hide strip + features block on non-features pages */
 body.page-spite-terms-privacy .spite-features-only {
     display: none;
     }
-
+}
 </style>
 
 <script>document.body.classList.add('page-{{slug}}');</script>
@@ -486,7 +498,7 @@ body.page-spite-terms-privacy .spite-features-only {
         <div class="inner-wide">
             <div class="spite-content" id="spite-content">
 
-                <p class="spite-price">Free for 30 days, then buy it for $15 for Mac + iOS. <br>Or $10 for just Mac. <br>No subscriptions. No freemium bullshit.</p>
+                <p class="spite-price">Free for 30 days, then buy it for $15 for Mac + iOS. Or $10 for just Mac. No subscriptions. No freemium bullshit.</p>
 
                 <!-- Pill navigation -->
                 <nav class="app-nav">
@@ -547,12 +559,19 @@ body.page-spite-terms-privacy .spite-features-only {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;           /* Firefox */
-    padding: 0 5% 0 5%;             /* left indent matches your site padding */
+    padding: 0;
     padding-right: calc(5% + 80px); /* extra right so last card isn't hidden by fade */
   }
 
   .spite-strip::-webkit-scrollbar { display: none; }
   .spite-strip.is-grabbing { cursor: grabbing; }
+
+  /* Left indent spacer — flex item so it scrolls with the strip */
+  .spite-strip-spacer {
+    flex-shrink: 0;
+    width: 10vw;
+    scroll-snap-align: start;
+  }
 
   /* ── Cards ── */
 
@@ -632,7 +651,7 @@ body.page-spite-terms-privacy .spite-features-only {
   /* ── Responsive ── */
 
   @media (max-width: 700px) {
-    :root { --strip-height: 260px; }
+    :root { --strip-height: 320px; }
 
     .spite-strip-scrollbar {
       margin: 20px auto;
@@ -647,24 +666,21 @@ body.page-spite-terms-privacy .spite-features-only {
         width: 80px;
         }
 
-        .comments-area .kg-card {
-            margin-top: 20px;
-  }
+    .comments-area .kg-card {
+        margin-top: 20px;
+     }
+
+    .spite-strip-outer {
+        padding-top: 0;
+    }
   }
 </style>
 
 <div class="spite-strip-outer spite-features-only">
   <div class="spite-strip" id="spiteStrip">
 
-    <!-- 
-      Each card's width is determined by the image's aspect ratio at the fixed height.
-      Landscape images (CarPlay) → wide card.
-      Portrait images (iPhone)   → narrow card.
-      Square-ish (Mac)           → medium card.
-      No width needed on the card itself — it follows the image naturally.
-    -->
-
-
+    <!-- Spacer to indent the first card -->
+    <div class="spite-strip-spacer"></div>
 
     <div class="spite-strip-card">
       <div class="spite-strip-image">
@@ -866,10 +882,14 @@ body.page-spite-terms-privacy .spite-features-only {
                     <li>Shuffle your most recent acquisitions. Adjust the threshol in Settings.</li>
                 </ul>
                 <p>If you have questions, complaints, revelations, or other psychic upheavels, please leave a comment below or <a href="mailto:james@jamesreeves.co">email me</a>.</p>
-                <figure class="kg-card kg-image-card"><img src="https://www.jamesreeves.co/content/images/2026/02/spite-icon.webp" class="kg-image" alt="" loading="lazy" width="544" height="544"></figure>
-                <h3 id="icon">Icon</h3>
-                <p>This fragmented head of a colossal boy from two thousand years ago captures today’s psychic shred and shear better than anything I’ve seen.</p>
+                
 
+
+                    <div class="icon">
+                        <img src="{{asset "spite/spite-icon.webp"}}" alt="Spite" class="icon-img" alt="" loading="lazy" width="100" height="100">            
+                        <h3 id="icon">About the icon</h3>
+                        <p>This fragmented head of a colossal boy from two thousand years ago captures today’s psychic shred and shear better than anything I’ve seen.</p>
+                    </div>
 
                     <div class="spite-bottom-download">
                         <div class="spite-download-buttons">
@@ -877,6 +897,7 @@ body.page-spite-terms-privacy .spite-features-only {
                             <a href="https://jamesreeves.work/files/spite/Spite.dmg?ref=jamesreeves.co">Download Mac only</a>
                         </div>
                     </div>
+
 
                         <div class="spite-credits">
                             <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
