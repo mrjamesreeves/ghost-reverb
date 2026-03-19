@@ -5196,6 +5196,11 @@ html:not([data-theme]) .theme-switch .moon {
         height: 300px;
         border-radius: 5px;
     }
+
+    .signup {
+               width: 88%;
+
+    }
 }
 
 h3 + p {
