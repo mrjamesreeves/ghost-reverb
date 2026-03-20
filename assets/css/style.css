@@ -2079,6 +2079,7 @@ h6.song {
 .kg-image-card img {
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
 }
 
 .kg-audio-card {
