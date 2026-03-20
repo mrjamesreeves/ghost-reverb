@@ -1287,7 +1287,7 @@ ul.section-items li::marker {
 figcaption, .kg-card figcaption {
   color: var(--color-text-muted);
     font-size: 11px;
-    text-align: right;
+    text-align: left;
     padding-top: 5px;
   }
 
