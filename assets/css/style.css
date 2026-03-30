@@ -4725,7 +4725,7 @@ html:not([data-theme]) .theme-switch .moon {
 
 .entry-text {
   font-family: var(--font-sans);
-  font-size: var(--type-body);
+  font-size: 17px;
   line-height: 1.6;
   color: var(--color-text);
 }
@@ -4736,6 +4736,15 @@ html:not([data-theme]) .theme-switch .moon {
   font-size: 17px;
   font-family: var(--font-sans);
   font-weight: 400;
+}
+
+.entry-text ol, .entry-text ul {
+  margin: 10px 0 0 10px;
+  line-height: 1.7;
+}
+
+.entry-text ol li, .entry-text ul li {
+  padding-left: 5px;
 }
 
 .entry-text p:last-child {
