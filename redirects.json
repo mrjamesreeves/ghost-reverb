@@ -44,4 +44,10 @@
       "to": "/bodies-without-organs",
       "permanent": true
     }
+    ,
+    {
+      "from": "^/43",
+      "to": "/neglected-utopian-energy",
+      "permanent": true
+    }
   ]
