@@ -147,7 +147,6 @@ document.body.classList.add('has-hero');
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     padding: 0 5% 30px 12%;
-    scroll-padding-left: 12%;
     cursor: grab;
     align-items: stretch;
 }
@@ -1494,11 +1493,11 @@ font-family: var(--font-sans);
     window.addEventListener('resize', updateThumb);
     updateThumb();
 
-    /* Wheel → horizontal scroll with damping (slows the whiz-by effect).
-       passive: false required so we can call preventDefault(). */
+    /* Horizontal swipe only — vertical scroll passes through to the page. */
     strip.addEventListener('wheel', e => {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
         e.preventDefault();
-        strip.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX) * 0.4;
+        strip.scrollLeft += e.deltaX * 0.4;
     }, { passive: false });
 
     /* Drag scrollbar thumb */
