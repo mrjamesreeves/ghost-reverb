@@ -147,6 +147,7 @@ document.body.classList.add('has-hero');
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     padding: 0 5% 30px 12%;
+    scroll-padding-left: 12%;
     cursor: grab;
     align-items: stretch;
 }
@@ -480,7 +481,7 @@ font-family: var(--font-sans);
                             </div>
                         </div>
                         <div class="mr-card-body mr-color-43">
-                            <p>Just sink into this plush couch while <em>Strange Days</em> plays on mute and somebody talks about the Information Superhighway.</p>
+                            <p>Sink into this plush couch while <em>Strange Days</em> plays on mute and somebody talks about the Information Superhighway.</p>
                             <ol>
                                 <li>Dr. Atmos & Oliver Lieb - Music to Films Movement V</li>
                                 <li>Pete Namlook & Richie Hawtin - Silent Intelligence V</li>
@@ -1492,6 +1493,13 @@ font-family: var(--font-sans);
     strip.addEventListener('scroll', updateThumb, { passive: true });
     window.addEventListener('resize', updateThumb);
     updateThumb();
+
+    /* Wheel → horizontal scroll with damping (slows the whiz-by effect).
+       passive: false required so we can call preventDefault(). */
+    strip.addEventListener('wheel', e => {
+        e.preventDefault();
+        strip.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX) * 0.4;
+    }, { passive: false });
 
     /* Drag scrollbar thumb */
     let isDragging = false, startX, startLeft;
