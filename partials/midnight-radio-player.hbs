@@ -1,0 +1,600 @@
+{{!-- partials/midnight-radio-player.hbs --}}
+{{!-- Midnight Radio Player — matches Figma node 4095-308 --}}
+{{!-- Episode rows use Static Slide 12 audio player style --}}
+{{!-- Usage: {{> "midnight-radio-player"}} --}}
+
+<style>
+/* ══ MR Player ════════════════════════════════════════════ */
+
+.mr-player {
+    position: relative;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+    overflow: hidden;
+    max-width: 450px;
+    margin: 40px auto 60px;
+    font-family: var(--font-sans, 'IBM Plex Sans', sans-serif);
+}
+
+/* ── Head section ── */
+
+.mr-player-head {
+    position: relative;
+    z-index: 2;
+    padding: 31px 43px 0;
+}
+
+.mr-player-btns {
+    display: flex;
+    gap: 13px;
+    margin-bottom: 20px;
+}
+
+.mr-player-btn {
+    flex: 1;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background: #222222;
+    color: #fff;
+    font-family: var(--font-big-alt, 'bebas-neue-pro-semiexpanded', sans-serif);
+    font-size: 19px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mr-player-btn:hover { background: #444444; }
+
+/* Now playing — collapses entirely until a track starts */
+.mr-player-now {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-bottom: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-bottom 0.3s ease;
+}
+
+.mr-player-now.is-visible {
+    max-height: 20px;
+    opacity: 1;
+    margin-bottom: 10px;
+}
+
+.mr-player-now-label {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.mr-player-now-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+}
+
+/* Progress bar — same width as buttons/rows */
+.mr-player-prog-wrap {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    cursor: pointer;
+    position: relative;
+}
+
+.mr-player-prog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+    width: 0%;
+    transition: width 0.5s linear;
+}
+
+/* ── Episode list ── */
+
+.mr-player-list-section {
+    position: relative;
+    z-index: 2;
+    padding: 6px 43px 0;
+}
+
+/* Gradient fade — signals the list is scrollable */
+.mr-player-list-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #000);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.mr-player-list {
+    max-height: 170px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.mr-player-list::-webkit-scrollbar { display: none; }
+
+/* Skeleton rows */
+.mr-player-skel { }
+
+.mr-player-skel-row {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    animation: mrPulse 1.6s ease-in-out infinite;
+}
+
+.mr-player-skel-row:nth-child(2) { animation-delay: 0.13s; }
+.mr-player-skel-row:nth-child(3) { animation-delay: 0.26s; }
+.mr-player-skel-row:nth-child(4) { animation-delay: 0.39s; }
+.mr-player-skel-row:nth-child(5) { animation-delay: 0.52s; }
+
+.mr-player-skel-play {
+    width: 40px;
+    height: 30px;
+    background: #111;
+    flex-shrink: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.mr-player-skel-bar {
+    flex: 1;
+    height: 7px;
+    background: #2a2a2a;
+    border-radius: 3px;
+    margin: 0 14px 0 12px;
+}
+
+.mr-player-skel-dur {
+    width: 32px;
+    height: 7px;
+    background: #2a2a2a;
+    border-radius: 3px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+@keyframes mrPulse {
+    0%, 100% { opacity: 0.35; }
+    50%       { opacity: 0.65; }
+}
+
+/* Episode rows — Slide 12 style */
+.mr-player-row {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background: #222;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.mr-player-row:hover    { background: #2a2a2a; }
+.mr-player-row.is-active { background: #333; }
+
+/* The play/pause button area */
+.mr-player-row-play {
+    width: 40px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    transition: background 0.12s;
+    padding: 0;
+}
+
+.mr-player-row:hover     .mr-player-row-play { background: #181818; }
+.mr-player-row.is-active .mr-player-row-play { background: #1e1e1e; }
+
+.mr-player-row-play svg {
+    width: 15px;
+    height: 15px;
+    fill: rgba(255,255,255,0.5);
+    display: block;
+    flex-shrink: 0;
+}
+
+.mr-player-row:hover     .mr-player-row-play svg { fill: rgba(255,255,255,0.85); }
+.mr-player-row.is-active .mr-player-row-play svg { fill: #fff; }
+
+/* Track title */
+.mr-player-row-title {
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 12px;
+    transition: color 0.12s;
+    line-height: 1;
+}
+
+.mr-player-row:hover     .mr-player-row-title { color: rgba(255,255,255,0.9); }
+.mr-player-row.is-active .mr-player-row-title { color: #fff; }
+
+/* Running time / counter — replaces progress bar from Slide 12 */
+.mr-player-row-time {
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    color: rgba(255,255,255,0.5);
+    flex-shrink: 0;
+    padding-right: 12px;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.12s;
+    line-height: 1;
+}
+
+.mr-player-row:hover     .mr-player-row-time { color: rgba(255,255,255,0.65); }
+.mr-player-row.is-active .mr-player-row-time { color: rgba(255,255,255,0.85); }
+
+/* Error / message state */
+.mr-player-msg {
+    padding: 14px 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+}
+
+/* ── Bottom padding ── */
+.mr-player-list-section { padding-bottom: 20px; }
+</style>
+
+
+<div class="mr-player" id="mrPlayer">
+
+    <div class="mr-player-head">
+
+        <div class="mr-player-btns">
+            <button class="mr-player-btn" id="mrPlayBtn">Play All</button>
+            <button class="mr-player-btn" id="mrShuffleBtn">Shuffle</button>
+        </div>
+
+        <div class="mr-player-now" id="mrNow">
+            <span class="mr-player-now-label">Now Playing</span>
+            <span class="mr-player-now-title" id="mrNowTitle"></span>
+        </div>
+
+        <div class="mr-player-prog-wrap" id="mrProgWrap">
+            <div class="mr-player-prog" id="mrProg"></div>
+        </div>
+
+    </div>
+
+    <div class="mr-player-list-section">
+
+        <!-- Skeleton shown while RSS loads -->
+        <div class="mr-player-skel" id="mrSkel">
+            <div class="mr-player-skel-row"><div class="mr-player-skel-play"></div><div class="mr-player-skel-bar"></div><div class="mr-player-skel-dur"></div></div>
+            <div class="mr-player-skel-row"><div class="mr-player-skel-play"></div><div class="mr-player-skel-bar"></div><div class="mr-player-skel-dur"></div></div>
+            <div class="mr-player-skel-row"><div class="mr-player-skel-play"></div><div class="mr-player-skel-bar"></div><div class="mr-player-skel-dur"></div></div>
+            <div class="mr-player-skel-row"><div class="mr-player-skel-play"></div><div class="mr-player-skel-bar"></div><div class="mr-player-skel-dur"></div></div>
+            <div class="mr-player-skel-row"><div class="mr-player-skel-play"></div><div class="mr-player-skel-bar"></div><div class="mr-player-skel-dur"></div></div>
+        </div>
+
+        <!-- Real episode list — populated by JS -->
+        <div class="mr-player-list" id="mrList" hidden></div>
+
+    </div>
+
+    <audio id="mrAudio" preload="none"></audio>
+
+</div>
+
+
+<script>
+(function () {
+    'use strict';
+
+    var RSS_URL   = 'https://rss.buzzsprout.com/2541955.rss';
+    var ITUNES    = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
+
+    /* SVG icons */
+    var ICON_PLAY  = '<svg viewBox="0 0 24 24" width="15" height="15"><polygon points="8,5 19,12 8,19"/></svg>';
+    var ICON_PAUSE = '<svg viewBox="0 0 24 24" width="15" height="15"><rect x="7" y="5" width="3" height="14"/><rect x="14" y="5" width="3" height="14"/></svg>';
+
+    /* DOM */
+    var audio    = document.getElementById('mrAudio');
+    var listEl   = document.getElementById('mrList');
+    var skelEl   = document.getElementById('mrSkel');
+    var playBtn  = document.getElementById('mrPlayBtn');
+    var shuffBtn = document.getElementById('mrShuffleBtn');
+    var nowEl    = document.getElementById('mrNow');
+    var nowTitle = document.getElementById('mrNowTitle');
+    var progEl   = document.getElementById('mrProg');
+
+    /* State */
+    var episodes    = [];   // [{num, title, label, duration, url}]
+    var queue       = [];   // indices into episodes array
+    var queuePos    = 0;
+    var loaded      = false;
+    var currentIdx  = -1;   // index of currently loaded episode
+
+    /* ── Format duration (seconds int or "H:MM:SS" string) → M:SS / H:MM:SS ── */
+    function fmtDur(raw) {
+        if (!raw) return '';
+        var s = String(raw).trim();
+        if (s.indexOf(':') > -1) {
+            var p = s.split(':');
+            if (p.length === 3) {
+                var h = parseInt(p[0], 10);
+                return h > 0
+                    ? h + ':' + p[1] + ':' + p[2]
+                    : parseInt(p[1], 10) + ':' + p[2];
+            }
+            return s;
+        }
+        var n = parseInt(s, 10) || 0;
+        var hrs = Math.floor(n / 3600);
+        var min = Math.floor((n % 3600) / 60);
+        var sec = n % 60;
+        var ss  = sec < 10 ? '0' + sec : String(sec);
+        if (hrs > 0) {
+            var mm = min < 10 ? '0' + min : String(min);
+            return hrs + ':' + mm + ':' + ss;
+        }
+        return min + ':' + ss;
+    }
+
+    /* ── Get text from itunes-namespaced element ── */
+    function itunes(item, local) {
+        var el = item.querySelector(local);
+        if (!el) {
+            try { el = item.getElementsByTagNameNS(ITUNES, local)[0]; } catch (e) {}
+        }
+        return el ? el.textContent.trim() : '';
+    }
+
+    /* ── HTML-escape ── */
+    function esc(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    /* ── Fetch and parse RSS ── */
+    function loadRSS() {
+        fetch(RSS_URL)
+            .then(function (r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.text();
+            })
+            .then(function (xml) {
+                var doc   = new DOMParser().parseFromString(xml, 'text/xml');
+                var items = Array.prototype.slice.call(doc.querySelectorAll('item'));
+
+
+                /* Reverse → oldest first → gives sequential episode numbers */
+                var rev = items.slice().reverse();
+
+                episodes = rev.map(function (item, i) {
+                    var num   = itunes(item, 'episode') || String(i + 1);
+                    var title = (item.querySelector('title') || {}).textContent || ('Episode ' + (i + 1));
+                    title = title.trim();
+                    var dur   = itunes(item, 'duration');
+                    var enc   = item.querySelector('enclosure');
+                    var url   = enc ? enc.getAttribute('url') || '' : '';
+
+                    return {
+                        num:      num,
+                        title:    title,
+                        label:    'MR' + num + ': ' + title,
+                        duration: fmtDur(dur),
+                        url:      url
+                    };
+                });
+
+                /* Flip back — newest first in list */
+                episodes.reverse();
+
+                queue    = episodes.map(function (_, i) { return i; });
+                queuePos = 0;
+                loaded   = true;
+                renderList();
+            })
+            .catch(function (err) {
+                skelEl.innerHTML = '<div class="mr-player-msg">Unable to load episodes.</div>';
+                console.warn('MR Player:', err);
+            });
+    }
+
+    /* ── Render all episode rows ── */
+    function renderList() {
+        listEl.innerHTML = '';
+
+        episodes.forEach(function (ep, i) {
+            var row = document.createElement('div');
+            row.className   = 'mr-player-row';
+            row.dataset.idx = i;
+            row.innerHTML =
+                '<button class="mr-player-row-play" tabindex="-1">' + ICON_PLAY + '</button>' +
+                '<span class="mr-player-row-title">' + esc(ep.label) + '</span>' +
+                '<span class="mr-player-row-time">'  + esc(ep.duration) + '</span>';
+
+            row.addEventListener('click', (function (i) {
+                return function () {
+                    if (currentIdx === i) {
+                        /* Same track — toggle play/pause without reloading */
+                        if (!audio.paused) audio.pause();
+                        else audio.play().catch(function () {});
+                    } else {
+                        startAt(i);
+                    }
+                };
+            }(i)));
+            listEl.appendChild(row);
+        });
+
+        skelEl.hidden = true;
+        listEl.hidden = false;
+    }
+
+    /* ── Set active row, update icons, restore times for all others ── */
+    function setActive(idx) {
+        var rows = listEl.querySelectorAll('.mr-player-row');
+        rows.forEach(function (row) {
+            var i      = parseInt(row.dataset.idx, 10);
+            var active = (i === idx);
+            row.classList.toggle('is-active', active);
+
+            var playEl = row.querySelector('.mr-player-row-play');
+            var timeEl = row.querySelector('.mr-player-row-time');
+
+            /* Restore static duration for non-active rows */
+            if (!active && episodes[i]) {
+                timeEl.textContent  = episodes[i].duration;
+                playEl.innerHTML    = ICON_PLAY;
+            }
+            if (active) {
+                /* Start with static duration; JS updates to elapsed on timeupdate */
+                playEl.innerHTML = ICON_PAUSE;
+                /* Scroll into view */
+                row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        });
+    }
+
+    /* ── Build queue starting from idx, then play it ── */
+    function startAt(idx) {
+        var base = episodes.map(function (_, i) { return i; });
+        queue    = base.slice(idx).concat(base.slice(0, idx));
+        queuePos = 0;
+        playIdx(queue[0]);
+    }
+
+    /* ── Load and play episodes[idx] ── */
+    function playIdx(idx) {
+        var ep = episodes[idx];
+        if (!ep || !ep.url) return;
+
+        currentIdx = idx;
+        audio.src = ep.url;
+        audio.load();
+        audio.play().catch(function () {});
+
+        nowTitle.textContent = ep.label;
+        nowEl.classList.add('is-visible');
+        setActive(idx);
+        syncPlayBtn(true);
+    }
+
+    /* ── Update main PLAY ALL button label ── */
+    function syncPlayBtn(playing) {
+        playBtn.textContent = playing ? 'Pause' : 'Play All';
+    }
+
+    /* ── PLAY ALL — toggle play/pause; start from top if nothing loaded ── */
+    playBtn.addEventListener('click', function () {
+        if (!loaded) return;
+        if (!audio.src || audio.readyState === 0) {
+            startAt(0);
+        } else if (!audio.paused) {
+            audio.pause();
+        } else {
+            audio.play().catch(function () {});
+        }
+    });
+
+    /* ── SHUFFLE — Fisher-Yates, immediately start ── */
+    shuffBtn.addEventListener('click', function () {
+        if (!loaded || !episodes.length) return;
+        var arr = episodes.map(function (_, i) { return i; });
+        for (var i = arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+        }
+        queue    = arr;
+        queuePos = 0;
+        playIdx(queue[0]);
+    });
+
+    /* ── Audio events ── */
+    audio.addEventListener('play', function () {
+        syncPlayBtn(true);
+        var row = listEl ? listEl.querySelector('.mr-player-row.is-active') : null;
+        if (row) row.querySelector('.mr-player-row-play').innerHTML = ICON_PAUSE;
+    });
+
+    audio.addEventListener('pause', function () {
+        syncPlayBtn(false);
+        var row = listEl ? listEl.querySelector('.mr-player-row.is-active') : null;
+        if (row) row.querySelector('.mr-player-row-play').innerHTML = ICON_PLAY;
+    });
+
+    audio.addEventListener('ended', function () {
+        queuePos++;
+        if (queuePos < queue.length) {
+            playIdx(queue[queuePos]);
+        } else {
+            syncPlayBtn(false);
+        }
+    });
+
+    /* Progress bar + active row running time counter */
+    audio.addEventListener('timeupdate', function () {
+        if (audio.duration > 0) {
+            progEl.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        }
+        /* Update the running time on the active row */
+        var activeTime = listEl
+            ? listEl.querySelector('.mr-player-row.is-active .mr-player-row-time')
+            : null;
+        if (activeTime) {
+            activeTime.textContent = fmtDur(Math.floor(audio.currentTime));
+        }
+    });
+
+    /* Click progress bar to seek */
+    document.getElementById('mrProgWrap').addEventListener('click', function (e) {
+        if (!audio.duration) return;
+        var r = this.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    });
+
+    /* ── Init ── */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadRSS);
+    } else {
+        loadRSS();
+    }
+
+}());
+</script>

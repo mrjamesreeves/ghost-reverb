@@ -4,7 +4,12 @@
       "Bash(grep:*)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:2368/spite/)",
       "Bash(curl -s http://localhost:2371/spite/)",
-      "WebFetch(domain:3bl.com)"
+      "WebFetch(domain:3bl.com)",
+      "WebFetch(domain:www.jamesreeves.co)",
+      "Bash(find /Users/jamesreeves/Desktop/reverb -type f \\\\\\( -name \"*.js\" -o -name \"*.hbs\" \\\\\\) -exec grep -l \"episode-number\\\\|data-ep\" {} \\\\;)",
+      "Bash(curl -s http://localhost:2371/radio/)",
+      "WebFetch(domain:feeds.buzzsprout.com)",
+      "WebFetch(domain:rss.buzzsprout.com)"
     ]
   }
 }

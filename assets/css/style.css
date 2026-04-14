@@ -18,6 +18,9 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-hover: #fff;
   --color-inverse: #000;
 
+
+  
+
   /* Fonts */
   --font-sans:  "ibm-plex-sans", sans-serif;
   --font-big:  "bebas-neue-pro", sans-serif;
@@ -654,7 +657,7 @@ textarea {
   box-sizing: border-box;
   color: var(--color-text);
   display: block;
-  font-size: .85rem;
+  font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
   max-width: 100%;
@@ -2415,7 +2418,7 @@ h5:has(+ .kg-audio-card) {
 }
 
 input::placeholder {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   opacity: 1;
   font-family: var(--font-sans);
   }
@@ -3777,7 +3780,7 @@ h3.about {
   padding: 10px 12px;
   border: none;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 1rem;
   background: transparent;
   transition: all 0.2s ease;
   color: #000;
@@ -4992,7 +4995,7 @@ html:not([data-theme]) .theme-switch .moon {
 
 .midnight-info {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.7fr 1fr;
     grid-auto-flow: column;
     gap: 12%;
     margin-top: 60px;
@@ -5029,6 +5032,8 @@ html:not([data-theme]) .theme-switch .moon {
     align-items: center;
     color: var(--color-text);
     overflow: hidden;
+    background-color: #000;
+    border-radius: 10px;
 }
 
 .signup-content .kg-signup-card-fields {
