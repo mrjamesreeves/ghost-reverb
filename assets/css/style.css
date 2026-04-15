@@ -5080,6 +5080,10 @@ html:not([data-theme]) .theme-switch .moon {
     color: var(--color-text);
   }
 
+[data-theme="light"] .signup-content p, [data-theme="light"] .signup-content h2, [data-theme="light"] .signup {
+    color: var(--color-inverse);
+  }
+
 /* Responsive */
 @media (max-width: 1400px) {
     .radio-episode-row {
