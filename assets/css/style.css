@@ -984,7 +984,7 @@ width: 90%;
 
 .radio-page .radio-hero-content {
     position: absolute;
-top: 75%;
+top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 width: 90%;
@@ -994,6 +994,10 @@ width: 90%;
     align-items: flex-start;
     z-index: 2;
     color: rgba(255, 255, 255,0.8);
+}
+
+.home-template .radio-page .radio-hero-content {
+    top: 75%;
 }
 
 
