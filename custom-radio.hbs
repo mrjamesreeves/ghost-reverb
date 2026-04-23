@@ -1,25 +1,35 @@
 {{!< default}}
 
 <style>
+/* Flex so share button sits next to the comments toggle on the same line */
+.radio-page .comment-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* Match h5.kg-toggle-heading-text exactly */
 .radio-share-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
+    padding: 11px 20px 12px;
     border-radius: 5px;
-    background: #000;
-    color: #fff !important;
-    font-family: var(--font-big-alt, 'bebas-neue-pro-semiexpanded', sans-serif);
-    font-size: 19px;
+    background: #fff;
+    color: var(--color-inverse) !important;
+    font-family: var(--font-big, 'bebas-neue-pro', sans-serif);
+    font-size: 1.125rem;
+    font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
     line-height: 1;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    margin-left: 12px;
-    vertical-align: top;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
-.radio-share-btn:hover { background: #333; }
+[data-theme="light"] .radio-share-btn {
+    background: #000;
+    color: #fff !important;
+}
+.radio-share-btn:hover { opacity: 0.8; }
 </style>
 
 <main id="main" class="content outer radio-page">
