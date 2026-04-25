@@ -1,0 +1,66 @@
+<div class="radio-meta">
+
+    <div class="radio-meta-actions">
+        {{#if comments}}
+            <button class="radio-share-btn" id="commentsBtn">
+                {{comment_count empty="Comments" singular="Comment" plural="Comments"}}
+            </button>
+        {{/if}}
+        <a href="#/share" class="radio-share-btn">Share</a>
+    </div>
+
+    <div class="radio-meta-nav">
+        {{#prev_post}}
+            <a href="{{url}}" class="circle-arrow prev">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="18" cy="18" r="17.5" fill="black" stroke="black"/>
+                    <path d="M21 11L14 18L21 25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        {{/prev_post}}
+        {{#next_post}}
+            <a href="{{url}}" class="circle-arrow next">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="18" cy="18" r="17.5" fill="black" stroke="black"/>
+                    <path d="M15 11L22 18L15 25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        {{/next_post}}
+    </div>
+
+</div>
+
+{{#if comments}}
+<div class="comments-modal" id="commentsModal">
+    <div class="comments-modal-card">
+        <button class="comments-modal-close" id="commentsModalClose" aria-label="Close comments">×</button>
+        {{comments title="" count=false}}
+    </div>
+</div>
+{{/if}}
+
+<script>
+(function () {
+    var btn   = document.getElementById('commentsBtn');
+    var modal = document.getElementById('commentsModal');
+    if (!btn || !modal) return;
+
+    function openModal() {
+        modal.classList.add('modal-open');
+        document.body.classList.add('comments-is-open');
+    }
+    function closeModal() {
+        modal.classList.remove('modal-open');
+        document.body.classList.remove('comments-is-open');
+    }
+
+    btn.addEventListener('click', openModal);
+    document.getElementById('commentsModalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('modal-open')) closeModal();
+    });
+})();
+</script>

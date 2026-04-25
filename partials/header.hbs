@@ -36,17 +36,11 @@
 
             <!-- Newsletter Signup -->
             <div class="nav-newsletter">
-                <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
-                <form class="nav-signup-form" data-members-form="subscribe">
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Enter your email..." 
-                        class="nav-email-input"
-                        required
-                    />
-                    <button type="submit" class="nav-subscribe-btn">Subscribe</button>
-                </form>
+                {{#if @member}}<p class="mr-member-note">Thank you for being a rare and wonderful Midnight Radio Member.</p>
+                    {{else}}
+                     <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+                    {{> "signup"}}
+                    {{/if}}
             </div>
 
             <div class="nav-social">

@@ -3761,6 +3761,10 @@ h3.about {
   margin-bottom: 20px;
 }
 
+.nav-newsletter .kg-signup-card-form {
+  width: 100%;
+}
+
 .nav-newsletter p {
   font-family: var(--font-sans);
   font-size: var(--type-body-sm);
@@ -3769,14 +3773,23 @@ h3.about {
   font-weight: 500;
   color: #000;
 }
+[data-theme="light"] .nav-newsletter .kg-signup-card-button {
+  background: #000 !important;
+}
 
-.nav-signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 6px;
-  border: var(--line);
-  border-radius: 5px;
+[data-theme="light"] .nav-newsletter .kg-signup-card-button-default {
+  color: #fff!important;
+  font-size: 10px!important;
+  letter-spacing: 2px;
+}
+
+.nav-newsletter .kg-signup-card-button {
+  min-width: 100px;
+}
+
+.nav-newsletter input[type="email"] {
+  line-height: 1;
+  font-size: 14px;
 }
 
 .nav-email-input {
@@ -3864,11 +3877,7 @@ body.nav-is-open {
     margin-right: auto;
     margin-top: 20px;
   }
-  .kg-signup-card-form {
-    width: 85% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
+
 }
 
 @media (max-width: 1024px) {
@@ -5590,3 +5599,174 @@ h1.post {
 .tag-midnight-radio .post-content {
   padding-top: 40px;
 }
+
+/* ── Post meta row (comments + share left, arrows right) ── */
+.radio-meta {
+  max-width: 650px;
+  margin: 40px auto 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.radio-meta-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+.radio-meta-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.radio-share-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 20px 12px;
+  border-radius: 5px;
+  border: 1px solid #fff !important;
+  background-color: #fff;
+  background-image: none;
+  color: var(--color-inverse);
+  font-family: var(--font-sans, 'ibm-plex-sans', sans-serif);
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  letter-spacing: 2px;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+.radio-meta-nav a {
+  background-image: none;
+  padding-bottom: 0;
+}
+.radio-cta .kg-signup-card-button {
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+}
+.radio-cta .kg-signup-card-button-default {
+  font-size: 12px !important;
+}
+[data-theme="light"] .radio-share-btn, [data-theme="light"] .radio-cta .kg-signup-card-button {
+  background-color: #000 !important;
+  border: 1px solid #000 !important;
+  color: #fff !important;
+}
+[data-theme="light"] .radio-share-btn:hover, [data-theme="light"] .radio-cta .kg-signup-card-button:hover {
+  border: 1px solid #000 !important;
+  background-color: transparent !important;
+  color: #000 !important;
+}
+
+[data-theme="light"] .radio-cta .kg-signup-card-button:hover .kg-signup-card-button-default{
+  color: #000 !important;
+}
+
+[data-theme="dark"] .radio-share-btn:hover {
+  background-color: #000 !important;
+  border: 1px solid #fff !important;
+  color: #fff !important;
+}
+
+.kg-signup-card-form .kg-signup-card-button {
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  background: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+}
+
+.kg-signup-card-form .kg-signup-card-button:hover {
+  background: #000 !important;
+  border: 1px solid #fff !important;
+  color: #fff !important;
+}
+
+.signup-content .kg-signup-card-form .kg-signup-card-button .kg-signup-card-button-default {
+  color: #000 !important;
+}
+.signup-content .kg-signup-card-form .kg-signup-card-button:hover .kg-signup-card-button-default {
+  color: #fff !important;
+}
+
+.signup-content .kg-signup-card-input {
+  color: #fff;
+}
+.signup-content .kg-signup-card-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.kg-signup-card-input:focus::placeholder {
+  color: transparent;
+}
+
+/* Comments modal */
+.comments-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh; height: 100dvh;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease,
+              -webkit-backdrop-filter 0.4s ease, backdrop-filter 0.4s ease;
+}
+.comments-modal.modal-open {
+  opacity: 1;
+  visibility: visible;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+.comments-modal-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 40px 40px 32px;
+  width: 90%;
+  max-width: 600px;
+  color: #000;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.comments-modal.modal-open .comments-modal-card {
+  transform: translateY(0);
+  opacity: 1;
+}
+.comments-modal-close {
+  position: absolute;
+  top: 14px; right: 18px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #888;
+  padding: 4px 6px;
+  transition: color 0.2s ease;
+}
+.comments-modal-close:hover { color: #000; }
+body.comments-is-open { overflow: hidden; }

@@ -1,13 +1,5 @@
 {{!< default}}
 
-<style>
-/* Float share button left so it sits inline with the comments section */
-.radio-page .comments-area { float: left; }
-.radio-page .radio-share-h5 { float: left; margin-left: 12px; margin-bottom: 0; }
-.radio-page .radio-share-h5 a { color: inherit; text-decoration: none; display: block; }
-.radio-page .radio-share-h5:hover { opacity: 0.8; }
-</style>
-
 <main id="main" class="content outer radio-page">
     {{#post}}
     
@@ -59,42 +51,13 @@
                     {{content}}
                 </div>
 
-                <div class="meta inner">
-
-                    <div class="comment-box">
-                        {{#if comments}}
-                            {{> comments}}
-                        {{/if}}
-                        <h5 class="kg-toggle-heading-text radio-share-h5"><a href="#/share">Share</a></h5>
-                    </div>
-
-
-                    <div class="prev-next">
-                        {{#prev_post}}
-                            <a href="{{url}}" class="circle-arrow prev">
-                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="18" cy="18" r="17.5" fill="black" stroke="black"/>
-                                    <path d="M21 11L14 18L21 25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        {{/prev_post}}
-
-                        {{#next_post}}
-                            <a href="{{url}}" class="circle-arrow next">
-                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="18" cy="18" r="17.5" fill="black" stroke="black"/>
-                                    <path d="M15 11L22 18L15 25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        {{/next_post}}
-                    </div>
-                </div>
+                {{> post-meta}}
 
             {{#if @member}} {{else}}
             <div class="inner">
                 <div class="radio-cta">
                     <p>Enjoy life and get Midnight Radio delivered to your inbox 'round midnight on the 1st and 15th of each month.</p>
-                    <div style="min-height: 58px;max-width: 440px;margin: 0;width: 100%"><script src="https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js" data-button-color="#000000" data-button-text-color="#FFFFFF" data-site="https://www.jamesreeves.co/" data-locale="en" async></script></div>
+                    {{> signup}}
                 </div>
             </div>
             {{/if}}
@@ -148,6 +111,6 @@
 
 {{/post}}
 </main>
-<br>
+
 
 
