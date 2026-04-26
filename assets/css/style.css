@@ -31,7 +31,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 18px;
+  --type-body: 20px;
   --type-body-m: 16px;
   --type-body-sm: 14px;
   --type-body-xs: 12px;
@@ -2704,9 +2704,6 @@ input::placeholder {
     padding-left: 0rem;
     padding-right: 0rem;
     }
-  .post {
-    width: 90%;
-    }
   .outer.radio-post,  .outer.radio-page {
     padding-top: 0 !important;
     }
@@ -2729,6 +2726,12 @@ input::placeholder {
     }
   .footer.outer {
     margin-top: 40px;
+    }
+.tag-midnight-radio ol li strong {
+    font-size: var(--type-body-sm);
+    }
+  .tag-midnight-radio .post-content ol li {
+    font-size: var(--type-body-xs);
     }
   .overlay {
     padding: .5rem;
@@ -5175,9 +5178,7 @@ html:not([data-theme]) .theme-switch .moon {
     }
     
     .signup-content {
-        padding-right: 0;
-        padding-bottom: 20px;
-        padding-top: 20px;
+        padding: 20px;
     }
 
     .signup-content p {
@@ -5596,9 +5597,6 @@ h1.post {
   padding-top: 0px;
 }
 
-.tag-midnight-radio .post-content {
-  padding-top: 40px;
-}
 
 /* ── Post meta row (comments + share left, arrows right) ── */
 .radio-meta {

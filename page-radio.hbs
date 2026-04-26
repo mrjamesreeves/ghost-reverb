@@ -119,7 +119,8 @@ document.body.classList.add('has-hero');
 /* Ghost core CSS sets the inner span to white — override it */
 #main .mr-hero-col1 .kg-signup-card-button .kg-signup-card-button-default {
     color: #000000 !important;
-    font-size: 19px !important;
+    font-size: 18px !important;
+    letter-spacing: 1px;
 }
 #main .mr-hero-col1 .kg-signup-card-button:hover {
     background: #e0e0e0 !important;
@@ -385,12 +386,9 @@ font-family: var(--font-sans);
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
-    font-family: var(--font-big-alt);
-    font-size: 19px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    background: #222222;
-    color: #ffffff;
+    font-size: var(--type-body-sm);
+    background: #111;
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     transition: background 0.15s ease;
     line-height: 1;
@@ -404,7 +402,7 @@ font-family: var(--font-sans);
 
 .mr-filter-pill:hover,
 .mr-filter-pill.active {
-    background: #444444;
+    background: #222;
 }
 
 [data-theme="light"] .mr-filter-pill:hover,
@@ -423,14 +421,15 @@ font-family: var(--font-sans);
 }
 
 @media (max-width: 700px) {
-    .mr-filters { padding-left: 5%; margin-bottom: 50px; }
+    .mr-filters { padding-left: 5%; margin-bottom: 50px; gap: 4px; }
     .mr-strip { padding-left: 5%; }
+    .mr-strip-outer { margin-top: 0px; }
     .mr-card { width: 250px; }
     .mr-card-overlay { padding: 15px; }
     .mr-card-overlay h5 { font-size: 9px; letter-spacing: 1px; margin-bottom: 5px;}
     .mr-card-overlay h2 { font-size: 36px; line-height: 32px; }
-    .mr-card-body { padding: 10px 10px 15px 15px; }
-    .mr-card-body p { font-size: 13px; }
+    .mr-card-body { padding: 10px 10px 5px 15px; }
+    .mr-card-body p { font-size: 14px; font-weight: 500; margin-bottom: 5px; }
     .mr-strip-scrollbar { max-width: 90%; }
     .mr-filter-pill { font-size: 12px;
         height: 30px;
@@ -438,6 +437,11 @@ font-family: var(--font-sans);
         font-family: var(--font-sans);
         letter-spacing: 0;
         text-transform: none; }
+
+
+        .mr-card-body ol{
+            display: none;
+        }
 
     /* ── Hero: stack on mobile ── */
     .page-radio .radio-hero-wrapper {
@@ -598,7 +602,7 @@ min-height: 20px;
                         <div class="mr-card-image">
                             <img src="{{asset "/mr/MRI42.webp"}}" alt="Return of the Gods">
                             <div class="mr-card-overlay">
-                                <h5>Midnight Radio 42 · Martin Essig Edition</h5>
+                                <h5>Midnight Radio 42<br>Martin Essig Edition</h5>
                                 <h2>Return of the Gods</h2>
                             </div>
                         </div>
@@ -643,7 +647,7 @@ min-height: 20px;
                         <div class="mr-card-image">
                             <img src="{{asset "/mr/MRI40.webp"}}" alt="Bodies Without Organs">
                             <div class="mr-card-overlay">
-                                <h5>Midnight Radio 40 · Candy Chang Edition</h5>
+                                <h5>Midnight Radio 40<br>>Candy Chang Edition</h5>
                                 <h2>Bodies Without Organs</h2>
                             </div>
                         </div>
