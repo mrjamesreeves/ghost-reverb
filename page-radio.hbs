@@ -433,6 +433,83 @@ font-family: var(--font-sans);
     .mr-card-body p { font-size: 13px; }
     .mr-strip-scrollbar { max-width: 90%; }
     .mr-filter-pill { font-size: 16px; height: 44px; padding: 0 20px; }
+
+    /* ── Hero: stack on mobile ── */
+    .page-radio .radio-hero-wrapper {
+        aspect-ratio: unset !important;
+        background: #000;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        overflow: hidden;
+    }
+    /* Image anchored to bottom — height: 320px !important beats the
+       "height: 100% !important" rule on .radio-page .image-slider
+       in style.css (both !important, higher specificity wins) */
+    .page-radio .radio-hero-wrapper .image-slider {
+        position: absolute !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 320px !important;
+    }
+    .page-radio .radio-hero-wrapper .image-slider img {
+        object-position: bottom center;
+    }
+    /* Fade image into black so stacked content stays readable */
+    .page-radio .radio-hero-wrapper .image-slider::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 60%;
+        background: linear-gradient(to bottom, #000 0%, transparent 100%);
+    }
+    /* Overlay: flow naturally so wrapper height = content height */
+    .mr-hero-overlay {
+        position: relative !important;
+        bottom: auto !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        padding: 30px 5% 50px;
+        margin: 0;
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    /* min-width: 0 overrides CSS Grid's default min-width: auto on grid
+       items, preventing the signup form input from forcing the 1fr
+       column wider than the available content box */
+    .mr-hero-col1,
+    .mr-hero-col2 {
+        min-width: 0;
+        max-width: 100%;
+    }
+    /* h1 "Midnight" at 135px measures ~398px — too wide for mobile.
+       min() scales it down: at 390px viewport, 25vw=97.5px → word fits
+       comfortably in the 351px column. Caps at 135px above 540px. */
+    .mr-hero-col1 h1 {
+        font-size: min(135px, 25vw) !important;
+    }
+    .mr-hero-col1 .kg-signup-card-form,
+    .mr-hero-col1 .kg-signup-card-fields {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    /* [data-theme] prefix matches the desktop rule's specificity (0,1,1,0)
+       so this override wins at mobile viewport width */
+    [data-theme] .mr-tagline, .mr-tagline {
+        font-size: 22px !important;
+        margin-bottom: 20px;
+    }
+    .mr-hero-col2 {
+        justify-content: flex-start;
+    }
+    .mr-hero-col2 .mr-player {
+        max-width: 100%;
+    }
 }
 
 </style>
