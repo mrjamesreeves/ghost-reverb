@@ -432,7 +432,12 @@ font-family: var(--font-sans);
     .mr-card-body { padding: 10px 10px 15px 15px; }
     .mr-card-body p { font-size: 13px; }
     .mr-strip-scrollbar { max-width: 90%; }
-    .mr-filter-pill { font-size: 16px; height: 44px; padding: 0 20px; }
+    .mr-filter-pill { font-size: 12px;
+        height: 30px;
+        padding: 0 10px;
+        font-family: var(--font-sans);
+        letter-spacing: 0;
+        text-transform: none; }
 
     /* ── Hero: stack on mobile ── */
     .page-radio .radio-hero-wrapper {
@@ -502,7 +507,9 @@ font-family: var(--font-sans);
        so this override wins at mobile viewport width */
     [data-theme] .mr-tagline, .mr-tagline {
         font-size: 22px !important;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        line-height: 1.2;
+        font-weight: 500;
     }
     .mr-hero-col2 {
         justify-content: flex-start;
@@ -510,6 +517,22 @@ font-family: var(--font-sans);
     .mr-hero-col2 .mr-player {
         max-width: 100%;
     }
+    .mr-player-head, .mr-player-list-section {
+        padding: 0 !important;
+    }
+    #main .mr-hero-col1 .kg-signup-card-button .kg-signup-card-button-default {
+    font-size: 15px !important;
+    letter-spacing: 1px;
+}
+  #main .mr-hero-col1 .kg-signup-card-button {
+   min-width: 80px;
+   }
+   #main .mr-hero-col1 .kg-signup-card-fields {
+min-height: 20px;
+}
+#main .mr-hero-col1 .kg-signup-card-input {
+    font-size: 14px !important;
+}
 }
 
 </style>
