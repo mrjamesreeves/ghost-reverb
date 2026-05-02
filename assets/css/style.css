@@ -460,7 +460,6 @@ blockquote {
   border-left: solid 12px var(--color-text-muted);
   padding-left: 30px;
   text-align: left;
-  font-weight: 300;
   }
 
 blockquote p {
