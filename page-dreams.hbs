@@ -2,9 +2,9 @@
 
 <script>document.body.classList.add('has-archive-reader');</script>
 
-<main id="main" class="archive-page art-diary-page">
+<main id="main" class="archive-page dreams-page">
 
-  {{#get "posts" filter="tag:art-diary" limit="all"}}
+  {{#get "posts" filter="tag:dreams" limit="all"}}
 
   <!-- Scroll reader -->
   <div class="archive-reader" id="archiveReader">
@@ -28,7 +28,7 @@
       <div class="archive-entry-content">
         <div class="archive-entry-inner">
           <div class="archive-entry-meta">
-            <span class="archive-section-label">Art Diary</span>
+            <span class="archive-section-label">Dream Inventory</span>
             <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="MMMM D, YYYY"}}</time>
           </div>
           <h2 class="archive-entry-title">
@@ -67,7 +67,7 @@
   <!-- Index overlay -->
   <div class="archive-index-overlay" id="archiveIndex" aria-hidden="true">
     <div class="archive-index-header">
-      <h1 class="archive-index-watermark">Art<br>Diary</h1>
+      <h1 class="archive-index-watermark">Dream<br>Inventory</h1>
       <button class="archive-index-close" id="archiveIndexClose" aria-label="Back to reader">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
@@ -82,7 +82,7 @@
     </div>
     <nav class="archive-index-sitenav">
       <a href="{{@site.url}}/radio">Midnight Radio</a>
-      <a href="{{@site.url}}/dreams">Dream Inventory</a>
+      <a href="{{@site.url}}/art-diary">Art Diary</a>
       <a href="{{@site.url}}/favorites">Favorite Things</a>
       <a href="{{@site.url}}/instructions">Instructions for Myself</a>
       <a href="{{@site.url}}/about">About</a>

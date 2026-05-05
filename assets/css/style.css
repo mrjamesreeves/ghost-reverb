@@ -5762,4 +5762,362 @@ h1.post {
   transition: color 0.2s ease;
 }
 .comments-modal-close:hover { color: #000; }
+
+
+/* ==========================================================================
+   Archive Reader (Dreams + Art Diary)
+   ========================================================================== */
+
+/* Page-level lockout so body doesn't scroll behind the reader */
+body.has-archive-reader {
+  overflow: hidden;
+}
+
+/* Hide the default site header avatar on archive pages */
+body.has-archive-reader .minimal-nav {
+  display: none;
+}
+
+/* The fixed full-viewport container */
+.archive-page {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Per-section color tokens */
+.dreams-page {
+  --archive-bg:    #f2f1ed;
+  --archive-text:  #1a1a1a;
+  --archive-muted: #999;
+  --archive-label: #bbb;
+  --archive-line:  rgba(0, 0, 0, 0.1);
+}
+
+.art-diary-page {
+  --archive-bg:    #e8e3d8;
+  --archive-text:  #1a1a1a;
+  --archive-muted: #999;
+  --archive-label: #bbb;
+  --archive-line:  rgba(0, 0, 0, 0.1);
+}
+
+/* --- Reader ---------------------------------------------------------------- */
+
+.archive-reader {
+  flex: 1;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.archive-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;          /* fills one "page" of the reader */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: var(--archive-bg);
+}
+
+/* First entry starts visible (class set in template) */
+.archive-entry.is-active {
+  opacity: 1;
+}
+
+/* Image pane */
+.archive-entry-image {
+  overflow: hidden;
+  position: relative;
+  background: var(--archive-line);
+}
+
+.archive-entry-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.archive-entry-no-image {
+  width: 100%;
+  height: 100%;
+  background: var(--archive-line);
+}
+
+/* Content pane */
+.archive-entry-content {
+  display: flex;
+  align-items: center;
+  padding: 60px;
+  background: var(--archive-bg);
+  overflow-y: auto;
+}
+
+.archive-entry-inner {
+  max-width: 480px;
+  width: 100%;
+}
+
+.archive-entry-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 22px;
+}
+
+.archive-section-label {
+  font-family: var(--font-big);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--archive-label);
+}
+
+.archive-entry-meta time {
+  font-size: var(--type-body-sm);
+  color: var(--archive-muted);
+  font-family: var(--font-sans);
+}
+
+.archive-entry-title {
+  font-family: var(--font-big);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.05;
+  margin: 0 0 18px 0;
+  color: var(--archive-text);
+}
+
+.archive-entry-title a {
+  color: inherit;
+  text-decoration: none;
+  background-image: none !important;
+  padding-bottom: 0 !important;
+}
+
+.archive-entry-title a:hover {
+  background-image: none !important;
+}
+
+.archive-entry-excerpt {
+  font-size: var(--type-body);
+  color: var(--archive-muted);
+  line-height: 1.65;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+/* --- Controls bar ---------------------------------------------------------- */
+
+.archive-controls {
+  height: 54px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: var(--archive-bg);
+  border-top: 1px solid var(--archive-line);
+  z-index: 10;
+}
+
+.archive-toggle-index,
+.archive-prev,
+.archive-next {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--archive-text);
+  padding: 8px;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+  line-height: 0;
+}
+
+.archive-toggle-index:hover,
+.archive-prev:hover,
+.archive-next:hover {
+  opacity: 1;
+}
+
+.archive-prev:disabled,
+.archive-next:disabled {
+  opacity: 0.18;
+  cursor: default;
+}
+
+.archive-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.archive-counter {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-sm);
+  color: var(--archive-muted);
+  min-width: 54px;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* --- Index overlay --------------------------------------------------------- */
+
+.archive-index-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--archive-bg);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.archive-index-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.archive-index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 48px 60px 32px;
+}
+
+.archive-index-watermark {
+  font-family: var(--font-big);
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: 0.92;
+  color: var(--archive-text);
+  opacity: 0.1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.archive-index-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--archive-muted);
+  padding: 8px;
+  margin-top: 10px;
+  transition: color 0.2s;
+  line-height: 0;
+}
+
+.archive-index-close:hover {
+  color: var(--archive-text);
+}
+
+/* Numbered list via CSS counter — three columns */
+.archive-index-list {
+  padding: 0 60px 48px;
+  columns: 3;
+  column-gap: 48px;
+  counter-reset: archive-counter;
+}
+
+.archive-index-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--archive-line);
+  break-inside: avoid;
+  color: var(--archive-text);
+  text-decoration: none;
+  background-image: none !important;
+  padding-bottom: 11px !important;
+  counter-increment: archive-counter;
+}
+
+.archive-index-item::before {
+  content: counter(archive-counter);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--archive-muted);
+  min-width: 22px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.archive-index-item:hover .archive-index-title-text {
+  opacity: 0.7;
+}
+
+.archive-index-title-text {
+  flex: 1;
+  font-size: var(--type-body-sm);
+  font-family: var(--font-sans);
+  line-height: 1.35;
+  transition: opacity 0.15s;
+}
+
+.archive-index-date {
+  font-size: 11px;
+  color: var(--archive-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.archive-index-sitenav {
+  padding: 32px 60px 48px;
+  border-top: 1px solid var(--archive-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 32px;
+}
+
+.archive-index-sitenav a {
+  font-size: var(--type-body-sm);
+  color: var(--archive-muted);
+  text-decoration: none;
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  transition: color 0.2s;
+}
+
+.archive-index-sitenav a:hover {
+  color: var(--archive-text);
+  background-image: none !important;
+}
+
+/* --- Responsive ------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .archive-entry {
+    grid-template-columns: 1fr;
+    grid-template-rows: 45vh 1fr;
+  }
+
+  .archive-entry-content {
+    padding: 32px 24px;
+    align-items: flex-start;
+  }
+
+  .archive-controls {
+    padding: 0 20px;
+  }
+
+  .archive-index-list {
+    columns: 1;
+    padding: 0 24px 40px;
+  }
+
+  .archive-index-header {
+    padding: 32px 24px 20px;
+  }
+
+  .archive-index-sitenav {
+    padding: 24px 24px 40px;
+  }
+}
 body.comments-is-open { overflow: hidden; }
