@@ -1,18 +1,23 @@
 {{!< default}}
 
+{{!-- IBM Plex Serif for entry body text --}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
 <script>document.body.classList.add('has-archive-reader', 'art-diary-bg');</script>
 
 <main id="main" class="archive-page art-diary-page">
 
   {{#get "posts" filter="tag:art-diary" limit="all"}}
 
-  <!-- Ghosted watermark header -->
+  {{!-- Ghosted watermark title --}}
   <div class="archive-watermark">
-    <h1>Art<br>Diary</h1>
+    <p class="archive-watermark-text">Art<br>Diary</p>
   </div>
 
-  <!-- Reader panel (65vh, 1000px max-width, entries stacked inside) -->
+  {{!-- Full-width reader panel --}}
   <div class="archive-reader" id="archiveReader">
+
     {{#foreach posts}}
     <article class="archive-entry{{#if @first}} is-active{{/if}}" data-index="{{@index}}">
 
@@ -31,45 +36,44 @@
       </div>
 
       <div class="archive-entry-content">
-        <div class="archive-entry-inner">
-          <div class="archive-entry-meta">
-            <span class="archive-section-label">Art Diary</span>
-            <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="MMMM D, YYYY"}}</time>
-          </div>
-          <h2 class="archive-entry-title">
-            <a href="{{url}}">{{title}}</a>
-          </h2>
+        <h2 class="archive-entry-title">
+          <a href="{{url}}">{{title}}</a>
+        </h2>
+        <div class="archive-entry-body">
           {{#if custom_excerpt}}
-            <p class="archive-entry-excerpt">{{custom_excerpt}}</p>
+            <p>{{custom_excerpt}}</p>
+          {{else}}
+            {{{content}}}
           {{/if}}
         </div>
       </div>
 
     </article>
     {{/foreach}}
-  </div>
 
-  <!-- Controls bar -->
-  <div class="archive-controls" id="archiveControls">
-    <button class="archive-toggle-index" id="archiveToggleIndex" aria-label="View all entries">
-      <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="0.75" x2="18" y2="0.75" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="0" y1="6.75" x2="18" y2="6.75" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="0" y1="12.75" x2="18" y2="12.75" stroke="currentColor" stroke-width="1.5"/>
-      </svg>
-    </button>
-    <div class="archive-nav-controls">
-      <button class="archive-prev" id="archivePrev" aria-label="Previous entry" disabled>
-        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    {{!-- Controls: overlaid at bottom of right pane --}}
+    <div class="archive-controls" id="archiveControls">
+      <button class="archive-toggle-index" id="archiveToggleIndex" aria-label="View all entries">
+        <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="0.75" x2="18" y2="0.75" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="6.75" x2="18" y2="6.75" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="12.75" x2="18" y2="12.75" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
       </button>
-      <span class="archive-counter" id="archiveCounter">1 / 1</span>
-      <button class="archive-next" id="archiveNext" aria-label="Next entry">
-        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+      <div class="archive-nav-controls">
+        <button class="archive-prev" id="archivePrev" aria-label="Previous entry" disabled>
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="archive-counter" id="archiveCounter">1 / 1</span>
+        <button class="archive-next" id="archiveNext" aria-label="Next entry">
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- Index overlay -->
+  </div>{{!-- end .archive-reader --}}
+
+  {{!-- Index overlay --}}
   <div class="archive-index-overlay" id="archiveIndex" aria-hidden="true">
     <div class="archive-index-header">
       <h1 class="archive-index-watermark">Art<br>Diary</h1>

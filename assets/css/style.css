@@ -5768,60 +5768,68 @@ h1.post {
    Archive Reader (Dreams + Art Diary)
    ========================================================================== */
 
-/* Fixed bg image for Dreams pages */
-body.dreams-bg {
-  background: url('../img/bg-dreams.webp') center / cover fixed;
+/* Hide site nav on archive pages — watermark serves as header */
+body.has-archive-reader .minimal-nav {
+  display: none;
 }
 
-/* Warm neutral bg for Art Diary pages */
+/* Fixed background image for Dreams pages */
+body.dreams-bg {
+  background: url('../img/bg-dreams.webp') center top / cover no-repeat;
+}
+
+/* Warm neutral background for Art Diary pages */
 body.art-diary-bg {
   background: #e8e3d8;
 }
 
-/* --- Page wrapper ---------------------------------------------------------- */
+/* --- Page wrapper: flex column so reader fills remaining viewport height --- */
 
 .archive-page {
-  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* --- Ghosted watermark header ---------------------------------------------- */
+/* --- Ghosted watermark (left-aligned, mix-blend-multiply) ------------------ */
 
 .archive-watermark {
-  text-align: center;
-  padding: 60px 20px 32px;
+  flex-shrink: 0;
+  padding: 40px 5% 28px;
   pointer-events: none;
   user-select: none;
 }
 
-.archive-watermark h1 {
+.archive-watermark-text {
   font-family: var(--font-big);
-  font-size: clamp(72px, 14vw, 160px);
-  line-height: 0.88;
-  letter-spacing: 0.03em;
-  color: #000;
-  opacity: 0.07;
+  font-size: clamp(60px, 9.5vw, 145px);
+  line-height: 0.82;
+  text-transform: uppercase;
+  color: #ebeded;
+  mix-blend-mode: multiply;
   margin: 0;
+  letter-spacing: 0.01em;
   background-image: none !important;
   padding-bottom: 0 !important;
 }
 
-body.dreams-bg .archive-watermark h1 {
-  color: #fff;
-  opacity: 0.15;
+/* On solid-color art diary bg, darken slightly so watermark is visible */
+body.art-diary-bg .archive-watermark-text {
+  color: #d8d0c4;
 }
 
-/* --- Reader panel ---------------------------------------------------------- */
+/* --- Reader panel: full browser width, fills remaining viewport ------------ */
 
 .archive-reader {
+  flex: 1;
   position: relative;
-  height: 65vh;
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 400px;
   overflow: hidden;
-  border-radius: 3px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.18);
 }
 
-/* --- Individual entries (stacked, fade in/out) ----------------------------- */
+/* --- Individual entries: stacked, fade in/out ------------------------------ */
 
 .archive-entry {
   position: absolute;
@@ -5850,22 +5858,23 @@ body.dreams-bg .archive-watermark h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
 .archive-entry-no-image {
   width: 100%;
   height: 100%;
-  background: #ddd;
+  background: #d8d5ce;
 }
 
 /* --- Right pane: content --------------------------------------------------- */
 
 .archive-entry-content {
   display: flex;
-  align-items: center;
-  padding: 48px 52px;
-  background: #faf8f4;
+  flex-direction: column;
+  padding: 60px 60px 80px;
+  background: #ebebeb;
   overflow: hidden;
 }
 
@@ -5873,37 +5882,13 @@ body.dreams-bg .archive-watermark h1 {
   background: #e8e3d8;
 }
 
-.archive-entry-inner {
-  width: 100%;
-}
-
-.archive-entry-meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.archive-section-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #aaa;
-}
-
-.archive-entry-meta time {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  color: #bbb;
-}
+/* --- Entry title ----------------------------------------------------------- */
 
 .archive-entry-title {
-  font-family: var(--font-big);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.05;
-  margin: 0 0 16px;
+  font-family: var(--font-big-alt);
+  font-size: clamp(36px, 4.2vw, 60px);
+  line-height: 1.0;
+  margin: 0 0 20px;
   background-image: none !important;
   padding-bottom: 0 !important;
 }
@@ -5918,37 +5903,52 @@ body.dreams-bg .archive-watermark h1 {
   background-image: none !important;
 }
 
-.archive-entry-excerpt {
-  font-family: var(--font-sans);
-  font-size: var(--type-body-sm);
-  color: #777;
-  line-height: 1.65;
-  margin: 0;
+/* --- Entry body text ------------------------------------------------------- */
+
+.archive-entry-body {
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.55;
+  color: #111;
+  overflow: hidden;
 }
 
-/* --- Controls bar ---------------------------------------------------------- */
+.archive-entry-body p {
+  margin: 0 0 1.2em;
+}
+
+.archive-entry-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Controls: absolute, bottom of right pane ------------------------------ */
 
 .archive-controls {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;   /* aligns with start of right pane */
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1000px;
-  margin: 14px auto 0;
-  padding: 0 4px;
+  padding: 0 44px;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .archive-toggle-index,
 .archive-prev,
 .archive-next {
+  pointer-events: auto;
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
-  color: #888;
+  color: #555;
   display: flex;
   align-items: center;
   line-height: 0;
-  opacity: 0.6;
+  opacity: 0.55;
   transition: opacity 0.2s;
 }
 
@@ -5960,22 +5960,23 @@ body.dreams-bg .archive-watermark h1 {
 
 .archive-prev:disabled,
 .archive-next:disabled {
-  opacity: 0.2;
+  opacity: 0.18;
   cursor: default;
 }
 
 .archive-nav-controls {
+  pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .archive-counter {
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.06em;
-  color: #aaa;
-  min-width: 44px;
+  color: #999;
+  min-width: 40px;
   text-align: center;
 }
 
@@ -5985,7 +5986,7 @@ body.dreams-bg .archive-watermark h1 {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: #faf8f4;
+  background: #ebebeb;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -6024,7 +6025,7 @@ body.dreams-bg .archive-watermark h1 {
   background: none;
   border: none;
   cursor: pointer;
-  color: #888;
+  color: #777;
   padding: 8px;
   display: flex;
   align-items: center;
@@ -6050,7 +6051,7 @@ body.dreams-bg .archive-watermark h1 {
   align-items: baseline;
   gap: 10px;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: inherit;
   text-decoration: none;
   background-image: none !important;
@@ -6091,7 +6092,7 @@ body.dreams-bg .archive-watermark h1 {
 
 .archive-index-sitenav {
   padding: 32px 60px 60px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
   gap: 10px 32px;
@@ -6100,7 +6101,7 @@ body.dreams-bg .archive-watermark h1 {
 .archive-index-sitenav a {
   font-family: var(--font-sans);
   font-size: 13px;
-  color: #999;
+  color: #888;
   background-image: none !important;
   padding-bottom: 0 !important;
   transition: color 0.2s;
@@ -6114,13 +6115,13 @@ body.dreams-bg .archive-watermark h1 {
 /* --- Footer TOC (two-column numbered index) -------------------------------- */
 
 .footer-toc {
-  padding: 60px 0 48px;
+  padding: 48px 5%;
 }
 
 .toc-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0 60px;
+  gap: 0 5%;
 }
 
 .toc-col {
@@ -6140,25 +6141,26 @@ body.dreams-bg .archive-watermark h1 {
 .toc-col li {
   counter-increment: toc;
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 
 .toc-col li::before {
-  content: counter(toc) '.';
+  content: counter(toc);
   font-family: var(--font-sans);
-  font-size: 11px;
-  color: #bbb;
+  font-size: 13px;
+  color: #a5a5a5;
   flex-shrink: 0;
-  min-width: 20px;
+  min-width: 16px;
 }
 
 .toc-col li a {
   flex: 1;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
   color: inherit;
   background-image: none !important;
   padding-bottom: 0 !important;
@@ -6170,36 +6172,40 @@ body.dreams-bg .archive-watermark h1 {
 
 .toc-year {
   font-family: var(--font-sans);
-  font-size: 12px;
-  color: #bbb;
+  font-size: 13px;
+  color: #a5a5a5;
   flex-shrink: 0;
 }
 
 /* --- Responsive ------------------------------------------------------------- */
 
 @media (max-width: 768px) {
+  .archive-page {
+    min-height: auto;
+  }
+
   .archive-reader {
-    height: auto;
-    min-height: 65vh;
-    border-radius: 0;
-    max-width: 100%;
+    height: 75vw;
+    min-height: 320px;
   }
 
   .archive-entry {
     grid-template-columns: 1fr;
-    grid-template-rows: 40vw auto;
-  }
-
-  .archive-watermark {
-    padding: 32px 20px 20px;
-  }
-
-  .archive-entry-content {
-    padding: 32px 24px;
+    grid-template-rows: 45% 55%;
   }
 
   .archive-controls {
-    padding: 0 16px;
+    left: 0;
+    bottom: 16px;
+    padding: 0 20px;
+  }
+
+  .archive-watermark {
+    padding: 24px 5% 20px;
+  }
+
+  .archive-entry-content {
+    padding: 28px 24px 60px;
   }
 
   .archive-index-header {
