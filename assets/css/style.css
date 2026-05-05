@@ -115,6 +115,7 @@ a.favorite-image-link,
 a.nav-link,
 a.social-link,
 a.kg-signup-card-button,
+a.radio-hero-content,
 .post-card a,
 .nav-card a,
 .radio-hero-content a,
@@ -457,9 +458,15 @@ blockquote {
   margin-left: 0;
   margin-top: 1.6rem;
   margin-bottom: .2rem;  
-  border-left: solid 12px var(--color-text-muted);
+  border-left: solid 12px #333333c5;
   padding-left: 30px;
   text-align: left;
+  font-weight: 300;
+  }
+
+[data-theme="light"] blockquote {
+  border-left: solid 12px #d6d6d6;
+  font-weight: 400;
   }
 
 blockquote p {
@@ -995,19 +1002,9 @@ width: 90%;
     color: rgba(255, 255, 255,0.8);
 }
 
-.home-template .radio-page .radio-hero-content {
-    top: 75%;
-}
-
 .radio-page .radio-hero-content h1 {
     width: 51%;
     padding-bottom: 10%;
-}
-
-.radio-page .radio-hero-content h5 {
-  color: white;
-  font-size: 11px;
-  padding-bottom: 5px;
 }
 
 .radio-page .radio-hero-content p {
