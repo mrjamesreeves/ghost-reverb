@@ -38,7 +38,7 @@ routes:
   # Root collection (homepage)
   /:
     permalink: /{slug}/
-    template: index
+    template: home
 
 taxonomies:
   tag: /tag/{slug}/
