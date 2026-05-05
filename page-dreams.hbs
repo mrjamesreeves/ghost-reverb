@@ -1,12 +1,17 @@
 {{!< default}}
 
-<script>document.body.classList.add('has-archive-reader');</script>
+<script>document.body.classList.add('has-archive-reader', 'dreams-bg');</script>
 
 <main id="main" class="archive-page dreams-page">
 
   {{#get "posts" filter="tag:dreams" limit="all"}}
 
-  <!-- Scroll reader -->
+  <!-- Ghosted watermark header -->
+  <div class="archive-watermark">
+    <h1>Dream<br>Inventory</h1>
+  </div>
+
+  <!-- Reader panel (65vh, 1000px max-width, entries stacked inside) -->
   <div class="archive-reader" id="archiveReader">
     {{#foreach posts}}
     <article class="archive-entry{{#if @first}} is-active{{/if}}" data-index="{{@index}}">
@@ -57,7 +62,7 @@
       <button class="archive-prev" id="archivePrev" aria-label="Previous entry" disabled>
         <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <span class="archive-counter" id="archiveCounter">1</span>
+      <span class="archive-counter" id="archiveCounter">1 / 1</span>
       <button class="archive-next" id="archiveNext" aria-label="Next entry">
         <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>

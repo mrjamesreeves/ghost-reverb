@@ -5768,72 +5768,82 @@ h1.post {
    Archive Reader (Dreams + Art Diary)
    ========================================================================== */
 
-/* Page-level lockout so body doesn't scroll behind the reader */
-body.has-archive-reader {
-  overflow: hidden;
+/* Fixed bg image for Dreams pages */
+body.dreams-bg {
+  background: url('../img/bg-dreams.webp') center / cover fixed;
 }
 
-/* Hide the default site header avatar on archive pages */
-body.has-archive-reader .minimal-nav {
-  display: none;
+/* Warm neutral bg for Art Diary pages */
+body.art-diary-bg {
+  background: #e8e3d8;
 }
 
-/* The fixed full-viewport container */
+/* --- Page wrapper ---------------------------------------------------------- */
+
 .archive-page {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 80px;
 }
 
-/* Per-section color tokens */
-.dreams-page {
-  --archive-bg:    #f2f1ed;
-  --archive-text:  #1a1a1a;
-  --archive-muted: #999;
-  --archive-label: #bbb;
-  --archive-line:  rgba(0, 0, 0, 0.1);
+/* --- Ghosted watermark header ---------------------------------------------- */
+
+.archive-watermark {
+  text-align: center;
+  padding: 60px 20px 32px;
+  pointer-events: none;
+  user-select: none;
 }
 
-.art-diary-page {
-  --archive-bg:    #e8e3d8;
-  --archive-text:  #1a1a1a;
-  --archive-muted: #999;
-  --archive-label: #bbb;
-  --archive-line:  rgba(0, 0, 0, 0.1);
+.archive-watermark h1 {
+  font-family: var(--font-big);
+  font-size: clamp(72px, 14vw, 160px);
+  line-height: 0.88;
+  letter-spacing: 0.03em;
+  color: #000;
+  opacity: 0.07;
+  margin: 0;
+  background-image: none !important;
+  padding-bottom: 0 !important;
 }
 
-/* --- Reader ---------------------------------------------------------------- */
+body.dreams-bg .archive-watermark h1 {
+  color: #fff;
+  opacity: 0.15;
+}
+
+/* --- Reader panel ---------------------------------------------------------- */
 
 .archive-reader {
-  flex: 1;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
+  position: relative;
+  height: 65vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 3px;
 }
+
+/* --- Individual entries (stacked, fade in/out) ----------------------------- */
 
 .archive-entry {
+  position: absolute;
+  inset: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100%;          /* fills one "page" of the reader */
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   opacity: 0;
-  transition: opacity 0.45s ease;
-  background: var(--archive-bg);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
-/* First entry starts visible (class set in template) */
 .archive-entry.is-active {
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* Image pane */
+/* --- Left pane: image ------------------------------------------------------ */
+
 .archive-entry-image {
-  overflow: hidden;
   position: relative;
-  background: var(--archive-line);
+  overflow: hidden;
+  background: #ccc;
 }
 
 .archive-entry-image img {
@@ -5846,55 +5856,60 @@ body.has-archive-reader .minimal-nav {
 .archive-entry-no-image {
   width: 100%;
   height: 100%;
-  background: var(--archive-line);
+  background: #ddd;
 }
 
-/* Content pane */
+/* --- Right pane: content --------------------------------------------------- */
+
 .archive-entry-content {
   display: flex;
   align-items: center;
-  padding: 60px;
-  background: var(--archive-bg);
-  overflow-y: auto;
+  padding: 48px 52px;
+  background: #faf8f4;
+  overflow: hidden;
+}
+
+.art-diary-page .archive-entry-content {
+  background: #e8e3d8;
 }
 
 .archive-entry-inner {
-  max-width: 480px;
   width: 100%;
 }
 
 .archive-entry-meta {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 22px;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .archive-section-label {
-  font-family: var(--font-big);
-  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
-  color: var(--archive-label);
+  color: #aaa;
 }
 
 .archive-entry-meta time {
-  font-size: var(--type-body-sm);
-  color: var(--archive-muted);
   font-family: var(--font-sans);
+  font-size: 12px;
+  color: #bbb;
 }
 
 .archive-entry-title {
   font-family: var(--font-big);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   line-height: 1.05;
-  margin: 0 0 18px 0;
-  color: var(--archive-text);
+  margin: 0 0 16px;
+  background-image: none !important;
+  padding-bottom: 0 !important;
 }
 
 .archive-entry-title a {
   color: inherit;
-  text-decoration: none;
   background-image: none !important;
   padding-bottom: 0 !important;
 }
@@ -5904,25 +5919,22 @@ body.has-archive-reader .minimal-nav {
 }
 
 .archive-entry-excerpt {
-  font-size: var(--type-body);
-  color: var(--archive-muted);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-sm);
+  color: #777;
   line-height: 1.65;
   margin: 0;
-  font-family: var(--font-sans);
 }
 
 /* --- Controls bar ---------------------------------------------------------- */
 
 .archive-controls {
-  height: 54px;
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
-  background: var(--archive-bg);
-  border-top: 1px solid var(--archive-line);
-  z-index: 10;
+  max-width: 1000px;
+  margin: 14px auto 0;
+  padding: 0 4px;
 }
 
 .archive-toggle-index,
@@ -5931,11 +5943,13 @@ body.has-archive-reader .minimal-nav {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--archive-text);
   padding: 8px;
-  opacity: 0.45;
-  transition: opacity 0.2s;
+  color: #888;
+  display: flex;
+  align-items: center;
   line-height: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s;
 }
 
 .archive-toggle-index:hover,
@@ -5946,23 +5960,23 @@ body.has-archive-reader .minimal-nav {
 
 .archive-prev:disabled,
 .archive-next:disabled {
-  opacity: 0.18;
+  opacity: 0.2;
   cursor: default;
 }
 
 .archive-nav-controls {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .archive-counter {
   font-family: var(--font-sans);
-  font-size: var(--type-body-sm);
-  color: var(--archive-muted);
-  min-width: 54px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #aaa;
+  min-width: 44px;
   text-align: center;
-  letter-spacing: 0.03em;
 }
 
 /* --- Index overlay --------------------------------------------------------- */
@@ -5970,17 +5984,23 @@ body.has-archive-reader .minimal-nav {
 .archive-index-overlay {
   position: fixed;
   inset: 0;
-  z-index: 60;
-  background: var(--archive-bg);
+  z-index: 200;
+  background: #faf8f4;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
+.art-diary-page .archive-index-overlay {
+  background: #e8e3d8;
+}
+
 .archive-index-overlay.is-open {
   opacity: 1;
-  pointer-events: all;
+  pointer-events: auto;
 }
 
 .archive-index-header {
@@ -5992,36 +6012,36 @@ body.has-archive-reader .minimal-nav {
 
 .archive-index-watermark {
   font-family: var(--font-big);
-  font-size: clamp(4rem, 8vw, 8rem);
-  line-height: 0.92;
-  color: var(--archive-text);
-  opacity: 0.1;
-  margin: 0;
-  text-transform: uppercase;
+  font-size: clamp(48px, 8vw, 100px);
+  line-height: 0.9;
   letter-spacing: 0.02em;
-  user-select: none;
+  margin: 0;
+  background-image: none !important;
+  padding-bottom: 0 !important;
 }
 
 .archive-index-close {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--archive-muted);
+  color: #888;
   padding: 8px;
-  margin-top: 10px;
-  transition: color 0.2s;
+  display: flex;
+  align-items: center;
   line-height: 0;
+  margin-top: 8px;
+  transition: color 0.2s;
 }
 
 .archive-index-close:hover {
-  color: var(--archive-text);
+  color: #000;
 }
 
-/* Numbered list via CSS counter — three columns */
 .archive-index-list {
-  padding: 0 60px 48px;
-  columns: 3;
-  column-gap: 48px;
+  flex: 1;
+  padding: 0 60px 40px;
+  display: flex;
+  flex-direction: column;
   counter-reset: archive-counter;
 }
 
@@ -6029,13 +6049,12 @@ body.has-archive-reader .minimal-nav {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--archive-line);
-  break-inside: avoid;
-  color: var(--archive-text);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: inherit;
   text-decoration: none;
   background-image: none !important;
-  padding-bottom: 11px !important;
+  padding-bottom: 12px !important;
   counter-increment: archive-counter;
 }
 
@@ -6043,81 +6062,161 @@ body.has-archive-reader .minimal-nav {
   content: counter(archive-counter);
   font-family: var(--font-sans);
   font-size: 11px;
-  color: var(--archive-muted);
+  color: #bbb;
   min-width: 22px;
   flex-shrink: 0;
-  opacity: 0.6;
 }
 
 .archive-index-item:hover .archive-index-title-text {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .archive-index-title-text {
   flex: 1;
-  font-size: var(--type-body-sm);
   font-family: var(--font-sans);
+  font-size: 14px;
   line-height: 1.35;
   transition: opacity 0.15s;
+  background-image: none !important;
+  padding-bottom: 0 !important;
 }
 
 .archive-index-date {
+  font-family: var(--font-sans);
   font-size: 11px;
-  color: var(--archive-muted);
+  color: #bbb;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .archive-index-sitenav {
-  padding: 32px 60px 48px;
-  border-top: 1px solid var(--archive-line);
+  padding: 32px 60px 60px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   flex-wrap: wrap;
   gap: 10px 32px;
 }
 
 .archive-index-sitenav a {
-  font-size: var(--type-body-sm);
-  color: var(--archive-muted);
-  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: #999;
   background-image: none !important;
   padding-bottom: 0 !important;
   transition: color 0.2s;
 }
 
 .archive-index-sitenav a:hover {
-  color: var(--archive-text);
+  color: #000;
   background-image: none !important;
+}
+
+/* --- Footer TOC (two-column numbered index) -------------------------------- */
+
+.footer-toc {
+  padding: 60px 0 48px;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 60px;
+}
+
+.toc-col {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-col--left {
+  counter-reset: toc 0;
+}
+
+.toc-col--right {
+  counter-reset: toc 4;
+}
+
+.toc-col li {
+  counter-increment: toc;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.toc-col li::before {
+  content: counter(toc) '.';
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: #bbb;
+  flex-shrink: 0;
+  min-width: 20px;
+}
+
+.toc-col li a {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: inherit;
+  background-image: none !important;
+  padding-bottom: 0 !important;
+}
+
+.toc-col li a:hover {
+  background-image: none !important;
+}
+
+.toc-year {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: #bbb;
+  flex-shrink: 0;
 }
 
 /* --- Responsive ------------------------------------------------------------- */
 
 @media (max-width: 768px) {
+  .archive-reader {
+    height: auto;
+    min-height: 65vh;
+    border-radius: 0;
+    max-width: 100%;
+  }
+
   .archive-entry {
     grid-template-columns: 1fr;
-    grid-template-rows: 45vh 1fr;
+    grid-template-rows: 40vw auto;
+  }
+
+  .archive-watermark {
+    padding: 32px 20px 20px;
   }
 
   .archive-entry-content {
     padding: 32px 24px;
-    align-items: flex-start;
   }
 
   .archive-controls {
-    padding: 0 20px;
-  }
-
-  .archive-index-list {
-    columns: 1;
-    padding: 0 24px 40px;
+    padding: 0 16px;
   }
 
   .archive-index-header {
     padding: 32px 24px 20px;
   }
 
+  .archive-index-list {
+    padding: 0 24px 40px;
+  }
+
   .archive-index-sitenav {
-    padding: 24px 24px 40px;
+    padding: 24px 24px 60px;
+  }
+
+  .toc-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 body.comments-is-open { overflow: hidden; }

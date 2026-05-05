@@ -1,7 +1,7 @@
 /**
  * Archive Reader
- * Scroll-snap fade reader for Dreams and Art Diary pages.
- * Handles: fade on scroll, prev/next nav, index overlay toggle, keyboard nav.
+ * Horizontal swipe + fade navigation for Dreams and Art Diary pages.
+ * Handles: fade on horizontal swipe, prev/next nav, index overlay toggle, keyboard nav.
  */
 
 (function () {
@@ -18,13 +18,18 @@
   const indexEl   = document.getElementById('archiveIndex');
   const closeBtn  = document.getElementById('archiveIndexClose');
 
-  const total = entries.length;
-  let current = 0;
+  const total      = entries.length;
+  let current      = 0;
+  let navigating   = false;
+  let swipeAccum   = 0;
+  let swipeTimer   = null;
+  const COOLDOWN   = 600;   // ms between navigations
+  const THRESHOLD  = 60;    // px of accumulated deltaX before firing
 
-  // --- Counter ---
+  // --- Counter / nav state ---
 
   function updateCounter(idx) {
-    if (counterEl) counterEl.textContent = `${idx + 1} / ${total}`;
+    if (counterEl) counterEl.textContent = (idx + 1) + ' / ' + total;
   }
 
   function updateNav(idx) {
@@ -32,37 +37,42 @@
     if (nextBtn) nextBtn.disabled = idx === total - 1;
   }
 
-  // --- Scroll to entry ---
+  // --- Go to entry (fade) ---
 
   function goTo(idx) {
-    if (idx < 0 || idx >= total) return;
-    entries[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (navigating || idx < 0 || idx >= total) return;
+    navigating = true;
+
+    entries[current].classList.remove('is-active');
+    entries[idx].classList.add('is-active');
+    current    = idx;
+    swipeAccum = 0;
+
+    updateCounter(current);
+    updateNav(current);
+
+    setTimeout(function () { navigating = false; }, COOLDOWN);
   }
 
-  // --- Intersection Observer: fade in/out on snap ---
+  // --- Horizontal wheel / trackpad swipe ---
 
-  const observer = new IntersectionObserver(
-    (observed) => {
-      observed.forEach((item) => {
-        if (item.isIntersecting) {
-          item.target.classList.add('is-active');
-          current = parseInt(item.target.dataset.index, 10);
-          updateCounter(current);
-          updateNav(current);
-        } else {
-          item.target.classList.remove('is-active');
-        }
-      });
-    },
-    { root: reader, threshold: 0.5 }
-  );
+  reader.addEventListener('wheel', function (e) {
+    // Only respond to predominantly horizontal movement
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
 
-  entries.forEach((entry) => observer.observe(entry));
+    swipeAccum += e.deltaX;
+    clearTimeout(swipeTimer);
+    swipeTimer = setTimeout(function () { swipeAccum = 0; }, 300);
+
+    if      (swipeAccum >  THRESHOLD) goTo(current + 1);
+    else if (swipeAccum < -THRESHOLD) goTo(current - 1);
+  }, { passive: false });
 
   // --- Prev / next buttons ---
 
-  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
 
   // --- Index overlay ---
 
@@ -83,16 +93,16 @@
 
   // --- Keyboard ---
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', function (e) {
     if (indexEl && indexEl.classList.contains('is-open')) {
       if (e.key === 'Escape') closeIndex();
       return;
     }
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
       goTo(current + 1);
     }
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
       goTo(current - 1);
     }

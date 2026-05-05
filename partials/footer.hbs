@@ -1,146 +1,103 @@
-<footer class="content outer">
-    <!-- TAGS -->
-    <div class="footer-tags">
-        <div class="index">
-            <div class="index-item is-visible" data-url="/favorites">
-                <span class="index-name">Favorite Things</span>
-                <span class="count">2026</span>
-            </div>
-            <div class="index-item is-visible" data-url="/instructions">
-                <span class="index-name">Instructions for Myself</span>
-                <span class="count">2025</span>
-            </div>
-            <div class="index-item is-visible" data-url="/dreams">
-                <span class="index-name">Dream Inventory</span>
-                <span class="count">2024-2025</span>
-            </div>
-            <div class="index-item is-visible" data-url="/art-diary">
-                <span class="index-name">Art Diary</span>
-                <span class="count">2024-2026</span>
-            </div>
-            <div class="index-item is-visible" data-url="/god">
-                <span class="index-name">Notes on God</span>
-                <span class="count">2017-2025</span>
-            </div>
-            <div class="index-item is-visible" data-url="/weather">
-                <span class="index-name">Weather</span>
-                <span class="count">2013-2023</span>
-            </div>
-            <div class="index-item is-visible" data-url="/highlights">
-                <span class="index-name">Highlights</span>
-                <span class="count">2016-2025</span>
-            </div>
-            <div class="index-item is-visible" data-url="/lowlights">
-                <span class="index-name">Lowlights</span>
-                <span class="count">2013-2025</span>
-            </div>
-        </div>
-    </div>
-</footer>
+{{#if @member}}
 
+  {{!-- Members: two-column TOC only --}}
+  <div class="footer-toc content outer">
+    <nav class="toc-grid" aria-label="Site index">
+      <ol class="toc-col toc-col--left">
+        <li><a href="{{@site.url}}/radio">Midnight Radio</a><span class="toc-year">2020–</span></li>
+        <li><a href="{{@site.url}}/dreams">Dream Inventory</a><span class="toc-year">2024–</span></li>
+        <li><a href="{{@site.url}}/art-diary">Art Diary</a><span class="toc-year">2024–</span></li>
+        <li><a href="{{@site.url}}/favorites">Favorite Things</a><span class="toc-year">2026–</span></li>
+      </ol>
+      <ol class="toc-col toc-col--right">
+        <li><a href="{{@site.url}}/instructions">Instructions for Myself</a><span class="toc-year">2025–</span></li>
+        <li><a href="{{@site.url}}/about">About</a></li>
+        <li><a href="https://spite.club" target="_blank" rel="noopener">Spite</a></li>
+        <li><a href="https://bsky.app/profile/jamesreeves.co" target="_blank" rel="noopener">Bluesky</a></li>
+      </ol>
+    </nav>
+  </div>
 
-{{#if @member}}{{else}}
+{{else}}
 
-<div class="signup content outer">
+  {{!-- Non-members: signup block + TOC --}}
+  <div class="signup content outer">
     <div class="signup-image">
-        <img src="{{asset "/img/midnight-stickers.webp" }}" alt="Midnight Radio">
+      <img src="{{asset "/img/midnight-stickers.webp"}}" alt="Midnight Radio">
     </div>
-    
     <div class="signup-content">
-        <h2>Join Midnight Radio</h2>
-        <p>Notes on surviving the 21st century and a mixtape delivered ’round midnight on the 1st and 15th of the month.</p>
-        {{> "signup"}}  
+      <h2>Join Midnight Radio</h2>
+      <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+      {{> "signup"}}
     </div>
-</div>
+  </div>
+
+  <div class="footer-toc content outer">
+    <nav class="toc-grid" aria-label="Site index">
+      <ol class="toc-col toc-col--left">
+        <li><a href="{{@site.url}}/radio">Midnight Radio</a><span class="toc-year">2020–</span></li>
+        <li><a href="{{@site.url}}/dreams">Dream Inventory</a><span class="toc-year">2024–</span></li>
+        <li><a href="{{@site.url}}/art-diary">Art Diary</a><span class="toc-year">2024–</span></li>
+        <li><a href="{{@site.url}}/favorites">Favorite Things</a><span class="toc-year">2026–</span></li>
+      </ol>
+      <ol class="toc-col toc-col--right">
+        <li><a href="{{@site.url}}/instructions">Instructions for Myself</a><span class="toc-year">2025–</span></li>
+        <li><a href="{{@site.url}}/about">About</a></li>
+        <li><a href="https://spite.club" target="_blank" rel="noopener">Spite</a></li>
+        <li><a href="https://bsky.app/profile/jamesreeves.co" target="_blank" rel="noopener">Bluesky</a></li>
+      </ol>
+    </nav>
+  </div>
 
 {{/if}}
 
 
 <footer class="simple-footer">
-    <div class="footer-name"><a href="{{@site.url}}">James A. Reeves</a></div>
-    <div class="footer-links">
-        <a href="{{@site.url}}/radio">Midnight Radio</a> • 
-        <a href="{{@site.url}}/notebook">Notebook</a> • 
-        <a href="{{@site.url}}/about">About</a> • 
-        <a href="https://bsky.app/profile/jamesreeves.co" target="_blank">Bluesky</a>
-    </div>
+  <div class="footer-name"><a href="{{@site.url}}">James A. Reeves</a></div>
 </footer>
-
 
 
 {{!-- Footer Scripts --}}
 <script src="{{asset "js/smartquotes.js"}}"></script>
 <script>smartquotes();</script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    // Apply smartquotes to the entire document body
-    smartquotes(document.body);
-
+document.addEventListener('DOMContentLoaded', function () {
+  smartquotes(document.body);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.radio-item[data-url]').forEach(item => {
-        item.addEventListener('click', (e) => {
-            // Don't trigger if clicking on an existing link
-            if (e.target.tagName !== 'A') {
-                window.location.href = item.dataset.url;
-            }
-        });
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.radio-item[data-url]').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      if (e.target.tagName !== 'A') {
+        window.location.href = item.dataset.url;
+      }
     });
+  });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.index-item[data-url]').forEach(item => {
-        item.addEventListener('click', (e) => {
-            // Don't trigger if clicking on an existing link
-            if (e.target.tagName !== 'A') {
-                window.location.href = item.dataset.url;
-            }
-        });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('.js-tags .ft-item').forEach(function (el) {
-        const count = parseInt(el.dataset.count, 10);
-        if (count < 3) {
-            el.remove(); // or el.style.display = 'none';
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+document.addEventListener('DOMContentLoaded', function () {
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
       }
     });
-  }, {
-    threshold: 0.1
-  });
+  }, { threshold: 0.1 });
 
-  // Observe all recent radio items
-  document.querySelectorAll('.radio-item').forEach(item => {
+  document.querySelectorAll('.radio-item').forEach(function (item) {
     observer.observe(item);
   });
-  // Observe all footer tag items
-  document.querySelectorAll('.index-item').forEach(item => {
-    observer.observe(item);
-  });
-  // Also observe post titles
-  document.querySelectorAll('.post-title').forEach(title => {
+  document.querySelectorAll('.post-title').forEach(function (title) {
     observer.observe(title);
   });
 });
 </script>
 
 <script>
-document.querySelectorAll('.episode-number').forEach(function(el) {
-    const raw = el.getAttribute('data-ep'); // Example: "hash-mr-14"
-    if (raw && raw.startsWith('hash-mr-')) {
-        const episodeNumber = raw.replace('hash-mr-', ''); // Remove "hash-mr-"
-        el.textContent = `${episodeNumber}`; // Set visible text
-    }
+document.querySelectorAll('.episode-number').forEach(function (el) {
+  var raw = el.getAttribute('data-ep');
+  if (raw && raw.startsWith('hash-mr-')) {
+    el.textContent = raw.replace('hash-mr-', '');
+  }
 });
 </script>
