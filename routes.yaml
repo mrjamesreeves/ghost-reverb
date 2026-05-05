@@ -2,32 +2,13 @@ routes:
   /tag/midnight-radio/:
     template: page-radio
     redirect: /radio
-  /favorites/:
-    template: page-favorites 
-  /art-diary/:
-    template: page-art-diary 
-  /notebook/:
-    template: page-notebook
-
-collections:
-  # Notebook collections
-  /god/:
-    permalink: /god/{slug}/
-    template: tag-notebook-collection
-    filter: tag:god
-    data: tag.god
-    
-  /weather/:
-    permalink: /weather/{slug}/
-    template: tag-notebook-collection
-    filter: tag:weather
-    data: tag.weather
-    
   /dreams/:
-    permalink: /dreams/{slug}/
-    template: tag-notebook-collection
-    filter: tag:dreams
-    data: tag.dreams
+    template: page-dreams
+  /favorites/:
+    template: page-favorites
+  /art-diary/:
+    template: page-art-diary
+  
 
   # Other collections
   /broadcasts/:
