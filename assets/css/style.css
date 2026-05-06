@@ -5775,7 +5775,7 @@ body.has-archive-reader .minimal-nav {
 
 /* Fixed background image for Dreams pages */
 body.dreams-bg {
-  background: url('../img/bg-dreams.webp') center top / cover no-repeat;
+  background: url('../img/bg-dreams.webp') center top / cover no-repeat !important;
 }
 
 /* Warm neutral background for Art Diary pages */
@@ -5805,7 +5805,7 @@ body.art-diary-bg {
   font-size: clamp(60px, 9.5vw, 145px);
   line-height: 0.82;
   text-transform: uppercase;
-  color: #ebeded;
+  color: #ebeded !important;
   mix-blend-mode: multiply;
   margin: 0;
   letter-spacing: 0.01em;
