@@ -1,39 +1,8 @@
 {{!< default}}
 
-<main id="main" class="content outer page-favorites notebook-collection">
-    <div class="inner-wide">
+{{!-- /favorites/ — section landing. Renders the same reader as individual
+     favorite post URLs (post.hbs dispatches there too when primary_tag is
+     "favorites"). Both routes share partials/favorites/_reader.hbs. Body
+     type inherits the site default (IBM Plex Sans via Adobe Typekit). --}}
 
-        {{> notebook-header}}
-
-
-
-        <!-- Category Filters -->
-                            <h1 class="post">Favorite Things</h1>
-        <nav class="favorites-nav">
-            <div class="filter-btn active" data-category="all">All</div>
-            <div class="filter-btn" data-category="music">Music</div>
-            <div class="filter-btn" data-category="books">Books</div>
-            <div class="filter-btn" data-category="art">Art</div>
-            <div class="filter-btn" data-category="movies">Movies</div>
-            <div class="filter-btn" data-category="tv">TV</div>
-            <div class="filter-btn" data-category="objects">Objects</div>
-            <div class="filter-btn" data-category="food">Food</div>
-        </nav>
-
-        <!-- Entries Container -->
-        <div id="favorites-container" class="favorites-layout">
-            <div class="favorites-text-column">
-                <!-- JavaScript will populate text entries -->
-            </div>
-            <div class="favorites-image-column">
-                <!-- JavaScript will populate images (absolutely positioned) -->
-                <svg class="connector-lines" aria-hidden="true">
-                    <!-- JS will draw connector lines here -->
-                </svg>
-            </div>
-        </div>
-
-    </div>
-</main>
-
-<script src="{{asset "js/favorites.js"}}"></script>
+{{> "favorites/_reader"}}

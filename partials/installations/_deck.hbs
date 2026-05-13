@@ -1,0 +1,81 @@
+{{!-- Art Installations slide deck.
+     Loaded from post.hbs whenever a post's primary tag is `installations`.
+     This partial expects to be rendered inside a {{#post}} context.
+     Pulls title / body / feature_image from Ghost; press quote, media slides
+     and captions live in partials/installations/{slug}.hbs (one per project). --}}
+
+<script>document.body.classList.add('has-archive-reader', 'dreams-bg', 'installations-bg');</script>
+
+<main id="main" class="archive-page installations-page">
+
+  <div class="archive-reader" id="archiveReader" data-current-slug="{{slug}}">
+
+    <div class="archive-watermark">
+      <h1 class="archive-watermark-text">Art<br>Installations</h1>
+    </div>
+
+    {{!-- Per-project partial: intro slide + media slides for this post.
+         Add a new {{#match}} branch for each new project's partial. --}}
+    {{#match slug "after-the-end"}}{{> "installations/after-the-end"}}{{/match}}
+    {{#match slug "light-the-barricades"}}{{> "installations/light-the-barricades"}}{{/match}}
+    {{#match slug "the-nightly-news"}}{{> "installations/the-nightly-news"}}{{/match}}
+    {{#match slug "monument-anxious-hopeful"}}{{> "installations/monument-anxious-hopeful"}}{{/match}}
+    {{#match slug "atlas-of-tomorrow"}}{{> "installations/atlas-of-tomorrow"}}{{/match}}
+
+    {{!-- Controls bar: hamburger left, caption center (media slides only),
+         counter + chevrons right. Caption is updated by install-reader.js
+         from each slide's data-caption attribute. --}}
+    <div class="archive-controls" id="archiveControls">
+      <button class="archive-toggle-index" id="archiveToggleIndex" aria-label="View all installations">
+        <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.55556 1.5H30.5M9.55556 11.5H30.5M9.55556 21.5H30.5M1.5 1.5H1.51611M1.5 11.5H1.51611M1.5 21.5H1.51611" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="archive-caption" id="archiveCaption" aria-live="polite"></div>
+
+      <div class="archive-nav-controls">
+        <button class="archive-prev" id="archivePrev" aria-label="Previous slide">
+          <svg width="13" height="23" viewBox="0 0 13 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.25 21.25L1.25 11.25L11.25 1.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <span class="archive-counter" id="archiveCounter">1 / 1</span>
+        <button class="archive-next" id="archiveNext" aria-label="Next slide">
+          <svg width="13" height="23" viewBox="0 0 13 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.25 21.25L1.25 11.25L11.25 1.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {{!-- Index overlay: list of all installations. Same look as the Dreams
+         index, but only ~5 entries so the columns may look sparse. --}}
+    <div class="archive-index-overlay" id="archiveIndex" aria-hidden="true">
+      <button class="archive-index-close" id="archiveIndexClose" aria-label="Back to reader">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="archive-index-list">
+        {{#get "posts" filter="tag:installations" limit="all" order="published_at desc"}}
+          {{#foreach posts}}
+          <a class="archive-index-item" href="{{url}}">
+            <span class="archive-index-title-text">{{title}}</span>
+            <span class="archive-index-date">{{date format="MMM YYYY"}}</span>
+          </a>
+          {{/foreach}}
+        {{/get}}
+      </div>
+    </div>
+
+  </div>{{!-- end .archive-reader --}}
+
+</main>
+
+{{!-- Project list for cross-project chevron navigation. install-reader.js
+     reads this to know what URL to navigate to when prev/next crosses the
+     boundary of the current project's slide deck. --}}
+<script type="application/json" id="installationsList">
+[{{#get "posts" filter="tag:installations" limit="all" order="published_at desc"}}{{#foreach posts}}{"slug":"{{slug}}","url":"{{url}}","title":"{{title}}"}{{#unless @last}},{{/unless}}{{/foreach}}{{/get}}]
+</script>
+
+<script src="{{asset "js/install-reader.js"}}"></script>

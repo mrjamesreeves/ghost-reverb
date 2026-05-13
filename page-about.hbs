@@ -1,184 +1,217 @@
 {{!< default}}
 
-    <main id="main" class="content outer">
-        <div class="inner-wide bio">                
-        {{#post}}
+{{!-- /about/ — full reader view.
+     Portrait on the left (Oliver Farshi photo, same as before), bio +
+     press + CV + colophon all in the right scrolling pane. Watermark
+     in the corner says "About"; no nav controls — it's a single
+     artifact, same shape as the Instructions reader.
 
-            <div class="post-card">
-                <img src="{{asset "/img/Reeves-Portrait-With-Plant-by-Oliver-Farshi.webp" }}" alt="James A. Reeves" class="about-hero-image">
-            </div>
-            
-            <div class="post-header-caption">
-                Photo by <a href="https://oliverfarshi.com" target="_blank">Oliver Farshi</a>
-            </div>
+     The colophon's three image+caption blocks (Colophon, Icon, MR)
+     get folded inline as figure+paragraph pairs so they ride the
+     same scroll as the rest of the bio. --}}
 
-            <div class="bio">
-                <p>James is a writer and designer in the Middle West who makes midnight mix tapes and writes about faith in the digital age. He worked in a gas station, was a terrible waiter at an Indian restaurant, ran a record label, was a partner at a design agency, and did a stint in law school before deciding he did not want a life of conflict and would rather dedicate his brief time on this planet to making things.</p> 
-                <p>After traveling 50,000 miles along the back roads of America, his first book, <a href="http://localhost:2368/the-road-to-somewhere/" rel="noreferrer"><em>The Road to Somewhere: An American Memoir</em></a>, was published by W. W. Norton. His second book, <a href="http://localhost:2368/the-manufactured-history-of-indianapolis/" rel="noreferrer"><em>The Manufactured History of Indianapolis</em></a>, is a collection of myths about the city. His stories have appeared in <a href="https://vol1brooklyn.com/2020/12/13/sunday-stories-the-greatest-show-on-earth/?ref=localhost" rel="noreferrer"><em>Vol. 1 Brooklyn</em></a> and <a href="https://heavyfeatherreview.org/2020/07/07/reeves/?ref=localhost" rel="noreferrer"><em>Heavy Feather Review</em></a>.</p>
-                <p>He often collaborates with the artist <a href="http://candychang.com/?ref=localhost" rel="noopener noreferrer">Candy Chang</a>&nbsp;on installations that introduce new rituals into public space, including&nbsp;<a href="https://jamesreeves.co/after-the-end/?ref=localhost" rel="noreferrer"><em>After the End</em></a>, a critic's pick in <a href="https://www.nytimes.com/2021/10/20/arts/design/art-gallery-shows-critics-picks.html?ref=localhost" rel="noreferrer noopener"><em>The New York Times</em></a>. Together their work has been exhibited in the Cooper Hewitt Smithsonian Design Museum, the Rubin Museum of Art, the Mint Museum, and Annenberg Space for Photography. 
-                <p>James has taught courses in the history of art and the politics of design at Bard Early College, Pratt Institute, and Parsons School of Design, where he is an assistant professor. He was a 2022 Innovator-in-Residence at the American School in London, and he's the founder and creative director of <a href="https://designcontext.co/" rel="noreferrer">Design/Context</a>.</p>
-                <p>He's lived and worked in New York City, Helsinki, Philadelphia, Lisbon, New Orleans, London, and Las Vegas before settling in&nbsp;<a href="/why-am-i-in-ohio/" rel="noreferrer">Columbus, Ohio</a>, where he lives down the hall from his in-laws.</p>
-                <h5><a href="mailto:james@jamesreeves.co">Email</a></h5>
-                <h5><a href="{{@site.url}}/radio">Newsletter</a></h5>
-                <h5><a href="https://bsky.app/profile/jamesreeves.co" target="_blank">Bluesky</a></h5>
-                <h5><a href="https://bookshop.org/shop/jamesreeves" target="_blank">Bookshop</a></h5>
-                <h5><a href="https://www.last.fm/user/jamesreevesco" target="_blank">Last.fm</a></h5>
-            </div>
+<script>document.body.classList.add('has-archive-reader');</script>
 
-            <h3 class="about">Press</h3>
-            <p class="hanging">"Memorial artworks are notoriously difficult to pull off. Yet Candy Chang and James A. Reeves, two New York artists who have created similar installations in the past, hit just the right tone with After the End, a participatory work in the Historic Chapel at Green-Wood Cemetery."</p>
-            <cite>The New York Times</cite>
+{{#post}}
 
-            <p class="hanging">“The inspiration is so simple: Head out at random into America and see what you find. James A. Reeves found the America no one seems to be looking for anymore, and he also found himself."</p>
-            <cite>Roger Ebert</cite>
+<main id="main" class="archive-page archive-page--single about-page">
 
-            <p class="hanging">"Through his photographs and candid, episodic storytelling, Reeves documents his experiences and the people he encounters in various regions of the United States, reflecting with uncommon honesty on both positive and negative aspects of the culture. Reeves's obsession with driving long distances in rental cars is fueled by his search to figure out what it means to be an adult and to live a meaningful life in a complicated world."</p>
-            <cite>PhotoLife</cite>
+  <div class="archive-reader archive-reader--single" id="archiveReader">
 
-            <p class="hanging">"A tantalizing 21st-century cross between James Agee's <em>Let Us Now Praise Famous Men</em> and Jack Kerouac's <em>On the Road</em>, this remarkable and utterly original memoir heralds the arrival of a new and important American voice. James A. Reeves's <em>The Road to Somewhere</em> will take you places you will not easily forget."</p>
-            <cite>Andre Dubus III</cite>
-
-            <h3 class="about">Exhibitions</h3>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="/the-nightly-news/">The Nightly News</a></div>
-                <div class="cv-location">Broad Museum • East Lansing, MI</div>
-                <div class="cv-location">The American School • London</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="/after-the-end">After the End</a></div>
-                <div class="cv-location">Historic chapel at Greenwood Cemetery • Brooklyn</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="light-the-barricades">Light the Barricades</a></div>
-                <div class="cv-location">Annenberg Space for Photography • Los Angeles</div>
-                <div class="cv-location">Mint Museum • Charlotte, NC</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">A Monument for the Anxious and Hopeful</div>
-                <div class="cv-location">Rubin Museum of Art • New York</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">Grief is a Beast That Will Never Be Tamed</div>
-                <div class="cv-location">Lakkos Project • Heraklion, Greece</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">The Atlas of Tomorrow</div>
-                <div class="cv-location">Mural Arts • Philadelphia</div>
-                <div class="cv-location">Cooper Hewitt Smithsonian Design Museum • New York</div>
-            </div>
-
-            <h3 class="about">Books</h3>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://wwnorton.com/books/The-Road-to-Somewhere/" target="_blank">The Road to Somewhere: An American Memoir</a></div>
-                <div class="cv-location">W.W. Norton</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">The Manufactured History of Indianapolis</div>
-                <div class="cv-location">We Are City / IUPUI</div>
-            </div>
-
-            <h3 class="about">Residencies</h3>
-            <div class="cv-entry">
-                <div class="cv-title">American School of London</div>
-                <div class="cv-location">Innovator in Residence</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">Archipelago Art Residency</div>
-                <div class="cv-location">Korpo, Finland</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">Hemera Foundation: Tending Space Fellowship</div>
-                <div class="cv-location">Garrison, NY</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">Hangar Residency</div>
-                <div class="cv-location">Lisbon, Portugal</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">NES Residency</div>
-                <div class="cv-location">Skagastrond, Iceland</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title">The Lakkos Residency</div>
-                <div class="cv-location">Heraklion, Greece</div>
-            </div>
-
-            <h3 class="about">Clients</h3>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://3bl.com">3BL</a></div>
-                <div class="cv-location">Creative direction and design</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://lowellinstitute.org" target="_blank">Lowell Institute</a></div>
-                <div class="cv-location">Creative direction, design, web development</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://triplepundit.com" target="_blank">TriplePundit</a></div>
-                <div class="cv-location">Creative direction, design, web development</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://cambridgeforum.org" target="_blank">Cambridge Forum</a></div>
-                <div class="cv-location">Creative direction, design, web development</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://csu.global" target="_blank">Consortium for Sustainable Urbanization</a></div>
-                <div class="cv-location">Creative direction, design, web development</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://cwallarchitecture.com" target="_blank">C. Wall Architecture</a></div>
-                <div class="cv-location">Design and web development</div>
-            </div>
-            <div class="cv-entry">
-                <div class="cv-title"><a href="https://atlanticbeach-nc.com" target="_blank">Town of Atlantic Beach, North Carolina</a></div>
-                <div class="cv-location">Creative direction, design, web development</div>
-            </div>
-
-        {{/post}}
-        </div>
-    </main>
-
-
-    <!-- COLOPHON -->
-    <div class="about-section content">
-        <div class="about-columns-grid colophon">
-            
-            <!-- Colophone -->
-            <div class="about-column">
-                <div class="colophon-image-container">
-                    <img src="{{asset "/img/NSWFL.webp" }}" alt="Somewhere in Missouri" class="colophon-image">
-                </div>
-                <h3>Colophon</h3> 
-                <p>Built using a custom Ghost theme that I'm forever tuning. The current typography is Bebas Pro, Aktiv Grotesk, and IBM Plex Serif. Much of my thinking on typesetting comes from <a href="https://practicaltypography.com" target="_blank">Butterick's Practical Typography</a>. The <a href="{{@site.url}}/radio">Midnight Radio</a> mixes are produced with a seven-year-old version of Ableton Live, lots of reverb, cassette loops made on a <a href="https://www.boss.info/us/products/rc-30/">Boss RC 30 pedal</a>, and occasional field recordings of <a href="{{@site.url}}/destroyer-of-obstacles/">taiko drums</a> and <a href="{{@site.url}}/desire-is-a-demon/">philosophical friends</a>.</p>
-            </div>
-
-            <!-- Icon -->
-
-            <div class="about-column">
-                <div class="colophon-image-container">
-                    <img src="{{asset "/img/reeves-icon.webp" }}" alt="Fragmented Head of a Colossal Boy" class="colophon-image">
-                </div>
-                <h3>Icon</h3> 
-                <p>I often think about this fragmented head of a colossal boy from two thousand years ago. It captures the sensation of today’s psychic shred and shear more than anything else I've seen.</p>
-            </div>
-
-            <!-- Saint Jerome -->
-            <div class="about-column">
-                <div class="colophon-image-container">
-                    <img src="{{asset "/img/reeves-midnight.webp" }}" alt="Saint Jerome" class="colophon-image">
-                </div>
-                <h3>Midnight Radio</h3>
-                <p>The patron saint of Midnight Radio is Caravaggio's 1605 portrait of Saint Jerome. <a href="https://www.studiointernational.com/caravaggio-a-contemporary-view-by-john-berger-vol-196-no-998-1983" target="_blank">John Berger</a> has said Caravaggio's darkness “smells of candles, over-ripe melons, damp washing to be hung out the next day.” To me, it feels like the purple-black thoughts that burble within the midnight brain.</p>
-            </div>
-
-        </div>
+    <div class="archive-watermark archive-watermark--static">
+      <h1 class="archive-watermark-text">About</h1>
     </div>
 
+    <article class="archive-entry is-active" data-slug="{{slug}}">
 
-    <style>
-        h5 a {
-            text-transform: none;
-            letter-spacing: 0;
-            font-size: var(--type-body-sm);
-            text-decoration: none;
-        }
-    </style>
+      <div class="archive-entry-image">
+        <img
+          src="{{asset "/img/Reeves-Portrait-With-Plant-by-Oliver-Farshi.webp"}}"
+          alt="James A. Reeves"
+          loading="eager"
+        />
+        <p class="about-photo-credit">Photo by <a href="https://oliverfarshi.com" target="_blank">Oliver Farshi</a></p>
+      </div>
+
+      <div class="archive-entry-content">
+        <div class="archive-entry-text">
+
+          <div class="archive-entry-body about-body">
+
+            <p>James is a writer and designer in the Middle West who makes midnight mix tapes and writes about faith in the digital age. He worked in a gas station, was a terrible waiter at an Indian restaurant, ran a record label, was a partner at a design agency, and did a stint in law school before deciding he did not want a life of conflict and would rather dedicate his brief time on this planet to making things.</p>
+
+            <p>After traveling 50,000 miles along the back roads of America, his first book, <a href="{{@site.url}}/the-road-to-somewhere/"><em>The Road to Somewhere: An American Memoir</em></a>, was published by W. W. Norton. His second book, <a href="{{@site.url}}/the-manufactured-history-of-indianapolis/"><em>The Manufactured History of Indianapolis</em></a>, is a collection of myths about the city. His stories have appeared in <a href="https://vol1brooklyn.com/2020/12/13/sunday-stories-the-greatest-show-on-earth/" target="_blank"><em>Vol. 1 Brooklyn</em></a> and <a href="https://heavyfeatherreview.org/2020/07/07/reeves/" target="_blank"><em>Heavy Feather Review</em></a>.</p>
+
+            <p>He often collaborates with the artist <a href="http://candychang.com/" target="_blank">Candy Chang</a> on installations that introduce new rituals into public space, including <a href="{{@site.url}}/after-the-end/"><em>After the End</em></a>, a critic&rsquo;s pick in <a href="https://www.nytimes.com/2021/10/20/arts/design/art-gallery-shows-critics-picks.html" target="_blank"><em>The New York Times</em></a>. Together their work has been exhibited in the Cooper Hewitt Smithsonian Design Museum, the Rubin Museum of Art, the Mint Museum, and Annenberg Space for Photography.</p>
+
+            <p>James has taught courses in the history of art and the politics of design at Bard Early College, Pratt Institute, and Parsons School of Design, where he is an assistant professor. He was a 2022 Innovator-in-Residence at the American School in London, and he&rsquo;s the founder and creative director of <a href="https://designcontext.co/" target="_blank">Design/Context</a>.</p>
+
+            <p>He&rsquo;s lived and worked in New York City, Helsinki, Philadelphia, Lisbon, New Orleans, London, and Las Vegas before settling in <a href="{{@site.url}}/why-am-i-in-ohio/">Columbus, Ohio</a>, where he lives down the hall from his in-laws.</p>
+
+            <ul class="about-links">
+              <li><a href="mailto:james@jamesreeves.co">Email</a></li>
+              <li><a href="{{@site.url}}/radio">Newsletter</a></li>
+              <li><a href="https://bsky.app/profile/jamesreeves.co" target="_blank">Bluesky</a></li>
+              <li><a href="https://bookshop.org/shop/jamesreeves" target="_blank">Bookshop</a></li>
+              <li><a href="https://www.last.fm/user/jamesreevesco" target="_blank">Last.fm</a></li>
+            </ul>
+
+            <h3 class="about-section-head">Press</h3>
+
+            <blockquote class="about-press">
+              <p>&ldquo;Memorial artworks are notoriously difficult to pull off. Yet Candy Chang and James A. Reeves, two New York artists who have created similar installations in the past, hit just the right tone with After the End, a participatory work in the Historic Chapel at Green-Wood Cemetery.&rdquo;</p>
+              <cite>The New York Times</cite>
+            </blockquote>
+
+            <blockquote class="about-press">
+              <p>&ldquo;The inspiration is so simple: Head out at random into America and see what you find. James A. Reeves found the America no one seems to be looking for anymore, and he also found himself.&rdquo;</p>
+              <cite>Roger Ebert</cite>
+            </blockquote>
+
+            <blockquote class="about-press">
+              <p>&ldquo;Through his photographs and candid, episodic storytelling, Reeves documents his experiences and the people he encounters in various regions of the United States, reflecting with uncommon honesty on both positive and negative aspects of the culture. Reeves&rsquo;s obsession with driving long distances in rental cars is fueled by his search to figure out what it means to be an adult and to live a meaningful life in a complicated world.&rdquo;</p>
+              <cite>PhotoLife</cite>
+            </blockquote>
+
+            <blockquote class="about-press">
+              <p>&ldquo;A tantalizing 21st-century cross between James Agee&rsquo;s <em>Let Us Now Praise Famous Men</em> and Jack Kerouac&rsquo;s <em>On the Road</em>, this remarkable and utterly original memoir heralds the arrival of a new and important American voice. James A. Reeves&rsquo;s <em>The Road to Somewhere</em> will take you places you will not easily forget.&rdquo;</p>
+              <cite>Andre Dubus III</cite>
+            </blockquote>
+
+            <h3 class="about-section-head">Exhibitions</h3>
+
+            <div class="about-cv">
+              <div class="cv-entry">
+                <div class="cv-title"><a href="{{@site.url}}/the-nightly-news/">The Nightly News</a></div>
+                <div class="cv-location">Broad Museum &middot; East Lansing, MI</div>
+                <div class="cv-location">The American School &middot; London</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="{{@site.url}}/after-the-end/">After the End</a></div>
+                <div class="cv-location">Historic Chapel at Green-Wood Cemetery &middot; Brooklyn</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="{{@site.url}}/light-the-barricades/">Light the Barricades</a></div>
+                <div class="cv-location">Annenberg Space for Photography &middot; Los Angeles</div>
+                <div class="cv-location">Mint Museum &middot; Charlotte, NC</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">A Monument for the Anxious and Hopeful</div>
+                <div class="cv-location">Rubin Museum of Art &middot; New York</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">Grief is a Beast That Will Never Be Tamed</div>
+                <div class="cv-location">Lakkos Project &middot; Heraklion, Greece</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">The Atlas of Tomorrow</div>
+                <div class="cv-location">Mural Arts &middot; Philadelphia</div>
+                <div class="cv-location">Cooper Hewitt Smithsonian Design Museum &middot; New York</div>
+              </div>
+            </div>
+
+            <h3 class="about-section-head">Books</h3>
+
+            <div class="about-cv">
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://wwnorton.com/books/The-Road-to-Somewhere/" target="_blank">The Road to Somewhere: An American Memoir</a></div>
+                <div class="cv-location">W.W. Norton</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">The Manufactured History of Indianapolis</div>
+                <div class="cv-location">We Are City / IUPUI</div>
+              </div>
+            </div>
+
+            <h3 class="about-section-head">Residencies</h3>
+
+            <div class="about-cv">
+              <div class="cv-entry">
+                <div class="cv-title">American School of London</div>
+                <div class="cv-location">Innovator in Residence</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">Archipelago Art Residency</div>
+                <div class="cv-location">Korpo, Finland</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">Hemera Foundation: Tending Space Fellowship</div>
+                <div class="cv-location">Garrison, NY</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">Hangar Residency</div>
+                <div class="cv-location">Lisbon, Portugal</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">NES Residency</div>
+                <div class="cv-location">Skagastrond, Iceland</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title">The Lakkos Residency</div>
+                <div class="cv-location">Heraklion, Greece</div>
+              </div>
+            </div>
+
+            <h3 class="about-section-head">Clients</h3>
+
+            <div class="about-cv">
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://3bl.com" target="_blank">3BL</a></div>
+                <div class="cv-location">Creative direction and design</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://lowellinstitute.org" target="_blank">Lowell Institute</a></div>
+                <div class="cv-location">Creative direction, design, web development</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://triplepundit.com" target="_blank">TriplePundit</a></div>
+                <div class="cv-location">Creative direction, design, web development</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://cambridgeforum.org" target="_blank">Cambridge Forum</a></div>
+                <div class="cv-location">Creative direction, design, web development</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://csu.global" target="_blank">Consortium for Sustainable Urbanization</a></div>
+                <div class="cv-location">Creative direction, design, web development</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://cwallarchitecture.com" target="_blank">C. Wall Architecture</a></div>
+                <div class="cv-location">Design and web development</div>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-title"><a href="https://atlanticbeach-nc.com" target="_blank">Town of Atlantic Beach, North Carolina</a></div>
+                <div class="cv-location">Creative direction, design, web development</div>
+              </div>
+            </div>
+
+            <h3 class="about-section-head">Colophon</h3>
+            <figure class="about-figure">
+              <img src="{{asset "/img/NSWFL.webp"}}" alt="Somewhere in Missouri" loading="lazy" />
+            </figure>
+            <p>Built using a custom Ghost theme that I&rsquo;m forever tuning. The current typography is Bebas Neue Pro and IBM Plex Sans. Much of my thinking on typesetting comes from <a href="https://practicaltypography.com" target="_blank">Butterick&rsquo;s Practical Typography</a>. The <a href="{{@site.url}}/radio">Midnight Radio</a> mixes are produced with a seven-year-old version of Ableton Live, lots of reverb, cassette loops made on a <a href="https://www.boss.info/us/products/rc-30/" target="_blank">Boss RC&nbsp;30 pedal</a>, and occasional field recordings of <a href="{{@site.url}}/destroyer-of-obstacles/">taiko drums</a> and <a href="{{@site.url}}/desire-is-a-demon/">philosophical friends</a>.</p>
+
+            <h3 class="about-section-head">Icon</h3>
+            <figure class="about-figure">
+              <img src="{{asset "/img/reeves-icon.webp"}}" alt="Fragmented Head of a Colossal Boy" loading="lazy" />
+            </figure>
+            <p>I often think about this fragmented head of a colossal boy from two thousand years ago. It captures the sensation of today&rsquo;s psychic shred and shear more than anything else I&rsquo;ve seen.</p>
+
+            <h3 class="about-section-head">Midnight Radio</h3>
+            <figure class="about-figure">
+              <img src="{{asset "/img/reeves-midnight.webp"}}" alt="Saint Jerome" loading="lazy" />
+            </figure>
+            <p>The patron saint of Midnight Radio is Caravaggio&rsquo;s 1605 portrait of Saint Jerome. <a href="https://www.studiointernational.com/caravaggio-a-contemporary-view-by-john-berger-vol-196-no-998-1983" target="_blank">John Berger</a> has said Caravaggio&rsquo;s darkness &ldquo;smells of candles, over-ripe melons, damp washing to be hung out the next day.&rdquo; To me, it feels like the purple-black thoughts that burble within the midnight brain.</p>
+
+          </div>{{!-- /.archive-entry-body --}}
+
+        </div>{{!-- /.archive-entry-text --}}
+      </div>{{!-- /.archive-entry-content --}}
+
+    </article>
+
+  </div>{{!-- /.archive-reader --}}
+
+</main>
+
+{{/post}}

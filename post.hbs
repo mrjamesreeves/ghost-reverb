@@ -1,101 +1,75 @@
 {{!< default}}
 
-<main id="main" class="content outer page-notebook">
-    <div class="inner-wide">
-    
-    
-    {{> notebook-header}}
+{{#post}}
 
-        {{!-- Everything inside the #post tags pulls data from the post --}}
-        {{#post}}
-            
-        <div class="post-hero-container">
-            {{#if feature_image}}
-                <div class="collection-hero">
-                    <img src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
-                </div>
-            {{/if}}
-            {{#if feature_image_caption}}
-                <div class="radio-hero-caption">
-                    {{feature_image_caption}}
-                </div>
-            {{/if}}
-        </div>
+{{!-- ── DISPATCH BY PRIMARY TAG ─────────────────────────────────────────
+     The reader sections (Dreams, Art Diary, Installations) all have
+     dedicated experiences instead of the standard long-read post layout.
+     Each is a partial; canonical post URLs route here, primary_tag picks
+     the right one. Anything else falls through to the default layout.
+─────────────────────────────────────────────────────────────────────── --}}
+{{#match primary_tag.slug "dreams"}}
+  {{> "dreams/_reader"}}
+{{else}}{{#match primary_tag.slug "art-diary"}}
+  {{> "art-diary/_reader"}}
+{{else}}{{#match primary_tag.slug "favorites"}}
+  {{> "favorites/_reader"}}
+{{else}}{{#match primary_tag.slug "installations"}}
+  {{> "installations/_deck"}}
+{{else}}{{#match primary_tag.slug "midnight-radio"}}
+  {{> "midnight-radio/_episode"}}
+{{else}}
 
+{{!-- ── DEFAULT: SINGLE-POST READER ──────────────────────────────────────
+     Any post that isn't part of one of the dispatched collections
+     (dreams, art-diary, favorites, installations) renders in a stripped
+     reader — image left, scrollable text right, no prev/next, no TOC.
+     Book-like single artifact. The collection readers stay distinct
+     because they have sibling navigation; this one has no nav by design.
+─────────────────────────────────────────────────────────────────────── --}}
+<script>document.body.classList.add('has-archive-reader');</script>
 
-    <div class="radio-content-wrapper">
-        <div class="inner-wide">
-            <article class="{{post_class}} post-full">
+<main id="main" class="archive-page archive-page--single">
 
-                <div class="post-header-content inner">
-                    <h5><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="LL"}}</time></h5>
-                    <h1 class="post">{{title}}</h1>
-                </div>
-                <div class="post-content">
-                    {{content}}
-                </div>
+  <div class="archive-reader archive-reader--single" id="archiveReader">
 
-                {{> post-meta}}
-
-
-
-            </article>
-        </div>
+    {{#if primary_tag}}
+    <div class="archive-watermark archive-watermark--static">
+      <h1 class="archive-watermark-text">{{primary_tag.name}}</h1>
     </div>
+    {{/if}}
 
-        {{!-- Next/previous posts --}}
+    <article class="archive-entry is-active" data-index="0" data-slug="{{slug}}">
 
+      <div class="archive-entry-image">
+        {{#if feature_image}}
+          <img
+            srcset="{{img_url feature_image size="s"}} 600w, {{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w"
+            sizes="50vw"
+            src="{{img_url feature_image size="l"}}"
+            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+            loading="eager"
+          />
+        {{else}}
+          <div class="archive-entry-no-image"></div>
+        {{/if}}
+      </div>
 
-
- <!-- EPISODES -->
-    <div class="inner-wide">
-        <div class="grid">
-            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio+id:-{{id}}" limit="6"}}
-                {{#foreach posts visibility="all"}}
-
-                    <article>
-                                                    <a href="{{url}}" class="post-card-link">
-
-                        <div class="post-card bg-dark bg-full">
-
-                            {{#if feature_image}}
-                                <img
-                                    class="post-card-image bg-full-image bg-fade-in"
-                                    srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
-                                    sizes="(min-width: 1600px) 1600px, 100vw"
-                                    src="{{img_url feature_image size="xl"}}"
-                                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                                />
-                            {{/if}}
-
-                            <div class="post-card-inside">
-                                <div class="post-card-content">          
-                                    <div class="big-title">
-                                        <h5>
-                                            Midnight Radio 
-                                            {{#foreach tags visibility="internal"}}
-                                            {{#if (match slug "^hash-mr-")}}
-                                                <span class="episode-number" data-ep="{{slug}}"></span>
-                                            {{/if}}
-                                            {{/foreach}}
-                                        </h5>
-                                        <h2>{{title}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </article>                            
-
-                {{/foreach}}
-                {{/get}}
+      <div class="archive-entry-content">
+        <div class="archive-entry-text">
+          <h2 class="archive-entry-title">{{title}}</h2>
+          <div class="archive-entry-body">
+            {{content}}
+          </div>
         </div>
-    </div>
+      </div>
 
+    </article>
 
-    
-
-{{/post}}
-
+  </div>{{!-- end .archive-reader --}}
 
 </main>
+
+{{/match}}{{/match}}{{/match}}{{/match}}{{/match}}
+
+{{/post}}

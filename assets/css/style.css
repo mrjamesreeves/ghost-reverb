@@ -10,13 +10,13 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 ----------------------------- */
 :root {
   /* Colors */
-  --color-text: #AAA;
-  --color-text-muted: #777;
+  --color-text: #000;
+  --color-text-muted: #979797;
   --color-text-light: #CCCBCB;
   --color-white-trans: rgba(255, 255, 255,0.6);
   --accent-dark: rgba(255, 255, 255,0.25);
-  --color-hover: #fff;
-  --color-inverse: #000;
+  --color-hover: #000;
+  --color-inverse: #fff;
 
 
   
@@ -31,15 +31,15 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 20px;
+  --type-body: 19px;
   --type-body-m: 16px;
   --type-body-sm: 14px;
   --type-body-xs: 12px;
   --type-excerpt: 1.05rem;
   --type-label: 13px;
 
-  --line: 1px solid #333;
-  --bgline: #333;
+  --line: 1px solid #d6d6d6;
+  --bgline: #d6d6d6;
 
   --max-w:  1300px;
   --element-below: 90px;
@@ -57,14 +57,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-border-inverse: var(--color-gray-800);
 }
 
-[data-theme="light"] {
-  --color-text: #000;
-  --color-text-muted: #979797;
-  --color-hover: #000;
-  --line: 1px solid #d6d6d6;
-  --bgline: #d6d6d6;
-  --color-inverse: #fff;
-}
 
 /* 3. Base
 ----------------------------- */
@@ -79,19 +71,14 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: all 0.8s ease;
   overflow-x: hidden;
   }
 
 .bg {
-  background-image: linear-gradient(180deg, #15171a 0%, #070707 100%);  
-  transition: all 0.8s ease;
+  background-image: linear-gradient(180deg, #FFF 41.21%, #F6F6F6 95.84%);
   background-attachment: fixed;
   }
 
-[data-theme="light"] .bg {
-  background-image: linear-gradient(180deg, #FFF 41.21%, #F6F6F6 95.84%);  
-  }
 
 a {
   text-decoration: none;
@@ -109,15 +96,14 @@ a:focus {
   background-size: 100% 1px;
   }
 
-/* No sliding underline on image/card/button/nav wrapper links */
+/* No sliding underline on image/card/button wrapper links */
 a.post-card-link,
 a.favorite-image-link,
-a.nav-link,
 a.social-link,
 a.kg-signup-card-button,
 a.radio-hero-content,
+a.mr-landing-tile-link,
 .post-card a,
-.nav-card a,
 .radio-hero-content a,
 .filter-btn {
   background-image: none;
@@ -344,8 +330,7 @@ p {
   margin: 1.5rem 0 0;
   font-size: var(--type-body);
   color: var(--color-text);
-  line-height: 1.6;
-  font-weight: 300;
+  line-height: 1.56;
   }
 
 /* Lists */
@@ -410,7 +395,6 @@ dd {
 .post-content ol li, .post-content ul li {
   padding-left: 10px;
   padding-bottom: 15px;
-  font-weight: 300;
   font-size: var(--type-body);
   }
 
@@ -453,20 +437,14 @@ pre {
 
 /* Blockquotes */
 blockquote {
-  font-size: 1.05rem;
+  font-size: inherit;          /* Match whatever body text size is in this context. */
   line-height: 1.55;
   margin-left: 0;
   margin-top: 1.6rem;
-  margin-bottom: .2rem;  
-  border-left: solid 12px #333333c5;
+  margin-bottom: 1.6rem;
   padding-left: 30px;
   text-align: left;
-  font-weight: 300;
-  }
-
-[data-theme="light"] blockquote {
   border-left: solid 12px #d6d6d6;
-  font-weight: 400;
   }
 
 blockquote p {
@@ -1013,7 +991,6 @@ width: 90%;
   margin-top: 0px;
   margin-bottom: 30px;
   width: 40%;
-  font-weight: 300;
   color: white;
 }
 
@@ -1045,7 +1022,7 @@ width: 90%;
   color: #333;
   }
 
-[data-theme="light"] .post-title {
+.post-title {
   color: #ccc;
 }
 
@@ -1374,7 +1351,7 @@ h5.kg-toggle-heading-text {
     border-radius: 5px;
     }
 
-  [data-theme="light"] h5.kg-toggle-heading-text {
+  h5.kg-toggle-heading-text {
     background-color: #000;
     color: #fff;
     }
@@ -1642,6 +1619,8 @@ p a:hover {
   line-height: 1.4;
   font-family: var(--font-sans);
   font-size: var(--type-body-sm);
+  margin: 0 !important;
+  padding-left: 0;
 }
 
 .tag-midnight-radio ol li strong {
@@ -2011,7 +1990,6 @@ h6.song {
 .grid-text p {
   font-size: var(--type-body-sm);
   font-style: normal;
-  font-weight: 300;
   margin: 0;
   line-height: 1.4;
   }
@@ -2186,7 +2164,7 @@ h5:has(+ .kg-audio-card) {
 	transition: all 0.6s ease-in-out; 
 }
 
-[data-theme="light"] .midnight-blurb .kg-signup-card-button.kg-style-accent, .midnight-blurb .kg-signup-card-button-default {
+.midnight-blurb .kg-signup-card-button.kg-style-accent, .midnight-blurb .kg-signup-card-button-default {
   color: #000 !important;
 }
 
@@ -2879,7 +2857,6 @@ input::placeholder {
     font-family: var(--font-sans);
     text-transform: none;
     letter-spacing: 0;
-    font-weight: 300;
     line-height: 1.4;
     }
   h5.section {
@@ -3143,15 +3120,11 @@ a button {
 }
 
 
-[data-theme="dark"] .radio-hero-content button, [data-theme="light"] .radio-hero-content button  {
+.radio-hero-content button {
   background: #ffffffa0;
   color: #000f;
 }
 
-[data-theme="dark"] button:hover {
-  background: #fff;
-  color: #000;
-}
 
 /* ==========================================================================
    ABOUT
@@ -3525,334 +3498,335 @@ h3.about {
   }
 
 /* ==========================================================================
-   MINIMAL NAVIGATION SYSTEM - FIXED LAYERING
+   RESPONSIVE DESIGN
    ========================================================================== */
 
-.minimal-nav {
-  position: relative;
-  z-index: 1000;
-}
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1025px) {
 
-.nav-icon {
-  position: fixed;
-  top: 60px;
-  /* Default for smaller screens */
-  left: 20px;
-  width: 70px;
-  height: auto;
-  background: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  z-index: 1001; /* Above the overlay */
-  padding: 0;
-}
+  .recent-radio {
+    display: flow;
+  }
 
-@media (min-width: 1540px) {
-  .nav-icon {
-    left: calc(50% - 650px - 50px - 70px);
+  .footer-tags-grid {
+    grid-auto-flow: inherit;
+    grid-template-columns: 1fr;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .colophon-content {
+    padding-left: 0;
+    padding-right: 0;
+    width: 80%;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-columns-grid {
+    gap: 40px;
   }
 }
 
-.nav-icon:hover {
-  filter: brightness(1.2);
-  transform: scale(105%);
-}
+/* Mobile */
+@media (max-width: 700px) {
 
-.nav-icon img {
-  transition: opacity 0.3s ease;
-  position: absolute;
-  transform-origin: center center;
-}
-
-.nav-icon-default {
-  opacity: 1;
-}
-
-.nav-icon-close {
-  opacity: 0;
-}
-
-.nav-bar-mobile {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .nav-icon-desktop {
-    display: none !important;
+  .page-radio .post-feed {
+    padding-top: 50px;
   }
 
-  .nav-overlay {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block;
-    padding: 0;
-    pointer-events: none;
-    background: none;
-    transition: background 0.4s ease,
-                backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+  .recent-radio {
+    display: flow;
+    padding: 20px;
   }
 
-  .nav-overlay.nav-open {
-    pointer-events: auto;
+  .radio-item {
+    font-size: 20px;
   }
 
-  button.nav-bar-mobile {
-    display: flex;
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    z-index: 10000;
-    height: 36px;
-    width: 46px;
-    background: rgba(0, 0, 0, 0.4);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border: none;
-    border-radius: 5px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .grid-item {
+    margin-bottom: 50px;
+    margin-top: 10px;
   }
 
-  button.nav-bar-mobile.nav-hidden {
-    transform: translateX(calc(100% + 20px));
+  .radio-hero-wrapper {
+    aspect-ratio: 2/3;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .highlights-grid {
+    display: flow;
   }
 
-  button.nav-bar-mobile svg path {
-    fill: #fff;
+  .colophon-content {
+    margin-top: 20px;
+    padding-left: 0;
   }
 
-  button.nav-bar-mobile:active, button.nav-bar-mobile:hover {
-    background: rgba(0, 0, 0, 0.55);
+  .about-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  button.nav-bar-mobile svg {
-    flex-shrink: 0;
+  .about-column {
+    text-align: left;
   }
 
-  button.nav-bar-mobile .nav-icon-hamburger {
-    display: block;
-    width: 18px;
-    height: 12px;
+  .colophon-section {
+    margin-top: 40px;
   }
-  button.nav-bar-mobile .nav-icon-x {
-    display: none;
-    width: 14px;
-    height: 14px;
+
+  .colophon-image-container {
+    margin-bottom: 20px;
+    aspect-ratio: 3/2;
   }
-  .nav-is-open button.nav-bar-mobile .nav-icon-hamburger {
-    display: none;
-  }
-  .nav-is-open button.nav-bar-mobile .nav-icon-x {
-    display: block;
+
+  .index-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
-/* Navigation Overlay - BEHIND the icon */
-.nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 80px;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-backdrop-filter: blur(0px);
-  backdrop-filter: blur(0px);
-  z-index: 999;
-  transition: opacity 0.4s ease, visibility 0.4s ease,
-              backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+
+/* ==========================================================================
+   ABOUT PAGE
+   ========================================================================== */
+
+.about-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
 }
 
-.nav-overlay.nav-open {
-  opacity: 1;
-  visibility: visible;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+.cv-entry {
+  margin: 20px 0 25px;
 }
 
-/* Navigation Card - Desktop only (mobile overridden in media query above) */
-.nav-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  padding: 30px;
-  width: 100%;
-  max-width: 300px;
-  color: #000;
-  position: relative;
-  transform: translateY(-20px);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  padding-bottom: 20px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 1025px) {
-  .nav-overlay.nav-open .nav-card {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Bio Section */
-.nav-bio {
-  padding-bottom: 20px;
-}
-
-.nav-bio h2 {
-  font-family: var(--font-big);
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: #1a1a1a;
-  font-weight: 600;
-}
-
-.nav-bio p {
-  font-family: var(--font-sans);
+.cv-title {
   font-size: var(--type-body-sm);
-  line-height: 1.4;
-  margin: 0;
+  color: var(--color-text);
+  line-height: 1.5;
   font-weight: 500;
-  color: #000;
 }
 
-/* Main Navigation */
-.nav-main {
-  padding-bottom: 15px;
-}
-
-.nav-link {
-  display: block;
-  font-family: var(--font-big);
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: #000;
-  text-decoration: none;
-  margin-bottom: 0px;
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  font-weight: 600;
-  line-height: 1.2;
-  transform: translateX(0px);
-}
-
-.nav-link:hover {
-  color: #000;
-  transform: translateX(2px);
-  font-weight: 600;
-}
-
-/* Newsletter Section */
-.nav-newsletter {
-  margin-bottom: 20px;
-}
-
-.nav-newsletter .kg-signup-card-form {
-  width: 100%;
-}
-
-.nav-newsletter p {
-  font-family: var(--font-sans);
+.cv-location {
   font-size: var(--type-body-sm);
-  line-height: 1.4;
-  margin: 0 0 15px 0;
-  font-weight: 500;
-  color: #000;
-}
-[data-theme="light"] .nav-newsletter .kg-signup-card-button {
-  background: #000 !important;
+  color: var(--color-text-muted);
+  line-height: 1.5;
 }
 
-[data-theme="light"] .nav-newsletter .kg-signup-card-button-default {
-  color: #fff!important;
-  font-size: 10px!important;
-  letter-spacing: 2px;
-}
-
-.nav-newsletter .kg-signup-card-button {
-  min-width: 100px;
-}
-
-.nav-newsletter input[type="email"] {
-  line-height: 1;
-  font-size: 14px;
-}
-
-.nav-email-input {
-  width: 100%;
-  padding: 10px 12px;
-  border: none;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  background: transparent;
-  transition: all 0.2s ease;
-  color: #000;
-  font-weight: 500;
-}
-
-.nav-email-input:focus {
-  outline: none;
-}
-
-.nav-email-input::placeholder {
-  color: rgba(0, 0, 0, 0.45);
-}
-
-.nav-subscribe-btn {
-  padding: 10px 16px;
-  line-height: 1;
+.colophon-image-container {
+  aspect-ratio: 1/1;
+  overflow: hidden;
   background: #000;
-  color: white;
-  border: none;
-  border-radius: 3px;
+  align-content: center;
+}
+
+.colophon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.colophon-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.colophon-content h2 {
+  font-size: var(--type-h3);
+  font-family: var(--font-big);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.colophon-content p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  max-width: 500px;
+}
+
+.colophon-content a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-text-muted);
+  background-image: none;
+  padding-bottom: 0;
+  transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.colophon-content a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+.about-column h3, h3.about {
+  font-family: var(--font-big-alt);
+  font-size: 24px;
+  letter-spacing: 0.8px;
+}
+
+h3.about {
+  padding-top: 100px;
+}
+
+
+/* ==========================================================================
+   INDEX SECTION (Bottom)
+   ========================================================================== */
+
+.index-section {
+  margin-top: 60px;
+  padding-top: 40px;
+}
+
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  max-width: 650px;
+}
+
+.index-column h4 {
+  font-family: var(--font-big);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  color: var(--color-text);
+}
+
+.index-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.index-column li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-family: var(--font-sans);
+}
+
+.index-column .topic {
+  color: var(--color-text);
+}
+
+.index-column .page-number {
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  letter-spacing: 0.03em;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  font-weight: 600;
 }
 
-.nav-subscribe-btn:hover {
-  background: #333;
-}
-
-/* Social Links */
-.nav-social {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-social a {
-  font-size: var(--type-body-sm);
-  color: #000;
+.index-column a {
+  color: var(--color-text);
   text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  line-height: 2;
+  transition: color 0.3s ease;
 }
 
-.nav-social a:hover {
-  border-bottom: var(--line);
-  font-weight: 500;
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1025px) {
+  .colophon-content {
+    padding-left: 0;
+    padding-right: 0;
+    width: 80%;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-columns-grid {
+    gap: 40px;
+  }
+
+  .about-hero-image-container {
+    height: 50vh;
+    min-height: 400px;
+  }
 }
 
-body.nav-is-open {
-  overflow: hidden;
+/* Mobile */
+@media (max-width: 700px) {
+  .radio-hero-content h5 {
+    padding-bottom: 3px;
+    font-size: 9px !important;
+  }
+
+  .radio-page .radio-hero-content p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  button {
+    font-size: 12px;
+    padding: 8px 14px;
+    padding-top: 6px;
+  }
+
+  .about-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .about-column {
+    text-align: left;
+  }
+
+  .colophon-section {
+    margin-top: 40px;
+    grid-template-columns: 1fr !important;
+    gap: 0;
+  }
+
+  .colophon-image-container {
+    margin-bottom: 20px;
+    aspect-ratio: 3/2;
+    border-radius: 5px;
+  }
+
+  .index-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
+
+/* Large screens */
+@media (min-width: 1026px) {
+
+  .about-hero-image-container {
+    height: 70vh;
+    min-height: 650px;
+  }
+}
+
+.midnight-blurb p {
+  line-height: 1.7;
+  font-size: 17px;
+  font-family: var(--font-sans);
+  margin-top: 0;
+  margin-bottom: 25px;
+  }
+
+.midnight-blurb p.first {
+  font-weight: 600;
+  }
 
 /* ==========================================================================
    RESPONSIVE DESIGN
@@ -3878,126 +3852,6 @@ body.nav-is-open {
 
 }
 
-@media (max-width: 1024px) {
-  .nav-icon {
-    width: 60px;
-    top: 5%;
-    left: 10%;
-  }
-
-  .nav-icon img {
-    width: 60px;
-  }
-
-  .nav-overlay {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .nav-card {
-    box-sizing: border-box;
-    width: 85%;
-    max-width: 340px;
-    padding: 32px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .nav-overlay.nav-open .nav-card {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .nav-bio h2 {
-    font-size: 1.2rem;
-  }
-
-  .nav-bio p,
-  .nav-newsletter p {
-    font-size: 0.8rem;
-  }
-
-  .nav-link {
-    font-size: 1.4rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-icon {
-    width: 40px;
-    min-width: 35px;
-    top: 4%;
-    left: 10%;
-  }
-
-  /* Nav card - slide down from top, inherit centering from 1024px block */
-  .nav-card {
-    transform: translateY(calc(-100% - 20px)) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    padding: 28px;
-    padding-bottom: 24px;
-    background: white;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-
-  .nav-overlay.nav-open .nav-card {
-    transform: translateY(0) !important;
-  }
-
-  .nav-social {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .nav-overlay {
-    align-items: flex-start;
-  }
-}
-
-/* ==========================================================================
-   REFINED ANIMATIONS
-   ========================================================================== */
-
-/* Stagger animation for nav links */
-.nav-overlay.nav-open .nav-link {
-  animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  opacity: 0;
-}
-
-.nav-overlay.nav-open .nav-link:nth-child(1) { animation-delay: 0.1s; }
-.nav-overlay.nav-open .nav-link:nth-child(2) { animation-delay: 0.2s; }
-.nav-overlay.nav-open .nav-link:nth-child(3) { animation-delay: 0.3s; }
-.nav-overlay.nav-open .nav-link:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Smooth fade for other elements */
-.nav-overlay.nav-open .nav-bio,
-.nav-overlay.nav-open .nav-newsletter,
-.nav-overlay.nav-open .nav-social {
-  animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  opacity: 0;
-}
-
-.nav-overlay.nav-open .nav-bio { animation-delay: 0.05s; }
-.nav-overlay.nav-open .nav-newsletter { animation-delay: 0.4s; }
-.nav-overlay.nav-open .nav-social { animation-delay: 0.5s; }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
 
 /* ==========================================================================
@@ -4214,175 +4068,6 @@ body.nav-is-open {
 }
 
 
-/* ==========================================================================
-   LIGHT/DARK THEME TOGGLE - GHOST STYLE
-   ========================================================================== */
-
-/* Add this to your nav card content */
-.theme-toggle {
-  margin-left: auto;
-}
-
-/* Toggle Switch */
-.theme-switch {
-  position: relative;
-  width: 52px;
-  height: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  outline: none;
-  min-width: 52px;
-}
-.theme-switch-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #777;
-  border-radius: 25px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-}
-
-.theme-switch-thumb {
-  position: absolute;
-  left: 26px;
-  width: 22px;
-  height: 22px;
-  background: white;
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative; /* Add this */
-}
-
-.theme-switch-thumb::before {
-  display: none;
-}
-
-.theme-switch .icon {
-  position: absolute; /* Stack them */
-  width: 22px;
-  height: 22px;
-  transition: opacity 0.3s ease;
-  top: 13px;
-  left: 13px;
-  transform: translate(-50%, -50%) !important; /* Center them */
-  padding: 0;
-  margin: 0;
-}
-
-/* Light mode - show sun */
-.theme-switch .sun {
-  opacity: 1;
-}
-
-.theme-switch .moon {
-  opacity: 0;
-}
-
-.moon path {
-  fill: white;
-}
-
-[data-theme="dark"] .theme-switch .sun {
-  opacity: 0;
-}
-
-[data-theme="dark"] .theme-switch .moon {
-  opacity: 1;
-}
-
-[data-theme="dark"] .theme-switch-thumb {
-  left: 26px; /* Move to right side */
-  background: #1a1a1a; /* Dark background */
-}
-
-/* Dark mode styles */
-[data-theme="dark"] .theme-switch-track {
-  background: #777;
-}
-
-[data-theme="dark"] .theme-switch-thumb {
-  left: 2px;
-  background: #1a1a1a;
-}
-
-/* Hover effects */
-.theme-switch:hover .theme-switch-track {
-  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
-}
-
-[data-theme="dark"] .theme-switch:hover .theme-switch-track {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-}
-
-/* Focus styles for accessibility */
-.theme-switch:focus-visible .theme-switch-track {
-  outline: 2px solid #007acc;
-  outline-offset: 2px;
-}
-
-/* More specific selectors */
-html[data-theme="dark"] .theme-switch .sun {
-  opacity: 0 !important;
-}
-
-html[data-theme="dark"] .theme-switch .moon {
-  opacity: 1 !important;
-}
-
-html[data-theme="light"] .theme-switch .sun,
-html:not([data-theme]) .theme-switch .sun {
-  opacity: 1 !important;
-}
-
-html[data-theme="light"] .theme-switch .moon,
-html:not([data-theme]) .theme-switch .moon {
-  opacity: 0 !important;
-}
-
-
-/* ==========================================================================
-   DARK/LIGHT
-   ========================================================================== */
-
-[data-theme="light"] .kg-signup-card-button-default, [data-theme="light"] .big-title h5 {
-  color: white !important;
-}
-
-[data-theme="light"] p {
-  font-weight: 400;
-  color: var(--color-text);
-}
-
-[data-theme="light"] h3 {
-  color: var(--color-text);
-  font-weight: 600;
-}
-
-[data-theme="light"] .footer-tag-line {
-  background-image: linear-gradient(to right, black 30%, rgba(0, 0, 0, 0) 0%);
-}
-
-[data-theme="light"] .recent-radio {
-  background: white;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="light"] .count, [data-theme="light"] h1.post, h1.project, [data-theme="light"] p a:hover {
-  color: var(--color-text);
-}
-
-[data-theme="light"] .comment-box h5 a {
-  background: black;
-}
-
 /* Simple Footer */
 .simple-footer {
   display: flex;
@@ -4446,11 +4131,11 @@ html:not([data-theme]) .theme-switch .moon {
   aspect-ratio: 2/1;
 }
 
-[data-theme="light"] .post-content h1, [data-theme="light"] .footer-tag-name, [data-theme="light"] .radio-item .count {
+.post-content h1, .footer-tag-name, .radio-item .count {
     color: var(--color-text);
 }
 
-[data-theme="light"] .gh-comment-content p, [data-theme="light"] .comments-bit, [data-theme="light"] .comments-bit h4, [data-theme="light"] .tag-midnight-radio .post-content h6 {
+.gh-comment-content p, .comments-bit, .comments-bit h4, .tag-midnight-radio .post-content h6 {
   color: #000 !important;
 }
 
@@ -4484,7 +4169,7 @@ html:not([data-theme]) .theme-switch .moon {
     border-bottom: 1px solid #ccc;
 }
 
-[data-theme="light"] .index-item:hover {
+.index-item:hover {
     border-bottom: 1px solid #333;
 }
 
@@ -4513,11 +4198,11 @@ html:not([data-theme]) .theme-switch .moon {
   border-radius: 5px;
   }
 
-[data-theme="light"] h3 {
+h3 {
   color: #000;
 }
 
-[data-theme="light"] .post-content ol li, [data-theme="light"] .post-content ul li {
+.post-content ol li, .post-content ul li {
   font-weight: 400;
 }
 
@@ -4596,7 +4281,7 @@ html:not([data-theme]) .theme-switch .moon {
   color: #444;
 }
 
-[data-theme="light"] .featured-grid .index-count {
+.featured-grid .index-count {
   color: #cbcbcb
 }
 
@@ -4668,15 +4353,11 @@ html:not([data-theme]) .theme-switch .moon {
   flex-direction: column;
 }
 
-[data-theme="dark"] .notebook-images {
-  opacity: 0.75;
-}
 
 .notebook-scan {
   width: 100%;
   height: auto;
   display: block;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .notebook-scan.first {
@@ -4766,12 +4447,12 @@ html:not([data-theme]) .theme-switch .moon {
 }
 
 /* Light mode */
-[data-theme="light"] .notebook-title h1,
-[data-theme="light"] .month-header, [data-theme="light"] .notebook-title h1 a {
+.notebook-title h1,
+.month-header, .notebook-title h1 a {
   color: var(--color-hover);
 }
 
-[data-theme="light"] .featured-grid .grid-title {
+.featured-grid .grid-title {
   color: var(--color-hover);
 }
 
@@ -5091,7 +4772,7 @@ html:not([data-theme]) .theme-switch .moon {
     color: var(--color-text);
   }
 
-[data-theme="light"] .signup-content p, [data-theme="light"] .signup-content h2, [data-theme="light"] .signup {
+.signup-content p, .signup-content h2, .signup {
     color: var(--color-inverse);
   }
 
@@ -5240,7 +4921,7 @@ h3 {
   font-size: 18px;
 }
 
-[data-theme="light"] .highlights .index-item {
+.highlights .index-item {
   color: var(--color-text);
 } 
 
@@ -5641,36 +5322,46 @@ h1.post {
   background-image: none;
   padding-bottom: 0;
 }
-.radio-cta .kg-signup-card-button {
+/* Radio CTA subscribe button — black bg, white text (matches footer style).
+   Selectors include `.kg-signup-card-form` to outspecify the global
+   `.kg-signup-card-form .kg-signup-card-button` rule below. */
+.radio-cta .kg-signup-card-form .kg-signup-card-button {
   font-family: var(--font-sans) !important;
   font-size: 12px !important;
   font-weight: bold !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
+  background: #000 !important;
+  background-color: #000 !important;
+  border: 1px solid #000 !important;
+  color: #fff !important;
 }
-.radio-cta .kg-signup-card-button-default {
+.radio-cta .kg-signup-card-form .kg-signup-card-button .kg-signup-card-button-default {
   font-size: 12px !important;
-}
-[data-theme="light"] .radio-share-btn, [data-theme="light"] .radio-cta .kg-signup-card-button {
-  background-color: #000 !important;
-  border: 1px solid #000 !important;
   color: #fff !important;
 }
-[data-theme="light"] .radio-share-btn:hover, [data-theme="light"] .radio-cta .kg-signup-card-button:hover {
-  border: 1px solid #000 !important;
+.radio-cta .kg-signup-card-form .kg-signup-card-button:hover {
+  background: transparent !important;
   background-color: transparent !important;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+}
+.radio-cta .kg-signup-card-form .kg-signup-card-button:hover .kg-signup-card-button-default {
   color: #000 !important;
 }
 
-[data-theme="light"] .radio-cta .kg-signup-card-button:hover .kg-signup-card-button-default{
-  color: #000 !important;
-}
-
-[data-theme="dark"] .radio-share-btn:hover {
+/* radio-share-btn (Comments / Share buttons) — same treatment, no form scope. */
+.radio-share-btn {
   background-color: #000 !important;
-  border: 1px solid #fff !important;
+  border: 1px solid #000 !important;
   color: #fff !important;
 }
+.radio-share-btn:hover {
+  background-color: transparent !important;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+}
+
 
 .kg-signup-card-form .kg-signup-card-button {
   font-family: var(--font-sans) !important;
@@ -5743,7 +5434,6 @@ h1.post {
   opacity: 0;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
 }
 .comments-modal.modal-open .comments-modal-card {
   transform: translateY(0);
@@ -5765,13 +5455,594 @@ h1.post {
 
 
 /* ==========================================================================
+   HOMEPAGE — Hero + Section Cards
+   ========================================================================== */
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+
+.site-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 300px;
+  overflow: hidden;
+  background: #111;
+  transition: opacity 1s ease;
+}
+
+/* Hover effects fire only when the link (text + CTA) is hovered — clicking
+   anywhere over the image area does nothing. */
+.site-hero:has(.site-hero-link:hover) {
+  opacity: 0.8;
+}
+
+/* Inner wrapper for hero content — sized to content (not full inner width).
+   Used as <a class="site-hero-link"> on home (clickable) and
+   <div class="site-hero-content"> on radio (static title + tagline + signup). */
+.site-hero-link,
+.site-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  max-width: 55%;
+}
+
+/* Link-only: kill the global animated-underline + reset link defaults */
+.site-hero-link {
+  background-image: none;
+  padding-bottom: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Tagline — radio hero, sits between title and signup form */
+.site-hero-tagline {
+  font-family: var(--font-sans);
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.3;
+  color: #fff;
+  margin: 24px 0 30px;
+  max-width: 502px;
+}
+
+/* Member note — replaces signup form when @member */
+.site-hero-member-note {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Signup wrapper — caps width of in-hero form so it matches the design.
+   Form internals are styled per-page via #main .site-hero-signup ... rules. */
+.site-hero-signup {
+  max-width: 405px;
+}
+
+.site-hero-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.site-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 2s ease;
+}
+
+.site-hero:has(.site-hero-link:hover) .site-hero-image img {
+  transform: scale(1.03);
+}
+
+
+/* Content container: full-bleed absolute, capped at 1600px, auto-centered */
+.site-hero-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vh, 80px) 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.site-hero-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Episode-page variant — text overlay is horizontally centered in the
+   1600-capped inner, with content left-aligned inside a 670px column. */
+.site-hero-text--centered {
+  align-self: center;
+  width: 100%;
+  max-width: 670px;
+}
+
+/* Episode hero — text overlay sits at the bottom with 50px bottom
+   padding (rather than vertically centered like the home hero). */
+.site-hero--episode .site-hero-inner {
+  justify-content: flex-end;
+  padding-bottom: 50px;
+}
+
+/* Episode hero title is sized smaller than the home hero so longer
+   episode titles fit inside the 670px centered column without overflow.
+   Home: clamp(72px, 11vw, 175px). Episode: tighter cap. */
+.site-hero--episode .site-hero-title {
+  font-size: clamp(56px, 9vw, 132px);
+  line-height: 0.92;
+}
+
+/* Related-episodes grid (single-episode page) — cards are square, matching
+   the Figma. The .post-card markup is shared with other layouts that
+   render it without a fixed aspect ratio, so we constrain it here. */
+.home-sections--episodes .post-card {
+  aspect-ratio: 1 / 1;
+}
+
+.site-hero-label {
+  font-family: var(--font-sans);
+  font-size: clamp(12px, 1.1vw, 18px);
+  font-weight: 500;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 16px;
+  line-height: 1.3;
+  transition: all 0.6s ease;
+
+}
+
+.site-hero-title {
+  font-family: var(--font-big);
+  font-size: clamp(72px, 11vw, 175px);
+  line-height: 0.87;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  transition: all 0.6s ease;
+}
+
+.site-hero-title a {
+  color: inherit;
+  text-decoration: none;
+  background-image: none;
+  font-size: inherit;
+}
+
+.site-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  background: #fff;
+  border: 1px solid #fff !important;
+  color: #4f4f4f;
+  padding: 10px 15px 8px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  background-image: none;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 28px;
+  border-radius: 5px;
+  line-height: 1;
+  transition: all 0.6s ease;
+}
+
+.site-hero-cta-text {
+  margin-top: -5px;
+  font-weight: 600;
+}
+.site-hero-cta svg {
+  flex-shrink: 0;
+  color: #000;
+}
+
+
+/* ── Three-card section ───────────────────────────────────────────────────── */
+
+.home-sections {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 60px 5% 80px;
+}
+
+.home-sections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.home-section-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-section-link {
+  display: block;
+  background-image: none;
+  padding-bottom: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.home-section-image {
+  aspect-ratio: 438 / 502;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.home-section-no-image {
+  width: 100%;
+  height: 100%;
+  background: #e0dbd2;
+}
+
+.home-section-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 2s ease;
+}
+
+.home-section-link:hover .home-section-image img {
+  transform: scale(1.03);
+}
+
+.home-section-body {
+  flex: 1;
+  padding: 0 0 0 20px;
+  margin-top: 24px;
+  border-left: 1px solid #000;
+}
+
+.home-section-title {
+  font-family: var(--font-big-alt);
+  font-size: 24px;
+  line-height: 1.0;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 2px;
+  padding-top: 0;
+  font-weight: 600;
+}
+
+.home-section-desc {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.15px;
+  color: #000;
+  margin: 0;
+}
+
+
+/* ── Homepage responsive ──────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .site-hero {
+    aspect-ratio: unset;
+    height: 80vw;
+    min-height: 300px;
+  }
+
+  .site-hero-inner {
+    padding: clamp(60px, 10vh, 120px) 6% 8%;
+  }
+
+  .home-sections {
+    padding: 40px 5% 60px;
+  }
+
+  .home-sections-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .home-section-image {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+
+/* ==========================================================================
+   Site Footer (signup card + index menu)
+   ========================================================================== */
+
+.site-footer {
+  width: 100%;
+  /* 1600px content + 10vw padding (5% each side) — matches .home-sections natural behavior */
+  max-width: calc(1600px + 10vw);
+  margin: 0 auto;
+  padding: 80px 5% 60px;
+  box-sizing: border-box;
+}
+
+.site-footer-row {
+  display: grid;
+  /* Site index (left) + swappable module (right). Roughly equal split per Figma. */
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: stretch;
+}
+
+/* ── Index menu (TOC, left) ───────────────────────────────────────────────── */
+
+.site-footer-toc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.site-footer-toc-col {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: toc;
+}
+
+/* The whole row is the link. The <li> hosts the bottom-border (gray rest
+   line + animated black overlay via ::after); the <a> is the grid container
+   that lays out the number / title / descriptor. */
+.site-footer-toc-item {
+  position: relative;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+/* Animated black line — sits over the gray border and grows from left to
+   right on hover, matching the global `p a` underline pattern. */
+.site-footer-toc-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+
+.site-footer-toc-item:hover::after {
+  width: 100%;
+}
+
+li.site-footer-toc-item {
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.site-footer-toc-link {
+  display: grid;
+  /* Title takes its natural width; descriptor fills the rest, right-aligned. */
+  grid-template-columns: 18px max-content 1fr;
+  align-items: center;
+  height: 45px;
+  color: inherit;
+  /* Defeat the global animated text-underline on links — the row's bottom
+     line is the hover affordance now. */
+  background-image: none !important;
+  padding-bottom: 0 !important;
+}
+
+.site-footer-toc-num {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: #a5a5a5;
+}
+
+.site-footer-toc-title {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+.site-footer-toc-desc {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-style: italic;
+  color: #a5a5a5;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Right module: shared base for quote + sign-up ────────────────────────── */
+
+.site-footer-signup,
+.site-footer-quote {
+  min-height: 200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Quote (member state): inline, framed by dividers to match the TOC ────── */
+
+.site-footer-quote {
+  border-bottom: 1px solid #d6d6d6;
+  padding: 25px 0;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.site-footer-quote-text {
+  font-family: var(--font-big-alt);
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 700;
+  color: #a5a5a5;
+  margin: 0 0 28px;
+  /* Reset blockquote defaults */
+  padding: 0;
+  border: 0;
+  quotes: none;
+}
+
+.site-footer-quote-text:before,
+.site-footer-quote-text:after {
+  content: none;
+}
+
+.site-footer-quote-author {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* ── Sign-up card (non-member state) ──────────────────────────────────────── */
+
+.site-footer-signup {
+  position: relative;
+  color: #000;
+  padding: 15px 0;
+  justify-content: flex-start;
+}
+
+/* Legacy bg image element — kept hidden in case any old markup ships through */
+.site-footer-signup-bg {
+  display: none;
+}
+
+.site-footer-signup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.site-footer-signup-title {
+  font-family: var(--font-big);
+  font-size: 40px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.site-footer-signup-blurb {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  color: #000;
+  margin: 0 0 18px;
+  max-width: 440px;
+}
+
+.site-footer-signup-form {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  height: 43px;
+  width: 100%;
+  max-width: 405px;
+  background: #e5e5e5;
+}
+
+.site-footer-signup-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #000;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 0 14px;
+  outline: none;
+  min-width: 0;
+}
+
+.site-footer-signup-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.site-footer-signup-button {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  height: 35px;
+  padding: 0 24px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  background-image: none;
+  transition: background 0.2s ease;
+}
+
+/* Override the global `button:hover { background: #fff }` — keep it black,
+   subtle lift to a softer black for affordance. */
+.site-footer-signup-button:hover,
+.site-footer-signup-button:focus {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.site-footer-signup-button .kg-signup-card-button-default {
+  color: #fff;
+}
+
+.site-footer-signup-button:hover .kg-signup-card-button-default {
+  color: #fff;
+}
+
+.site-footer-signup-success,
+.site-footer-signup-error {
+  display: none;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: #000;
+  margin-top: 10px;
+}
+
+/* ── Footer responsive ────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .site-footer-row {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .site-footer-signup,
+  .site-footer-quote {
+    min-height: 0;
+  }
+  .site-footer-toc {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+
+/* ==========================================================================
    Archive Reader (Dreams + Art Diary)
    ========================================================================== */
 
-/* Hide site nav on archive pages — watermark serves as header */
-body.has-archive-reader .minimal-nav {
-  display: none;
-}
 
 /* Fixed background image for Dreams pages */
 body.dreams-bg {
@@ -5780,21 +6051,24 @@ body.dreams-bg {
 
 /* Warm neutral background for Art Diary pages */
 body.art-diary-bg {
-  background: #e8e3d8;
+  background: #E3DFD5;
 }
 
-/* --- Page wrapper: flex column so reader fills remaining viewport height --- */
+/* --- Page wrapper: regular block flow. The reader fills the viewport;
+       the site footer sits below it (revealed on scroll). --- */
 
 .archive-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  /* Nothing to enforce — block flow is fine. */
 }
 
-/* --- Ghosted watermark (left-aligned, mix-blend-multiply) ------------------ */
+/* --- Watermark: two contexts.
+       1. Inside .archive-reader → subtle corner label, top-left over image.
+       2. As a page-level child (e.g. /installations/ index) → giant page
+          header. Keeps backward-compat for the index until that page gets
+          its own design pass. --- */
 
 .archive-watermark {
-  flex-shrink: 0;
+  /* Default = page-level header treatment. */
   padding: 40px 5% 28px;
   pointer-events: none;
   user-select: none;
@@ -5813,20 +6087,860 @@ body.art-diary-bg {
   padding-bottom: 0 !important;
 }
 
-/* On solid-color art diary bg, darken slightly so watermark is visible */
 body.art-diary-bg .archive-watermark-text {
   color: #d8d0c4;
 }
 
-/* --- Reader panel: full browser width, fills remaining viewport ------------ */
+/* Inside the reader: corner overlay, also acts as a TOC trigger. Resets
+   the page-level treatment and allows clicks. z-index sits above the index
+   overlay (5) so the watermark stays visible — and clickable to close —
+   whether the deck or the TOC is showing. */
+.archive-reader .archive-watermark {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  padding: 0;
+  z-index: 6;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.archive-reader .archive-watermark-text {
+  font-size: 40px;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.4) !important;
+  mix-blend-mode: normal;
+  transition: color 0.2s ease;
+}
+
+body.art-diary-bg .archive-reader .archive-watermark-text {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Hover: brighten slightly to telegraph clickability. */
+.archive-reader .archive-watermark:hover .archive-watermark-text {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-text {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Index open: watermark fades to solid black so it reads as the active
+   page identity over the lighter overlay. The existing color transition
+   carries the fade. Wins over the resting + hover rules above via :has(). */
+.archive-reader:has(.archive-index-overlay.is-open) .archive-watermark-text,
+.archive-reader:has(.archive-index-overlay.is-open) .archive-watermark:hover .archive-watermark-text {
+  color: #000 !important;
+}
+
+/* --- Single-post reader (post.hbs default branch) -------------------------
+   Same visual chrome as the collection readers — image left, text right,
+   corner watermark — but no sibling navigation and no TOC. Used for any
+   post that isn't part of a dispatched collection. Right pane scrolls
+   when content exceeds viewport (book-like — image holds, text turns).
+   Watermark is identity only, not a TOC trigger, so no hover/cursor. */
+
+.archive-watermark--static,
+.archive-reader .archive-watermark--static {
+  cursor: default;
+  pointer-events: none;
+}
+
+.archive-reader .archive-watermark--static:hover .archive-watermark-text {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.archive-reader--single .archive-entry-image {
+  cursor: default;
+}
+
+.archive-reader--single .archive-entry-content {
+  justify-content: flex-start;
+  overflow-y: auto;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: 0;            /* Lets the grid track shrink so overflow scroll engages. */
+}
+
+/* Long-form posts often have multiple paragraphs — give them air. */
+.archive-reader--single .archive-entry-body p + p,
+.archive-reader--single .archive-entry-body p + h2,
+.archive-reader--single .archive-entry-body p + h3,
+.archive-reader--single .archive-entry-body h2 + p,
+.archive-reader--single .archive-entry-body h3 + p {
+  margin-top: 1em;
+}
+
+/* --- Midnight Radio episode reader ---------------------------------------
+   Reader pattern with two MR-specific tweaks:
+     1. The title sits ON the image (left pane), not in the right pane.
+        The right pane opens with date + excerpt + body instead.
+     2. A filmstrip of every episode runs across the bottom, centered on
+        the current one at load. Replaces the old "Latest 3" card row
+        with full-catalog reach.
+   Contrast against varied cover images is handled inside the artwork
+   itself (per project convention — no overlays / scrims). */
+
+/* Reader stays full-height; filmstrip sits below it in normal flow,
+   so a user scrolls past the reader to reach the catalog nav. */
+.mr-episode-page .archive-reader.mr-episode {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* LEFT PANE: cover image + overlay text -------------------------------- */
+
+.mr-episode-cover {
+  /* Cursor handled by mr-filmstrip.js: pointer when a next episode
+     exists (image-click advances within the section), default on the
+     last episode. Initial value is default so there's no flash of
+     pointer before JS runs. */
+  cursor: default;
+  background: #111;       /* Behind image while it loads. */
+}
+
+.mr-episode-cover-text {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 2;
+  color: #fff;
+  pointer-events: none;   /* Don't block image; image is non-interactive too. */
+}
+
+.mr-episode-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 20px 0 8px;
+  color: #fff;
+  display: flex;
+  gap: 0.4em;
+  flex-wrap: wrap;
+}
+
+/* The resolver only fills .episode-number text for hash-mr-N tags;
+   other internal tags' spans stay empty and we hide them. */
+.mr-episode-eyebrow .episode-number:empty,
+.mr-filmstrip-num:empty {
+  display: none;
+}
+
+.mr-episode-title {
+  font-family: var(--font-big);
+  font-size: clamp(48px, 6.8vw, 120px);
+  line-height: 0.85;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  color: #fff;
+}
+
+/* RIGHT PANE: scrolling prose ------------------------------------------
+   Higher-specificity selector so we beat the base .archive-entry-content
+   rule (which sets overflow: hidden + justify-content: center). Without
+   this, the right pane would clip its overflowing prose instead of
+   scrolling — the same fix the single-post reader needed.
+
+   min-height: 0 is the critical bit for the sticky controls inside.
+   As a grid item, this element's default min-height is `auto`, which
+   makes it grow to fit its content (the long prose). When that
+   happens, overflow-y: auto never engages — the whole page scrolls
+   instead, and position: sticky on the controls has no scroll context
+   to stick within. min-height: 0 lets the item shrink to its grid
+   track's actual height so internal scrolling kicks in and sticky
+   pins the controls to the bottom of the pane's visible area. */
+
+.mr-episode .archive-entry-content.mr-episode-body {
+  justify-content: flex-start;
+  overflow-y: auto;
+  padding-top: 80px;
+  padding-bottom: 0;       /* Critical: see comment below. */
+  min-height: 0;
+}
+
+/* Why padding-bottom: 0 on the pane —
+   Sticky `bottom: 0` aligns the sticky element's margin box with the
+   parent's content-box bottom, NOT its padding-box (visible) bottom.
+   At the same time, the parent's scroll viewport extends through the
+   padding-box, so overflowing content keeps scrolling and rendering in
+   the padding area below the sticky element — making the controls
+   appear to float in the middle of the prose with text bleeding below.
+   Removing the bottom padding collapses content-box bottom onto the
+   visible bottom, so the controls actually pin to the edge and nothing
+   scrolls past them. Breathing space gets moved into .archive-entry-text
+   below so the last paragraph isn't permanently hidden behind the
+   controls when you scroll to the end. */
+
+.mr-episode .archive-entry-text {
+  padding-bottom: 160px;   /* Clears the controls' ~145px height + buffer */
+}
+
+.mr-episode-date {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 8px;
+}
+
+.mr-episode-excerpt {
+  font-family: var(--font-big-alt);
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  text-transform: none;
+  padding-right: 10%;
+  letter-spacing: -0.5px;
+}
+
+/* Numbered section markers ("1", "2", …). Ghost renders the writer's
+   chosen heading level as h6 in the published HTML, so we target both
+   h6 (the actual element) and h3 (fallback in case future posts use a
+   different level). Style as quiet bold numerals above each block. */
+.mr-episode-content h3,
+.mr-episode-content h6 {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin: 2em 0 0.6em;
+}
+
+.mr-episode-content p + p {
+  margin-top: 1em;
+}
+
+/* CONTROLS + GRADIENT FADE -----------------------------------------------
+   The control bar is sticky to the bottom of the scrolling right pane.
+   Its own padding-top + gradient background gives the subtle fade so
+   long prose scrolls under softly instead of clipping. The negative
+   horizontal margins let the bar span the full pane width (escaping
+   the pane's 16% horizontal padding). margin-top: auto pushes it to
+   the bottom of the flex column when the content is shorter than the
+   pane (so the controls still sit at the bottom even on short posts). */
+
+.mr-episode .mr-episode-controls {
+  position: sticky;
+  bottom: 0;
+  margin: auto -16% 0;
+  padding: 80px 0 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(235, 235, 235, 0) 0,
+    rgba(235, 235, 235, 1) 80px
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;       /* So the gradient area lets clicks pass. */
+}
+
+/* Re-enable clicks on the actual control elements. */
+.mr-episode-controls > * {
+  pointer-events: auto;
+}
+
+.mr-episode-index,
+.mr-episode-prev,
+.mr-episode-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  color: #B3B8B3;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.mr-episode-index:hover,
+.mr-episode-prev:hover,
+.mr-episode-next:hover {
+  color: #000;
+  background: none;            /* Defeat global button:hover bg. */
+}
+
+.mr-episode-index svg path,
+.mr-episode-prev svg path,
+.mr-episode-next svg path {
+  fill: none;                  /* Defeat any global svg fill. */
+}
+
+.mr-episode-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.mr-episode-prev.is-disabled,
+.mr-episode-next.is-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* "DOWNLOAD | PODCAST" CLONE UNDER TITLE ---------------------------------
+   The same h4 that lives inline at the bottom of the post body gets
+   cloned (id stripped) into a slot under the title. Styled as a quiet
+   supporting label in the title block — matches the eyebrow rhythm so
+   the cover's top-left reads as one coherent unit, not three stacked
+   pieces of UI. The original in the body keeps its own h4 styling
+   from the global post-content rules. */
+
+.mr-episode-links {
+  margin-top: 28px;
+  pointer-events: auto;        /* The parent .mr-episode-cover-text is none. */
+}
+
+.mr-episode-links:empty {
+  display: none;
+}
+
+.mr-episode-links-clone {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Anchor styling here is intentionally minimal: color inherits from the
+   parent (white over the cover image), and the sliding underline comes
+   from the global `a` rule (background-image gradient that grows from
+   0% → 100% on hover). currentColor on the gradient means it renders
+   white over the dark image. The original h4#download-podcast in the
+   post body gets the same behavior from the same global rule. */
+.mr-episode-links-clone a {
+  color: inherit;
+}
+
+/* FILMSTRIP: horizontal catalog nav ------------------------------------
+   Sits below the 100dvh reader in normal page flow — a user scrolls
+   past the episode to reach it. Square thumbs at 100px (covers are
+   200×200 webp for retina). No labels — titles live inside the artwork.
+   Hidden tag spans inside each thumb feed mr-filmstrip.js the data it
+   needs to set the cover src. */
+
+.mr-filmstrip {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge legacy */
+}
+
+.mr-filmstrip::-webkit-scrollbar {
+  display: none;
+}
+
+.mr-filmstrip-track {
+  display: flex;
+  gap: 4px;
+  padding-top: 8px;
+  width: max-content; 
+  margin-bottom: 10%;         /* Track expands to fit all thumbs. */
+}
+
+.mr-filmstrip-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.8s ease;
+  overflow: hidden;
+}
+
+.mr-filmstrip-track a {
+  padding: 0;
+}
+
+.mr-filmstrip-thumb:hover,
+.mr-filmstrip-thumb.is-current {
+  filter: brightness(120%);
+  transform: scale(1.02);
+}
+
+
+.mr-filmstrip-thumb.is-current {
+  filter: brightness(150%);
+  padding-bottom: 5px;
+  border-bottom: 10px solid #000;
+}
+
+.mr-filmstrip-thumb img.mr-filmstrip-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The internal-tag spans inside .mr-filmstrip-tags are [hidden] in
+   markup — the attribute selector below is defensive in case anything
+   else applies display rules to them. */
+.mr-filmstrip-tags {
+  display: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   MR LANDING — /radio/ index page
+
+   Title + tagline in the top-left corner (no hero), pipe-filter row,
+   3-column grid of every episode tile (cover thumb + ep number + title
+   + custom excerpt). Tiles flow left-to-right per row (CSS grid, not
+   columns) so the reading order matches natural English flow.
+─────────────────────────────────────────────────────────────────────── */
+
+.mr-landing {
+  width: 100%;
+  padding: 80px 6vw 60px;
+  box-sizing: border-box;
+}
+
+/* Top-right close button. JS un-hides this when there's a same-site
+   referrer (typically: user came from an MR episode's index button and
+   may want to go back). Visually + behaviorally mirrors the .archive-
+   index-close on the reader overlays. */
+.mr-landing-close {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: none;
+  border: none;
+  padding: 8px;
+  color: #B3B8B3;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.15s ease;
+}
+
+.mr-landing-close:hover {
+  color: #000;
+  background: none;
+}
+
+.mr-landing-close svg path {
+  fill: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   ABOUT PAGE — full reader view
+
+   Single-post reader chrome (portrait left, scrolling content right)
+   with About-specific element styles: photo credit, link list, press
+   quotes, CV entries (title + location lines), inline figures for the
+   colophon. Section headings (h3.about-section-head) use the small
+   uppercase eyebrow rhythm so the page reads as a single artifact with
+   chapter breaks rather than a series of separate cards.
+─────────────────────────────────────────────────────────────────────── */
+
+/* Photo credit — small label tucked into the bottom-left corner of
+   the portrait. White text reads against the dark portion of this
+   specific image (per project convention: contrast is handled in the
+   artwork itself, no overlay/scrim). */
+.about-photo-credit {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  z-index: 2;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.about-photo-credit a {
+  color: inherit;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 1px;
+  transition: border-color 0.15s ease;
+}
+
+.about-photo-credit a:hover {
+  border-bottom-color: #fff;
+}
+
+/* Tighten the body inside the About reader — heading rhythm, paragraph
+   spacing, and link affordance. */
+.about-body p + p {
+  margin-top: 1em;
+}
+
+.about-body p {
+  margin: 0 0 1em;
+}
+
+/* Section headings inside the body (Press, Exhibitions, etc.) read
+   as quiet labels above each section, not bold display heads. */
+.about-section-head {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 3em 0 1.2em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+/* Inline social/contact links — compact bullet-separated row. */
+.about-links {
+  list-style: none;
+  margin: 1.5em 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.about-links li::after {
+  content: "·";
+  margin-left: 14px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.about-links li:last-child::after {
+  content: "";
+  margin-left: 0;
+}
+
+/* Press quotes — hanging indent, attribution below. */
+.about-press {
+  margin: 0 0 1.6em;
+  padding: 0;
+  border: 0;
+}
+
+.about-press p {
+  font-family: var(--font-sans);
+  /* No font-size — inherits from .archive-entry-body p so press quotes
+     read at the same size as body copy in whatever viewport. */
+  line-height: 1.5;
+  color: #111;
+  margin: 0 0 0.4em;
+  text-indent: -0.5em;
+  padding-left: 0.5em;
+}
+
+.about-press cite {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+/* CV entries — title + one or more location lines, compact rows. */
+.about-cv .cv-entry {
+  margin: 0 0 1.1em;
+}
+
+.about-cv .cv-entry:last-child {
+  margin-bottom: 0;
+}
+
+.about-cv .cv-title {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 2px;
+}
+
+.about-cv .cv-title a {
+  color: inherit;
+}
+
+.about-cv .cv-location {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: #666;
+  line-height: 1.45;
+}
+
+/* Inline figures for colophon images. */
+.about-figure {
+  margin: 0.4em 0 1em;
+}
+
+.about-figure img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 2px;
+}
+
+/* --- Header (title + tagline, top-left, no hero) -------------------------- */
+
+.mr-landing-header {
+  margin-bottom: 60px;
+  max-width: 600px;
+}
+
+.mr-landing-title {
+  font-family: var(--font-big);
+  font-size: clamp(40px, 4.5vw, 72px);
+  line-height: 0.92;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  margin: 0 0 8px;
+  color: #000;
+}
+
+.mr-landing-tagline {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 460px;
+}
+
+/* --- Filter row (pipe-separated text labels) ----------------------------- */
+
+.mr-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 16px;
+  margin: 0 0 50px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+
+.mr-filter {
+  position: relative;            /* For ::after underline. */
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Animated underline — width 0 → 100% from the left edge. Matches the
+   nav-link animation used elsewhere on the site. */
+.mr-filter::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: #111;
+  transition: width 0.25s ease;
+}
+
+.mr-filter:hover::after,
+.mr-filter.is-active::after {
+  width: 100%;
+}
+
+.mr-filter:hover {
+  background: none;             /* Defeat any global button:hover bg. */
+}
+
+/* Kill the default focus ring (the pill-shape artifact in Chrome).
+   Keep keyboard a11y via :focus-visible — only renders when navigating
+   with the keyboard, not when clicked with a mouse. */
+.mr-filter:focus {
+  outline: none;
+}
+.mr-filter:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 4px;
+}
+
+.mr-filter-sep {
+  color: rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+
+/* --- Grid (3 columns, natural left-to-right reading order) --------------- */
+
+.mr-landing-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px 50px;
+}
+
+.mr-landing-tile[hidden] {
+  display: none;
+}
+
+/* View Transitions: animate tile re-flow when filters change.
+   Each tile gets a unique view-transition-name via inline style (set by
+   mr-landing.js on load). When startViewTransition wraps a filter pass,
+   the browser snapshots positions before/after and interpolates — tiles
+   that move slide to their new spots, tiles that disappear fade out,
+   tiles that appear fade in. Modern Chrome / Edge / Safari 18+ get the
+   effect; Firefox no-ops gracefully via the JS feature check. */
+
+::view-transition-group(.mr-landing-tile) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+::view-transition-old(.mr-landing-tile),
+::view-transition-new(.mr-landing-tile) {
+  animation-duration: 0.25s;
+}
+
+/* Respect user preference: skip the motion if reduced-motion is on. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.001s !important;
+  }
+}
+
+/* Each tile: small square cover left, body text right.
+   Single divider BELOW the item — static gray, animated black overlay
+   on hover. Matches the footer TOC pattern: "one line below each row,
+   one line animates per hover." Symmetric padding gives the content
+   equal breathing room above and below. */
+.mr-landing-tile-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.mr-landing-tile-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;                  /* Overlays the static gray border exactly. */
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+
+.mr-landing-tile-link:hover::after {
+  width: 100%;
+}
+
+.mr-landing-tile-image {
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.mr-landing-tile-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mr-landing-tile-body {
+  min-width: 0;       /* Let title/excerpt wrap correctly in the grid track. */
+}
+
+.mr-landing-tile-num {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #777;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.mr-landing-tile-num .episode-number:empty {
+  display: none;       /* Hide non-MR internal tags before the resolver runs. */
+}
+
+.mr-landing-tile-title {
+  font-family: var(--font-big-alt);
+  font-size: 20px;
+  line-height: 1.05;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  margin: 0 0 2px;
+  color: #111;
+  padding-top: 0;
+}
+
+.mr-landing-tile-excerpt {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  color: #444;
+  margin: 0;
+}
+
+/* --- Responsive: collapse to 2 cols ≤1024px, 1 col ≤600px ---------------- */
+
+@media (max-width: 1024px) {
+  .mr-landing-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mr-landing {
+    padding: 60px 5vw 40px;
+  }
+  .mr-landing-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* --- Reader panel: full browser width, full viewport height. The index
+       overlay lives INSIDE this same box (position: absolute) so toggling
+       the index fades it into the reader's footprint without going
+       full-screen. Uses dvh so mobile URL-bar resize doesn't yank layout. */
 
 .archive-reader {
-  flex: 1;
   position: relative;
   width: 100%;
-  min-height: 400px;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.18);
 }
 
 /* --- Individual entries: stacked, fade in/out ------------------------------ */
@@ -5852,6 +6966,7 @@ body.art-diary-bg .archive-watermark-text {
   position: relative;
   overflow: hidden;
   background: #ccc;
+  cursor: pointer;
 }
 
 .archive-entry-image img {
@@ -5873,13 +6988,22 @@ body.art-diary-bg .archive-watermark-text {
 .archive-entry-content {
   display: flex;
   flex-direction: column;
-  padding: 60px 60px 80px;
+  justify-content: center;
+  padding: 60px 16% 80px;
   background: #ebebeb;
   overflow: hidden;
 }
 
 .art-diary-page .archive-entry-content {
-  background: #e8e3d8;
+  background: #E3DFD5;
+}
+
+/* --- Entry text container: wraps title + body so width and vertical
+       alignment can be tuned independently of the pane padding. --- */
+
+.archive-entry-text {
+  /* Starter values — tune to taste. */
+  width: 100%;
 }
 
 /* --- Entry title ----------------------------------------------------------- */
@@ -5888,7 +7012,7 @@ body.art-diary-bg .archive-watermark-text {
   font-family: var(--font-big-alt);
   font-size: clamp(36px, 4.2vw, 60px);
   line-height: 1.0;
-  margin: 0 0 20px;
+  margin: 0 0 10px;
   background-image: none !important;
   padding-bottom: 0 !important;
 }
@@ -5906,15 +7030,17 @@ body.art-diary-bg .archive-watermark-text {
 /* --- Entry body text ------------------------------------------------------- */
 
 .archive-entry-body {
-  font-family: 'IBM Plex Serif', Georgia, serif;
-  font-size: clamp(15px, 1.4vw, 20px);
+  font-family: var(--font-sans);
   line-height: 1.55;
   color: #111;
   overflow: hidden;
 }
 
 .archive-entry-body p {
-  margin: 0 0 1.2em;
+  margin: 0 0 1em;
+  font-weight: 500;
+  font-size: clamp(15px, 1.4vw, 19px);
+  letter-spacing: -0.2px;
 }
 
 .archive-entry-body p:last-child {
@@ -5931,36 +7057,62 @@ body.art-diary-bg .archive-watermark-text {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 44px;
+  padding: 0 25px;
   z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Hide the slide-nav controls while the TOC is open — only the × close
+   button (which lives inside .archive-index-overlay) and the watermark
+   stay reachable. */
+.archive-reader:has(.archive-index-overlay.is-open) .archive-controls {
+  opacity: 0;
   pointer-events: none;
 }
 
 .archive-toggle-index,
 .archive-prev,
-.archive-next {
+.archive-next,
+.archive-index-close {
   pointer-events: auto;
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
-  color: #555;
+  color: #B3B8B3;
   display: flex;
   align-items: center;
   line-height: 0;
-  opacity: 0.55;
-  transition: opacity 0.2s;
+  transition: color 0.2s ease;
 }
 
+/* Hover: fade to solid black, no white-circle bg (defeats the global
+   `button:hover { background: rgba(255,255,255,1) }` rule). */
 .archive-toggle-index:hover,
 .archive-prev:hover,
-.archive-next:hover {
-  opacity: 1;
+.archive-next:hover,
+.archive-index-close:hover {
+  background: none;
+  color: #000;
+}
+
+/* Mirror the chevron for the next button — same SVG, flipped. */
+.archive-next svg {
+  transform: scaleX(-1);
+}
+
+/* Defeat a global rule that fills SVG paths black — these icons are
+   stroke-only chevrons/lists, not filled glyphs. */
+.archive-toggle-index svg path,
+.archive-prev svg path,
+.archive-next svg path {
+  fill: none;
 }
 
 .archive-prev:disabled,
 .archive-next:disabled {
-  opacity: 0.18;
+  color: #d9dcd9;
   cursor: default;
 }
 
@@ -5974,142 +7126,286 @@ body.art-diary-bg .archive-watermark-text {
 .archive-counter {
   font-family: var(--font-sans);
   font-size: 12px;
-  letter-spacing: 0.06em;
   color: #999;
   min-width: 40px;
   text-align: center;
 }
 
-/* --- Index overlay --------------------------------------------------------- */
+/* --- Index overlay: lives INSIDE .archive-reader (absolute, not fixed). When
+       toggled, it cross-fades over the reader with a tiny upward lift. ------ */
 
 .archive-index-overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 200;
+  z-index: 5;
   background: #ebebeb;
-  display: flex;
-  flex-direction: column;
+  padding: 80px 60px;
   overflow-y: auto;
   opacity: 0;
+  transform: translateY(8px);
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .art-diary-page .archive-index-overlay {
-  background: #e8e3d8;
+  background: #E3DFD5;
 }
 
 .archive-index-overlay.is-open {
   opacity: 1;
+  transform: translateY(0);
   pointer-events: auto;
 }
 
-.archive-index-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 48px 60px 32px;
-}
-
-.archive-index-watermark {
-  font-family: var(--font-big);
-  font-size: clamp(48px, 8vw, 100px);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
-  margin: 0;
-  background-image: none !important;
-  padding-bottom: 0 !important;
-}
-
+/* Close button: minimal × pinned to the top-right of the index area.
+   Visual styling (color, hover, transition, padding) is shared with the
+   other reader controls — see the .archive-toggle-index group above. */
 .archive-index-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #777;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  line-height: 0;
-  margin-top: 8px;
-  transition: color 0.2s;
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  z-index: 2;
 }
 
-.archive-index-close:hover {
-  color: #000;
-}
-
+/* 3-column list, top-to-bottom flow within each column. The MR landing
+   uses row-major grid because tiles are visually rich (cover image,
+   title, excerpt); these index overlays are sparse text rows where
+   columned numbering reads like a printed index — newest at the top
+   of column 1, oldest at the bottom of column 3. */
 .archive-index-list {
-  flex: 1;
-  padding: 0 60px 40px;
-  display: flex;
-  flex-direction: column;
-  counter-reset: archive-counter;
+  column-count: 3;
+  column-gap: 60px;
+  padding-top: 8%;
 }
 
 .archive-index-item {
-  display: flex;
+  position: relative;            /* For the animated ::after divider. */
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
   align-items: baseline;
-  gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  column-gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid #d6d6d6;
   color: inherit;
   text-decoration: none;
   background-image: none !important;
-  padding-bottom: 12px !important;
-  counter-increment: archive-counter;
+  padding-bottom: 11px !important;
+  /* Prevent rows from splitting across column boundaries. */
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
 }
 
+/* Animated black divider — sits over the gray border, grows on hover.
+   Same pattern as the footer TOC and the MR landing tiles. */
+.archive-index-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+
+.archive-index-item:hover::after {
+  width: 100%;
+}
+
+/* Inventory number — set via data-num in JS so newest = highest. */
 .archive-index-item::before {
-  content: counter(archive-counter);
+  content: attr(data-num);
   font-family: var(--font-sans);
-  font-size: 11px;
-  color: #bbb;
-  min-width: 22px;
-  flex-shrink: 0;
-}
-
-.archive-index-item:hover .archive-index-title-text {
-  opacity: 0.6;
+  font-size: 12px;
+  color: #a5a5a5;
+  text-align: left;
 }
 
 .archive-index-title-text {
-  flex: 1;
   font-family: var(--font-sans);
   font-size: 14px;
+  font-weight: 500;
   line-height: 1.35;
-  transition: opacity 0.15s;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background-image: none !important;
   padding-bottom: 0 !important;
+  transition: opacity 0.15s;
+}
+
+.archive-index-item:hover .archive-index-title-text {
+  opacity: 0.55;
 }
 
 .archive-index-date {
   font-family: var(--font-sans);
-  font-size: 11px;
-  color: #bbb;
+  font-size: 12px;
+  color: #a5a5a5;
   white-space: nowrap;
-  flex-shrink: 0;
+  text-align: right;
 }
 
-.archive-index-sitenav {
-  padding: 32px 60px 60px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 32px;
+/* ==========================================================================
+   Installations (slide deck variant of Archive Reader)
+   ========================================================================== */
+
+/* Each project's slide deck reuses .archive-reader / .archive-entry chrome.
+   New slide variant: .archive-entry--media (full-bleed image, no right pane).
+   The intro slide uses the default 1fr 1fr grid (same as Dreams entries). */
+
+.archive-entry--media {
+  grid-template-columns: 1fr;
 }
 
-.archive-index-sitenav a {
+.archive-entry-image--full {
+  /* Full-bleed image fills the entire 1000px reader. */
+  width: 100%;
+  height: 100%;
+}
+
+/* Intro slide: press pull-quote + source attribution above the title. */
+
+.archive-press-quote {
   font-family: var(--font-sans);
-  font-size: 13px;
-  color: #888;
+  font-style: normal;
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.5;
+  color: #111;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
   background-image: none !important;
   padding-bottom: 0 !important;
-  transition: color 0.2s;
 }
 
-.archive-index-sitenav a:hover {
-  color: #000;
+.archive-press-source {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin: 0 0 48px;
+}
+
+/* Installations content pane allows scroll — bodies can run longer than
+   a Dream entry, and we shouldn't clip credits or specs. */
+.installations-page .archive-entry-content {
+  overflow-y: auto;
+}
+
+/* On installations, the controls bar spans the full reader width by default
+   (so it reads correctly on full-bleed media slides). When the active slide
+   is the intro slide (split layout), shift the bar back into the right pane
+   to match Dreams's rhythm. */
+.installations-page .archive-controls {
+  left: 0;
+  padding: 0 32px;
+}
+
+.installations-page .archive-reader:has(.archive-entry--intro.is-active) .archive-controls {
+  left: 50%;
+  padding: 0 44px;
+}
+
+/* Caption: rendered inside the controls bar, centered between hamburger and
+   chevrons. Hidden by default; visible only on media slides. JS pulls the
+   text from each slide's data-caption attribute when activated. */
+.archive-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.installations-page .archive-reader:has(.archive-entry--media.is-active) .archive-caption {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Installations Index page (/installations/)
+   ========================================================================== */
+
+.installations-index {
+  padding: 0 5% 100px;
+}
+
+.installations-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 880px;
+}
+
+.installations-index-item {
+  position: relative;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.installations-index-item:first-child {
+  border-top: 1px solid #d6d6d6;
+}
+
+/* Same animated black line as the footer TOC. */
+.installations-index-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+
+.installations-index-item:hover::after {
+  width: 100%;
+}
+
+.installations-index-link {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  height: 72px;
+  color: inherit;
   background-image: none !important;
+  padding-bottom: 0 !important;
+}
+
+.installations-index-num {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: #a5a5a5;
+}
+
+.installations-index-title {
+  font-family: var(--font-big-alt);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.installations-index-date {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-style: italic;
+  color: #a5a5a5;
+  white-space: nowrap;
 }
 
 /* --- Footer TOC (two-column numbered index) -------------------------------- */
@@ -6177,49 +7473,181 @@ body.art-diary-bg .archive-watermark-text {
   flex-shrink: 0;
 }
 
-/* --- Responsive ------------------------------------------------------------- */
+/* ──────────────────────────────────────────────────────────────────────
+   READER MOBILE — PATH A (≤1024px)
 
-@media (max-width: 768px) {
-  .archive-page {
-    min-height: auto;
-  }
+   At 1024px and below, every reader (Dreams, Art Diary, Favorites,
+   Installations, MR episode, single-post / Instructions / About)
+   collapses from the 100dvh dual-pane to a stacked layout:
+     - Image becomes a full-width 1:1 square top header
+     - Prose flows below in normal page scroll (no internal scroll)
+     - Watermark stays overlaid on the image and scrolls away with it
+       (its job — identifying the section — is done by the time you
+       start reading)
+     - Controls become position: sticky bottom: 0 within the reader
+       container, so they pin to the viewport bottom while you're
+       reading and naturally yield when you scroll past the reader
 
+   1:1 square preserves MR cover artwork un-cropped; other images get
+   a sensible center crop via the existing object-fit: cover.
+─────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+
+  /* Reader: no longer a viewport-sized box. */
   .archive-reader {
-    height: 75vw;
-    min-height: 320px;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
   }
 
+  /* Article: stack image on top, content below. Each entry is a normal
+     block in flow now. */
   .archive-entry {
-    grid-template-columns: 1fr;
-    grid-template-rows: 45% 55%;
+    position: relative;
+    inset: auto;
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
   }
 
-  .archive-controls {
-    left: 0;
-    bottom: 16px;
-    padding: 0 20px;
+  /* Collection readers (Dreams/Art/Favorites) keep all entries in DOM
+     but only render the active one. Inactive entries would otherwise
+     stack and leave huge empty space between them. */
+  .archive-entry:not(.is-active) {
+    display: none;
   }
 
-  .archive-watermark {
-    padding: 24px 5% 20px;
+  /* Image: full-width 1:1 square header. */
+  .archive-entry-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
   }
 
+  /* Content: normal page flow under the image, no internal scroll. */
   .archive-entry-content {
-    padding: 28px 24px 60px;
+    overflow: visible;
+    height: auto;
+    padding: 40px 6vw 80px;
+    justify-content: flex-start;
   }
 
-  .archive-index-header {
-    padding: 32px 24px 20px;
+  /* Constrain the prose column to a readable measure once the layout
+     stacks. On a 768–1024px tablet the pane is the full page width;
+     without this the lines would run 600+ characters wide, which
+     destroys reading rhythm. 600px is roughly a 65-character measure
+     at 17px — the typographic sweet spot. On phones (<600px viewport)
+     the natural pane width is already narrower than 600px, so the
+     max-width simply doesn't engage. */
+  .archive-entry-text {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
+  /* Watermark: smaller, hugs the corner. Still overlaid on the image. */
+  .archive-reader .archive-watermark {
+    top: 16px;
+    left: 16px;
+    padding: 0;
+  }
+  .archive-reader .archive-watermark-text {
+    font-size: 28px;
+  }
+
+  /* Collection reader controls (prev/next/index button bar): now sticky
+     to the bottom of the viewport while the reader's article is in
+     view. Was position: absolute pinned to the right pane on desktop. */
+  .archive-controls {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 14px 6vw;
+    margin-top: -40px;        /* Overlap the last bit of content so the gradient blends. */
+    background: linear-gradient(
+      to bottom,
+      rgba(235, 235, 235, 0) 0,
+      rgba(235, 235, 235, 0.98) 40px
+    );
+    z-index: 5;
+  }
+
+  /* MR episode specifics --------------------------------------------- */
+
+  /* The reader collapses to natural height (was 100dvh on desktop). */
+  .mr-episode-page .archive-reader.mr-episode {
+    height: auto;
+  }
+
+  /* Smaller title clamp — the 48px desktop minimum is too big on phone. */
+  .mr-episode-title {
+font-size: clamp(32px, 18vw, 96px);  }
+
+  /* Tighter overlay padding for the cover text block. */
+  .mr-episode-cover-text {
+top: 5%;
+        left: 5%;
+        right: 5%;
+  }
+
+  /* Body no longer scrolls internally — page scrolls. Extra bottom
+     padding keeps the last paragraph clear of the sticky controls. */
+  .mr-episode .archive-entry-content.mr-episode-body {
+    overflow: visible;
+    padding: 40px 6vw 0;
+  }
+
+  /* The .mr-episode-controls' desktop rule uses margin: auto -16% 0 to
+     escape the 16% pane padding. On mobile our pane padding is 6vw,
+     so the negative margin needs to match. */
+  .mr-episode .mr-episode-controls {
+    margin: 0 -6vw;
+    padding: 60px 6vw 16px;
+  }
+
+  /* Hide the .archive-entry-text bottom padding spacer that exists for
+     desktop sticky-controls clearance — on mobile the body's own
+     padding-bottom handles spacing. */
+  .mr-episode .archive-entry-text {
+    padding-bottom: 0;
+  }
+
+  /* Single-post reader (Instructions, About): same shape — overflow
+     visible so the page scrolls instead of the pane. */
+  .archive-reader--single .archive-entry-content {
+    overflow: visible;
+    padding: 40px 6vw 80px;
+  }
+
+  /* About-specific: photo credit corner placement still works; the
+     inline colophon figures get a smaller cap so they don't dominate
+     the narrow column. */
+  .about-figure img {
+    max-width: 220px;
+  }
+
+  /* Watermark: in archive-page--single (Instructions, About) the
+     watermark uses the same .archive-watermark class — no extra
+     rules needed; the universal block above already handles it. */
+
+}
+
+/* TOC overlay collapse stays at its original (narrower) threshold —
+   the full-viewport overlay still has room for multi-column at iPad
+   widths, so we don't force single-column until phone sizes. */
+@media (max-width: 768px) {
+  .archive-index-overlay {
+    padding: 56px 24px 32px;
+  }
   .archive-index-list {
-    padding: 0 24px 40px;
+    column-count: 1;
   }
-
-  .archive-index-sitenav {
-    padding: 24px 24px 60px;
+  .archive-index-close {
+    top: 16px;
+    right: 16px;
   }
-
   .toc-grid {
     grid-template-columns: 1fr;
     gap: 0;

@@ -1,9 +1,105 @@
 {{!< default}}
 
-<main id="main" class="content outer">
-    <div class="inner-wide">
-????
+{{!-- ── HERO: Latest Midnight Radio episode ───────────────────────────────── --}}
+{{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc"}}
+{{#foreach posts}}
+<section class="site-hero">
 
+  {{!-- Full-bleed feature image --}}
+  {{#if feature_image}}
+  <div class="site-hero-image">
+    <img
+      srcset="{{img_url feature_image size="m"}} 800w,
+              {{img_url feature_image size="l"}} 1200w,
+              {{img_url feature_image size="xl"}} 2000w"
+      sizes="100vw"
+      src="{{img_url feature_image size="l"}}"
+      alt="{{title}}"
+      loading="eager"
+    />
+  </div>
+  {{/if}}
 
+  {{!-- Gradient overlay: dark top-left → transparent --}}
+  <div class="site-hero-overlay"></div>
+
+  {{!-- Text content, constrained to 1600px --}}
+  <div class="site-hero-inner">
+    <div class="site-hero-text">
+      <p class="site-hero-label">Midnight Radio</p>
+      <h2 class="site-hero-title">{{title}}</h2>
     </div>
-</main>
+    <a href="{{url}}" class="site-hero-cta">
+      Read + Listen
+      <svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
+        <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+</section>
+{{/foreach}}
+{{/get}}
+
+
+{{!-- ── THREE-CARD SECTION ──────────────────────────────────────────────── --}}
+<section class="home-sections">
+  <div class="home-sections-grid">
+
+    {{!-- Card 1: Spite --}}
+    <article class="home-section-card">
+      <a href="https://spite.club" class="home-section-link" target="_blank" rel="noopener">
+        <div class="home-section-image">
+          <img src="{{asset "img/reeves-spite.webp"}}" alt="Spite" loading="lazy" />
+        </div>
+      </a>
+      <div class="home-section-body">
+        <h3 class="home-section-title">Spite</h3>
+        <p class="home-section-desc">A streamlined player for macOS and iOS with big artwork, and harmonious colors.</p>
+      </div>
+    </article>
+
+    {{!-- Card 2: Art Diary — pull latest post's feature image --}}
+    {{#get "posts" filter="tag:art-diary" limit="1" order="published_at desc"}}
+    {{#foreach posts}}
+    <article class="home-section-card">
+      <a href="{{@site.url}}/art-diary" class="home-section-link">
+        <div class="home-section-image">
+          {{#if feature_image}}
+          <img src="{{img_url feature_image size="m"}}" alt="Art Diary" loading="lazy" />
+          {{else}}
+          <div class="home-section-no-image"></div>
+          {{/if}}
+        </div>
+      </a>
+      <div class="home-section-body">
+        <h3 class="home-section-title">Art Diary</h3>
+        <p class="home-section-desc">Scattered scenes from museums—say it loud: "To every age its art, and to art its freedom."</p>
+      </div>
+    </article>
+    {{/foreach}}
+    {{/get}}
+
+    {{!-- Card 3: Dream Inventory — pull latest post's feature image --}}
+    {{#get "posts" filter="tag:dreams" limit="1" order="published_at desc"}}
+    {{#foreach posts}}
+    <article class="home-section-card">
+      <a href="{{@site.url}}/dreams" class="home-section-link">
+        <div class="home-section-image">
+          {{#if feature_image}}
+          <img src="{{img_url feature_image size="m"}}" alt="Dream Inventory" loading="lazy" />
+          {{else}}
+          <div class="home-section-no-image"></div>
+          {{/if}}
+        </div>
+      </a>
+      <div class="home-section-body">
+        <h3 class="home-section-title">Dream Inventory</h3>
+        <p class="home-section-desc">An ongoing collection of impossible handwriting and daily sentences about the sacred and mundane.</p>
+      </div>
+    </article>
+    {{/foreach}}
+    {{/get}}
+
+  </div>
+</section>

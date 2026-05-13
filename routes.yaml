@@ -10,35 +10,21 @@ routes:
     template: page-art-diary
   
 
-  # Other collections
-  /broadcasts/:
-    permalink: /broadcasts/{slug}/
-    filter: tag:broadcasts
-    template: tag-broadcasts
-    data: tag.broadcasts
-    
-  /design/:
-    permalink: /design/{slug}/
-    filter: tag:design
-    template: tag-design
-    data: tag.design
-    
-  /art/:
-    permalink: /art/{slug}/
-    filter: tag:artwork
-    template: tag-artwork
-    data: tag.artwork
-    
-  /books/:
-    permalink: /books/{slug}/
-    filter: tag:books
-    template: tag-books
-    data: tag.books
+collections:
+  # Installations: posts tagged 'installations' get nested URLs.
+  # The collection index renders page-installations.hbs at /installations/.
+  # Individual posts use post-installations.hbs (auto-applied by primary tag).
+  /installations/:
+    permalink: /installations/{slug}/
+    template: page-installations
+    filter: tag:installations
+    order: published_at desc
 
-  # Root collection (homepage)
+  # Root collection (everything not in /installations/).
   /:
     permalink: /{slug}/
     template: home
+    filter: tag:-installations
 
 taxonomies:
   tag: /tag/{slug}/

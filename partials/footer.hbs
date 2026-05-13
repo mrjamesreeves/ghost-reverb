@@ -1,61 +1,98 @@
-{{#if @member}}
+<section class="site-footer{{#if @member}} site-footer--member{{/if}}">
+  <div class="site-footer-row">
 
-  {{!-- Members: two-column TOC only --}}
-  <div class="footer-toc content outer">
-    <nav class="toc-grid" aria-label="Site index">
-      <ol class="toc-col toc-col--left">
-        <li><a href="{{@site.url}}/radio">Midnight Radio</a><span class="toc-year">2020–</span></li>
-        <li><a href="{{@site.url}}/dreams">Dream Inventory</a><span class="toc-year">2024–</span></li>
-        <li><a href="{{@site.url}}/art-diary">Art Diary</a><span class="toc-year">2024–</span></li>
-        <li><a href="{{@site.url}}/favorites">Favorite Things</a><span class="toc-year">2026–</span></li>
+    {{!-- Site index (left) — same in both member and non-member states --}}
+    <nav class="site-footer-toc" aria-label="Site index">
+
+      <ol class="site-footer-toc-col">
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/radio">
+            <span class="site-footer-toc-num">1</span>
+            <span class="site-footer-toc-title">Midnight Radio</span>
+            <span class="site-footer-toc-desc">mixtapes + mysteries</span>
+          </a>
+        </li>
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/dreams">
+            <span class="site-footer-toc-num">2</span>
+            <span class="site-footer-toc-title">Dream Inventory</span>
+            <span class="site-footer-toc-desc">the ravishing far-near</span>
+          </a>
+        </li>
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/art-diary">
+            <span class="site-footer-toc-num">3</span>
+            <span class="site-footer-toc-title">Art Diary</span>
+            <span class="site-footer-toc-desc">museum scenes</span>
+          </a>
+        </li>
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/spite" target="_blank" rel="noopener">
+            <span class="site-footer-toc-num">4</span>
+            <span class="site-footer-toc-title">Spite</span>
+            <span class="site-footer-toc-desc">a music player without any fuckery</span>
+          </a>
+        </li>
       </ol>
-      <ol class="toc-col toc-col--right">
-        <li><a href="{{@site.url}}/instructions">Instructions for Myself</a><span class="toc-year">2025–</span></li>
-        <li><a href="{{@site.url}}/about">About</a></li>
-        <li><a href="https://spite.club" target="_blank" rel="noopener">Spite</a></li>
-        <li><a href="https://bsky.app/profile/jamesreeves.co" target="_blank" rel="noopener">Bluesky</a></li>
+
+      <ol class="site-footer-toc-col" start="5">
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/art-installations">
+            <span class="site-footer-toc-num">5</span>
+            <span class="site-footer-toc-title">Art Installations</span>
+            <span class="site-footer-toc-desc">rituals in public space</span>
+          </a>
+        </li>
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/favorites">
+            <span class="site-footer-toc-num">6</span>
+            <span class="site-footer-toc-title">Favorite Things</span>
+            <span class="site-footer-toc-desc">because I need to remember</span>
+          </a>
+        </li>
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/instructions">
+            <span class="site-footer-toc-num">7</span>
+            <span class="site-footer-toc-title">Instructions for Myself</span>
+            <span class="site-footer-toc-desc">because I will forget</span>
+          </a>
+        </li>
+        <li class="site-footer-toc-item">
+          <a class="site-footer-toc-link" href="{{@site.url}}/about">
+            <span class="site-footer-toc-num">8</span>
+            <span class="site-footer-toc-title">About</span>
+            <span class="site-footer-toc-desc">biography + colophon</span>
+          </a>
+        </li>
       </ol>
+
     </nav>
+
+    {{!-- Right module: rotating quote (member) or join CTA (non-member) --}}
+    {{#if @member}}
+      <aside class="site-footer-quote" aria-label="Quote of the moment">
+        <blockquote class="site-footer-quote-text" data-mr-quote></blockquote>
+        <p class="site-footer-quote-author" data-mr-quote-author></p>
+      </aside>
+    {{else}}
+      <div class="site-footer-signup">
+        <div class="site-footer-signup-content">
+          <h2 class="site-footer-signup-title">Join Midnight Radio</h2>
+          <p class="site-footer-signup-blurb">Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
+          <form class="site-footer-signup-form" data-members-form="signup">
+            <input class="site-footer-signup-input" type="email" data-members-email="" placeholder="Enter your email..." required>
+            <button class="site-footer-signup-button" type="submit">
+              <span class="kg-signup-card-button-default">Subscribe</span>
+            </button>
+          </form>
+          <div class="site-footer-signup-success">Hell yeah—thank you for tuning in! Now check your inbox.</div>
+          <div class="site-footer-signup-error" data-members-error=""></div>
+        </div>
+      </div>
+    {{/if}}
+
   </div>
-
-{{else}}
-
-  {{!-- Non-members: signup block + TOC --}}
-  <div class="signup content outer">
-    <div class="signup-image">
-      <img src="{{asset "/img/midnight-stickers.webp"}}" alt="Midnight Radio">
-    </div>
-    <div class="signup-content">
-      <h2>Join Midnight Radio</h2>
-      <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
-      {{> "signup"}}
-    </div>
-  </div>
-
-  <div class="footer-toc content outer">
-    <nav class="toc-grid" aria-label="Site index">
-      <ol class="toc-col toc-col--left">
-        <li><a href="{{@site.url}}/radio">Midnight Radio</a><span class="toc-year">2020–</span></li>
-        <li><a href="{{@site.url}}/dreams">Dream Inventory</a><span class="toc-year">2024–</span></li>
-        <li><a href="{{@site.url}}/art-diary">Art Diary</a><span class="toc-year">2024–</span></li>
-        <li><a href="{{@site.url}}/favorites">Favorite Things</a><span class="toc-year">2026–</span></li>
-      </ol>
-      <ol class="toc-col toc-col--right">
-        <li><a href="{{@site.url}}/instructions">Instructions for Myself</a><span class="toc-year">2025–</span></li>
-        <li><a href="{{@site.url}}/about">About</a></li>
-        <li><a href="https://spite.club" target="_blank" rel="noopener">Spite</a></li>
-        <li><a href="https://bsky.app/profile/jamesreeves.co" target="_blank" rel="noopener">Bluesky</a></li>
-      </ol>
-    </nav>
-  </div>
-
-{{/if}}
-
-
-<footer class="simple-footer">
-  <div class="footer-name"><a href="{{@site.url}}">James A. Reeves</a></div>
-</footer>
-
+</section>
 
 {{!-- Footer Scripts --}}
 <script src="{{asset "js/smartquotes.js"}}"></script>
@@ -101,3 +138,28 @@ document.querySelectorAll('.episode-number').forEach(function (el) {
   }
 });
 </script>
+
+{{#if @member}}
+{{!-- ── Random member-state footer quote ──────────────────────────────────────
+     Add new quotes to the array below. One is picked at random per page load.
+     Smart-quote conversion is handled globally by smartquotes.js, so use plain
+     straight quotes / apostrophes here.
+─────────────────────────────────────────────────────────────────────────── --}}
+<script>
+(function () {
+  var quotes = [
+    {
+      text: "The moon is a stone and the sky is filled with deadly hardware, but oh god how beautiful anyway.",
+      author: "Margaret Atwood"
+    }
+    // Add more { text, author } entries here.
+  ];
+
+  var pick = quotes[Math.floor(Math.random() * quotes.length)];
+  var textEl = document.querySelector('[data-mr-quote]');
+  var authorEl = document.querySelector('[data-mr-quote-author]');
+  if (textEl && pick) textEl.textContent = pick.text;
+  if (authorEl && pick) authorEl.textContent = pick.author;
+})();
+</script>
+{{/if}}

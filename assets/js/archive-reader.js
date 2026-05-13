@@ -91,6 +91,15 @@
   if (toggleBtn) toggleBtn.addEventListener('click', openIndex);
   if (closeBtn)  closeBtn.addEventListener('click', closeIndex);
 
+  // Watermark in the corner doubles as a TOC trigger.
+  const watermark = reader.querySelector('.archive-watermark');
+  if (watermark) watermark.addEventListener('click', openIndex);
+
+  // Clicking the entry image advances to the next entry.
+  reader.querySelectorAll('.archive-entry-image').forEach(function (img) {
+    img.addEventListener('click', function () { goTo(current + 1); });
+  });
+
   // --- Keyboard ---
 
   document.addEventListener('keydown', function (e) {
@@ -110,7 +119,26 @@
 
   // --- Init ---
 
-  updateCounter(0);
-  updateNav(0);
+  // If the URL points at a specific entry's canonical slug (e.g.
+  // /mountain-man/ landing on the Dreams reader via post.hbs dispatch),
+  // activate that entry instead of falling back to the first.
+  function pathSlug() {
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : '';
+  }
+  var initialSlug = pathSlug();
+  if (initialSlug) {
+    var idx = entries.findIndex(function (e) {
+      return e.getAttribute('data-slug') === initialSlug;
+    });
+    if (idx > 0) {
+      entries[0].classList.remove('is-active');
+      entries[idx].classList.add('is-active');
+      current = idx;
+    }
+  }
+
+  updateCounter(current);
+  updateNav(current);
 
 })();
