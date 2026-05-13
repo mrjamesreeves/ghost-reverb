@@ -346,7 +346,7 @@ p {
 
 ol {
   margin: 2.5rem 0 0;
-  padding: 0 0 0 1em;
+  padding: 0 0 0 1.5em;
   }
 
 ul {
@@ -1630,6 +1630,7 @@ p a:hover {
   font-size: var(--type-body-sm);
   margin: 0 !important;
   padding-left: 0;
+  padding-bottom: 10px;
 }
 
 .tag-midnight-radio ol li strong {
