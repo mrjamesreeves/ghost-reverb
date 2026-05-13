@@ -13,3 +13,8 @@ jobs:
         with:
           api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          # The action's built-in exclude already covers .git*, .zip,
+          # yarn*, npm*, node_modules*, routes.yaml, redirects.yaml. We
+          # add .claude/ (worktree scratch, settings.local.json) and
+          # CLAUDE.md so theme-author notes don't end up on the server.
+          exclude: ".claude* CLAUDE.md"

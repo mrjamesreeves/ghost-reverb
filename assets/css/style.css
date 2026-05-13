@@ -26,6 +26,15 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --font-big:  "bebas-neue-pro", sans-serif;
   --font-big-alt: "bebas-neue-pro-semiexpanded", sans-serif;
 
+  /* Ghost 6 admin font-picker integration. gscan warns if these aren't
+     declared. We don't actually use them — the theme's typography is
+     locked to the Typekit families above — but Ghost wants them present
+     so the admin's "Customize → Typography" panel can show its UI. We
+     point them at our chosen families so if Ghost ever wires the picker
+     in, the defaults are sane. */
+  --gh-font-heading: var(--font-big);
+  --gh-font-body: var(--font-sans);
+
   --type-h1: 6.5rem;
   --type-h2: 48px;
   --type-h3: 1.7rem;
