@@ -21,14 +21,21 @@
   'use strict';
 
   // ---- 0. Clone the "Download | Podcast" link pair under the title ----
-  // The h4#download-podcast lives inline near the bottom of the post body
-  // (before the audio card). We clone it (don't move) so the links appear
-  // both under the cover title AND at the bottom of the post where the
-  // writer placed them. The clone has its id stripped to avoid duplicate
-  // IDs in the document.
+  // The writer drops an h4 near the bottom of the post body with two
+  // anchors: "Download | Podcast". We clone it (don't move) so those
+  // links appear both under the cover title AND at the bottom of the
+  // post where they were authored.
+  //
+  // We match on the first h4 in the post body rather than an id —
+  // Ghost auto-generates heading IDs by slugifying the heading text,
+  // so the id ends up as "download-podcast" only if the writer used
+  // exactly that wording in a markdown card. Variations like
+  // "Subscribe | Download" or h4s authored in HTML cards (which don't
+  // get auto-ids at all) silently miss. Since h4 isn't used for
+  // anything else inside an MR episode body, "first h4" is reliable.
   (function cloneDownloadLinks() {
     var slot = document.getElementById('mrEpisodeLinksSlot');
-    var original = document.querySelector('.mr-episode-content #download-podcast');
+    var original = document.querySelector('.mr-episode-content h4');
     if (!slot || !original) return;
 
     var clone = original.cloneNode(true);
