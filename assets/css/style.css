@@ -1625,10 +1625,10 @@ p a:hover {
 .tag-midnight-radio ol li {
   line-height: 1.4;
   font-family: var(--font-sans);
-  font-size: var(--type-body-sm);
+  font-size: 12px;
   margin: 0 !important;
   padding-left: 0;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 .tag-midnight-radio ol li strong {
