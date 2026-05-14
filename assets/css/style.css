@@ -18,9 +18,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --color-hover: #000;
   --color-inverse: #fff;
 
-
-  
-
   /* Fonts */
   --font-sans:  "ibm-plex-sans", sans-serif;
   --font-big:  "bebas-neue-pro", sans-serif;
@@ -81,11 +78,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  }
-
-.bg {
-  background-image: linear-gradient(180deg, #FFF 41.21%, #F6F6F6 95.84%);
-  background-attachment: fixed;
+  background-color: #fff;
   }
 
 
@@ -2568,7 +2561,7 @@ input::placeholder {
   h1 {
     font-size: calc(var(--type-h1) * 0.65);
     }
-  h2, .post h2 {
+  h2, h2 a, .post h2 {
     font-size: calc(var(--type-h2) * 0.7);
     width: 95%;
     }
@@ -7574,7 +7567,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 14px 6vw;
+    padding: 14px 3%;
     margin-top: -40px;        /* Overlap the last bit of content so the gradient blends. */
     background: linear-gradient(
       to bottom,
