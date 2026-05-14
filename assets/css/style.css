@@ -5886,7 +5886,6 @@ li.site-footer-toc-item {
 /* ── Quote (member state): inline, framed by dividers to match the TOC ────── */
 
 .site-footer-quote {
-  border-bottom: 1px solid #d6d6d6;
   padding: 25px 0;
   justify-content: space-between;
   margin: 0;
@@ -5903,6 +5902,7 @@ li.site-footer-toc-item {
   padding: 0;
   border: 0;
   quotes: none;
+  padding-right: 20%;
 }
 
 .site-footer-quote-text:before,
