@@ -5478,17 +5478,17 @@ h1.post {
 .site-hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100vh;
   min-height: 300px;
   overflow: hidden;
   background: #111;
-  transition: opacity 1s ease;
+  transition: all 1s ease;
 }
 
 /* Hover effects fire only when the link (text + CTA) is hovered — clicking
    anywhere over the image area does nothing. */
 .site-hero:has(.site-hero-link:hover) {
-  opacity: 0.8;
+  filter: brightness(110%);
 }
 
 /* Inner wrapper for hero content — sized to content (not full inner width).
@@ -5551,7 +5551,7 @@ h1.post {
 }
 
 .site-hero:has(.site-hero-link:hover) .site-hero-image img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 
@@ -7009,10 +7009,6 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   overflow: hidden;
 }
 
-.art-diary-page .archive-entry-content {
-  background: #E3DFD5;
-}
-
 /* --- Entry text container: wraps title + body so width and vertical
        alignment can be tuned independently of the pane padding. --- */
 
@@ -7095,7 +7091,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   border: none;
   cursor: pointer;
   padding: 8px;
-  color: #B3B8B3;
+  color: #adadad;
   display: flex;
   align-items: center;
   line-height: 0;
@@ -7536,7 +7532,6 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   /* Image: full-width 1:1 square header. */
   .archive-entry-image {
     width: 100%;
-    aspect-ratio: 1 / 1;
     height: auto;
   }
 
