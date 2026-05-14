@@ -1628,7 +1628,8 @@ p a:hover {
   font-size: 12px;
   margin: 0 !important;
   padding-left: 0;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .tag-midnight-radio ol li strong {
@@ -5887,7 +5888,7 @@ li.site-footer-toc-item {
 
 .site-footer-quote {
   padding: 25px 0;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0;
 }
 
@@ -5897,8 +5898,6 @@ li.site-footer-toc-item {
   line-height: 1;
   font-weight: 700;
   color: #a5a5a5;
-  margin: 0 0 28px;
-  /* Reset blockquote defaults */
   padding: 0;
   border: 0;
   quotes: none;
