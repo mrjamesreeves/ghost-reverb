@@ -6789,7 +6789,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px 50px;
+  gap: 0 50px;
 }
 
 .mr-landing-tile[hidden] {
@@ -7230,10 +7230,6 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   background-image: none !important;
   padding-bottom: 0 !important;
   transition: opacity 0.15s;
-}
-
-.archive-index-item:hover .archive-index-title-text {
-  opacity: 0.55;
 }
 
 .archive-index-date {
