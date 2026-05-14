@@ -5908,6 +5908,7 @@ li.site-footer-toc-item {
   border: 0;
   quotes: none;
   padding-right: 20%;
+  margin: 0;
 }
 
 .site-footer-quote-text:before,
@@ -7027,7 +7028,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   font-size: clamp(36px, 4.2vw, 60px);
   margin: 0 0 10px;
   background-image: none !important;
-  padding-bottom: 0 !important;
+  padding-bottom: 5px !important;
 }
 
 .archive-entry-title a {
