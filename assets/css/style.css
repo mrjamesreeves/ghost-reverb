@@ -2655,9 +2655,6 @@ input::placeholder {
 
 @media (max-width: 700px) {
 
-  h1 {
-    width: 90%;
-    }
   .radio-post h1 {
     max-width: 250px;
     }
@@ -5747,6 +5744,10 @@ h1.post {
     aspect-ratio: unset;
     height: 90vw;
     min-height: 400px;
+  }
+
+  .site-hero-label {
+    padding-bottom: 8px;
   }
 
   .site-hero-inner {
