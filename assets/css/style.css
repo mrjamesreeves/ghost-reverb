@@ -5837,7 +5837,9 @@ h1.post {
 
 li.site-footer-toc-item {
   padding-left: 0;
-  padding-top: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 0;
 }
 
 .site-footer-toc-link {
