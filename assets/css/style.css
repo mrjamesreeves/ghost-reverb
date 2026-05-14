@@ -6057,17 +6057,8 @@ body.dreams-bg {
   background: url('../img/bg-dreams.webp') center top / cover no-repeat !important;
 }
 
-/* Warm neutral background for Art Diary pages */
-body.art-diary-bg {
-  background: #E3DFD5;
-}
-
 /* --- Page wrapper: regular block flow. The reader fills the viewport;
        the site footer sits below it (revealed on scroll). --- */
-
-.archive-page {
-  /* Nothing to enforce — block flow is fine. */
-}
 
 /* --- Watermark: two contexts.
        1. Inside .archive-reader → subtle corner label, top-left over image.
