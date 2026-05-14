@@ -6452,7 +6452,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   gap: 4px;
   padding-top: 8px;
   width: max-content; 
-  margin-bottom: 10%;         /* Track expands to fit all thumbs. */
+  margin-bottom: 5%;         /* Track expands to fit all thumbs. */
 }
 
 .mr-filmstrip-thumb {
