@@ -7012,7 +7012,6 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
 .archive-entry-title {
   font-family: var(--font-big-alt);
   font-size: clamp(36px, 4.2vw, 60px);
-  line-height: 1.0;
   margin: 0 0 10px;
   background-image: none !important;
   padding-bottom: 0 !important;
