@@ -5745,8 +5745,8 @@ h1.post {
 @media (max-width: 700px) {
   .site-hero {
     aspect-ratio: unset;
-    height: 80vw;
-    min-height: 300px;
+    height: 90vw;
+    min-height: 400px;
   }
 
   .site-hero-inner {
@@ -5764,6 +5764,10 @@ h1.post {
 
   .home-section-image {
     aspect-ratio: 3 / 2;
+  }
+
+  .site-hero-link {
+    max-width: 95%;
   }
 }
 
