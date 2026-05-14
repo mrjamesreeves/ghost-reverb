@@ -342,12 +342,12 @@ p {
 /* Lists */
 
 ol {
-  margin: 2.5rem 0 0;
-  padding: 0 0 0 1.5em;
+  margin: 2.5rem 0;
+  padding: 0 0 0 1.8em;
   }
 
 ul {
-  margin: 1.5rem 0 0;
+  margin: 1.5rem 0;
   padding: 0 0 0 1.5em;
   list-style: disc;
   }
