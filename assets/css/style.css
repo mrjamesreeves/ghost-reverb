@@ -214,8 +214,7 @@ h1.post-title.no-line:after {
 
 h2, h2 a {
   font-size: var(--type-h2);
-  letter-spacing: 0.25px;
-  line-height: .85;
+  line-height: .75;
   font-family: var(--font-big);
   font-weight: 600;
   font-style: normal;
@@ -233,7 +232,7 @@ h2.post-card-title {
   }
 
 h2.tag a, h2 a:hover {
-  color: var(--color-text-muted);
+  color: #000;
   font-family: var(--font-big);
   text-decoration: none;
   }
@@ -7165,6 +7164,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   top: 24px;
   right: 32px;
   z-index: 2;
+  color: #000;
 }
 
 /* 3-column list, top-to-bottom flow within each column. The MR landing
