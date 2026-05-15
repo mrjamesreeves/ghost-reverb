@@ -272,13 +272,10 @@ h5.section {
 
 h5 a {
   color: var(--color-text);
-  text-decoration: underline;
-  text-decoration-color: var(--color-text-muted);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  background-image: none;
-  padding-bottom: 0;
-  transition: text-decoration-thickness 0.2s ease, text-decoration-color 0.2s ease;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: 800;
+  letter-spacing: 0;
   }
 
 h5 a:hover {
