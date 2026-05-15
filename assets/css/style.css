@@ -342,7 +342,7 @@ p {
 
 ol {
   margin: 2.5rem 0;
-  padding: 0 0 0 1.8em;
+  padding: 0 0 0 2em;
   }
 
 ul {
@@ -398,6 +398,10 @@ dd {
 .post-content ol li::marker, .post-content ul li::marker, .archive-entry-body ol li::marker, .archive-entry-body ul li::marker {
   font-size: 16px;
   }
+
+  ol::marker {
+  font-size: 14px; /* or whatever size you want */
+}
 
 .post-content ol li, .post-content ul li {
   padding-left: 10px;
