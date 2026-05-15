@@ -37,7 +37,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 19px;
+  --type-body: 18.4px;
   --type-body-m: 16px;
   --type-body-sm: 14px;
   --type-body-xs: 12px;
@@ -394,8 +394,8 @@ dd {
   font-size: var(--type-body);
   }
 
-.post-content ol li::marker, .post-content ul li::marker {
-  font-size: .8rem;
+.post-content ol li::marker, .post-content ul li::marker, .archive-entry-body ol li::marker, .archive-entry-body ul li::marker {
+  font-size: 16px;
   }
 
 .post-content ol li, .post-content ul li {
