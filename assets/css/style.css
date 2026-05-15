@@ -5599,7 +5599,7 @@ h1.post {
   font-family: var(--font-sans);
   font-size: clamp(12px, 1.1vw, 18px);
   font-weight: 500;
-  letter-spacing: 2.4px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #fff;
   margin: 0 0 16px;
@@ -5746,7 +5746,7 @@ h1.post {
   }
 
   .site-hero-label {
-    padding-bottom: 8px;
+    margin: 0 0 5px;
   }
 
   .site-hero-inner {
@@ -5894,7 +5894,7 @@ li.site-footer-toc-item {
 
 .site-footer-quote {
   padding: 25px 0;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin: 0;
 }
 
@@ -5918,11 +5918,11 @@ li.site-footer-toc-item {
 
 .site-footer-quote-author {
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.3px;
-  color: rgba(0, 0, 0, 0.5);
+  color: #a5a5a5;
   margin: 0;
 }
 
