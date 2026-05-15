@@ -6294,14 +6294,21 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
    chosen heading level as h6 in the published HTML, so we target both
    h6 (the actual element) and h3 (fallback in case future posts use a
    different level). Style as quiet bold numerals above each block. */
-.mr-episode-content h3,
-.mr-episode-content h6 {
+.mr-episode-content h3 {
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 700;
   color: #111;
   margin: 2em 0 0.6em;
 }
+
+.mr-episode-content h6 {
+font-family: var(--font-sans);
+font-size: 13px;
+font-weight: 500;
+color: #111;
+margin: 2em 0 0.6em;
+line-height: 1.4;}
 
 .mr-episode-content p + p {
   margin-top: 1em;
@@ -7152,10 +7159,6 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   transform: translateY(8px);
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.art-diary-page .archive-index-overlay {
-  background: #E3DFD5;
 }
 
 .archive-index-overlay.is-open {
