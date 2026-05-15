@@ -276,12 +276,20 @@ h5 a {
   text-transform: none;
   font-weight: 800;
   letter-spacing: 0;
-  }
+  font-size: 14px;
+background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.25s ease-in-out, color 0.25s ease-in-out;
+}
 
-h5 a:hover {
-  text-decoration-color: currentColor;
-  text-decoration-thickness: 2px;
-  }
+h5 a:hover,
+h5 a:focus {
+  background-size: 100% 1px;
+}
+
 
 .post h2 {
   font-family: var(--font-big-alt);
