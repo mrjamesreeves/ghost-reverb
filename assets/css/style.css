@@ -6985,10 +6985,20 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
 .archive-entry-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* `safe center` keeps short content visually centered, but falls back
+     to flex-start when content overflows. Plain `center` is broken with
+     scroll: it pushes overflowing content above the scroll viewport's
+     top edge, where it can't be scrolled back to. Supported everywhere
+     since 2020. */
+  justify-content: safe center;
   padding: 60px 16% 80px;
   background: #ebebeb;
-  overflow: hidden;
+  /* Let long entries (art-diary photo essays, long installations specs)
+     scroll within the pane rather than clipping. min-height: 0 prevents
+     grid/flex children from refusing to shrink below their intrinsic
+     content size, which would otherwise re-disable the scroll. */
+  overflow-y: auto;
+  min-height: 0;
 }
 
 /* --- Entry text container: wraps title + body so width and vertical
@@ -7279,12 +7289,6 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
   margin: 0 0 48px;
-}
-
-/* Installations content pane allows scroll — bodies can run longer than
-   a Dream entry, and we shouldn't clip credits or specs. */
-.installations-page .archive-entry-content {
-  overflow-y: auto;
 }
 
 /* On installations, the controls bar spans the full reader width by default
