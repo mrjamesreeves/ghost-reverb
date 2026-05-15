@@ -389,7 +389,7 @@ dt {
 
 li,
 dd {
-  margin: 0 0 0.rem;
+  margin: 0 0 15px;
   padding-left: 5px;
   line-height: 1.45;
   font-size: var(--type-body);
@@ -1132,30 +1132,6 @@ ul.section-items li::marker {
   background-repeat: no-repeat;
   background-size: contain;
   display: inline-table;
-  }
-
-.page-favorites .post-header-content {
-    margin-bottom: 50px;
-  }
-
-.page-favorites li::marker {
-  font-size: .6rem;
-  }
-
-.page-reading-list .post-content ul {
-  margin: .2rem 0 20px 0;
-  }
-
-.page-reading-list li::marker {
-  font-size: .9rem;
-  }
-
-.page-reading-list .post-content {
-  margin-top: 80px;
-  }
-
-.page-reading-list .post-content p:first-child {
-  margin-bottom: 20px;
   }
 
 .page-favorites .post-full:last-child {
