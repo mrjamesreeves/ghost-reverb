@@ -1,5 +1,10 @@
 [
     {
+      "from": "^/notebook/?$",
+      "to": "/",
+      "permanent": true
+    },
+    {
       "from": "^/tag/journal/?$",
       "to": "/tag/notebook/",
       "permanent": true
