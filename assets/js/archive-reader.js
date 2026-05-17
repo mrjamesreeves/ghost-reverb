@@ -32,15 +32,25 @@
     if (counterEl) counterEl.textContent = (idx + 1) + ' / ' + total;
   }
 
-  function updateNav(idx) {
-    if (prevBtn) prevBtn.disabled = idx === 0;
-    if (nextBtn) nextBtn.disabled = idx === total - 1;
+  function updateNav() {
+    // Dreams / Art Diary navigation is circular — prev/next always
+    // resolve to a valid neighbor via wrap-around in goTo, so the
+    // boundary disable from earlier versions is gone. The buttons
+    // stay enabled at every position.
   }
 
   // --- Go to entry (fade) ---
+  //
+  // Negative or past-the-end indices wrap with double-modulo. The
+  // (n % t + t) % t form handles -1 → total-1 cleanly (plain `%` on
+  // negatives returns a negative remainder in JS). One-entry readers
+  // short-circuit via the `idx === current` guard so we don't re-fade
+  // the same entry onto itself.
 
   function goTo(idx) {
-    if (navigating || idx < 0 || idx >= total) return;
+    if (navigating || total === 0) return;
+    idx = ((idx % total) + total) % total;
+    if (idx === current) return;
     navigating = true;
 
     entries[current].classList.remove('is-active');

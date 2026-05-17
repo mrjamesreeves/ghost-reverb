@@ -32,7 +32,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
      point them at our chosen families so if Ghost ever wires the picker
      in, the defaults are sane. */
   --gh-font-heading: var(--font-big);
-  --gh-font-body: var(--font-sans);
+  --gh-font-body: var(--font-serif);
 
   --type-h1: 6.5rem;
   --type-h2: 50px;
@@ -69,7 +69,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 /* 3. Base
 ----------------------------- */
 html {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: 100%;
   overflow-x: hidden;
   }
@@ -5195,19 +5195,13 @@ li.site-footer-toc-item {
   padding-bottom: 0 !important;
 }
 
-.site-footer-toc-num {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 400;
-  color: #a5a5a5;
-}
-
 .site-footer-toc-title {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  white-space: nowrap;
+font-family: var(--font-big-exp);
+font-size: 18px;
+font-weight: 600;
+color: #000;
+white-space: nowrap;
+line-height: 1;
 }
 
 .site-footer-toc-desc {
