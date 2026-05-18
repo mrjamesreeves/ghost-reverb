@@ -35,7 +35,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --gh-font-body: var(--font-serif);
 
   --type-h1: 6.5rem;
-  --type-h2: 50px;
+  --type-h2: 60px;
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
@@ -217,10 +217,9 @@ h1.post-title.no-line:after {
 h2, h2 a {
   font-size: var(--type-h2);
   line-height: .75;
-  font-family: var(--font-big);
-  font-weight: 600;
+  font-family: var(--font-big-alt);
+  font-weight: 700;
   font-style: normal;
-  text-transform: uppercase;
   text-decoration: none;
   color: var(--color-text);
   }
@@ -235,12 +234,7 @@ h2.post-card-title {
 
 h2.tag a, h2 a:hover {
   color: #000;
-  font-family: var(--font-big);
   text-decoration: none;
-  }
-
-h2.tag a:hover {
-  color: var(--color-text);
   }
 
 h3 {
@@ -3049,20 +3043,6 @@ body.hidden-scroll{overflow:hidden}.sl-overlay{position:fixed;left:0;right:0;top
 
 .speed-control, .speed-control svg { display: none !important;}
 
-.book-club-img {
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  }
-
-.book-club-discussion {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-bg-darker);
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  }
 
 button {
   border: none;
@@ -4562,54 +4542,6 @@ h1.post {
   text-decoration: none;
 }
 
-/* Guest Archive */
-.guest-archive {
-  max-width: 500px;
-}
-
-
-
-.guest-archive .kg-toggle-heading-text {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: normal;
-}
-
-.guest-archive .kg-toggle-card {
-  background: transparent;
-}
-
-.guest-list {
-  padding-top: 40px;
-}
-
-.guest-entry {
-  margin-bottom: 40px;
-}
-
-.guest-entry h6 {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 5px;
-  border-left: none;
-  padding-left: 0;
-}
-
-.guest-entry p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 5px;
-  margin-top: 0 !important;
-}
-
-.guest-entry .guest-episode {
-  font-size: 12px;
-  font-style: italic;
-  font-weight: 600gues;
-  color: var(--color-hover);
-}
-
 .bio .post-card img {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -5056,13 +4988,13 @@ h1.post {
 }
 
 .home-section-title {
-  font-family: var(--font-big-alt);
-  font-size: 24px;
+  font-family: var(--font-big);
+  font-size: 28px;
   line-height: 1.0;
   letter-spacing: 0.72px;
   text-transform: uppercase;
   color: #000;
-  margin: 0 0 2px;
+  margin: 0 0 3px;
   padding-top: 0;
   font-weight: 600;
 }
@@ -5073,6 +5005,7 @@ h1.post {
   letter-spacing: 0;
   color: #000;
   margin: 0;
+  padding-right: 10%;
 }
 
 
