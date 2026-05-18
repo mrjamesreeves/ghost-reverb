@@ -644,7 +644,6 @@ textarea {
   box-sizing: border-box;
   color: var(--color-text);
   display: block;
-  font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
   max-width: 100%;
@@ -1819,13 +1818,6 @@ h6.song {
 .kg-signup-card-button.kg-style-accent {
   background: var(--color-text) !important;
 }
-
-.kg-signup-card-button-default {
-  color: black;
-  font-size: 13px;
-  font-weight: 700;
-}
-
 
 .radio-item:hover .footer-tag-name, .radio-item:hover .count, .footer-tag-item:hover .footer-tag-name, .footer-tag-item:hover .count {
   color: var(--color-hover);
@@ -4110,7 +4102,7 @@ h1.post {
   border-left: 1px solid #000;
 }
 
-.home-section-title {
+.home-section-title, .site-footer-signup-title {
   font-family: var(--font-big);
   font-size: 28px;
   line-height: 1.0;
@@ -4122,13 +4114,14 @@ h1.post {
   font-weight: 600;
 }
 
-.home-section-desc {
+.home-section-desc, .site-footer-signup-blurb {
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: 0;
   color: #000;
-  margin: 0;
+  margin: 0 0 10px;
   padding-right: 10%;
+  max-width: 500px;
 }
 
 
@@ -4251,7 +4244,7 @@ li.site-footer-toc-item {
 
 .site-footer-toc-title {
 font-family: var(--font-big-exp);
-font-size: 18px;
+font-size: 17px;
 font-weight: 600;
 color: #000;
 white-space: nowrap;
@@ -4336,32 +4329,13 @@ line-height: 1;
   width: 100%;
 }
 
-.site-footer-signup-title {
-  font-family: var(--font-big);
-  font-size: 36px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: #000;
-  margin: 0 0 4px;
-  font-weight: 700;
-}
-
-.site-footer-signup-blurb {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #000;
-  margin: 0 0 18px;
-  max-width: 440px;
-}
-
 .site-footer-signup-form {
   display: flex;
   align-items: center;
   border: none;
   border-radius: 5px;
   padding: 2px;
-  height: 40px;
+  height: 30px;
   width: 100%;
   max-width: 405px;
   background: #e5e5e5;
@@ -4373,7 +4347,7 @@ line-height: 1;
   border: none;
   color: #000;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 13px;
   padding: 0 14px;
   outline: none;
   min-width: 0;
@@ -4388,10 +4362,10 @@ line-height: 1;
   color: #fff;
   border: none;
   border-radius: 5px;
-  height: 35px;
+  height: 28px;
   padding: 0 24px;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
