@@ -4243,13 +4243,13 @@ li.site-footer-toc-item {
 }
 
 .site-footer-toc-title {
-font-family: var(--font-big-exp);
-font-size: 17px;
-font-weight: 600;
-color: #000;
-white-space: nowrap;
-line-height: 1;
-}
+  font-family: var(--font-big-exp);
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+  line-height: 1;
+  }
 
 .site-footer-toc-desc {
   font-family: var(--font-sans);
