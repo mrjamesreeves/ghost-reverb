@@ -1585,10 +1585,6 @@ p a:hover {
   line-height: 1;
   }
 
-.tag-midnight-radio p + h3 {
-  margin-top: 60px !important;
-}
-
 .tag-midnight-radio ol li {
   line-height: 1.4;
   font-family: var(--font-sans);
