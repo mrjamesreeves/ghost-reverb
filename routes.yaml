@@ -8,23 +8,23 @@ routes:
     template: page-favorites
   /art-diary/:
     template: page-art-diary
-  
+
 
 collections:
-  # Installations: posts tagged 'installations' get nested URLs.
-  # The collection index renders page-installations.hbs at /installations/.
-  # Individual posts use post-installations.hbs (auto-applied by primary tag).
-  /installations/:
-    permalink: /installations/{slug}/
-    template: page-installations
-    filter: tag:installations
+  # Public Works: posts tagged 'public-works' get nested URLs.
+  # The collection index renders page-public-works.hbs at /public-works/.
+  # Individual posts use partials/public-works/_deck.hbs via post.hbs dispatch.
+  /public-works/:
+    permalink: /public-works/{slug}/
+    template: page-public-works
+    filter: tag:public-works
     order: published_at desc
 
-  # Root collection (everything not in /installations/).
+  # Root collection (everything not in /public-works/).
   /:
     permalink: /{slug}/
     template: home
-    filter: tag:-installations
+    filter: tag:-public-works
 
 taxonomies:
   tag: /tag/{slug}/

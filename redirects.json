@@ -54,5 +54,20 @@
       "from": "^/43",
       "to": "/neglected-utopian-energy",
       "permanent": true
+    },
+    {
+      "from": "^/installations/(.*)",
+      "to": "/public-works/$1",
+      "permanent": true
+    },
+    {
+      "from": "^/installations/?$",
+      "to": "/public-works/",
+      "permanent": true
+    },
+    {
+      "from": "^/art-installations/?$",
+      "to": "/public-works/",
+      "permanent": true
     }
   ]

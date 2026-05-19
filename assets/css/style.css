@@ -4431,7 +4431,7 @@ body.dreams-bg {
 
 /* --- Watermark: two contexts.
        1. Inside .archive-reader → subtle corner label, top-left over image.
-       2. As a page-level child (e.g. /installations/ index) → giant page
+       2. As a page-level child (e.g. /public-works/ index) → giant page
           header. Keeps backward-compat for the index until that page gets
           its own design pass. --- */
 
@@ -5254,7 +5254,7 @@ line-height: 1.4;}
   justify-content: safe center;
   padding: 60px 16% 80px;
   background: #ebebeb;
-  /* Let long entries (art-diary photo essays, long installations specs)
+  /* Let long entries (art-diary photo essays, long public works specs)
      scroll within the pane rather than clipping. min-height: 0 prevents
      grid/flex children from refusing to shrink below their intrinsic
      content size, which would otherwise re-disable the scroll. */
@@ -5549,16 +5549,16 @@ line-height: 1.4;}
   margin: 0 0 48px;
 }
 
-/* On installations, the controls bar spans the full reader width by default
+/* On public works, the controls bar spans the full reader width by default
    (so it reads correctly on full-bleed media slides). When the active slide
    is the intro slide (split layout), shift the bar back into the right pane
    to match Dreams's rhythm. */
-.installations-page .archive-controls {
+.public-works-page .archive-controls {
   left: 0;
   padding: 0 32px;
 }
 
-.installations-page .archive-reader:has(.archive-entry--intro.is-active) .archive-controls {
+.public-works-page .archive-reader:has(.archive-entry--intro.is-active) .archive-controls {
   left: 50%;
   padding: 0 44px;
 }
@@ -5580,36 +5580,36 @@ line-height: 1.4;}
   transition: opacity 0.2s ease;
 }
 
-.installations-page .archive-reader:has(.archive-entry--media.is-active) .archive-caption {
+.public-works-page .archive-reader:has(.archive-entry--media.is-active) .archive-caption {
   opacity: 1;
 }
 
 /* ==========================================================================
-   Installations Index page (/installations/)
+   Public Works Index page (/public-works/)
    ========================================================================== */
 
-.installations-index {
+.public-works-index {
   padding: 0 5% 100px;
 }
 
-.installations-index-list {
+.public-works-index-list {
   list-style: none;
   margin: 0;
   padding: 0;
   max-width: 880px;
 }
 
-.installations-index-item {
+.public-works-index-item {
   position: relative;
   border-bottom: 1px solid #d6d6d6;
 }
 
-.installations-index-item:first-child {
+.public-works-index-item:first-child {
   border-top: 1px solid #d6d6d6;
 }
 
 /* Same animated black line as the footer TOC. */
-.installations-index-item::after {
+.public-works-index-item::after {
   content: "";
   position: absolute;
   left: 0;
@@ -5621,11 +5621,11 @@ line-height: 1.4;}
   pointer-events: none;
 }
 
-.installations-index-item:hover::after {
+.public-works-index-item:hover::after {
   width: 100%;
 }
 
-.installations-index-link {
+.public-works-index-link {
   display: grid;
   grid-template-columns: 32px 1fr auto;
   align-items: center;
@@ -5636,13 +5636,13 @@ line-height: 1.4;}
   padding-bottom: 0 !important;
 }
 
-.installations-index-num {
+.public-works-index-num {
   font-family: var(--font-sans);
   font-size: 12px;
   color: #a5a5a5;
 }
 
-.installations-index-title {
+.public-works-index-title {
   font-family: var(--font-big-alt);
   font-size: clamp(22px, 2vw, 30px);
   font-weight: 700;
@@ -5651,7 +5651,7 @@ line-height: 1.4;}
   text-transform: uppercase;
 }
 
-.installations-index-date {
+.public-works-index-date {
   font-family: var(--font-sans);
   font-size: 13px;
   font-style: italic;

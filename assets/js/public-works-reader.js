@@ -110,7 +110,7 @@
   const watermark = reader.querySelector('.archive-watermark');
   if (watermark) watermark.addEventListener('click', openIndex);
 
-  // Clicking the slide image advances to the next slide. On installations,
+  // Clicking the slide image advances to the next slide. On public works,
   // this also rolls through to the next project at the deck boundary.
   reader.querySelectorAll('.archive-entry-image').forEach(function (img) {
     img.addEventListener('click', function () { goTo(current + 1); });

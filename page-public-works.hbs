@@ -1,0 +1,40 @@
+{{!< default}}
+
+{{!-- Index page at /public-works/. The {{#get}} that surfaces the post list
+     is wired up by the collection in routes.yaml — `posts` is in scope here.
+     Single-column TOC for now; visual treatment can grow later. --}}
+
+<script>document.body.classList.add('has-archive-reader', 'dreams-bg');</script>
+
+<main id="main" class="archive-page public-works-page public-works-index-page">
+
+  <div class="archive-watermark">
+    <h1 class="archive-watermark-text">Public<br>Works</h1>
+  </div>
+
+  <div class="public-works-index">
+    <ol class="public-works-index-list">
+      {{#foreach posts}}
+      <li class="public-works-index-item">
+        <a class="public-works-index-link" href="{{url}}">
+          <span class="public-works-index-num"></span>
+          <span class="public-works-index-title">{{title}}</span>
+          <span class="public-works-index-date">{{date format="MMM YYYY"}}</span>
+        </a>
+      </li>
+      {{/foreach}}
+    </ol>
+  </div>
+
+</main>
+
+<script>
+  /* Newest = highest number, matching the Dreams index pattern. */
+  (function () {
+    var items = document.querySelectorAll('.public-works-index-item');
+    var total = items.length;
+    for (var i = 0; i < total; i++) {
+      items[i].querySelector('.public-works-index-num').textContent = total - i;
+    }
+  })();
+</script>

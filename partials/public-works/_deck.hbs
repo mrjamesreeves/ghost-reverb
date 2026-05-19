@@ -1,32 +1,35 @@
-{{!-- Art Installations slide deck.
-     Loaded from post.hbs whenever a post's primary tag is `installations`.
+{{!-- Public Works slide deck.
+     Loaded from post.hbs whenever a post's primary tag is `public-works`.
      This partial expects to be rendered inside a {{#post}} context.
      Pulls title / body / feature_image from Ghost; press quote, media slides
-     and captions live in partials/installations/{slug}.hbs (one per project). --}}
+     and captions live in partials/public-works/{slug}.hbs (one per project).
+     Note: still uses `dreams-bg` body class — both sections share the same
+     soft page background. Will be revisited when this section gets its
+     dedicated visual treatment. --}}
 
-<script>document.body.classList.add('has-archive-reader', 'dreams-bg', 'installations-bg');</script>
+<script>document.body.classList.add('has-archive-reader', 'dreams-bg', 'public-works-bg');</script>
 
-<main id="main" class="archive-page installations-page">
+<main id="main" class="archive-page public-works-page">
 
   <div class="archive-reader" id="archiveReader" data-current-slug="{{slug}}">
 
     <div class="archive-watermark">
-      <h1 class="archive-watermark-text">Art<br>Installations</h1>
+      <h1 class="archive-watermark-text">Public<br>Works</h1>
     </div>
 
     {{!-- Per-project partial: intro slide + media slides for this post.
          Add a new {{#match}} branch for each new project's partial. --}}
-    {{#match slug "after-the-end"}}{{> "installations/after-the-end"}}{{/match}}
-    {{#match slug "light-the-barricades"}}{{> "installations/light-the-barricades"}}{{/match}}
-    {{#match slug "the-nightly-news"}}{{> "installations/the-nightly-news"}}{{/match}}
-    {{#match slug "monument-anxious-hopeful"}}{{> "installations/monument-anxious-hopeful"}}{{/match}}
-    {{#match slug "atlas-of-tomorrow"}}{{> "installations/atlas-of-tomorrow"}}{{/match}}
+    {{#match slug "after-the-end"}}{{> "public-works/after-the-end"}}{{/match}}
+    {{#match slug "light-the-barricades"}}{{> "public-works/light-the-barricades"}}{{/match}}
+    {{#match slug "the-nightly-news"}}{{> "public-works/the-nightly-news"}}{{/match}}
+    {{#match slug "monument-anxious-hopeful"}}{{> "public-works/monument-anxious-hopeful"}}{{/match}}
+    {{#match slug "atlas-of-tomorrow"}}{{> "public-works/atlas-of-tomorrow"}}{{/match}}
 
     {{!-- Controls bar: hamburger left, caption center (media slides only),
-         counter + chevrons right. Caption is updated by install-reader.js
+         counter + chevrons right. Caption is updated by public-works-reader.js
          from each slide's data-caption attribute. --}}
     <div class="archive-controls" id="archiveControls">
-      <button class="archive-toggle-index" id="archiveToggleIndex" aria-label="View all installations">
+      <button class="archive-toggle-index" id="archiveToggleIndex" aria-label="View all public works">
         <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9.55556 1.5H30.5M9.55556 11.5H30.5M9.55556 21.5H30.5M1.5 1.5H1.51611M1.5 11.5H1.51611M1.5 21.5H1.51611" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -49,14 +52,14 @@
       </div>
     </div>
 
-    {{!-- Index overlay: list of all installations. Same look as the Dreams
+    {{!-- Index overlay: list of all public works. Same look as the Dreams
          index, but only ~5 entries so the columns may look sparse. --}}
     <div class="archive-index-overlay" id="archiveIndex" aria-hidden="true">
       <button class="archive-index-close" id="archiveIndexClose" aria-label="Back to reader">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
       <div class="archive-index-list">
-        {{#get "posts" filter="tag:installations" limit="all" order="published_at desc"}}
+        {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc"}}
           {{#foreach posts}}
           <a class="archive-index-item" href="{{url}}">
             <span class="archive-index-title-text">{{title}}</span>
@@ -71,11 +74,11 @@
 
 </main>
 
-{{!-- Project list for cross-project chevron navigation. install-reader.js
+{{!-- Project list for cross-project chevron navigation. public-works-reader.js
      reads this to know what URL to navigate to when prev/next crosses the
      boundary of the current project's slide deck. --}}
-<script type="application/json" id="installationsList">
-[{{#get "posts" filter="tag:installations" limit="all" order="published_at desc"}}{{#foreach posts}}{"slug":"{{slug}}","url":"{{url}}","title":"{{title}}"}{{#unless @last}},{{/unless}}{{/foreach}}{{/get}}]
+<script type="application/json" id="publicWorksList">
+[{{#get "posts" filter="tag:public-works" limit="all" order="published_at desc"}}{{#foreach posts}}{"slug":"{{slug}}","url":"{{url}}","title":"{{title}}"}{{#unless @last}},{{/unless}}{{/foreach}}{{/get}}]
 </script>
 
-<script src="{{asset "js/install-reader.js"}}"></script>
+<script src="{{asset "js/public-works-reader.js"}}"></script>

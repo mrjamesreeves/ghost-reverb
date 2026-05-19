@@ -14,15 +14,15 @@
   {{> "art-diary/_reader"}}
 {{else}}{{#match primary_tag.slug "favorites"}}
   {{> "favorites/_reader"}}
-{{else}}{{#match primary_tag.slug "installations"}}
-  {{> "installations/_deck"}}
+{{else}}{{#match primary_tag.slug "public-works"}}
+  {{> "public-works/_deck"}}
 {{else}}{{#match primary_tag.slug "midnight-radio"}}
   {{> "midnight-radio/_episode"}}
 {{else}}
 
 {{!-- ── DEFAULT: SINGLE-POST READER ──────────────────────────────────────
      Any post that isn't part of one of the dispatched collections
-     (dreams, art-diary, favorites, installations) renders in a stripped
+     (dreams, art-diary, favorites, public-works) renders in a stripped
      reader — image left, scrollable text right, no prev/next, no TOC.
      Book-like single artifact. The collection readers stay distinct
      because they have sibling navigation; this one has no nav by design.
