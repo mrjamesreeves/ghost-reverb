@@ -5586,77 +5586,154 @@ line-height: 1.4;}
 
 /* ==========================================================================
    Public Works Index page (/public-works/)
+
+   Gallery-dark TOC. The dark background lives on <main> so the footer
+   below keeps its light treatment — body bg stays whatever it is for
+   the rest of the site, but main covers the viewport above the footer.
    ========================================================================== */
 
 .public-works-index {
-  padding: 0 5% 100px;
+  background: linear-gradient(180deg, #111 0%, #000 100%);
+  min-height: 100vh;
+  padding: 60px 5% 80px;
+  color: #fff;
+  box-sizing: border-box;
 }
 
-.public-works-index-list {
+.public-works-index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 56px;
+}
+
+.public-works-index-headline {
+  font-family: var(--font-big);
+  font-size: clamp(60px, 7vw, 80px);
+  font-weight: 600;
+  line-height: 0.85;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 40px;
+}
+
+/* Referrer-aware: hidden via the [hidden] attribute on cold loads. */
+.public-works-index-close {
+  background: none;
+  border: 0;
+  padding: 8px;
+  margin: 6px -8px 0 0;   /* Slight optical alignment with the headline cap height */
+  cursor: pointer;
+  color: #fff;
+  line-height: 0;
+}
+
+.public-works-index-close[hidden] {
+  display: none;
+}
+
+/* 3-col grid of project tiles. Auto-stacks to 1-col on tablet/mobile
+   below the 1024px breakpoint used elsewhere in the theme. */
+.public-works-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 880px;
-}
-
-.public-works-index-item {
-  position: relative;
-  border-bottom: 1px solid #d6d6d6;
-}
-
-.public-works-index-item:first-child {
-  border-top: 1px solid #d6d6d6;
-}
-
-/* Same animated black line as the footer TOC. */
-.public-works-index-item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 0;
-  height: 1px;
-  background: #000;
-  transition: width 0.3s ease;
-  pointer-events: none;
-}
-
-.public-works-index-item:hover::after {
-  width: 100%;
-}
-
-.public-works-index-link {
   display: grid;
-  grid-template-columns: 32px 1fr auto;
-  align-items: center;
-  gap: 20px;
-  height: 72px;
-  color: inherit;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 44px;
+}
+
+.public-works-tile {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* Defeat the global anchor underline gradient + padding-bottom — the
+   tile is a wrapper link, not a text link. Same pattern as the MR
+   landing tile-link exemption. */
+.public-works-tile-link {
+  display: block;
+  color: #fff;
   background-image: none !important;
   padding-bottom: 0 !important;
 }
 
-.public-works-index-num {
+.public-works-tile-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1a1a1f;
+}
+
+.public-works-tile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: all 3s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(80%);
+}
+
+.public-works-tile-link:hover .public-works-tile-image img {
+  transform: scale(1.015);
+    filter: brightness(100%);
+}
+
+/* Text overlay anchored bottom-left of the image, room to breathe on
+   the right so longer venues don't run into the image edge. */
+.public-works-tile-overlay {
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 60%);
+    box-sizing: border-box;
+}
+
+.public-works-tile-text {
+    position: absolute;
+    bottom: 20px;
+}
+
+.public-works-tile-title {
+  font-family: var(--font-big-alt);
+  font-size: clamp(16px, 1.35vw, 24px);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 1.05;
+}
+
+.public-works-tile-venue {
   font-family: var(--font-sans);
   font-size: 12px;
-  color: #a5a5a5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.3;
 }
 
-.public-works-index-title {
-  font-family: var(--font-big-alt);
-  font-size: clamp(22px, 2vw, 30px);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  color: #000;
-  text-transform: uppercase;
-}
-
-.public-works-index-date {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-style: italic;
-  color: #a5a5a5;
-  white-space: nowrap;
+/* Mobile/tablet — full-width tiles, tighter padding. */
+@media (max-width: 1024px) {
+  .public-works-index {
+    padding: 40px 6vw 60px;
+  }
+  .public-works-index-header {
+    margin-bottom: 36px;
+  }
+  .public-works-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .public-works-tile-image {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 /* --- Footer TOC (two-column numbered index) -------------------------------- */

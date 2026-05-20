@@ -1,40 +1,85 @@
 {{!< default}}
 
-{{!-- Index page at /public-works/. The {{#get}} that surfaces the post list
-     is wired up by the collection in routes.yaml — `posts` is in scope here.
-     Single-column TOC for now; visual treatment can grow later. --}}
+{{!-- Override the <title> block declared in default.hbs to strip the
+     "(Page 1)" suffix Ghost auto-appends to routes.yaml collection
+     pages. Single page, no real pagination, no value in the suffix. --}}
+{{#contentFor "title"}}Public Works — {{@site.title}}{{/contentFor}}
 
-<script>document.body.classList.add('has-archive-reader', 'dreams-bg');</script>
+{{!-- /public-works/ — section index.
+     Gallery-dark TOC with a 3-col grid of project tiles. The dark
+     background lives on <main> (not <body>) so the footer below keeps
+     its normal light treatment. The {{#get}} that surfaces the post
+     list is provided by the collection in routes.yaml — `posts` is in
+     scope here.
 
-<main id="main" class="archive-page public-works-page public-works-index-page">
+     Tile data:
+       - feature_image → tile image
+       - title         → tile title (uppercase Bebas)
+       - custom_excerpt → tile subtitle (venue • city)
 
-  <div class="archive-watermark">
-    <h1 class="archive-watermark-text">Public<br>Works</h1>
-  </div>
+     Author note: set each project's custom_excerpt in Ghost admin to
+     something like "Historic GreenWood Chapel • Brooklyn". Falls back
+     to no subtitle if blank.
 
-  <div class="public-works-index">
-    <ol class="public-works-index-list">
-      {{#foreach posts}}
-      <li class="public-works-index-item">
-        <a class="public-works-index-link" href="{{url}}">
-          <span class="public-works-index-num"></span>
-          <span class="public-works-index-title">{{title}}</span>
-          <span class="public-works-index-date">{{date format="MMM YYYY"}}</span>
-        </a>
-      </li>
-      {{/foreach}}
-    </ol>
-  </div>
+     The X close button is referrer-based (matches the MR landing
+     pattern): only shown if the visitor came from another page on
+     this site (typically from a project deck via the index icon),
+     and goes back via history.back(). For cold loads / search-engine
+     referrers the button stays hidden because "back" would take
+     them off-site. --}}
+
+<main id="main" class="public-works-index">
+
+  <header class="public-works-index-header">
+    <h1 class="public-works-index-headline">Public<br>Works</h1>
+    <button class="public-works-index-close" id="publicWorksClose" aria-label="Back to previous page" hidden>
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 3L25 25M25 3L3 25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <ol class="public-works-grid">
+    {{#foreach posts}}
+    <li class="public-works-tile">
+      <a class="public-works-tile-link" href="{{url}}">
+        <div class="public-works-tile-image">
+          {{#if feature_image}}
+            <img
+              srcset="{{img_url feature_image size="s"}} 600w, {{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w"
+              sizes="(max-width: 1024px) 100vw, 33vw"
+              src="{{img_url feature_image size="m"}}"
+              alt="{{title}}"
+              loading="lazy"
+            />
+          {{/if}}
+        </div>
+        <div class="public-works-tile-overlay">
+          <div class="public-works-tile-text">
+          <h2 class="public-works-tile-title">{{title}}</h2>
+          {{#if custom_excerpt}}
+            <p class="public-works-tile-venue">{{custom_excerpt}}</p>
+          {{/if}}
+          </div>
+        </div>
+      </a>
+    </li>
+    {{/foreach}}
+  </ol>
 
 </main>
 
 <script>
-  /* Newest = highest number, matching the Dreams index pattern. */
-  (function () {
-    var items = document.querySelectorAll('.public-works-index-item');
-    var total = items.length;
-    for (var i = 0; i < total; i++) {
-      items[i].querySelector('.public-works-index-num').textContent = total - i;
-    }
+  (function setupCloseButton() {
+    var btn = document.getElementById('publicWorksClose');
+    if (!btn) return;
+    var ref = document.referrer;
+    var sameOrigin = false;
+    try {
+      sameOrigin = !!ref && new URL(ref).origin === location.origin;
+    } catch (e) { sameOrigin = false; }
+    if (!sameOrigin) return;
+    btn.hidden = false;
+    btn.addEventListener('click', function () { history.back(); });
   })();
 </script>
