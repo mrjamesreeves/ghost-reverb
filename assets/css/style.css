@@ -5262,12 +5262,13 @@ line-height: 1.4;}
   }
   .mr-landing-title {
     font-size: clamp(40px, 10vw, 80px);
+    margin-bottom: 10px;
   }
 }
 
 @media (max-width: 600px) {
   .mr-landing {
-    padding: 0 6vw 40px;
+    padding: 15vw 2vw 40px;
   }
   .mr-landing-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
