@@ -731,7 +731,8 @@ textarea:focus {
 }
 
 /* Text meant only for screen readers */
-.screen-reader-text {
+.screen-reader-text,
+.sr-only {
   border-width: 0;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -4908,25 +4909,48 @@ line-height: 1.4;}
   box-sizing: border-box;
 }
 
+/* ==========================================================================
+   Midnight Radio landing
+   Dark gallery-style index. Header (title block left, Caravaggio right)
+   over a #000 background scoped to <main> so the footer stays light.
+   Below the header: filters, then a dense grid of episode covers with
+   hover-crossfade to excerpt on each card.
+   ========================================================================== */
+
+/* Dark background for the section. Lives on <main>, not <body>, so the
+   footer below keeps its existing light treatment. */
+.mr-landing {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding: 0 5% 80px;
+  box-sizing: border-box;
+  position: relative;
+}
+
 /* Top-right close button. JS un-hides this when there's a same-site
    referrer (typically: user came from an MR episode's index button and
-   may want to go back). Visually + behaviorally mirrors the .archive-
-   index-close on the reader overlays. */
+   may want to go back). Hidden on cold loads / off-site referrers. */
 .mr-landing-close {
-  position: fixed;
+  position: absolute;
   top: 30px;
-  right: 30px;
+  right: 5%;
   background: none;
   border: none;
   padding: 8px;
-  color: #B3B8B3;
+  color: #fff;
   cursor: pointer;
   z-index: 10;
-  transition: color 0.15s ease;
+  transition: opacity 0.15s ease;
+  line-height: 0;
+}
+
+.mr-landing-close[hidden] {
+  display: none;
 }
 
 .mr-landing-close:hover {
-  color: #000;
+  opacity: 0.65;
   background: none;
 }
 
@@ -4971,40 +4995,78 @@ line-height: 1.4;}
   border-bottom-color: #fff;
 }
 
-/* --- Header (title + tagline, top-left, no hero) -------------------------- */
+/* --- Header (wall-to-wall hero with title overlaid) ---------------------- */
+
+/* The header sits inside .mr-landing's 5% side padding like everything
+   else — so the title's left edge naturally aligns with the filter row
+   and grid below it. The IMAGE alone breaks out to full viewport width
+   via the standard 100vw + margin-left calc trick. DOM order is text
+   first (good for screen readers), image second (decorative); CSS
+   stacks them via absolute positioning + z-index. */
 
 .mr-landing-header {
-  margin-bottom: 60px;
-  max-width: 600px;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.mr-landing-header-image {
+  /* Break out of the parent's 5% side padding without affecting the
+     header's positioning context for absolute children. `100vw + calc`
+     puts the image's left edge at viewport-0 regardless of parent
+     padding, gutter widths, scroll-bar quirks, etc. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  line-height: 0;            /* kill img descender gap */
+}
+
+.mr-landing-header-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mr-landing-header-text {
+  position: absolute;
+  top: 0;
+  left: 0;                   /* aligns with header's content-box = page gutter = filter row */
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 50%;
+  padding: 5% 0;
+  pointer-events: none;      /* don't block any future interactive zones */
 }
 
 .mr-landing-title {
   font-family: var(--font-big);
-  font-size: clamp(40px, 4.5vw, 72px);
-  line-height: 0.92;
-  font-weight: 800;
+  font-size: clamp(60px, 9vw, 150px);
+  line-height: 0.88;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.005em;
-  margin: 0 0 8px;
-  color: #000;
+  letter-spacing: 0.01em;
+  margin: 0 0 28px;
+  color: #fff;
 }
 
 .mr-landing-tagline {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: clamp(14px, 1.05vw, 17px);
   line-height: 1.5;
   margin: 0;
   max-width: 460px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* --- Filter row (pipe-separated text labels) ----------------------------- */
+/* --- Filter row (text labels with animated underline, dark-mode) --------- */
 
 .mr-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px 16px;
-  margin: 0 0 50px;
+  gap: 14px 36px;
+  margin: 28px 0 36px;
   font-family: var(--font-sans);
   font-size: 14px;
 }
@@ -5016,11 +5078,13 @@ line-height: 1.4;}
   padding: 4px 0;
   font: inherit;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
 }
 
 /* Animated underline — width 0 → 100% from the left edge. Matches the
-   nav-link animation used elsewhere on the site. */
+   nav-link animation used elsewhere on the site, retuned for dark bg. */
 .mr-filter::after {
   content: '';
   position: absolute;
@@ -5028,7 +5092,7 @@ line-height: 1.4;}
   bottom: 0;
   width: 0;
   height: 1px;
-  background: #111;
+  background: #fff;
   transition: width 0.25s ease;
 }
 
@@ -5037,35 +5101,46 @@ line-height: 1.4;}
   width: 100%;
 }
 
-.mr-filter:hover {
+.mr-filter:hover,
+.mr-filter.is-active {
+  color: #fff;
   background: none;             /* Defeat any global button:hover bg. */
 }
 
-/* Kill the default focus ring (the pill-shape artifact in Chrome).
-   Keep keyboard a11y via :focus-visible — only renders when navigating
-   with the keyboard, not when clicked with a mouse. */
+/* The "All Episodes" pill is slightly bolder so the count reads clearly. */
+#mrFilterAll {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Kill the default focus ring. Keep keyboard a11y via :focus-visible. */
 .mr-filter:focus {
   outline: none;
 }
 .mr-filter:focus-visible {
-  outline: 2px solid #111;
+  outline: 2px solid #fff;
   outline-offset: 4px;
 }
 
 .mr-filter-sep {
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.25);
   user-select: none;
 }
 
-/* --- Grid (3 columns, natural left-to-right reading order) --------------- */
+/* --- Grid (responsive auto-fit, 180–222px per card) ---------------------- */
 
 .mr-landing-grid {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0 50px;
+  /* Cards fill the row: at least 180px wide, but they grow with 1fr
+     to consume all remaining space. auto-fit counts columns by the
+     min (180px), then distributes leftover width evenly across them.
+     On a typical 1300–1500px content width this yields 6–7 columns
+     that fully stretch corner-to-corner. */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
 }
 
 .mr-landing-tile[hidden] {
@@ -5099,109 +5174,104 @@ line-height: 1.4;}
   }
 }
 
-/* Each tile: small square cover left, body text right.
-   Single divider BELOW the item — static gray, animated black overlay
-   on hover. Matches the footer TOC pattern: "one line below each row,
-   one line animates per hover." Symmetric padding gives the content
-   equal breathing room above and below. */
+/* Each tile is a 1:1 square. The <a> is the click target. Inside,
+   two stacked layers — .mr-landing-tile-front (cover + overlays) and
+   .mr-landing-tile-back (excerpt) — crossfade on hover. */
+.mr-landing-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  padding: 0;
+}
+
 .mr-landing-tile-link {
   position: relative;
-  display: grid;
-  grid-template-columns: 88px 1fr;
-  gap: 18px;
-  text-decoration: none;
-  color: inherit;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #d6d6d6;
-}
-
-.mr-landing-tile-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;                  /* Overlays the static gray border exactly. */
-  width: 0;
-  height: 1px;
-  background: #000;
-  transition: width 0.3s ease;
-  pointer-events: none;
-}
-
-.mr-landing-tile-link:hover::after {
+  display: block;
   width: 100%;
+  height: 100%;
+  color: #fff;
+  /* Defeat global anchor underline gradient — this is a wrapper link. */
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  overflow: hidden;
 }
 
-.mr-landing-tile-image {
-  width: 88px;
-  height: 88px;
-  overflow: hidden;
-  background: #ccc;
-  flex-shrink: 0;
+/* ── Front: cover artwork with overlaid text ─────────────────────── */
+
+.mr-landing-tile-front {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+  transition: opacity 0.3s ease;
 }
 
 .mr-landing-tile-cover {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.mr-landing-tile-body {
-  min-width: 0;       /* Let title/excerpt wrap correctly in the grid track. */
-}
+/* .mr-landing-tile-num and .mr-landing-tile-title are visually hidden
+   via .sr-only — the cover artwork carries those labels typographically
+   so an overlay would be redundant. Markup stays in DOM for screen
+   readers + SEO + the hidden episode-number resolver. No visual
+   styles needed. */
 
-.mr-landing-tile-num {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #777;
-  margin-bottom: 4px;
-  line-height: 1;
-}
+/* ── Back: solid black + excerpt, crossfaded in on hover ─────────── */
 
-.mr-landing-tile-num .episode-number:empty {
-  display: none;       /* Hide non-MR internal tags before the resolver runs. */
-}
-
-.mr-landing-tile-title {
-  font-family: var(--font-big-alt);
-  font-size: 20px;
-  line-height: 1.05;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.005em;
-  margin: 0 0 2px;
-  color: #111;
-  padding-top: 0;
+.mr-landing-tile-back {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  box-sizing: border-box;
 }
 
 .mr-landing-tile-excerpt {
   font-family: var(--font-sans);
   font-size: 13px;
+  font-weight: 400;
   line-height: 1.4;
-  color: #444;
+  color: #fff;
   margin: 0;
 }
 
-/* --- Responsive: collapse to 2 cols ≤1024px, 1 col ≤600px ---------------- */
+.mr-landing-tile-link:hover .mr-landing-tile-front {
+  opacity: 0;
+}
+
+.mr-landing-tile-link:hover .mr-landing-tile-back {
+  opacity: 1;
+}
+
+/* --- Responsive ---------------------------------------------------------- */
 
 @media (max-width: 1024px) {
-  .mr-landing-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px 30px;
+  .mr-landing-header-text {
+    max-width: 70%;
+    padding: 4% 0;
+  }
+  .mr-landing-title {
+    font-size: clamp(40px, 10vw, 80px);
   }
 }
 
 @media (max-width: 600px) {
   .mr-landing {
-    padding: 60px 5vw 40px;
+    padding: 0 6vw 40px;
   }
   .mr-landing-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
   }
 }
 

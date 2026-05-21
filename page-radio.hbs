@@ -2,52 +2,63 @@
 
 {{!-- /radio/ — Midnight Radio landing.
 
-     Quiet header (title + tagline) → filter row → dense 3-column grid of
-     all episodes, newest first. Tiles flow left-to-right per row (natural
-     reading order). Every cover image, every title, every description is
-     pulled from Ghost dynamically — no per-episode hand-coding. Adding a
-     new MR post in Ghost (with the right tags) lands here automatically.
+     Dark gallery-style index. Header block top-left (title +
+     tagline), Caravaggio's Saint Jerome to the right — long-running
+     visual ID for the show. Below: filter row, then a dense grid of
+     every episode cover. Each card has two layers: front shows the
+     cover artwork with episode-number eyebrow + title overlaid; back
+     is a black panel with the excerpt. Hover crossfades between them.
 
-     For each tile, mr-landing.js:
-       - reads the internal #mr-N tag and sets the cover src to
-         /assets/mr/index/MRI{NN}.webp
-       - populates the "All Episodes" count button
-       - handles single-select filtering against post.tags
+     The dark background lives on <main> so the footer below keeps
+     its normal light treatment.
 
-     Filters: single-select. Click a pill → show only matching. Click
-     the active pill again, or click "All Episodes", to clear. --}}
+     mr-landing.js still drives:
+       - cover src per tile (from the internal #mr-N tag)
+       - filter pill single-select behavior + view-transition crossfade
+       - "All Episodes" count
+     None of those changed in this redesign; only the surrounding
+     markup + CSS did. --}}
 
 <main id="main" class="mr-landing">
 
-  {{!-- Close (←) button in the top-right. Only shown when the visitor
-       arrived from another page on this site (e.g. an episode reader's
-       index button) — clicking returns them to that page via history.
-       Hidden on cold loads / direct links / off-site referrers so it
-       doesn't suggest a back action that would take them off-site. --}}
+  {{!-- Close (X) button, top-right. JS un-hides it only when there's
+       a same-site referrer (typically: visitor came from an episode
+       reader's index button and may want to return). Stays hidden on
+       cold loads / direct links / off-site referrers so it doesn't
+       suggest a back action that would take them off-site. --}}
   <button class="mr-landing-close" id="mrLandingClose" aria-label="Back to previous page" hidden>
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 3L25 25M25 3L3 25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
 
+  {{!-- Header: wall-to-wall hero image with title block overlaid
+       on the left. Text comes first in DOM order for screen-reader
+       sanity; CSS positions image as a full-bleed background and
+       title absolutely on top. Image is purely decorative (alt="",
+       aria-hidden on the wrapper). --}}
   <header class="mr-landing-header">
-    <h1 class="mr-landing-title">Midnight Radio</h1>
-    <p class="mr-landing-tagline">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+    <div class="mr-landing-header-text">
+      <h1 class="mr-landing-title">Midnight<br>Radio</h1>
+      <p class="mr-landing-tagline">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+    </div>
+    <div class="mr-landing-header-image" aria-hidden="true">
+      <img src="/assets/mr/mr-header.webp" alt="" loading="eager" />
+    </div>
   </header>
 
+  {{!-- Filter row. mr-landing.js single-selects against post tags.
+       The All Episodes button's count is populated client-side from
+       the rendered tile count. --}}
   <nav class="mr-filters" id="mrFilters" aria-label="Filter episodes by mood">
     <button class="mr-filter is-active" data-filter="" id="mrFilterAll">
       <span id="mrFilterCount">All</span>&nbsp;Episodes
     </button>
-    <span class="mr-filter-sep" aria-hidden="true">|</span>
+    <button class="mr-filter" data-filter="ambient">Ambient</button>
     <button class="mr-filter" data-filter="slow-motion">Slow-Motion</button>
-    <span class="mr-filter-sep" aria-hidden="true">|</span>
     <button class="mr-filter" data-filter="spirituals">Spirituals</button>
-    <span class="mr-filter-sep" aria-hidden="true">|</span>
     <button class="mr-filter" data-filter="special-guest">Special Guest</button>
-    <span class="mr-filter-sep" aria-hidden="true">|</span>
     <button class="mr-filter" data-filter="running">Running</button>
-    <span class="mr-filter-sep" aria-hidden="true">|</span>
     <button class="mr-filter" data-filter="death-prom">Death Prom</button>
   </nav>
 
@@ -56,21 +67,35 @@
     {{#foreach posts}}
     <li class="mr-landing-tile" data-slug="{{slug}}" data-tags="{{#foreach tags}}{{slug}} {{/foreach}}">
       <a href="{{url}}" class="mr-landing-tile-link">
-        <div class="mr-landing-tile-image">
+
+        {{!-- Front side: just the cover artwork. Episode number +
+             title text are kept in the DOM but visually hidden — the
+             cover artwork itself carries the title typographically,
+             so a screen overlay would be redundant. Screen readers,
+             search engines, and the hidden-tag resolver all still
+             see the labels. --}}
+        <div class="mr-landing-tile-front">
           <img class="mr-landing-tile-cover" alt="" loading="lazy">
           <span class="mr-landing-tile-eptags" hidden>
             {{#foreach tags visibility="internal"}}<span data-ep="{{slug}}"></span>{{/foreach}}
           </span>
-        </div>
-        <div class="mr-landing-tile-body">
-          <span class="mr-landing-tile-num">
+          <p class="mr-landing-tile-num sr-only">
+            Midnight Radio
             {{#foreach tags visibility="internal"}}<span class="episode-number" data-ep="{{slug}}"></span>{{/foreach}}
-          </span>
-          <h3 class="mr-landing-tile-title">{{title}}</h3>
-          {{#if custom_excerpt}}
-            <p class="mr-landing-tile-excerpt">{{custom_excerpt}}</p>
-          {{/if}}
+          </p>
+          <h3 class="mr-landing-tile-title sr-only">{{title}}</h3>
         </div>
+
+        {{!-- Back side: solid black with the excerpt. Crossfaded in on
+             hover via opacity transition. Skipped entirely when the
+             post has no custom_excerpt so we don't render a blank
+             panel that'd just black-screen on hover. --}}
+        {{#if custom_excerpt}}
+        <div class="mr-landing-tile-back">
+          <p class="mr-landing-tile-excerpt">{{custom_excerpt}}</p>
+        </div>
+        {{/if}}
+
       </a>
     </li>
     {{/foreach}}

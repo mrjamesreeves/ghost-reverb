@@ -51,15 +51,20 @@
   const tiles   = Array.from(grid.querySelectorAll('.mr-landing-tile'));
   if (!tiles.length) return;
 
-  const COVER_BASE = '/assets/mr/index/';
+  const COVER_BASE = '/assets/mr/covers/';
   const MR_TAG_RE  = /^hash-mr-(\d+)/;   // Leading digits after hash-mr-; trailing chars (e.g. "r") ignored.
 
   // ---- 1. Set cover img src + a unique view-transition-name per tile ----
+  // The grid now pulls from /assets/mr/covers/ (the same source the
+  // filmstrip uses). Filename pattern: MR{NN}.webp, zero-padded, no
+  // space. The old /assets/mr/index/MRI{NN}.webp small-thumb folder
+  // can be retired once the grid is verified.
+  //
   // The view-transition-name lets the browser snapshot each tile's
   // position before/after a filter change so it can interpolate the
   // movement. Names must be unique within the document at transition
-  // time; mr-tile-{N} is plenty since this page is the only place using
-  // them.
+  // time; mr-tile-{N} is plenty since this page is the only place
+  // using them.
 
   tiles.forEach(function (tile, i) {
     tile.style.viewTransitionName = 'mr-tile-' + i;
@@ -75,7 +80,7 @@
     }
     if (!digits) return;
 
-    img.src = COVER_BASE + 'MRI' + digits.padStart(2, '0') + '.webp';
+    img.src = COVER_BASE + 'MR' + digits.padStart(2, '0') + '.webp';
   });
 
   // ---- 2. Populate the "All Episodes" count ----
