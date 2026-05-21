@@ -5266,20 +5266,24 @@ line-height: 1.4;}
     margin-bottom: 10px;
   }
   .mr-landing-header-image {
-  padding-top: 10vh;
+  padding-top: 11vh;
   }
 }
 
 @media (max-width: 600px) {
   .mr-landing {
-    padding: 10vw 5vw 40px;
+    padding: 9vw 5vw 40px;
   }
   .mr-landing-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px;
   }
+  .mr-landing-header {
+    margin-bottom: 16px;
+  }
   .mr-filters {
     gap: 0px 18px;
+    margin-top: 0;
   }
 }
 
