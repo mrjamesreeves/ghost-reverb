@@ -1,5 +1,22 @@
 /* Reverb: February 2026 */
 
+/* ------------------------------------------------------------------ */
+/* Cross-document view transitions.                                   */
+/*                                                                    */
+/* Enables a default browser-level crossfade between any same-origin  */
+/* navigation. Click a Public Works tile → fade into the project      */
+/* deck. Click the index icon → fade back to the dark TOC. Click any  */
+/* footer link → fade between sections. No JS required.               */
+/*                                                                    */
+/* Supported: Chrome 126+, Edge 126+ (June 2024); Safari 18+ (Sept    */
+/* 2024). Firefox falls through to instant navigation — same as       */
+/* before, no breakage. The fallback is identical to the old behavior */
+/* so this is safe to enable globally.                                */
+/* ------------------------------------------------------------------ */
+@view-transition {
+  navigation: auto;
+}
+
 /* 1. Reset
 ----------------------------- */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -5273,11 +5290,12 @@ line-height: 1.4;}
 /* --- Entry title ----------------------------------------------------------- */
 
 .archive-entry-title {
-  font-family: var(--font-big-alt);
-  font-size: clamp(36px, 4.2vw, 50px);
+  font-family: var(--font-big);
+  font-size: clamp(36px, 4.2vw, 48px);
   margin: 0 0 20px;
-  letter-spacing: -0.6px;
+  text-transform: uppercase;
   background-image: none !important;
+  color: #000;
 }
 
 .archive-entry-title a {
@@ -5527,11 +5545,11 @@ line-height: 1.4;}
 /* Intro slide: press pull-quote + source attribution above the title. */
 
 .archive-press-quote {
-  font-family: var(--font-sans);
-  font-style: normal;
-  font-size: clamp(14px, 1.15vw, 17px);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.2vw, 18px);
   line-height: 1.5;
-  color: #111;
+  color: #222;
   margin: 0 0 14px;
   padding: 0;
   border: 0;
@@ -5549,21 +5567,47 @@ line-height: 1.4;}
   margin: 0 0 48px;
 }
 
+/* Text slide variant. Same split layout as the intro slide — image
+   left, prose right — but appears later in the deck. Marker class
+   for clarity; uses the base .archive-entry grid template (1fr 1fr)
+   without override. Add modifier styles here later if text slides
+   need different padding, alignment, etc. */
+.archive-entry--text {
+  /* Inherits split layout from base .archive-entry. No override
+     needed today; class exists to make the slide type explicit in
+     markup and to give us a hook for future divergence. */
+}
+
+/* Section heading on text slides — smaller than the project-name
+   .archive-entry-title (which is 36–48px). Use this for mid-deck
+   breaks: "Process", "Background", "Coda", etc. */
+.archive-entry-subtitle {
+  font-family: var(--font-big);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 18px;
+  line-height: 1.05;
+}
+
 /* ==========================================================================
    Public Works reader chrome
    Capsule-based controls + caption, corner watermark, direction-aware
    slide-in transitions. Replaces the legacy .archive-controls bar.
    ========================================================================== */
 
-/* Shared capsule pattern. White-translucent with backdrop blur — reads
+/* Shared capsule pattern. Dark-translucent with backdrop blur — reads
    on any underlying content (image, video, prose). 10px radius is a
-   deliberate match to the Figma spec. */
+   deliberate match to the Figma spec. Icons / text inside are white. */
 .pw-capsule {
-  background: rgba(255, 255, 255, 0.50);
+  background: rgba(0, 0, 0, 0.50);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
   pointer-events: auto;
+  color: #fff;
 }
 
 /* Watermark — small muted corner stamp. Top-left of viewport, sits over
@@ -5578,17 +5622,26 @@ line-height: 1.4;}
   top: 24px;
   left: 24px;
   z-index: 3;
-  pointer-events: none;
+  cursor: pointer;
+  /* Defeat the global anchor underline gradient — the watermark is a
+     link to /public-works/, not a text link. */
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  transition: opacity 0.2s ease;
+}
+
+.public-works-watermark:hover {
+  opacity: 0.7;
 }
 
 .public-works-watermark-text {
   font-family: var(--font-big-alt);
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 600;
   line-height: 0.92;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.25);
   margin: 0;
 }
 
@@ -5604,7 +5657,7 @@ line-height: 1.4;}
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: #000;
+  color: #fff;
   line-height: 1.3;
 }
 
@@ -5629,7 +5682,7 @@ line-height: 1.4;}
   border: 0;
   padding: 4px;
   cursor: pointer;
-  color: #000;
+  color: #fff;
   line-height: 0;
   display: flex;
   align-items: center;
@@ -5640,8 +5693,19 @@ line-height: 1.4;}
   transition: opacity 0.15s ease;
 }
 
+/* Defeat the global `button svg path { fill: black }` rule (style.css
+   line ~2964). These chevron paths are stroke-only — filling them
+   would render solid triangles. */
+.pw-controls-btn svg path {
+  fill: none;
+}
+
 .pw-controls-btn:hover {
   opacity: 0.65;
+  /* Defeat the global `button:hover { background: rgba(255,255,255,1) }`
+     rule (style.css line ~2969) which otherwise paints a solid white
+     pill behind prev/next on hover. */
+  background: transparent;
 }
 
 .pw-controls-btn[disabled],
@@ -5651,25 +5715,140 @@ line-height: 1.4;}
   pointer-events: none;
 }
 
+/* Slide counter — sits between prev and next chevrons. JS keeps the
+   text in sync ("current / total"); each project's deck has its own
+   total since the partial defines the slide count, so it naturally
+   resets when navigating to a new project. */
+.pw-controls-counter {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  min-width: 32px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
 /* ── Direction-aware slide animation ──────────────────────────────────
-   Public Works overrides the base archive-entry fade with a fade +
-   horizontal slide. The incoming slide is offset (right for next,
-   left for prev) before .is-active fires the transition. Quick decay
-   curve (out-expo) so the motion lands decisively rather than easing
-   into nothing. Outgoing slide stays in place and fades — cleaner
-   than a synchronized shuffle, easier to upgrade later. */
-.public-works-page .archive-entry {
-  transition:
-    opacity 0.45s ease-out,
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+   Uses CSS @keyframes rather than transitions because keyframes fire
+   reliably on class-add (no need for a JS reflow trick that Chrome
+   sometimes collapses into a single state change). Three animations:
+   slide in from right (next), slide in from left (prev), fade out.
+
+   `both` fill-mode keeps the end keyframe applied after the animation
+   completes, so the slide stays at its resting position. JS removes
+   the animating-* classes after the duration so subsequent re-triggers
+   start clean. Curve is out-expo (cubic-bezier 0.16, 1, 0.3, 1) — quick
+   decisive landing rather than easing into nothing. */
+
+@keyframes pw-slide-in-right {
+  from { opacity: 0; transform: translateX(8vw); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-.public-works-page .archive-entry.enter-from-right {
-  transform: translateX(5vw);
+@keyframes pw-slide-in-left {
+  from { opacity: 0; transform: translateX(-8vw); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-.public-works-page .archive-entry.enter-from-left {
-  transform: translateX(-5vw);
+@keyframes pw-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.public-works-page .archive-entry.animating-in-right {
+  animation: pw-slide-in-right 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.public-works-page .archive-entry.animating-in-left {
+  animation: pw-slide-in-left 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.public-works-page .archive-entry.animating-out {
+  animation: pw-fade-out 0.4s ease-out both;
+}
+
+/* ── Video slide ──────────────────────────────────────────────────────
+   The poster image is a still keyframe with a play-button overlay
+   centered in the image area. Clicking anywhere on the image area
+   triggers playback (JS handles the swap to a Vimeo iframe). The
+   play button itself is pointer-events: none so the click target
+   stays the whole image, never gets eaten by the button.
+
+   When .is-playing is set, the poster + button hide and the injected
+   iframe takes over the full slide area. */
+
+.pw-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;   /* clicks pass through to the image */
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* When user hovers the image, the play button hints brighter. */
+.archive-entry--video .archive-entry-image:hover .pw-video-play {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 1);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.pw-video-play svg {
+  /* Offset slightly right so the triangle reads as visually centered
+     inside the circle — pure geometric center looks left-biased
+     because the triangle's "weight" sits on its right side. */
+  margin-left: 6px;
+}
+
+/* Image area on a video slide signals interactivity even before hover. */
+.archive-entry--video .archive-entry-image {
+  cursor: pointer;
+}
+
+/* Playing state: hide the poster + play button, show the iframe. JS
+   inserts the iframe as a sibling of the img when playback starts. */
+.archive-entry--video.is-playing .pw-video-play,
+.archive-entry--video.is-playing img {
+  display: none;
+}
+
+/* When the video is playing, the iframe is sized to 16:9 with breathing
+   room on all sides and centered in the slide area. The parent goes
+   black so the area around the iframe reads as cinema letterbox rather
+   than the default light-gray .archive-entry-image background showing
+   through. The min() of (width with padding) and (height with padding ×
+   16/9) ensures the iframe fits within the slide regardless of which
+   axis is the constraint. */
+
+.archive-entry--video.is-playing .archive-entry-image--full {
+  background: #000;
+}
+
+.archive-entry--video .pw-video-iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Width is the smaller of: (a) viewport width minus side padding,
+     or (b) viewport-height-with-vertical-padding multiplied by 16/9.
+     Whichever constraint binds first wins, keeping 16:9 always. */
+  width: min(calc(100vw - 120px), calc((100vh - 120px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  background: #000;
 }
 
 /* ==========================================================================
@@ -5714,6 +5893,10 @@ line-height: 1.4;}
   cursor: pointer;
   color: #fff;
   line-height: 0;
+}
+
+.public-works-index-close:hover {
+  color: #000;
 }
 
 .public-works-index-close[hidden] {

@@ -23,9 +23,12 @@
 
   <div class="archive-reader" id="archiveReader" data-current-slug="{{slug}}">
 
-    <div class="public-works-watermark">
+    {{!-- Watermark doubles as a link to the dark TOC index page.
+         Same destination as the controls' index icon (a real anchor on
+         both, so cmd-click / right-click work without JS). --}}
+    <a class="public-works-watermark" href="{{@site.url}}/public-works/" aria-label="View all public works">
       <h1 class="public-works-watermark-text">Public<br>Works</h1>
-    </div>
+    </a>
 
     {{!-- Per-project partial: intro slide + media slides for this post.
          Add a new {{#match}} branch for each new project's partial. --}}
@@ -54,6 +57,7 @@
           <path d="M11.25 21.25L1.25 11.25L11.25 1.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
+      <span class="pw-controls-counter" id="archiveCounter" aria-live="polite">1 / 1</span>
       <button class="pw-controls-btn pw-controls-next" id="archiveNext" aria-label="Next slide">
         <svg width="10" height="16" viewBox="0 0 13 23" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
           <path d="M11.25 21.25L1.25 11.25L11.25 1.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

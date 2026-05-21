@@ -1,23 +1,34 @@
-{{!-- Light the Barricades — stub.
-     Renders a single intro slide from the post's own content / feature_image.
-     Flesh out with press quote + media slides matching the after-the-end
-     partial structure when ready. The deck partial (_deck.hbs) references
-     this file by slug; removing it again will fail theme validation. --}}
+{{!-- Light the Barricades — slides.
+     Inherits {{title}}, {{{content}}}, {{feature_image}} from the parent
+     post.hbs's #post block.
 
+     Media slide images are local under /assets/public-works/light-the-barricades/.
+     To grow the deck: drop more barricades-N.webp into that folder and
+     append matching <article> blocks below (with data-index incremented).
+
+     To add a press quote: uncomment the block below the intro's
+     archive-entry-content opening tag and replace TK with the quote
+     and publication. To add a text slide later in the deck, see the
+     archive-entry--text pattern documented in CSS comments. --}}
+
+{{!-- ── INTRO SLIDE ───────────────────────────────────────────────────── --}}
 <article class="archive-entry archive-entry--intro is-active" data-index="0">
 
   <div class="archive-entry-image">
     {{#if feature_image}}
-      <img
-        src="{{img_url feature_image size="xl"}}"
-        alt="{{title}}"
-        loading="eager"
-      />
+      <img src="{{img_url feature_image size="xl"}}" alt="{{title}}" loading="eager" />
     {{/if}}
     {{> "feature-image-caption"}}
   </div>
 
   <div class="archive-entry-content">
+    {{!-- Press quote — uncomment + fill in when ready.
+    <blockquote class="archive-press-quote">
+      &ldquo;Quote text here.&rdquo;
+    </blockquote>
+    <p class="archive-press-source">Publication Name</p>
+    --}}
+
     <div class="archive-entry-text">
       <h1 class="archive-entry-title">{{title}}</h1>
       <div class="archive-entry-body">
@@ -26,4 +37,24 @@
     </div>
   </div>
 
+</article>
+
+{{!-- ── MEDIA SLIDES ───────────────────────────────────────────────────── --}}
+
+<article class="archive-entry archive-entry--media" data-index="1" data-caption="Photo by TK">
+  <div class="archive-entry-image archive-entry-image--full">
+    <img loading="lazy" alt="" src="/assets/public-works/light-the-barricades/barricades-1.webp" />
+  </div>
+</article>
+
+<article class="archive-entry archive-entry--media" data-index="2" data-caption="Photo by TK">
+  <div class="archive-entry-image archive-entry-image--full">
+    <img loading="lazy" alt="" src="/assets/public-works/light-the-barricades/barricades-2.webp" />
+  </div>
+</article>
+
+<article class="archive-entry archive-entry--media" data-index="3" data-caption="Photo by TK">
+  <div class="archive-entry-image archive-entry-image--full">
+    <img loading="lazy" alt="" src="/assets/public-works/light-the-barricades/barricades-3.webp" />
+  </div>
 </article>

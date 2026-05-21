@@ -4,29 +4,35 @@
  *
  * Per-slide chrome:
  *   - data-caption on the slide → caption capsule text. Hidden when empty.
- *   - All other reader chrome (watermark, controls capsule, index link)
- *     lives in _deck.hbs and stays put across slide changes.
+ *   - Counter capsule between chevrons → "current / total" within the
+ *     current project's deck (resets per-project since each project
+ *     page has its own total).
+ *   - Watermark + index button are anchors, navigation handled by the
+ *     browser; no JS hooks needed.
  *
  * Navigation:
  *   - Prev / next buttons, keyboard arrows, horizontal trackpad swipe,
- *     clicking the slide image (advances). All call into goTo() with an
- *     explicit direction so the animation knows which way to slide.
- *   - The TOC button is a real <a href="/public-works/"> in the markup,
- *     so it just navigates. No in-deck overlay.
- *   - Cross-project rollthrough is Phase 2d. For now the prev/next
- *     buttons disable at the deck boundary, and keyboard / image-click
- *     navigation no-ops there too.
+ *     clicking the slide image. All call into next() / prev() which
+ *     hand off to goTo() with an explicit direction so the animation
+ *     knows which way to slide.
+ *   - Cross-project rollthrough is Phase 2d. For now prev/next disable
+ *     at the deck boundary; keyboard/image-click no-op there too.
  *
  * Animation:
- *   - Direction-aware slide-in. The incoming slide is positioned off-
- *     screen (enter-from-right / enter-from-left) before .is-active is
- *     added; CSS transition handles the rest.
- *   - Outgoing slide fades in place without horizontal movement.
- *     Cleaner than a synchronized shuffle, trivial to upgrade later.
+ *   - Direction-aware via CSS @keyframes. JS adds an animating-* class
+ *     to the incoming slide (which fires pw-slide-in-{right|left}) and
+ *     adds animating-out to the outgoing (which fires pw-fade-out).
+ *     After the animation duration, the animating-* classes are cleaned
+ *     up and .is-active state is swapped.
+ *   - Why keyframes instead of transitions: transitions need a "before"
+ *     and "after" computed-style snapshot, and a JS reflow trick to
+ *     fire reliably. Chrome occasionally collapses the trick into a
+ *     single state change, missing the animation. Keyframes fire on
+ *     class-add unconditionally.
  *
  * Init:
  *   - Hash deep-linking: #last or #N to land on a specific slide.
- *     Activates the slide immediately, no animation on first load.
+ *     Activates immediately, no animation on first load.
  */
 
 (function () {
@@ -39,6 +45,7 @@
   if (!entries.length) return;
 
   const captionEl = document.getElementById('archiveCaption');
+  const counterEl = document.getElementById('archiveCounter');
   const prevBtn   = document.getElementById('archivePrev');
   const nextBtn   = document.getElementById('archiveNext');
 
@@ -47,10 +54,10 @@
   let navigating   = false;
   let swipeAccum   = 0;
   let swipeTimer   = null;
-  const COOLDOWN   = 600;    // ms — guard against rapid double-fires
+  const ANIM_MS    = 500;    // matches the @keyframes duration in CSS
   const THRESHOLD  = 60;     // px of accumulated deltaX before swipe fires
 
-  // ── Caption ─────────────────────────────────────────────────────────
+  // ── Caption / counter / nav state ───────────────────────────────────
 
   function updateCaption(entry) {
     if (!captionEl) return;
@@ -59,24 +66,17 @@
     captionEl.hidden = !cap;
   }
 
-  // ── Boundary disables (intra-deck only, until Phase 2d) ─────────────
+  function updateCounter() {
+    if (!counterEl) return;
+    counterEl.textContent = (current + 1) + ' / ' + total;
+  }
 
   function updateNav() {
     if (prevBtn) prevBtn.disabled = current === 0;
     if (nextBtn) nextBtn.disabled = current === total - 1;
   }
 
-  // ── Slide change with direction-aware animation ─────────────────────
-  //
-  // Three-step animation:
-  //   1. Add enter-from-{left|right} to the incoming slide. Sets the
-  //      initial transform offset while opacity is still 0 (invisible).
-  //   2. Force a reflow so the browser commits the initial state.
-  //      Without this, removing the class in the same tick would not
-  //      produce a transition — the browser would just see the final
-  //      state and skip the animation.
-  //   3. Remove enter-from-*, add is-active on the incoming, remove
-  //      is-active from the outgoing. Both transitions fire.
+  // ── Slide change with direction-aware keyframe animation ────────────
 
   function goTo(idx, direction) {
     if (navigating || idx < 0 || idx >= total || idx === current) return;
@@ -84,21 +84,37 @@
 
     const outgoing = entries[current];
     const incoming = entries[idx];
-    const enterClass = direction === 'prev' ? 'enter-from-left' : 'enter-from-right';
+    const inClass = direction === 'prev' ? 'animating-in-left' : 'animating-in-right';
 
-    incoming.classList.add(enterClass);
-    void incoming.offsetWidth;                       // force reflow
+    // Strip leftover animation classes from a possibly-interrupted prior
+    // change so the new animations start clean.
+    ['animating-in-right', 'animating-in-left', 'animating-out'].forEach(function (c) {
+      outgoing.classList.remove(c);
+      incoming.classList.remove(c);
+    });
+
+    // Fire animations. Both elements need to be "visible" for the
+    // keyframes to play — for the incoming we add .is-active immediately
+    // so the keyframe takes over from its first frame (opacity 0 → 1
+    // is baked into pw-slide-in-*).
+    outgoing.classList.add('animating-out');
     outgoing.classList.remove('is-active');
-    incoming.classList.remove(enterClass);
+
+    incoming.classList.add(inClass);
     incoming.classList.add('is-active');
 
     current    = idx;
     swipeAccum = 0;
 
+    updateCounter();
     updateNav();
     updateCaption(incoming);
 
-    setTimeout(function () { navigating = false; }, COOLDOWN);
+    setTimeout(function () {
+      outgoing.classList.remove('animating-out');
+      incoming.classList.remove(inClass);
+      navigating = false;
+    }, ANIM_MS);
   }
 
   function next() { goTo(current + 1, 'next'); }
@@ -123,10 +139,45 @@
   if (prevBtn) prevBtn.addEventListener('click', prev);
   if (nextBtn) nextBtn.addEventListener('click', next);
 
-  // ── Clicking the slide image advances ───────────────────────────────
+  // ── Clicking the slide image: advance, OR play video ────────────────
+  //
+  // On regular slides, image click advances to next. On video slides
+  // (.archive-entry--video), the first click plays the video by
+  // swapping the poster + button for a Vimeo iframe with autoplay.
+  // Once playing, the slide is no longer click-to-advance — the user
+  // interacts with the iframe directly. Navigate away via the chevrons,
+  // keyboard, or swipe.
+
+  function playVideo(slide) {
+    const vimeoId = slide.getAttribute('data-vimeo-id');
+    if (!vimeoId) return;
+    const container = slide.querySelector('.archive-entry-image--full');
+    if (!container) return;
+    const iframe = document.createElement('iframe');
+    iframe.className = 'pw-video-iframe';
+    iframe.src =
+      'https://player.vimeo.com/video/' + vimeoId +
+      '?autoplay=1&title=0&byline=0&portrait=0&dnt=1';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    container.appendChild(iframe);
+    slide.classList.add('is-playing');
+  }
 
   reader.querySelectorAll('.archive-entry-image').forEach(function (img) {
-    img.addEventListener('click', next);
+    img.addEventListener('click', function () {
+      const slide = img.closest('.archive-entry');
+      if (
+        slide &&
+        slide.classList.contains('archive-entry--video') &&
+        !slide.classList.contains('is-playing')
+      ) {
+        playVideo(slide);
+        return;
+      }
+      next();
+    });
   });
 
   // ── Keyboard ────────────────────────────────────────────────────────
@@ -145,7 +196,8 @@
   // ── Init ────────────────────────────────────────────────────────────
 
   // Hash deep-linking: #last → final slide; #N → slide N. No animation
-  // on initial load — just swap is-active and call it done.
+  // on initial load — swap is-active directly, then let normal goTo()
+  // handle subsequent changes.
   let initial = 0;
   if (window.location.hash === '#last') {
     initial = total - 1;
@@ -162,6 +214,7 @@
     current = initial;
   }
 
+  updateCounter();
   updateNav();
   updateCaption(entries[current]);
 })();
