@@ -51,11 +51,11 @@
   const tiles   = Array.from(grid.querySelectorAll('.mr-landing-tile'));
   if (!tiles.length) return;
 
-  const COVER_BASE = '/assets/mr/covers/';
+  const COVER_BASE = '/assets/mr/';
   const MR_TAG_RE  = /^hash-mr-(\d+)/;   // Leading digits after hash-mr-; trailing chars (e.g. "r") ignored.
 
   // ---- 1. Set cover img src + a unique view-transition-name per tile ----
-  // The grid now pulls from /assets/mr/covers/ (the same source the
+  // The grid now pulls from /assets/mr/ (the same source the
   // filmstrip uses). Filename pattern: MR{NN}.webp, zero-padded, no
   // space. The old /assets/mr/index/MRI{NN}.webp small-thumb folder
   // can be retired once the grid is verified.
