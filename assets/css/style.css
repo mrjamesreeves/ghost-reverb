@@ -5416,8 +5416,8 @@ line-height: 1.4;}
 .archive-entry-body p {
   margin: 0 0 1em;
   font-weight: 500;
-  font-size: clamp(15px, 1.4vw, 18.4px);
-  letter-spacing: -0.2px;
+  font-size: clamp(15px, 1.4vw, 18px);
+  letter-spacing: -0.1px;
   font-family: var(--font-serif);
 }
 
@@ -6387,7 +6387,7 @@ body.comments-is-open { overflow: hidden; }
   font-weight: 500;
   line-height: 1.45;
   margin-left: 0;
-  margin-top: 1.2rem;
+  margin-top: .8rem;
   margin-bottom: 1.2rem;
   padding-left: 0px;
   text-align: left;
@@ -6403,4 +6403,8 @@ body.comments-is-open { overflow: hidden; }
   color: #666;
   line-height: 2.5;
   font-family: var(--font-sans);
+}
+
+.about-body ul {
+  margin: 1em 0;
 }
