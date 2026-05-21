@@ -5175,13 +5175,17 @@ line-height: 1.4;}
 }
 
 /* Each tile is a 1:1 square. The <a> is the click target. Inside,
-   two stacked layers — .mr-landing-tile-front (cover + overlays) and
-   .mr-landing-tile-back (excerpt) — crossfade on hover. */
+   two stacked layers — .mr-landing-tile-front (cover artwork) and
+   .mr-landing-tile-back (excerpt) — flip on hover via a 3D rotateY
+   on the link element. The parent .mr-landing-tile carries the
+   `perspective` so the rotation has depth rather than feeling
+   like a 2D scale-collapse. */
 .mr-landing-tile {
   position: relative;
   aspect-ratio: 1 / 1;
   margin: 0;
   padding: 0;
+  perspective: 1000px;
 }
 
 .mr-landing-tile-link {
@@ -5193,16 +5197,37 @@ line-height: 1.4;}
   /* Defeat global anchor underline gradient — this is a wrapper link. */
   background-image: none !important;
   padding-bottom: 0 !important;
+  /* preserve-3d lets the two child faces sit in true 3D space; without
+     it, the rotated back would just clip flat against the front. */
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/* Only flip when there's actually a back side to reveal. Tiles whose
+   posts have no custom_excerpt skip the .mr-landing-tile-back div in
+   the partial, so :has() gates the hover rotation — otherwise we'd
+   rotate to reveal an empty back face. */
+.mr-landing-tile:has(.mr-landing-tile-back):hover .mr-landing-tile-link {
+  transform: rotateY(180deg);
+}
+
+/* ── Front and Back share the 3D faces pattern ───────────────────── */
+
+.mr-landing-tile-front,
+.mr-landing-tile-back {
+  position: absolute;
+  inset: 0;
+  /* Hide the back of each face — without this, the rotated front
+     would still show (mirrored) through the back, and vice versa. */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   overflow: hidden;
 }
 
-/* ── Front: cover artwork with overlaid text ─────────────────────── */
+/* ── Front: cover artwork (text is sr-only, no visual overlay) ───── */
 
 .mr-landing-tile-front {
-  position: absolute;
-  inset: 0;
   background: #1a1a1a;
-  transition: opacity 0.3s ease;
 }
 
 .mr-landing-tile-cover {
@@ -5220,37 +5245,26 @@ line-height: 1.4;}
    readers + SEO + the hidden episode-number resolver. No visual
    styles needed. */
 
-/* ── Back: solid black + excerpt, crossfaded in on hover ─────────── */
+/* ── Back: black panel + excerpt, pre-rotated so it faces the user
+       once the link element itself is flipped 180° ─────────────────── */
 
 .mr-landing-tile-back {
-  position: absolute;
-  inset: 0;
   background: #000;
   padding: 16px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+  align-items: start;
+  justify-content: start;
   box-sizing: border-box;
+  transform: rotateY(180deg);
 }
 
 .mr-landing-tile-excerpt {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.4;
+  font-family: var(--font-big-exp);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
   color: #fff;
   margin: 0;
-}
-
-.mr-landing-tile-link:hover .mr-landing-tile-front {
-  opacity: 0;
-}
-
-.mr-landing-tile-link:hover .mr-landing-tile-back {
-  opacity: 1;
 }
 
 /* --- Responsive ---------------------------------------------------------- */
