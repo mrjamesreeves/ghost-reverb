@@ -15,8 +15,16 @@
  *     clicking the slide image. All call into next() / prev() which
  *     hand off to goTo() with an explicit direction so the animation
  *     knows which way to slide.
- *   - Cross-project rollthrough is Phase 2d. For now prev/next disable
- *     at the deck boundary; keyboard/image-click no-op there too.
+ *   - Cross-project rollthrough: at the LAST slide of a project, next
+ *     navigates to the FIRST slide of the next project (wrapping from
+ *     project N back to 1 at the end). At the FIRST slide, prev
+ *     navigates to the LAST slide of the previous project via the
+ *     #last hash deep-link. The project order comes from the JSON
+ *     emitted by _deck.hbs (#publicWorksList), filtered + ordered by
+ *     Ghost's collection query.
+ *   - The cross-page transition is handled by the global
+ *     @view-transition rule — browsers that support it crossfade
+ *     between the two pages, others fall through to instant nav.
  *
  * Animation:
  *   - Direction-aware via CSS @keyframes. JS adds an animating-* class
@@ -57,6 +65,34 @@
   const ANIM_MS    = 500;    // matches the @keyframes duration in CSS
   const THRESHOLD  = 60;     // px of accumulated deltaX before swipe fires
 
+  // ── Cross-project rollthrough wiring ────────────────────────────────
+  //
+  // _deck.hbs emits a JSON array of all Public Works projects (in the
+  // collection's published_at desc order). Parse it and find this
+  // project's index, so prev/next at the deck boundary can navigate
+  // to the neighboring project's URL.
+  //
+  // Wrap behavior: last project → first; first project → last.
+  // When wrapping backward, the URL gets a #last hash so the new page
+  // lands on the previous project's final slide instead of its intro.
+
+  const currentSlug = reader.getAttribute('data-current-slug') || '';
+  let projects = [];
+  let projectIdx = -1;
+  try {
+    const listEl = document.getElementById('publicWorksList');
+    if (listEl && listEl.textContent) {
+      projects = JSON.parse(listEl.textContent) || [];
+      projectIdx = projects.findIndex(function (p) {
+        return p && p.slug === currentSlug;
+      });
+    }
+  } catch (e) {
+    projects = [];
+    projectIdx = -1;
+  }
+  const canRollThrough = projects.length > 1 && projectIdx !== -1;
+
   // ── Caption / counter / nav state ───────────────────────────────────
 
   function updateCaption(entry) {
@@ -72,8 +108,19 @@
   }
 
   function updateNav() {
-    if (prevBtn) prevBtn.disabled = current === 0;
-    if (nextBtn) nextBtn.disabled = current === total - 1;
+    // When rollthrough is available (multiple projects in the
+    // collection and we know which one this is), prev/next never
+    // disable — the boundary just hands off to the neighbor.
+    // Fallback to boundary-disable when rollthrough isn't possible
+    // (e.g., the project list failed to render, single-project
+    // collection, etc.).
+    if (canRollThrough) {
+      if (prevBtn) prevBtn.disabled = false;
+      if (nextBtn) nextBtn.disabled = false;
+    } else {
+      if (prevBtn) prevBtn.disabled = current === 0;
+      if (nextBtn) nextBtn.disabled = current === total - 1;
+    }
   }
 
   // ── Slide change with direction-aware keyframe animation ────────────
@@ -117,8 +164,39 @@
     }, ANIM_MS);
   }
 
-  function next() { goTo(current + 1, 'next'); }
-  function prev() { goTo(current - 1, 'prev'); }
+  // ── Project rollthrough helpers ─────────────────────────────────────
+  //
+  // At deck boundary, instead of no-op, navigate to the neighboring
+  // project's URL. The global @view-transition rule handles the
+  // visual handoff. Forward wrap: last project → first project. Back-
+  // ward wrap: first project → last project, with #last to land on
+  // its final slide.
+
+  function rollForward() {
+    if (!canRollThrough || navigating) return false;
+    navigating = true;
+    const nextIdx = (projectIdx + 1) % projects.length;
+    window.location.href = projects[nextIdx].url;
+    return true;
+  }
+
+  function rollBackward() {
+    if (!canRollThrough || navigating) return false;
+    navigating = true;
+    const prevIdx = (projectIdx - 1 + projects.length) % projects.length;
+    window.location.href = projects[prevIdx].url + '#last';
+    return true;
+  }
+
+  function next() {
+    if (current === total - 1 && rollForward()) return;
+    goTo(current + 1, 'next');
+  }
+
+  function prev() {
+    if (current === 0 && rollBackward()) return;
+    goTo(current - 1, 'prev');
+  }
 
   // ── Wheel / trackpad swipe ──────────────────────────────────────────
 
