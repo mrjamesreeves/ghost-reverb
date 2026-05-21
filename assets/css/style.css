@@ -5257,22 +5257,29 @@ line-height: 1.4;}
 
 @media (max-width: 1024px) {
   .mr-landing-header-text {
-    max-width: 70%;
-    padding: 4% 0;
+      max-width: 80%;
+      padding: 0;
+      justify-content: start;
   }
   .mr-landing-title {
     font-size: clamp(40px, 10vw, 80px);
     margin-bottom: 10px;
   }
+  .mr-landing-header-image {
+  padding-top: 10vh;
+  }
 }
 
 @media (max-width: 600px) {
   .mr-landing {
-    padding: 15vw 2vw 40px;
+    padding: 10vw 5vw 40px;
   }
   .mr-landing-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px;
+  }
+  .mr-filters {
+    gap: 0px 18px;
   }
 }
 
