@@ -29,16 +29,13 @@
     <article class="archive-entry is-active" data-slug="{{slug}}">
 
       <div class="archive-entry-image">
+        {{!-- Portrait comes from the About page's feature_image in
+             Ghost. No theme-side fallback — set the image in Ghost
+             admin (Pages → About → cover image). --}}
         {{#if feature_image}}
           <img
             src="{{img_url feature_image size="xl"}}"
             alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-            loading="eager"
-          />
-        {{else}}
-          <img
-            src="{{asset "/img/Reeves-Portrait-With-Plant-by-Oliver-Farshi.webp"}}"
-            alt="James A. Reeves"
             loading="eager"
           />
         {{/if}}

@@ -1130,18 +1130,6 @@ ul.section-items li::marker {
   text-decoration: none !important;
   }
 
-.page-favorites .post-content ul li a::after, .post-content .post-content ul li a::after, .tag-running a strong:after {
-  content: '';
-  height: 11px;
-  width: 11px;
-  margin-left: 6px;
-  margin-bottom: 1px;
-  background-image: url(../img/link.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: inline-table;
-  }
-
 .page-favorites .post-full:last-child {
   margin-bottom: 0;
   }
@@ -4441,7 +4429,7 @@ li.site-footer-toc-item {
 
 /* Fixed background image for Dreams pages */
 body.dreams-bg {
-  background: url('../img/bg-dreams.webp') center top / cover no-repeat !important;
+  background: url('../img/backgrounds/bg-dreams.webp') center top / cover no-repeat !important;
 }
 
 /* --- Page wrapper: regular block flow. The reader fills the viewport;

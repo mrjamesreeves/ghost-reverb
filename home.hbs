@@ -1,43 +1,84 @@
 {{!< default}}
 
-{{!-- ── HERO: Latest Midnight Radio episode ───────────────────────────────── --}}
-{{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
-{{#foreach posts}}
-<section class="site-hero">
+{{!-- ── HERO: Random pick from "featured" Midnight Radio episodes ───────────
+     Renders every MR episode tagged featured:true in Ghost. All but the
+     first are server-rendered with [hidden]. A tiny script at the
+     bottom of the page picks one at random and reveals it; the rest
+     stay hidden. The first stays visible until the script runs (~30ms),
+     so JS-disabled visitors still see a valid hero.
 
-  {{!-- Full-bleed feature image (NOT inside the link — image area isn't clickable) --}}
-  {{#if feature_image}}
-  <div class="site-hero-image">
-    <img
-      srcset="{{img_url feature_image size="m"}} 800w,
-              {{img_url feature_image size="l"}} 1200w,
-              {{img_url feature_image size="xl"}} 2000w"
-      sizes="100vw"
-      src="{{img_url feature_image size="l"}}"
-      alt="{{title}}"
-      loading="eager"
-    />
-  </div>
-  {{/if}}
+     Fallback: if no MR episodes are flagged featured, drop back to the
+     latest one (preserves the old behavior — homepage always has a hero). --}}
+{{#get "posts" filter="tag:midnight-radio+featured:true" limit="all" order="published_at desc" include="tags"}}
+  {{#foreach posts}}
+  <section class="site-hero"{{#unless @first}} hidden{{/unless}}>
 
-  {{!-- Text content, constrained to 1600px. Link wraps just the text + CTA. --}}
-  <div class="site-hero-inner">
-    <a href="{{url}}" class="site-hero-link" aria-label="Read and listen to {{title}}">
-      <div class="site-hero-text">
-        <p class="site-hero-label">Midnight Radio{{#foreach tags visibility="internal"}}{{#if (match slug "^hash-mr-")}} <span class="site-hero-ep" data-ep="{{slug}}"></span>{{/if}}{{/foreach}}</p>
-        <h1 class="site-hero-title">{{title}}</h1>
+    {{#if feature_image}}
+    <div class="site-hero-image">
+      <img
+        srcset="{{img_url feature_image size="m"}} 800w,
+                {{img_url feature_image size="l"}} 1200w,
+                {{img_url feature_image size="xl"}} 2000w"
+        sizes="100vw"
+        src="{{img_url feature_image size="l"}}"
+        alt="{{title}}"
+        loading="{{#if @first}}eager{{else}}lazy{{/if}}"
+      />
+    </div>
+    {{/if}}
+
+    <div class="site-hero-inner">
+      <a href="{{url}}" class="site-hero-link" aria-label="Read and listen to {{title}}">
+        <div class="site-hero-text">
+          <p class="site-hero-label">Midnight Radio{{#foreach tags visibility="internal"}}{{#if (match slug "^hash-mr-")}} <span class="site-hero-ep" data-ep="{{slug}}"></span>{{/if}}{{/foreach}}</p>
+          <h1 class="site-hero-title">{{title}}</h1>
+        </div>
+        <div class="site-hero-cta">
+          <div class="site-hero-cta-text">Read + Listen</div>
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
+            <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+  </section>
+  {{/foreach}}
+{{else}}
+  {{!-- No posts flagged featured → fall back to the latest MR episode. --}}
+  {{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
+    {{#foreach posts}}
+    <section class="site-hero">
+      {{#if feature_image}}
+      <div class="site-hero-image">
+        <img
+          srcset="{{img_url feature_image size="m"}} 800w,
+                  {{img_url feature_image size="l"}} 1200w,
+                  {{img_url feature_image size="xl"}} 2000w"
+          sizes="100vw"
+          src="{{img_url feature_image size="l"}}"
+          alt="{{title}}"
+          loading="eager"
+        />
       </div>
-      <div class="site-hero-cta">
-        <div class="site-hero-cta-text">Read + Listen</div>
-        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
-          <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      {{/if}}
+      <div class="site-hero-inner">
+        <a href="{{url}}" class="site-hero-link" aria-label="Read and listen to {{title}}">
+          <div class="site-hero-text">
+            <p class="site-hero-label">Midnight Radio{{#foreach tags visibility="internal"}}{{#if (match slug "^hash-mr-")}} <span class="site-hero-ep" data-ep="{{slug}}"></span>{{/if}}{{/foreach}}</p>
+            <h1 class="site-hero-title">{{title}}</h1>
+          </div>
+          <div class="site-hero-cta">
+            <div class="site-hero-cta-text">Read + Listen</div>
+            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
-
-</section>
-{{/foreach}}
+    </section>
+    {{/foreach}}
+  {{/get}}
 {{/get}}
 
 
@@ -49,7 +90,7 @@
     <article class="home-section-card">
       <a href="https://spite.club" class="home-section-link" target="_blank" rel="noopener">
         <div class="home-section-image">
-          <img src="{{asset "img/reeves-spite.webp"}}" alt="Spite" loading="lazy" />
+          <img src="{{asset "img/home/spite.webp"}}" alt="Spite" loading="lazy" />
         </div>
         <div class="home-section-body">
           <h3 class="home-section-title">Spite</h3>
@@ -62,7 +103,7 @@
     <article class="home-section-card">
       <a href="{{@site.url}}/art-diary" class="home-section-link">
         <div class="home-section-image">
-          <img src="{{asset "img/reeves-art-diary.webp"}}" alt="Art Diary" loading="lazy" />
+          <img src="{{asset "img/home/art-diary.webp"}}" alt="Art Diary" loading="lazy" />
         </div>
         <div class="home-section-body">
           <h3 class="home-section-title">Art Diary</h3>
@@ -75,7 +116,7 @@
     <article class="home-section-card">
       <a href="{{@site.url}}/dreams" class="home-section-link">
         <div class="home-section-image">
-          <img src="{{asset "img/reeves-dreams.webp"}}" alt="Dream Inventory" loading="lazy" />
+          <img src="{{asset "img/home/dreams.webp"}}" alt="Dream Inventory" loading="lazy" />
         </div>
         <div class="home-section-body">
           <h3 class="home-section-title">Dream Inventory</h3>
@@ -95,4 +136,18 @@ document.querySelectorAll('.site-hero-ep').forEach(function(el) {
     el.textContent = raw.replace('hash-mr-', '');
   }
 });
+</script>
+
+{{!-- Random featured-hero picker.
+     Server renders every featured episode (first one visible, the rest
+     with [hidden]). On load we hide all and reveal one at random. If
+     there's only one (or zero) we no-op so JS-disabled visitors still
+     see the server-chosen first one. --}}
+<script>
+(function pickRandomHero() {
+  var heroes = document.querySelectorAll('.site-hero');
+  if (heroes.length <= 1) return;
+  for (var i = 0; i < heroes.length; i++) heroes[i].hidden = true;
+  heroes[Math.floor(Math.random() * heroes.length)].hidden = false;
+})();
 </script>
