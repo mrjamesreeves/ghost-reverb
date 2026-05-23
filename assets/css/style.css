@@ -3921,7 +3921,7 @@ h1.post {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-  max-width: 55%;
+  max-width: 60%;
 }
 
 /* Link-only: kill the global animated-underline + reset link defaults */
@@ -4645,7 +4645,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
 
 .mr-episode-title {
   font-family: var(--font-big);
-  font-size: clamp(50px, 10vw, 150px);
+  font-size: clamp(50px, 10vw, 140px);
   line-height: 0.8;
   font-weight: 800;
   text-transform: uppercase;
@@ -5085,7 +5085,7 @@ line-height: 1.4;}
 
 .mr-landing-title {
   font-family: var(--font-big);
-  font-size: clamp(60px, 9vw, 150px);
+  font-size: clamp(60px, 9vw, 140px);
   line-height: 0.88;
   font-weight: 700;
   text-transform: uppercase;
