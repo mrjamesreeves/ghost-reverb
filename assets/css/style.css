@@ -17,6 +17,39 @@
   navigation: auto;
 }
 
+/* ------------------------------------------------------------------ */
+/* Global site wordmark / home link.                                  */
+/*                                                                    */
+/* Rendered via partials/site-wordmark.hbs, included inside each      */
+/* page's header/watermark container so it sits as a direct sibling   */
+/* above the section title (no collision risk). White at low opacity  */
+/* so it reads as a quiet eyebrow over dark imagery; 100% on hover.   */
+/* In-flow display: block keeps it stacking naturally above whatever  */
+/* heading follows.                                                   */
+/* ------------------------------------------------------------------ */
+.site-wordmark {
+  display: block;
+  color: rgba(255, 255, 255, 0.20);
+  font-family: var(--font-big-exp);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0 0 12px;
+  /* Defeat the global anchor underline gradient — this is a wordmark,
+     not a text link. */
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  transition: color 0.2s ease;
+}
+
+.site-wordmark:hover,
+.site-wordmark:focus-visible {
+  color: rgba(255, 255, 255, 1);
+}
+
 /* 1. Reset
 ----------------------------- */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -5701,20 +5734,27 @@ line-height: 1.4;}
   display: none;
 }
 
+/* Public Works watermark stack. The wrapper is now a div (not an
+   anchor) so it can host both the site wordmark and the link to the
+   section TOC as siblings without nesting two anchors. The inner
+   .public-works-watermark-link is the actual TOC link. */
 .public-works-watermark {
   position: absolute;
   top: 24px;
   left: 24px;
   z-index: 3;
+}
+
+.public-works-watermark-link {
+  display: block;
   cursor: pointer;
-  /* Defeat the global anchor underline gradient — the watermark is a
-     link to /public-works/, not a text link. */
+  /* Defeat the global anchor underline gradient. */
   background-image: none !important;
   padding-bottom: 0 !important;
   transition: opacity 0.2s ease;
 }
 
-.public-works-watermark:hover {
+.public-works-watermark-link:hover {
   opacity: 0.7;
 }
 
@@ -5956,6 +5996,14 @@ line-height: 1.4;}
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 56px;
+}
+
+/* Stacks the site wordmark above the section headline as a single
+   left-aligned column. Flex direction column with no gap — wordmark
+   has its own margin-bottom. */
+.public-works-index-title-stack {
+  display: flex;
+  flex-direction: column;
 }
 
 .public-works-index-headline {
