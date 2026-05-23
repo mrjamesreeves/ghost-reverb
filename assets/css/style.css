@@ -55,6 +55,18 @@
   color: rgba(255, 255, 255, 1);
 }
 
+/* Homepage: the wordmark isn't nested inside a header container
+   (the hero is the full-bleed top of the page), so anchor it at
+   top-left of the viewport directly. Same visual position as other
+   pages, just achieved via fixed positioning instead of in-flow. */
+body.home-template .site-wordmark {
+  position: fixed;
+  top: 24px;
+  left: 5vw;
+  z-index: 50;
+  margin: 0;
+}
+
 /* 1. Reset
 ----------------------------- */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

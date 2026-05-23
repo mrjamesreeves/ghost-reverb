@@ -1,5 +1,11 @@
 {{!< default}}
 
+{{!-- Site wordmark — included for visual consistency across all
+     pages. On home it links to the current URL (effectively a
+     no-op refresh), but the visual presence matches every other
+     page. CSS positions it absolutely at top-left over the hero. --}}
+{{> "site-wordmark"}}
+
 {{!-- ── HERO: Random pick from "featured" Midnight Radio episodes ───────────
      Renders every MR episode tagged featured:true in Ghost. All but the
      first are server-rendered with [hidden]. A tiny script at the
