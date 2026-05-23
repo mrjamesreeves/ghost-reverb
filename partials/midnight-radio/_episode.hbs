@@ -114,7 +114,7 @@
        on load. No titles — they live inside the artwork. Each thumb gets
        a hidden block of internal-tag slugs; mr-filmstrip.js parses the
        hash-mr-N tag, zero-pads, and sets the cover src to
-       /assets/mr/covers/MR{NN}.webp. --}}
+       /assets/mr/MR{NN}.webp. --}}
   <nav class="mr-filmstrip" id="mrFilmstrip" aria-label="All Midnight Radio episodes">
     <div class="mr-filmstrip-track">
       {{#get "posts" filter="tag:midnight-radio" limit="all" order="published_at desc" include="tags"}}

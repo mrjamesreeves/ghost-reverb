@@ -38,6 +38,11 @@
   text-transform: uppercase;
   text-decoration: none;
   margin: 0 0 12px;
+  /* Several parent containers (.archive-watermark, .mr-landing-header-
+     text, etc.) set pointer-events: none so their decorative content
+     doesn't block clicks. The wordmark IS interactive, so it has to
+     opt back in regardless of where it's nested. */
+  pointer-events: auto;
   /* Defeat the global anchor underline gradient — this is a wordmark,
      not a text link. */
   background-image: none !important;
@@ -4614,6 +4619,7 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   right: 40px;
   z-index: 2;
   color: #fff;
+  width: 70%;
   pointer-events: none;   /* Don't block image; image is non-interactive too. */
 }
 
@@ -4704,9 +4710,15 @@ body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-te
   font-weight: 700;
   color: #111;
   margin: 0;
+  margin-bottom: 30px;
   text-transform: none;
   padding-right: 10%;
   letter-spacing: -0.5px;
+}
+
+.mr-episode-content h6:first-of-type, .mr-episode-content h3:first-of-type {
+  /* See comment below about numbered section markers. */
+  margin-top: 0;
 }
 
 /* Numbered section markers ("1", "2", …). Ghost renders the writer's
@@ -5028,6 +5040,17 @@ line-height: 1.4;}
 .mr-landing-header {
   position: relative;
   margin-bottom: 32px;
+}
+
+/* MR landing's wordmark sits at top-left of the header (not inside
+   the vertically-centered text block where it would get pushed down).
+   Matches the visual position of the wordmark on every other page. */
+.mr-landing-header > .site-wordmark {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 3;
+  margin: 0;        /* no stacking margin — it's absolutely positioned */
 }
 
 .mr-landing-header-image {
@@ -5402,15 +5425,16 @@ line-height: 1.4;}
 .archive-entry-text {
   /* Starter values — tune to taste. */
   width: 100%;
+  padding-top: 12.5%;
 }
 
 /* --- Entry title ----------------------------------------------------------- */
 
 .archive-entry-title {
   font-family: var(--font-big);
-  font-size: clamp(36px, 4.2vw, 48px);
+  font-size: clamp(36px, 4.2vw, 50px);
   margin: 0 0 20px;
-  text-transform: uppercase;
+  text-transform: none;
   background-image: none !important;
   color: #000;
 }
@@ -6444,3 +6468,5 @@ body.comments-is-open { overflow: hidden; }
 .about-body ul {
   margin: 1em 0;
 }
+
+.mr-episode-cover-text .site-wordmark { padding-bottom: 10% !important;}

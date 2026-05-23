@@ -38,8 +38,15 @@
        title absolutely on top. Image is purely decorative (alt="",
        aria-hidden on the wrapper). --}}
   <header class="mr-landing-header">
+    {{!-- Wordmark sits at the top-left of the header, NOT inside
+         .mr-landing-header-text — that container is vertically
+         centered (justify-content: center) so an inline wordmark
+         would also center, pushing it down. Positioning the wordmark
+         as a direct child of .mr-landing-header lets CSS anchor it
+         absolutely at top-left, matching the position on every other
+         page's header. --}}
+    {{> "site-wordmark"}}
     <div class="mr-landing-header-text">
-      {{> "site-wordmark"}}
       <h1 class="mr-landing-title">Midnight<br>Radio</h1>
       <p class="mr-landing-tagline">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
     </div>

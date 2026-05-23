@@ -70,8 +70,7 @@
 
   const thumbs = Array.from(strip.querySelectorAll('.mr-filmstrip-thumb'));
   if (!thumbs.length) return;
-
-  const COVER_BASE = '/assets/mr/covers/';
+  const COVER_BASE = '/assets/mr/';
   const MR_TAG_RE  = /^hash-mr-([0-9a-z]+)$/i;
 
   // ---- 1. Resolve and set cover src per thumb ----
