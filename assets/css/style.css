@@ -2495,14 +2495,6 @@ input::placeholder {
     width: 80%;
     margin-left: 0;
     }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 8px;
-    }
-  .theme-button {
-    margin-bottom: -1px !important;
-    }
     
   .image-slider img {
     position: absolute;
@@ -2672,8 +2664,6 @@ cite {
 
 }
 
-
-
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
@@ -2685,32 +2675,8 @@ cite {
     width: 90%;
   }
 
-  .midnight-blurb p {
-    font-size: 16px;
-  }
-
   .midnight-page {
     gap: 60px;
-  }
-
-  .grid-text {
-    grid-template-columns: 1fr !important;
-    gap: 0;
-    line-height: 1.45;
-  }
-
-  .grid-text p {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .highlights {
-    margin-top: 0;
-  }
-  .highlights-grid {
-    grid-template-columns: 1fr;
-    grid-auto-flow: inherit;
-    gap: 1rem 5rem;
   }
   .radio-hero-wrapper {
     aspect-ratio: 3/2;
@@ -2799,19 +2765,6 @@ h3 {
    .tag-heavy-rotation h2:first-of-type { padding-top: 0; width: 100%;}
 }
 
-
-
-
-.entry-date, .featured-title {
-  font-family: var(--font-sans);
-  font-size: var(--type-label);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--color-text-muted);
-  margin: 0 0 10px 0;
-}
-
 .entry-text {
   font-family: var(--font-sans);
   font-size: 17px;
@@ -2839,8 +2792,6 @@ h3 {
 .entry-text p:last-child {
   margin-bottom: 0;
 }
-
-
 
 
 /* RADIO INDEX: ROW-BASED LAYOUT
@@ -3031,13 +2982,6 @@ h3 {
 .signup-content p, .signup-content h2, .signup {
     color: var(--color-inverse);
   }
-
-/* Responsive */
-@media (max-width: 1400px) {
-    .radio-episode-row {
-        grid-template-columns: 500px 100px 400px;
-    }
-}
 
 @media (max-width: 700px) {
   .radio-episode-row {
@@ -3497,11 +3441,8 @@ h1.post {
   padding-bottom: 50px;
 }
 
-/* Episode hero title is sized smaller than the home hero so longer
-   episode titles fit inside the 670px centered column without overflow.
-   Home: clamp(72px, 11vw, 175px). Episode: tighter cap. */
 .site-hero--episode .site-hero-title {
-  font-size: clamp(56px, 9vw, 132px);
+  font-size: clamp(56px, 9vw, 130px);
   line-height: 0.92;
 }
 
@@ -3520,7 +3461,7 @@ h1.post {
 
 .site-hero-title {
   font-family: var(--font-big);
-  font-size: clamp(72px, 11vw, 175px);
+  font-size: clamp(72px, 11vw, 160px);
   line-height: 0.87;
   text-transform: uppercase;
   color: #fff;
@@ -3646,6 +3587,14 @@ h1.post {
   max-width: 500px;
 }
 
+
+
+@media (max-width: 1024px) {
+  .site-hero {
+    aspect-ratio: 1/1;
+    height: auto;
+    min-height: 400px;
+  }
 
 /* ── Homepage responsive ──────────────────────────────────────────────────── */
 
@@ -4378,7 +4327,6 @@ line-height: 1.4;}
   filter: brightness(120%);
   transform: scale(1.02);
 }
-
 
 .mr-filmstrip-thumb.is-current {
   filter: brightness(150%);
@@ -5847,10 +5795,6 @@ top: 5%;
   .about-figure img {
     max-width: 220px;
   }
-
-  /* Watermark: in archive-page--single (Instructions, About) the
-     watermark uses the same .archive-watermark class — no extra
-     rules needed; the universal block above already handles it. */
 
 }
 
