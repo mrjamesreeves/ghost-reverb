@@ -161,10 +161,7 @@ a:focus {
 a.favorite-image-link,
 a.social-link,
 a.kg-signup-card-button,
-a.radio-hero-content,
-a.mr-landing-tile-link,
-.radio-hero-content a,
-.filter-btn {
+a.mr-landing-tile-link {
   background-image: none;
   padding-bottom: 0;
   }
@@ -700,31 +697,7 @@ textarea:focus {
   color: var(--color-text);
 }
 
-/* Full-width background */
-.bg-full {
-  position: relative;
-}
-
-.bg-full-image {
-  height: 100%;
-  left: 0;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  border: 0;
-}
-
 /* Image animations */
-.bg-fade-in {
-  animation-delay: .15s;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-name: fadeIn55;
-}
-
 .image-fade-in {
   animation-delay: .15s;
   animation-duration: 1s;
@@ -818,73 +791,6 @@ h4 + h5 {
 /* 2. MIDNIGHT RADIO
 ----------------------------- */
 
-.radio-hero-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 30/16;
-  overflow: hidden;
-  background: black;
-  }
-  
-  
-.radio-post .radio-hero-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: auto;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  }
-
-.radio-post .radio-hero-content {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 90%;
-  max-width: 650px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* Removed justify-content: center since you're using bottom positioning */
-  z-index: 2;
-  }
-
-/* Moved into the hero content selector for better specificity */
-.radio-post .radio-hero-content h5,
-.radio-post .radio-hero-content h1, .radio-hero-content h1 a:hover {
-  color: var(--color-white-trans);
-  }
-
-.radio-post h4 {
-  letter-spacing: 0;
-  text-transform: none;
-  }
-
-.radio-post .post-header-caption {
-  width: 90%;
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #777; 
-  font-size: 0.6rem;
-  }
-
-.radio-post .radio-content-wrapper {
-  position: relative;
-  z-index: 1;
-  }
-
-.radio-caption {
-  text-align: right;
-  margin-bottom: 50px;
-  font-size: 12px;
-  padding-top: 5px;
-  padding-right: 5px;
-  }
-
 .radio-page .image-slider {
     position: absolute;
     bottom: 0;
@@ -911,34 +817,6 @@ width: 90%;
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
-
-.radio-page .radio-hero-content {
-    position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 90%;
-    max-width: 1250px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    z-index: 2;
-    color: rgba(255, 255, 255,0.8);
-}
-
-.radio-page .radio-hero-content h1 {
-    width: 51%;
-    padding-bottom: 10%;
-}
-
-.radio-page .radio-hero-content p {
-  font-size: 20px;
-  line-height: 1.4;
-  margin-top: 0px;
-  margin-bottom: 30px;
-  width: 40%;
-  color: white;
 }
 
 /* Content flows normally after hero */
@@ -1380,22 +1258,8 @@ p a:hover {
   }
 
 /* Hero Container - wraps hero + caption */
-.radio-hero-container,
 .post-hero-container {
   margin-bottom: var(--element-below);
-}
-
-.radio-hero-wrapper {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.radio-hero-caption {
-  text-align: right;
-  font-size: 11px;
-  color: var(--color-text-muted);
-  padding-top: 8px;
-  padding-right: 5px;
 }
 
 .tag-midnight-radio .post-content h6 {
@@ -2076,34 +1940,8 @@ input::placeholder {
 }
 
 
-.page-radio .radio-hero-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 30/13;
-  overflow: hidden;
-  background: black;
-  }
-.page-radio .radio-hero-container {
-  margin-bottom: 20px;
-  }
 /*--------------------------------------*/
 
-.radio-cta::before {
-  content: '';
-  width: 50px;
-  display: block;
-  border-top: var(--line);
-  padding-top: 30px;
-  margin-top: 30px;
-  }
-.radio-cta p {
-  font-family: var(--font-sans);
-  font-size: .9rem;
-  width: 80%;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  }
-  
 .card:hover img {
   filter: brightness(120%);
   transform: scale(1.02);
@@ -2220,9 +2058,6 @@ input::placeholder {
   h1 {
     font-size: calc(var(--type-h1) * 1.2);
       }
-  .radio-post h1 {
-    font-size: calc(var(--type-h1) * 1.2);
-    }
   h2 {
     font-size: 50px;
     }
@@ -2245,10 +2080,6 @@ input::placeholder {
 -----------------------------*/
 
 @media (max-width: 700px) {
-
-  .radio-post h1 {
-    max-width: 250px;
-    }
 
   .inner-wide {
     width: 88%;
@@ -2274,13 +2105,8 @@ input::placeholder {
     padding-left: 0rem;
     padding-right: 0rem;
     }
-  .outer.radio-post,  .outer.radio-page {
+  .outer.radio-page {
     padding-top: 0 !important;
-    }
-  .radio-page .radio-hero-content h1,
-  .radio-page .radio-hero-content p {
-    width: 80% !important;
-    margin-top: 0;
     }
 .radio-page .image-slider {
     position: absolute;
@@ -2291,9 +2117,6 @@ input::placeholder {
     z-index: 1;
     overflow: hidden;
 }
-  .radio-page .midnight-intro.radio-hero-content {
-    bottom: 35% !important;
-    }
   .footer.outer {
     margin-top: 40px;
     }
@@ -2378,9 +2201,6 @@ input::placeholder {
     margin-top: -40px !important;
     padding-bottom: 20px !important;
     }
-  .radio-cta {
-    margin-bottom: 50px;
-    }
   ol li, .post-content ol li {
     font-size: .9rem;
     line-height: 1.3;
@@ -2394,18 +2214,6 @@ input::placeholder {
     }
   .kg-blockquote-alt:last-of-type, ul.section-items:last-of-type {
     margin-bottom: 30px;
-    }
-  .featured-title {
-    margin-bottom: 25px;
-    }
-  .radio .bg-full-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: auto;
-    aspect-ratio: 16/9;
     }
   .footer-bottom-content li.menu-item, li.action-item {
     padding-bottom: 0;
@@ -2454,13 +2262,6 @@ input::placeholder {
   h1.post-title {
     width: 88%;
     }
-  .radio-signup p, .radio-signup h1 {
-    margin-top: 0;
-    margin-bottom: 5px;
-    }
-  .radio-signup .kg-signup-card-form {
-    margin: 0 !important; 
-    }
 }
 
 /* TABLET ONLY */
@@ -2475,27 +2276,10 @@ input::placeholder {
   .grid h5 {
     font-size: 9px;
   }
-  .radio-page .radio-hero-content {
-    bottom: 5% !important; 
-    }
-  .radio-page .radio-hero-content h1,
-  .radio-page .radio-hero-content p {
-    width: 50% !important;
-    margin-top: 0;
-    }
-  .radio-page .radio-hero-content p {
-    font-size: 16px;
-    }
   ul.section-items {
     margin-bottom: 40px;
     }
 
-  .radio-signup {
-    padding-left: 0;
-    width: 80%;
-    margin-left: 0;
-    }
-    
   .image-slider img {
     position: absolute;
     top: 0; left: 0;
@@ -2548,21 +2332,6 @@ button {
   font-weight: 600;
   }
 
-.radio-hero-wrapper svg {
-  transform: translateX(0px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-}
-
-.radio-hero-wrapper:hover svg {
-  transform: translateX(6px);
-}
-
-.radio-hero-wrapper:hover .image-slider img {
-    filter: brightness(110%);
-    transform: scale(1.01);
-    transition: all 2s ease-in-out;
-}
-
 button svg path {
   fill: black;
   transition: fill 0.3s ease;
@@ -2576,12 +2345,6 @@ a button {
   text-decoration: none;
 }
 
-.radio-hero-content button {
-  background: #ffffffa0;
-  color: #000f;
-}
-
-
 /* Global <cite> element styling (used inside blockquotes site-wide). */
 cite {
   font-style: normal;
@@ -2593,49 +2356,16 @@ cite {
   color: var(--color-text-muted);
 }
 
-/* Mobile — radio listing item + hero wrapper. */
-@media (max-width: 700px) {
-  .radio-item {
-    font-size: 20px;
-  }
-
-  .radio-hero-wrapper {
-    aspect-ratio: 2/3;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-}
-
-
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
 
 /* Mobile */
 @media (max-width: 700px) {
-  .radio-hero-content h5 {
-    padding-bottom: 3px;
-    font-size: 9px !important;
-  }
-
-  .radio-page .radio-hero-content p {
-    font-size: 13px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
   button {
     font-size: 12px;
     padding: 8px 14px;
     padding-top: 6px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-  .radio-hero-wrapper {
-    aspect-ratio: 2/3;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
   }
 }
 
@@ -2678,9 +2408,6 @@ cite {
   .midnight-page {
     gap: 60px;
   }
-  .radio-hero-wrapper {
-    aspect-ratio: 3/2;
-  }
   .post-header-content {
     margin-top: 10px;
   }
@@ -2705,7 +2432,7 @@ cite {
   margin-top: 10px;
 }
 
-.post-content h1, .footer-tag-name, .radio-item .count {
+.post-content h1, .footer-tag-name {
     color: var(--color-text);
 }
 
@@ -2797,11 +2524,6 @@ h3 {
 /* RADIO INDEX: ROW-BASED LAYOUT
 ----------------------------- */
 
-.radio-episodes-container {
-    margin-top: 80px;
-    margin-bottom: 120px;
-}
-
 .episode-date {
   font-family: var(--font-sans);
   font-size: var(--type-body-xs);
@@ -2857,22 +2579,6 @@ h3 {
     border: var(--line) !important;
     padding: 6px !important;
     border-radius: 5px !important;
-}
-
-.signup-image {
-    width: 100%;
-    max-height: 250px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.signup-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    overflow: hidden;
-    object-fit: cover;
-    border-radius: 5px;
 }
 
 .signup-content {
@@ -2986,110 +2692,10 @@ h1.post {
   padding-right: 0;
 }
 
-.radio-hero-content h5 a {
-  color: #fff;
-  display: block;
-  padding: 10px 0;
-  margin: 0;
-  line-height: 1;
-}
-
-.radio-hero-content h5 a {
-  text-decoration: none;
-}
-
 .bio .post-header-caption {
   padding-top: 0px;
 }
 
-
-/* ── Post meta row (comments + share left, arrows right) ── */
-.radio-meta {
-  max-width: 650px;
-  margin: 40px auto 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-.radio-meta-nav {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-shrink: 0;
-  padding-top: 4px;
-}
-.radio-meta-actions {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-.radio-share-btn {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  padding: 11px 20px 12px;
-  border-radius: 5px;
-  border: 1px solid #fff !important;
-  background-color: #fff;
-  background-image: none;
-  color: var(--color-inverse);
-  font-family: var(--font-sans, 'ibm-plex-sans', sans-serif);
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  line-height: 1;
-  letter-spacing: 2px;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s ease;
-}
-.radio-meta-nav a {
-  background-image: none;
-  padding-bottom: 0;
-}
-/* Radio CTA subscribe button — black bg, white text (matches footer style).
-   Selectors include `.kg-signup-card-form` to outspecify the global
-   `.kg-signup-card-form .kg-signup-card-button` rule below. */
-.radio-cta .kg-signup-card-form .kg-signup-card-button {
-  font-family: var(--font-sans) !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  letter-spacing: 2px !important;
-  text-transform: uppercase !important;
-  background: #000 !important;
-  background-color: #000 !important;
-  border: 1px solid #000 !important;
-  color: #fff !important;
-}
-.radio-cta .kg-signup-card-form .kg-signup-card-button .kg-signup-card-button-default {
-  font-size: 12px !important;
-  color: #fff !important;
-}
-.radio-cta .kg-signup-card-form .kg-signup-card-button:hover {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 1px solid #000 !important;
-  color: #000 !important;
-}
-.radio-cta .kg-signup-card-form .kg-signup-card-button:hover .kg-signup-card-button-default {
-  color: #000 !important;
-}
-
-/* radio-share-btn (Comments / Share buttons) — same treatment, no form scope. */
-.radio-share-btn {
-  background-color: #000 !important;
-  border: 1px solid #000 !important;
-  color: #fff !important;
-}
-.radio-share-btn:hover {
-  background-color: transparent !important;
-  border: 1px solid #000 !important;
-  color: #000 !important;
-}
 
 .kg-signup-card-form .kg-signup-card-button {
   font-family: var(--font-sans) !important;
@@ -3126,60 +2732,6 @@ h1.post {
   color: transparent;
 }
 
-/* Comments modal */
-.comments-modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh; height: 100dvh;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-backdrop-filter: blur(0px);
-  backdrop-filter: blur(0px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.4s ease, visibility 0.4s ease,
-              -webkit-backdrop-filter 0.4s ease, backdrop-filter 0.4s ease;
-}
-.comments-modal.modal-open {
-  opacity: 1;
-  visibility: visible;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-}
-.comments-modal-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  padding: 40px 40px 32px;
-  width: 90%;
-  max-width: 600px;
-  color: #000;
-  position: relative;
-  max-height: 80vh;
-  overflow-y: auto;
-  transform: translateY(-20px);
-  opacity: 0;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.comments-modal.modal-open .comments-modal-card {
-  transform: translateY(0);
-  opacity: 1;
-}
-.comments-modal-close {
-  position: absolute;
-  top: 14px; right: 18px;
-  background: none;
-  border: none;
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  color: #888;
-  padding: 4px 6px;
-  transition: color 0.2s ease;
-}
-.comments-modal-close:hover { color: #000; }
 
 
 
@@ -3452,8 +3004,6 @@ h1.post {
   max-width: 500px;
 }
 
-
-
 @media (max-width: 1024px) {
   .site-hero {
     aspect-ratio: 1/1;
@@ -3461,7 +3011,9 @@ h1.post {
     min-height: 400px;
   }
 
-/* ── Homepage responsive ──────────────────────────────────────────────────── */
+  .site-hero-cta {
+    margin-top: 15px;
+  }
 
 @media (max-width: 700px) {
   .site-hero {
