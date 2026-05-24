@@ -1,0 +1,41 @@
+{{#if html}}
+    <div class="post-content">
+        <div class="post-teaser">
+            {{{html}}}
+        </div>
+    </div>
+{{/if}}
+<aside class="subscribe-box inner">
+    {{#has visibility="paid"}}
+        <h2 class="subscribe-box-title">{{t "This post is for paying subscribers only"}}</h2>
+        {{#if @member}}
+            <p class="subscribe-box-text">{{t "Upgrade your account to keep reading this post and get access to the full library of posts for paying subscribers only."}}</p>
+        {{else}}
+            <p class="subscribe-box-text">{{t "Subscribe to get access to the full library of posts for paying subscribers only."}}</p>
+        {{/if}}
+    {{/has}}
+    {{#has visibility="members"}}
+        <h2 class="subscribe-box-title">{{t "This post is for members only"}}</h2>
+        <p class="subscribe-box-text">{{t "Subscribe to jointhe  Midnight Radio Club."}}</p>
+    {{/has}}
+    {{#has visibility="tiers"}}
+        <h2 class="subscribe-box-title">
+            {{#if tiers.[1]}}
+                {{{t "This post is for subscribers on the {tiers_list} tiers only" tiers_list=(tiers lastSeparator=(t " and ") suffix="")}}}
+            {{else}}
+                {{{t "This post is for subscribers on the {tiers_list} tier only" tiers_list=(tiers lastSeparator=(t " and ") suffix="")}}}
+            {{/if}}
+        </h2>
+        {{#if @member}}
+            <p class="subscribe-box-text">{{t "Upgrade your account to keep reading this post."}}</p>
+        {{else}}
+            <p class="subscribe-box-text">{{t "Subscribe to get access to the post."}}</p>
+        {{/if}}
+    {{/has}}
+    {{#if @member}}
+        <a class="button button-solid" href="javascript:" data-portal="account/plans">{{t "Upgrade your account"}}</a>
+    {{else}}
+        <a class="button button-solid" href="javascript:" data-portal="signup">{{t "Subscribe now"}}</a>
+        <p class="subscribe-box-note">{{t "Already have an account?"}} <a href="javascript:" data-portal="signin">{{t "Sign in"}}</a></p>
+    {{/if}}
+</aside>
