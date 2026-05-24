@@ -6297,6 +6297,7 @@ line-height: 1.4;}
     height: auto;
     padding: 40px 6vw 80px;
     justify-content: flex-start;
+    background: none;
   }
 
   .archive-entry-text {
@@ -6326,12 +6327,7 @@ line-height: 1.4;}
     left: 0;
     right: 0;
     padding: 14px 3%;
-    margin-top: -40px;        /* Overlap the last bit of content so the gradient blends. */
-    background: linear-gradient(
-      to bottom,
-      rgba(235, 235, 235, 0) 0,
-      rgba(235, 235, 235, 0.98) 40px
-    );
+    margin-top: -40px;
     z-index: 5;
   }
 
