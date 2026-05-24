@@ -4535,20 +4535,12 @@ body.art-diary-bg .archive-watermark-text {
   line-height: 0.8;
   color: rgba(255, 255, 255, 0.4) !important;
   mix-blend-mode: normal;
-  transition: color 0.2s ease;
-}
-
-body.art-diary-bg .archive-reader .archive-watermark-text {
-  color: rgba(0, 0, 0, 0.5) !important;
+  transition: color 0.8s ease;
 }
 
 /* Hover: brighten slightly to telegraph clickability. */
 .archive-reader .archive-watermark:hover .archive-watermark-text {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-body.art-diary-bg .archive-reader .archive-watermark:hover .archive-watermark-text {
-  color: rgba(0, 0, 0, 0.85) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Index open: watermark fades to solid black so it reads as the active
