@@ -5169,9 +5169,9 @@ font-size: clamp(32px, 18vw, 96px);  }
 
   /* Tighter overlay padding for the cover text block. */
   .mr-episode-cover-text {
-top: 5%;
-        left: 5%;
-        right: 5%;
+      top: 5%;
+      left: 5%;
+      right: 5%;
   }
 
   /* Body no longer scrolls internally — page scrolls. Extra bottom
@@ -5237,8 +5237,12 @@ top: 5%;
     grid-template-columns: 1fr;
     gap: 0;
   }
-}
-body.comments-is-open { overflow: hidden; }
+  .mr-episode-cover-text {
+    width: 80%;
+  }
+  body.comments-is-open { 
+    overflow: hidden; 
+  }
 
 .about-body p {
   font-family: var(--font-serif);
