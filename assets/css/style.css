@@ -2810,24 +2810,6 @@ h3 {
     align-items: center;
 }
 
-/* Episode Cover */
-.episode-cover {
-    width: 100%;
-    aspect-ratio: 1/1;
-}
-
-.episode-cover img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 5px;
-  aspect-ratio: 1/1;
-}
-
-.episode-cover h2 {
-    font-size: 100px;
-}
-
 /* Middle spacer column */
 .episode-spacer {
     position: relative;
@@ -2999,18 +2981,10 @@ h3 {
 .post-hero-container {
   margin-bottom: var(--element-below-sm);
 }
-    .episode-cover h2 {
-        font-size: 70px;
-    }
-
     .episode-spacer {
         display: none;
     }
-    
-    .episode-cover img {
-        max-width: 500px;
-    }
-    
+
     .episode-info {
         padding-left: 0;
         max-width: 100%;
