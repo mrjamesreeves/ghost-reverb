@@ -1,100 +1,63 @@
 {{!< default}}
-{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
-<script>
-document.body.classList.add('has-hero');
-</script>
+{{!-- /welcome/ — single-reader view.
+     Saint Jerome left, page body right (scrolls). Body content
+     comes from the Ghost editor for this page — "what Midnight
+     Radio is" stays editable without theme edits.
 
-<main id="main" class="content outer radio-page">
+     Image source:
+       1. Page's feature_image (set in Ghost admin → Welcome → Image).
+       2. Falls back to /assets/mr/mr-header.webp (Caravaggio's
+          Saint Jerome) — the show's long-running visual ID.
 
-    {{> "site-wordmark"}}
+     The episodes index that used to live here is gone; that's
+     /radio/'s job now. Keeping /welcome/ focused on the "about
+     this show" register matches About's treatment. --}}
 
-    <div class="radio-hero-wrapper">
-        <div class="image-slider">
-            <img src="{{asset "/mr/mr-header.webp" }}" alt="Saint Jerome">
+<script>document.body.classList.add('has-archive-reader');</script>
+
+{{#post}}
+
+<main id="main" class="archive-page archive-page--single welcome-page">
+
+  <div class="archive-reader archive-reader--single" id="archiveReader">
+
+    <div class="archive-watermark archive-watermark--static">
+      {{> "site-wordmark"}}
+      <h1 class="archive-watermark-text">Midnight<br>Radio</h1>
+    </div>
+
+    <article class="archive-entry is-active" data-slug="{{slug}}">
+
+      <div class="archive-entry-image">
+        {{#if feature_image}}
+          <img
+            src="{{img_url feature_image size="xl"}}"
+            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+            loading="eager"
+          />
+        {{else}}
+          <img
+            src="{{asset "/mr/mr-header.webp"}}"
+            alt="Caravaggio, Saint Jerome in His Study (1605)"
+            loading="eager"
+          />
+        {{/if}}
+        {{> "feature-image-caption"}}
+      </div>
+
+      <div class="archive-entry-content">
+        <div class="archive-entry-text">
+          <div class="archive-entry-body">
+            {{{content}}}
+          </div>
         </div>
-        
-        <div class="radio-hero-content">
-            <h1>Midnight<br>Radio</h1>    
-            <div class="post-extract">
-                <p>Notes on surviving the 21st century and a mixtape delivered 'round midnight on the 1st and 15th of the month.</p>
-            </div>
-        </div>
-    </div>
+      </div>
 
-    <div class="radio-caption">
-        Caravaggio, Saint Jerome in His Study (1605)
-    </div>
+    </article>
 
-    <div class="inner-wide">
-
-        {{!-- Everything inside the #post tags pulls data from the page --}}
-        {{#post}}
-        <article class="{{post_class}} post-full is-page">
-          
-          
-            {{!-- If the user has access, show page content --}}
-            {{#if access}}
-                <div class="post-content">
-               {{content}}
-                </div>
-<br><br>
-                        {{> comments}}
-
-
-
-            {{!-- If the user has no access, show subscribe/upgrade cta --}}
-            {{else}}
-                {{> "post-content-cta"}}
-            {{/if}}
-        </article>
-
-        {{/post}}
-
-    </div>
-
-     <!-- EPISODES -->
-    <div class="inner-wide">
-        <div class="post-feed">
-            <div class="radio-grid">
-            {{#get "posts" include="authors,tags,tiers" filter="tag:midnight-radio" limit="all"}}
-            {{#foreach posts visibility="all"}}
-
-                <article class="post-card bg-dark bg-full">
-                        <a href="{{url}}" class="post-card-link">
-
-                        {{#if feature_image}}
-                            <img
-                                class="post-card-image bg-full-image bg-fade-in"
-                                srcset="{{img_url feature_image size="xs"}} 300w, {{img_url feature_image size="s" }} 600w, {{img_url feature_image size="m" }} 800w, {{img_url feature_image size="l" }} 1200w, {{img_url feature_image size="xl" }} 1600w, {{img_url feature_image size="xxl" }} 2000w"
-                                sizes="(min-width: 1600px) 1600px, 100vw"
-                                src="{{img_url feature_image size="xl"}}"
-                                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                            />
-                        {{/if}}
-
-                        <div class="post-card-inside">
-                            <div class="post-card-content">          
-                                <div class="big-title">
-                                    <h5>
-                                        Midnight Radio 
-                                        {{#foreach tags visibility="internal"}}
-                                        {{#if (match slug "^hash-mr-")}}
-                                            <span class="episode-number" data-ep="{{slug}}"></span>
-                                        {{/if}}
-                                        {{/foreach}}
-                                    </h5>
-                                    <h2>{{title}}</h2>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
- 
-                </article>
-            {{/foreach}}
-            {{/get}}
-            </div>
-        </div>
-    </div>
+  </div>{{!-- /.archive-reader --}}
 
 </main>
+
+{{/post}}

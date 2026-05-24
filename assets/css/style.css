@@ -163,13 +163,11 @@ a:focus {
   }
 
 /* No sliding underline on image/card/button wrapper links */
-a.post-card-link,
 a.favorite-image-link,
 a.social-link,
 a.kg-signup-card-button,
 a.radio-hero-content,
 a.mr-landing-tile-link,
-.post-card a,
 .radio-hero-content a,
 .filter-btn {
   background-image: none;
@@ -233,20 +231,6 @@ h1.post {
   text-align: left;
   }
 
-h1.project {
-  color: var(--color-text);
-  margin-bottom: 10px;
-  padding-right: 10%;
-  box-sizing: border-box;
-  line-height: .9;
-  font-size: 48px;
-  width: 100%;
-  max-width: 650px !important;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  }
-
 .post-content h1 a {
   color: var(--color-text);
   }
@@ -288,10 +272,6 @@ h2, h2 a {
 
 h2.episodes {
   margin-bottom: 10px;
-  }
-
-h2.post-card-title {
-  color: var(--color-hover);
   }
 
 h2.tag a, h2 a:hover {
@@ -843,67 +823,8 @@ textarea:focus {
   margin-right: auto;
   }
 
-.post-card-image {
-  transition: all 1.6s ease;
-  transform-origin: center center;
-  }
-
-.post-card-inside,
-.post-card-content {
-  position: relative;
-  z-index: 5;
-  }
-
-.post-card,
-.post-card img,
-.post-card-content,
 .big-title h1 {
   transition: all 0.4s ease;
-  }
-
-.post-card h1 {
-  color: #fff !important;
-  }
-
-.excerpt-hover {
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  height: 100%;
-  }
-
-.excerpt-hover:hover {
-  opacity: 1;
-  }
-
-.post-card {
-  position: relative;
-  overflow: hidden; /* Optional, helps crop scale effects */
-  }
-
-.post-card-content h1, .post-card-content h2 {
-  color: #fff;
-  width: 80%;
-  }
-
-.post-card-content h5 {
-  margin-bottom: 4px;
-  }
-
-.big-title {
-  margin-left: 0;
-  max-width: 560px;
-  }
-
-.big-title h5 {
-  font-size: 10px;
-  color: #fff;
-}
-
-.big-title p:last-child {
-  margin-bottom: 0;
   }
 
 h4 + h5 {
@@ -930,11 +851,6 @@ h4 + h5 {
   max-width: 1350px !important;
   height: auto;
   }
-
-.post-card.bg-dark {
-  background: #000;
-  }
-
 
 /* 2. MIDNIGHT RADIO
 ----------------------------- */
@@ -1186,76 +1102,11 @@ ul.section-items li::marker {
   }
 
 
-/* 7. Post cards
------------------------------ */
-.post-card:before {
-  padding-bottom: 56.25%;
-  content: '';
-  float: left;
-  }
-
-.post-card:after {
-  display: table;
-  content: '';
-  clear: both;
-  }
-
-.post-card a:not(.button) {
-  color: var(--color-text-highlight-inverse);
-  text-decoration: none;
-  }
-
-.post-card-inside {
-  box-sizing: border-box;
-  height: 100%;
-  overflow: hidden;
-  padding: 7%;
-  position: relative;
-  z-index: 6;
-  width: 100%;
-  border: 0;
-  }
-
-.post-card:hover img {
-    filter: brightness(110%);
-    transform: scale(1.02);
-    transition: all 1.6s ease-in-out;
-}
-
-.post-card-read-more {
-  margin-top: 1.875rem;
-  }
-
 .arrow {
   width: 10px;
   margin-top: 4px;
   margin-bottom: -4px;
   }
-
-@media (min-width: 699px) {
-
-  .post-card-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    width: 100%;
-    z-index: 5;
-  }
-
-  .post-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3125rem;
-    margin: 0 0 0.9375rem;
-  }
-
-  .post-card-meta {
-    font-size: 0.75rem;
-    letter-spacing: 0.075em;
-    text-transform: uppercase;
-    }
-}
 
 
 /* 9. Post feed
@@ -1267,7 +1118,7 @@ ul.section-items li::marker {
   float: left;
   }
 
-.post-card, .post-card img, .post-meta {
+.post-meta {
   -webkit-transition: all 0.8s ease-out;
   transition: all 0.8s ease-in-out;
   }
@@ -1888,11 +1739,6 @@ h6.song {
   grid-auto-rows: 1fr; /* This equalizes all row heights */
   }
 
-.grid .post-card {
-  aspect-ratio: 1/1;
-  border-radius: 5px;
-  }
-
 .grid article {
   display: flex;
   flex-direction: column;
@@ -1924,13 +1770,6 @@ h6.song {
   margin: 0;
   line-height: 1.4;
   }
-
-.grid .post-card-link {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-decoration: none;
-}
 
 .grid-title {
   font-size: 22px;
@@ -2637,9 +2476,6 @@ input::placeholder {
   .overlay {
     padding: .5rem;
     }
-  .post-card-content h1 {
-    margin-top: 5px;
-    }
   .post-title-grid {
     border: none;
     padding: 0;
@@ -2669,14 +2505,6 @@ input::placeholder {
     }
   .post-header {
     margin-bottom: 1.2rem;
-    }
-  .big-title {
-    order: 2;
-    padding-right: 0;
-    padding-left: 0 !important;
-    }
-  .big-title p {
-    width: 100%;
     }
   .navbar-inside {
     align-items: center !important;
@@ -2750,11 +2578,6 @@ input::placeholder {
     height: auto;
     aspect-ratio: 16/9;
     }
-  .radio h2.post-card-title {
-    margin-top: 2px;
-    font-size: 1.9rem;
-    line-height: .9;
-    }
   .footer-bottom-content li.menu-item, li.action-item {
     padding-bottom: 0;
     }
@@ -2819,12 +2642,6 @@ input::placeholder {
   .hide {
     display: none;  
     }
-  .post-card-header, .featured .post-card-header, .post-feed .featured .post-card-excerpt {
-    width: 80%;
-  }
-  .tag-projects .post-card-header {
-    width: 90% !important;
-  }
   .line-box::before {
     margin-top: 15px;
     padding-top: 10px;
@@ -2845,26 +2662,7 @@ input::placeholder {
 
 @media (min-width: 701px) and (max-width: 1025px) {
 
-
-  .footer.outer {
-    width: 90%;
-    margin-top: 50px;
-    }
-  .footer-tags-grid {
-    border-left: none;
-    padding: 0;
-    max-width: 100%;
-    padding-top: 20px;
-    flex-direction: row; /* undo column stacking */
-    flex-wrap: wrap;
-    max-height: none;
-    gap: 1rem;
-    }
-  .footer-tag-item {
-    width: 100%;
-    margin-bottom: 0;
-    font-size: 1.2rem;
-    }  
+ 
   .grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -2885,16 +2683,6 @@ input::placeholder {
     }
   ul.section-items {
     margin-bottom: 40px;
-    }
-
-  .post-card-content p {
-    margin-top: 0;
-    margin-left: 0;
-    font-size: .8rem;
-    padding-right: 1%;
-    }
-  .post-card-header, .featured .post-card-header, .post-feed .featured .post-card-excerpt {
-    width: 90%;
     }
 
   .radio-signup {
@@ -2927,45 +2715,6 @@ input::placeholder {
 }
 
 
-@media (min-width: 900px) {
-  .hide {
-    display: block;
-    }
-  .post-card-header, .featured .post-card-header,  .tag-projects .post-card-header, .post-feed .featured .post-card-excerpt {
-    width: 80% !important;
-    }
-  h2.post-card-title {
-    margin-top: 2px;
-    line-height: .88;
-    }
-  .line-box::before {
-    margin-top: 25px;
-    padding-top: 20px;
-    }
-}
-
-
-@media (min-width: 1026px) {
-
-  h2.post-card-title {
-    margin-top: 5px;
-    line-height: .88;
-    }
-  .radio h2.post-card-title {
-    margin-top: 5px;
-    font-size: 2rem;
-    line-height: .9;
-    }
-  .radio .post-card-header {
-    width: 90% !important;
-    }
-}
-
-@media (min-width: 1280px) {
-  .post-card-inside {
-    padding: 30px;
-    }
-}
 
 
 /* 21. SimpleLightbox */
@@ -3154,9 +2903,6 @@ cite {
     padding-left: 0;
   }
 
-  .grid .post-card {
-    border-radius: 10px;
-  }
   .highlights {
     margin-top: 0;
   }
@@ -3363,12 +3109,6 @@ h3 {
     aspect-ratio: 1/1;
 }
 
-.episode-cover .post-card {
-  overflow: visible;
-  border-radius: 5px;
-  height: 100%;
-}
-
 .episode-cover img {
   width: 100%;
   height: auto;
@@ -3379,10 +3119,6 @@ h3 {
 
 .episode-cover h2 {
     font-size: 100px;
-}
-
-.episode-cover .post-card-inside {
-    padding: 40px;
 }
 
 /* Middle spacer column */
@@ -3567,10 +3303,6 @@ h3 {
         font-size: 70px;
     }
 
-    .episode-cover .post-card-inside {
-        padding: 20px;
-    }
-    
     .episode-spacer {
         display: none;
     }
@@ -3709,11 +3441,6 @@ h1.post {
 
 .radio-hero-content h5 a {
   text-decoration: none;
-}
-
-.bio .post-card img {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
 
 .bio .post-header-caption {
@@ -4033,13 +3760,6 @@ h1.post {
 .site-hero--episode .site-hero-title {
   font-size: clamp(56px, 9vw, 132px);
   line-height: 0.92;
-}
-
-/* Related-episodes grid (single-episode page) — cards are square, matching
-   the Figma. The .post-card markup is shared with other layouts that
-   render it without a fixed aspect ratio, so we constrain it here. */
-.home-sections--episodes .post-card {
-  aspect-ratio: 1 / 1;
 }
 
 .site-hero-label {
@@ -6287,6 +6007,7 @@ line-height: 1.4;}
   .archive-entry-image {
     width: 100%;
     height: auto;
+    aspect-ratio: 1/1;
   }
 
   /* Content: normal page flow under the image, no internal scroll. */
@@ -6314,7 +6035,6 @@ line-height: 1.4;}
   .archive-reader .archive-watermark-text {
     font-size: 28px;
   }
-
 
   /* Collection reader controls (prev/next/index button bar): now sticky
      to the bottom of the viewport while the reader's article is in
@@ -6362,6 +6082,9 @@ top: 5%;
     padding: 60px 6vw 16px;
   }
 
+  .mr-episode-excerpt {
+    font-size: 30px;
+  }
   /* Hide the .archive-entry-text bottom padding spacer that exists for
      desktop sticky-controls clearance — on mobile the body's own
      padding-bottom handles spacing. */
