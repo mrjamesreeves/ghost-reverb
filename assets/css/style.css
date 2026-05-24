@@ -4458,6 +4458,9 @@ li.site-footer-toc-item {
 /* ── Footer responsive ────────────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
+  .site-footer {
+    padding-top: 20px;
+  }
   .site-footer-row {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -4545,9 +4548,13 @@ body.art-diary-bg .archive-watermark-text {
 
 /* Index open: watermark fades to solid black so it reads as the active
    page identity over the lighter overlay. The existing color transition
-   carries the fade. Wins over the resting + hover rules above via :has(). */
+   carries the fade. Wins over the resting + hover rules above via :has().
+   The site-wordmark above the watermark gets the same treatment so the
+   whole stack reads as one unit. */
 .archive-reader:has(.archive-index-overlay.is-open) .archive-watermark-text,
-.archive-reader:has(.archive-index-overlay.is-open) .archive-watermark:hover .archive-watermark-text {
+.archive-reader:has(.archive-index-overlay.is-open) .archive-watermark:hover .archive-watermark-text,
+.archive-reader:has(.archive-index-overlay.is-open) .archive-watermark .site-wordmark,
+.archive-reader:has(.archive-index-overlay.is-open) .archive-watermark .site-wordmark:hover {
   color: #000 !important;
 }
 
@@ -6292,17 +6299,11 @@ line-height: 1.4;}
     justify-content: flex-start;
   }
 
-  /* Constrain the prose column to a readable measure once the layout
-     stacks. On a 768–1024px tablet the pane is the full page width;
-     without this the lines would run 600+ characters wide, which
-     destroys reading rhythm. 600px is roughly a 65-character measure
-     at 17px — the typographic sweet spot. On phones (<600px viewport)
-     the natural pane width is already narrower than 600px, so the
-     max-width simply doesn't engage. */
   .archive-entry-text {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 0;
   }
 
   /* Watermark: smaller, hugs the corner. Still overlaid on the image. */
@@ -6314,6 +6315,7 @@ line-height: 1.4;}
   .archive-reader .archive-watermark-text {
     font-size: 28px;
   }
+
 
   /* Collection reader controls (prev/next/index button bar): now sticky
      to the bottom of the viewport while the reader's article is in
