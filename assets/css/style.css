@@ -3471,9 +3471,9 @@ body.art-diary-bg .archive-watermark-text {
 
 .mr-episode-eyebrow {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 2px;
   text-transform: uppercase;
   margin: 20px 0 8px;
   color: #fff;
@@ -3522,18 +3522,6 @@ body.art-diary-bg .archive-watermark-text {
   min-height: 0;
 }
 
-/* Why padding-bottom: 0 on the pane —
-   Sticky `bottom: 0` aligns the sticky element's margin box with the
-   parent's content-box bottom, NOT its padding-box (visible) bottom.
-   At the same time, the parent's scroll viewport extends through the
-   padding-box, so overflowing content keeps scrolling and rendering in
-   the padding area below the sticky element — making the controls
-   appear to float in the middle of the prose with text bleeding below.
-   Removing the bottom padding collapses content-box bottom onto the
-   visible bottom, so the controls actually pin to the edge and nothing
-   scrolls past them. Breathing space gets moved into .archive-entry-text
-   below so the last paragraph isn't permanently hidden behind the
-   controls when you scroll to the end. */
 
 .mr-episode .archive-entry-text {
   padding-bottom: 160px;   /* Clears the controls' ~145px height + buffer */
@@ -3541,9 +3529,9 @@ body.art-diary-bg .archive-watermark-text {
 
 .mr-episode-date {
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #000;
   margin: 0 0 8px;
@@ -3681,9 +3669,9 @@ line-height: 1.4;}
 
 .mr-episode-links-clone {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #fff;
   margin: 0;
