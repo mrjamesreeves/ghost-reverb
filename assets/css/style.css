@@ -3835,8 +3835,8 @@ line-height: 1.4;}
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #fff;
+  width: 50%;
+  color: rgba(255, 255, 255, 0.85);
   pointer-events: auto;  /* parent overlays sometimes disable pointer events */
 }
 
@@ -5149,6 +5149,13 @@ line-height: 1.4;}
     padding: 14px 3%;
     margin-top: -40px;
     z-index: 5;
+    background: none;
+  }
+
+  .mr-episode .mr-episode-controls {
+    padding: 14px 3%;
+    margin-top: -40px;
+    background: none;
   }
 
   /* MR episode specifics --------------------------------------------- */
@@ -5219,7 +5226,7 @@ font-size: clamp(32px, 18vw, 96px);  }
     font-size: 14px;
   }
   .archive-entry-body p {
-    font-size: 16px;
+    font-size: 17px;
   }
   .archive-index-overlay {
     padding: 100px 24px 32px;
