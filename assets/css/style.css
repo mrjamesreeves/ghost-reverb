@@ -3460,6 +3460,9 @@ h1.post {
     height: auto;
     min-height: 400px;
   }
+}  /* end @media (max-width: 1024px) — closer was missing, which left
+      every rule below this trapped inside the query until the next
+      stray brace closed it accidentally. */
 
 /* ── Homepage responsive ──────────────────────────────────────────────────── */
 
@@ -5688,9 +5691,14 @@ font-size: clamp(32px, 18vw, 96px);  }
   .mr-episode-cover-text {
     width: 80%;
   }
-  body.comments-is-open { 
-    overflow: hidden; 
-  }
+}  /* end @media (max-width: 768px) — closing brace was accidentally
+      deleted in the "Footer quotes" commit, which trapped every rule
+      below this point inside the media query (active only ≤768px),
+      so all reader/layout CSS silently failed at desktop widths.  */
+
+body.comments-is-open {
+  overflow: hidden;
+}
 
 .about-body p {
   font-family: var(--font-serif);
