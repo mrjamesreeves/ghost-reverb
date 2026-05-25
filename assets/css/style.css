@@ -56,7 +56,7 @@
 }
 
 body.home-template .site-wordmark {
-  position: fixed;
+  position: absolute;
   top: 24px;
   left: 5vw;
   z-index: 50;
@@ -3115,8 +3115,8 @@ h1.post {
 
 li.site-footer-toc-item {
   padding-left: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   margin-bottom: 0;
 }
 
@@ -4301,7 +4301,7 @@ line-height: 1.4;}
 .archive-entry-body p {
   margin: 0 0 1em;
   font-weight: 500;
-  font-size: clamp(16px, 1.4vw, 18px);
+  font-size: 18px;
   letter-spacing: -0.1px;
 }
 
@@ -5106,6 +5106,10 @@ line-height: 1.4;}
     pointer-events: auto;
   }
 
+  .archive-entry-body p {
+    font-size: 17px;
+  }
+
   /* Collection readers (Dreams/Art/Favorites) keep all entries in DOM
      but only render the active one. Inactive entries would otherwise
      stack and leave huge empty space between them. */
@@ -5225,6 +5229,9 @@ font-size: clamp(32px, 18vw, 96px);  }
   .site-wordmark {
     margin-bottom: 5px;
     font-size: 14px;
+  }
+  .archive-entry-body p {
+    font-size: 16px;
   }
   .archive-index-overlay {
     padding: 100px 24px 32px;
