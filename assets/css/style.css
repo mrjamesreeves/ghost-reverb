@@ -347,7 +347,7 @@ p {
   }
 
 ol {
-  margin: 1em 1em 0 -0.5em;
+  margin: 1em 1em 1em -0.5em;
   padding: 0 0 0 2em;
   }
 
@@ -3541,8 +3541,8 @@ body.art-diary-bg .archive-watermark-text {
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 700;
-  color: #111;
-  margin: 2em 0 0.6em;
+  color: #000;
+  margin: 1em 0 0.5em;
 }
 
 .mr-episode-content h6 em {
