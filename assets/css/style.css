@@ -3997,7 +3997,7 @@ line-height: 1.4;}
      min (180px), then distributes leftover width evenly across them.
      On a typical 1300–1500px content width this yields 6–7 columns
      that fully stretch corner-to-corner. */
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
 }
 
