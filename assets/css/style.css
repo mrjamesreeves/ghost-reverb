@@ -56,8 +56,8 @@
 
 body.home-template .site-wordmark {
   position: absolute;
-  top: 24px;
-  left: 5vw;
+  top: 34px;
+  left: 6.2vw;
   z-index: 50;
   margin: 0;
 }
@@ -2732,12 +2732,13 @@ h1.post {
 
 .site-hero {
   position: relative;
-  width: 100%;
-  height: 88vh;
+  width: auto;
+  height: 90vh;
   min-height: 400px;
   overflow: hidden;
   background: #111;
   transition: all 1s ease;
+  margin: 25px;
 }
 
 /* Hover effects fire only when the link (text + CTA) is hovered — clicking
@@ -2994,6 +2995,8 @@ h1.post {
     aspect-ratio: 1/1;
     height: auto;
     min-height: 400px;
+    margin: 0;
+    width: 100%;
   }
   .site-hero-cta {
     margin-top: 15px;
