@@ -96,7 +96,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   --type-h3: 1.7rem;
   --type-h4: 1.1rem;
   --type-blurb: 1.7rem;
-  --type-body: 18.4px;
+  --type-body: 18px;
   --type-body-m: 16px;
   --type-body-sm: 14px;
   --type-body-xs: 12px;
@@ -933,7 +933,7 @@ ul.section-items li::marker {
 }
 
 .post-header-caption, caption,
-figcaption, .kg-card figcaption {
+figcaption, .kg-card figcaption, figcaption p {
   color: var(--color-text-muted);
     font-size: 11px;
     text-align: left;
@@ -1271,7 +1271,7 @@ p a:hover {
   line-height: 1.4;
   font-family: var(--font-sans);
   font-size: 12px;
-  margin: 0 !important;
+  margin: 0 0 0 5px !important;
   padding-left: 0;
   padding-bottom: 5px;
   padding-top: 5px;
