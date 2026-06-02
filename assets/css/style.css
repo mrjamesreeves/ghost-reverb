@@ -935,9 +935,10 @@ ul.section-items li::marker {
 .post-header-caption, caption,
 figcaption, .kg-card figcaption, figcaption p {
   color: var(--color-text-muted);
-    font-size: 11px !important;
-    text-align: left;
-    padding-top: 5px;
+  font-size: 12px !important;
+  text-align: left;
+  padding-top: 5px;
+  font-family: var(--font-sans) !important;
   }
 
 .post-header-caption a {
