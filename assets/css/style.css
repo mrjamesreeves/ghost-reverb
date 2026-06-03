@@ -3768,8 +3768,8 @@ line-height: 1.4;}
 /* Dark background for the section. Lives on <main>, not <body>, so the
    footer below keeps its existing light treatment. */
 .mr-landing {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   min-height: 100vh;
   padding: 0 5% 80px;
   box-sizing: border-box;
@@ -3938,7 +3938,7 @@ line-height: 1.4;}
   font: inherit;
   cursor: pointer;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+  color: #000;
   transition: color 0.2s ease;
 }
 
@@ -3951,7 +3951,7 @@ line-height: 1.4;}
   bottom: 0;
   width: 0;
   height: 1px;
-  background: #fff;
+  background: #000
   transition: width 0.25s ease;
 }
 
@@ -3962,14 +3962,14 @@ line-height: 1.4;}
 
 .mr-filter:hover,
 .mr-filter.is-active {
-  color: #fff;
+  color: #000;
   background: none;             /* Defeat any global button:hover bg. */
 }
 
 /* The "All Episodes" pill is slightly bolder so the count reads clearly. */
 #mrFilterAll {
   font-weight: 600;
-  color: #fff;
+  color: #000;
 }
 
 /* Kill the default focus ring. Keep keyboard a11y via :focus-visible. */
@@ -3977,12 +3977,12 @@ line-height: 1.4;}
   outline: none;
 }
 .mr-filter:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #000;
   outline-offset: 4px;
 }
 
 .mr-filter-sep {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(0, 0, 0, 0.25);
   user-select: none;
 }
 
