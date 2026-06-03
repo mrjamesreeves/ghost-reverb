@@ -3951,7 +3951,7 @@ line-height: 1.4;}
   bottom: 0;
   width: 0;
   height: 1px;
-  background: #000
+  background: #000;
   transition: width 0.25s ease;
 }
 
@@ -3999,7 +3999,7 @@ line-height: 1.4;}
      On a typical 1300–1500px content width this yields 6–7 columns
      that fully stretch corner-to-corner. */
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .mr-landing-tile[hidden] {
@@ -4021,7 +4021,7 @@ line-height: 1.4;}
 
 ::view-transition-old(.mr-landing-tile),
 ::view-transition-new(.mr-landing-tile) {
-  animation-duration: 0.25s;
+  animation-duration: 0.2s;
 }
 
 /* Respect user preference: skip the motion if reduced-motion is on. */
