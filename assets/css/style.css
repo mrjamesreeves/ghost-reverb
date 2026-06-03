@@ -452,7 +452,8 @@ pre {
 
 /* Blockquotes */
 blockquote {
-  font-size: inherit;          /* Match whatever body text size is in this context. */
+  font-size: var(--type-body); 
+  font-weight: 500;
   line-height: 1.55;
   margin-left: 0;
   margin-top: 1.6rem;
@@ -4275,7 +4276,6 @@ line-height: 1.4;}
 .archive-entry-body p {
   margin: 0 0 1em;
   font-weight: 500;
-  font-size: 18px;
   letter-spacing: -0.1px;
 }
 
