@@ -1,0 +1,12 @@
+{{!-- Newer and older posts links --}}
+<nav class="pagination">
+    {{#if prev}}
+        <a class="pagination-prev button button-icon button-outlined" href="{{page_url prev}}" aria-label="{{t "Newer Posts"}}">{{> "icons/chevron-left"}}</a>
+    {{/if}}
+    <span class="pagination-page-number">{{t "Page {page} of {pages}" page=page pages=pages}}         {{#tag}}
+            <div class="archive-meta">{{plural ../pagination.total empty=(t "No posts tagged") singular=(t "% post tagged") plural=(t "% Entries")}}</div>
+        {{/tag}}</span>
+    {{#if next}}
+        <a class="pagination-next button button-icon button-outlined" href="{{page_url next}}" aria-label="{{t "Older Posts"}}">{{> "icons/chevron-right"}}</a>
+    {{/if}}
+</nav>

@@ -1,0 +1,49 @@
+{{!-- Navigation menu items --}}
+
+
+{{!-- FOOTER --}}
+{{#if isSecondary}}
+    <nav class="navbar-menu" aria-label="{{t "Footer Navigation"}}">
+        <ul class="menu">
+            {{#foreach navigation to="3"}}
+                <h5 class="menu-item menu-item-{{slug}}"><a href="{{url absolute="true"}}">{{label}}</a></h5>
+            {{/foreach}}
+        </ul>
+    </nav>
+<!--
+    <nav class="navbar-menu" aria-label="{{t "Footer Navigation"}}">
+        <ul class="menu">
+            {{#foreach navigation from="4" to="6"}}
+                <h5 class="menu-item menu-item-{{slug}}"><a href="{{url absolute="true"}}">{{label}}</a></h5>
+            {{/foreach}}
+        </ul>
+    </nav> -->
+
+    <nav class="navbar-menu" aria-label="{{t "Footer Navigation"}}">
+        <ul class="menu">
+            {{#foreach navigation from="7" to="9"}}
+                <h5 class="menu-item menu-item-{{slug}}"><a href="{{url absolute="true"}}">{{label}}</a></h5>
+            {{/foreach}}
+        </ul>
+    </nav>
+{{else}}
+
+{{!-- HEADER --}}
+    <nav class="navbar-menu" aria-label="{{t "Main Navigation"}}">
+        <ul class="menu">
+            {{#foreach navigation to="3"}}
+            <h5 class="menu-item{{#if current}} menu-item-current{{/if}}"><a href="{{url absolute="true"}}">{{label}}</a></h5>
+            {{/foreach}}
+        </ul>
+    </nav>
+
+<!--
+    <nav class="navbar-menu navbar-menu-last" aria-label="{{t "Main Navigation"}}">
+        <ul class="menu">
+            {{#foreach navigation from="4"}}
+            <h5 class="menu-item{{#if current}} menu-item-current{{/if}}"><a href="{{url absolute="true"}}">{{label}}</a></h5>
+            {{/foreach}}      
+        </ul>
+    </nav> -->
+
+{{/if}}
