@@ -5,16 +5,19 @@
      one entry visible at a time, image left, body right, prev/next
      controls, index overlay listing every tagged post.
 
-     Tag context provides {{tag.name}} and {{tag.slug}} — we use the
-     slug as the {{#get}} filter (instead of Ghost's default paginated
-     posts loop) so the reader has every tagged post in one document
-     and the JS can fade through them all without page reloads. --}}
+     `posts` here is the implicit collection Ghost provides on tag
+     pages (already filtered to this tag). We don't use {{#get}}
+     because its `filter` parameter is a string literal — Handlebars
+     interpolation inside the string doesn't resolve (every other
+     {{#get}} in the theme uses hardcoded tag names for that reason).
+
+     Pagination: defaults to package.json's `posts_per_page` (12). If
+     a tag accumulates more posts than that, only the first page
+     renders. Acceptable for now; revisit if any tag outgrows it. --}}
 
 <script>document.body.classList.add('has-archive-reader');</script>
 
 <main id="main" class="archive-page tag-page">
-
-  {{#get "posts" filter="tag:{{tag.slug}}" limit="all" order="published_at desc"}}
 
   <div class="archive-reader" id="archiveReader">
 
@@ -95,8 +98,6 @@
     </div>
 
   </div>{{!-- end .archive-reader --}}
-
-  {{/get}}
 
 </main>
 

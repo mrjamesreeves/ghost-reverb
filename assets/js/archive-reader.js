@@ -151,4 +151,12 @@
   updateCounter(current);
   updateNav(current);
 
+  // Direct link to open the index overlay on load: append #index to any
+  // reader URL (e.g. /tag/old-mixtapes/#index, /dreams/#index). Useful
+  // for sharing the "browse all" view directly. Defers a tick so the
+  // overlay's intro transition has a chance to fire.
+  if (window.location.hash === '#index') {
+    setTimeout(openIndex, 0);
+  }
+
 })();
