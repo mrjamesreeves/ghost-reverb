@@ -1269,7 +1269,7 @@ p a:hover {
   line-height: 1;
   }
 
-.tag-midnight-radio ol li {
+.tag-midnight-radio ol li, .tag-old-mixtapes ol li  {
   line-height: 1.4;
   font-family: var(--font-sans);
   font-size: 12px;
@@ -1279,7 +1279,7 @@ p a:hover {
   padding-top: 5px;
 }
 
-.tag-midnight-radio ol li strong {
+.tag-midnight-radio ol li strong, .tag-old-mixtapes ol li strong {
   font-size: 16px;
   color: var(--color-text);
 }
@@ -2118,10 +2118,10 @@ input::placeholder {
   .footer.outer {
     margin-top: 40px;
     }
-.tag-midnight-radio ol li strong {
+  .tag-midnight-radio ol li strong, .tag-old-mixtapes ol li strong {
     font-size: var(--type-body-sm);
     }
-  .tag-midnight-radio .post-content ol li {
+  .tag-midnight-radio .post-content ol li, .tag-old-mixtapes .post-content ol li  {
     font-size: var(--type-body-xs);
     }
   .overlay {
