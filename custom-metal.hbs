@@ -483,21 +483,16 @@ body.page-spite-terms-privacy .spite-features-only {
     <!-- Hero: title, subhead, buttons, screenshots -->
     <div class="spite-hero">
         <div class="spite-hero-header">
-            <h1>Spite</h1>
-            <p class="spite-subhead">A dignified music player.</p>
-            <div class="spite-download-buttons mob-hide">
+            <h1>Metal</h1>
+            <p class="spite-subhead">A weightlifting tracker with no subscription, streaks, opinions, usernames, nudges, algorithms, or affirmations.</p>
+            <!-- <div class="spite-download-buttons mob-hide">
                 <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
-            </div>
+            </div> -->
         </div>
 
         <div class="spite-screenshot">
-            <img src="{{asset "spite/spite1.webp"}}" alt="Spite" class="active">
-            <img src="{{asset "spite/spite2.webp"}}" alt="Spite">
-            <img src="{{asset "spite/spite3.webp"}}" alt="Spite">
-            <img src="{{asset "spite/spite4.webp"}}" alt="Spite">
+            <img src="{{asset "metal/metal.webp"}}" alt="Spite" class="active">
         </div>
-        <img src="{{asset "spite/spite-mobile.webp"}}" alt="Spite" class="spite-screenshot-mobile">
-
     </div>
 
     <div class="radio-content-wrapper">
@@ -505,27 +500,7 @@ body.page-spite-terms-privacy .spite-features-only {
         <div class="inner-wide">
             <div class="spite-content" id="spite-content">
 
-                <p class="spite-price">Free for 30 days, then buy it for $10 for Mac + iOS. No subscriptions. No freemium bullshit.</p>
-
-                <!-- Pill navigation -->
-                <nav class="app-nav">
-                    <a href="/spite/#spite-content" data-slug="spite">Features</a>
-                   <!-- <a href="/spite-test-center/" data-slug="spite-test-center">Updates + Support</a> -->
-                    <a href="/spite-terms-privacy/#spite-content" data-slug="spite-terms-privacy">Terms + Privacy</a>
-                    <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
-                </nav>
-                <script>
-                // Highlight active nav item
-                (function() {
-                    const currentSlug = '{{slug}}';
-                    const links = document.querySelectorAll('.app-nav a[data-slug]');
-                    links.forEach(link => {
-                        if (link.getAttribute('data-slug') === currentSlug) {
-                            link.classList.add('active');
-                        }
-                    });
-                })();
-                </script>
+                <p class="spite-price">Free for 30 days, then buy it for $5. No subscriptions. No freemium bullshit.</p>
 
                 {{content}}
             </div>
@@ -677,99 +652,11 @@ body.page-spite-terms-privacy .spite-features-only {
   }
 </style>
 
-<div class="spite-strip-outer spite-features-only">
-  <div class="spite-strip" id="spiteStrip">
-
-    <!-- Spacer to indent the first card -->
-    <div class="spite-strip-spacer"></div>
-
-    <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite-custom.webp"}}" alt="Spite Custom">
-      </div>
-      <p class="spite-strip-label">Customize your mixtapes with your own artwork. Or <a href="https://www.artic.edu/artworks/120172/penitent-saint-peter">Jusepe de Ribera's</a>.</p>
-    </div>
-
-       <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite-labels.webp"}}" alt="RecordLabels">
-      </div>
-      <p class="spite-strip-label">Organize by record label</p>
-    </div>
-
-       <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite-seasonal.webp"}}" alt="RecordLabels">
-      </div>
-      <p class="spite-strip-label">Monthly updates and delightful seasonal artwork</p>
-    </div>
-
-       <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite-seasonal-mobile.webp"}}" alt="RecordLabels">
-      </div>
-    </div>
-
-            <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite6.webp"}}" alt="Spite iPad">
-      </div>
-      <p class="spite-strip-label">Looks smart on an iPad</p>
-    </div>
-
-        <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite-carplay.webp"}}" alt="Spite CarPlay">
-      </div>
-      <p class="spite-strip-label">CarPlay</p>
-    </div>
-
-     <div class="spite-strip-card">
-      <div class="spite-strip-image">
-        <img src="{{asset "spite/spite-ipad.webp"}}" alt="Spite iPad">
-      </div>
-      <p class="spite-strip-label">Customize the background across devices</p>
-    </div>
-
-  </div>
-  <div class="spite-strip-scrollbar">
-    <div class="spite-strip-scrollbar-thumb" id="spiteStripThumb"></div>
-  </div>
-</div>
 
 
-<script>
-// Mouse drag to scroll
-(function () {
-  const strip = document.getElementById('spiteStrip');
-  let isDown = false, startX, scrollLeft;
 
-  strip.addEventListener('mousedown', e => {
-    isDown = true;
-    strip.classList.add('is-grabbing');
-    startX = e.pageX;    
-    scrollLeft = strip.scrollLeft;
-  });
 
-  strip.addEventListener('mouseleave', () => {
-    isDown = false;
-    strip.classList.remove('is-grabbing');
-  });
 
-  strip.addEventListener('mouseup', () => {
-    isDown = false;
-    strip.classList.remove('is-grabbing');
-  });
-
-  strip.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX;
-    const walk = (x - startX) * 1.5;
-    strip.scrollLeft = scrollLeft - walk;
-  });
-})();
-</script>
 
 <script>
 // Scrollbar indicator
@@ -868,66 +755,13 @@ body.page-spite-terms-privacy .spite-features-only {
         <div class="inner-wide">
             <div class="spite-content">
 
-                <h3 id="features-conditions">Philosophy</h3>
-                <ol>
-                    <li>No subscriptions, user accounts, creepy data harvesting, or upsells. Ever.</li>
-                    <li>No recommendations or algorithms. Taste is your problem.</li>
-                    <li>Monthly updates with continual improvements and seasonal artwork.</li>
-                    <li>All proceeds are used to buy more mp3s from artists on Boomkat and Bandcamp because that's the circle of life.</li>
-                </ol>
-                <h3 id="features-conditions">Features</h3>
-                <ul>
-                    <li>Apple only. MacOS + iOS 26+</li>
-                    <li>Requires iCloud or Dropbox for telephone sync.</li>
-                    <li>Supports all the good extensions: mp3, flac, wav, aiff, aac, m4a, and opus.</li>
-                    <li>A streamlined interface that keeps artwork big and playlists central.</li>
-                    <li>Add custom artwork for your playlists and dig the harmonious accent colors.</li>
-                    <li>Everything you like is fantastic, so there's no need for hearts or stars—just a delete button to ruthlessly clear out the cruft.</li>
-                    <li>XML is the way. Playlists live in a folder you can see.</li>
-                    <li>Works with CarPlay.</li>
-                    <li>Looks nice on an iPad.</li>
-                    <li>Last.FM integration like it's 2006. Wire it up under 'Settings' and set your scrobbles for the heart of the sun.&nbsp;</li>
-                    <li>Deepen your relationships (or destroy them) by sharing your music library. Everything the other person adds or deletes will affect you and vice versa. It's a good conversation starter.</li>
-                    <li>Spite has been tested for up to 20,000 songs. It should perform admirably with more than that, but really, if your library has over 20,000 songs that’s too many songs. That’s like three months of music not including sleep. But there's a 30-day trial period for you to decide if Spite will satisfy your digital hoarding.</li>
-                    <li>Built by a tremendous music nerd who wants to organize albums by record label, quickly shuffle new acquisitions, and easily access a metadata editor. You're welcome.</li>
-                    <li>After a 30-day trial, Spite costs $10—then it's unlocked on your desktop, iPhone, and iPad, free forever and ever with ongoing updates from a compulsive tinkerer.</li>
-                    <li>Practice equanimity in the face of a chaotic universe: Spite selects ten random songs from your library for a special zen mixtape. Changes at midnight because nothing is permanent.</li>
-                    <li>Keep your latest acquisitions with you at all times thanks to the Superfresh playlist.</li>
-                </ul>
-                <h3 id="features-conditions">v7.0 • June 27, 2026</h3>
-                <ul>
-                    <li>Browse your entire library from the comfort of your telephone.</li> 
-                    <li>Make new mixtapes on your telephone.</li>
-                    <li>Is your music library cannibalizing your telephone's memory? Good. But if you think this is a problem, you can set a storage cap under Settings.</li>
-                    <li>Nicer mixtape management—deal with multiple playlists at once!</li>
-                    <li>Ghosts exorcised, freezes fixed, and performance enhanced.</li>
-                    <li>Smarter file management, better deletion, and more satisfying clicks.</li>
-                    <li>New library organization possibilities. Find them under Settings.</li>
-                    <li>In a hurry? Drag your songs directly into the Spite app.</li>
-		            <li>Barely perceptible design tweaks that will nonetheless be *felt*</li>
-                    <li>Shuffle your most recent acquisitions. Adjust the threshold in Settings.</li>
-                    <li>New seasonal artwork for high summer from <a href="https://www.metmuseum.org/art/collection/search/853219">Suzuki Kiitsu ca. 1850</a></li>
-                </ul>
+
                 <p>If you have questions, complaints, revelations, or other psychic upheavels, leave a comment below or <a href="mailto:james@jamesreeves.co">email me</a>.</p>
                 
 
 
-                    <div class="icon">
-                        <img src="{{asset "spite/spite-icon.webp"}}" alt="Spite" class="icon-img" alt="" loading="lazy" width="100" height="100">            
-                        <h3 id="icon">About the icon</h3>
-                        <p>This fragmented head of a colossal boy from two thousand years ago captures today’s psychic shred and shear better than anything I’ve seen.</p>
-                    </div>
-
-                    <div class="spite-bottom-download">
-                        <div class="spite-download-buttons">
-                            <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
-                        </div>
-                    </div>
-
-
-                        <div class="spite-credits">
-                            <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
-                        </div>
+                
+                
 
                         <div class="meta inner">
                             <div class="comment-box">
