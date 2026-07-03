@@ -1,0 +1,984 @@
+{{!< default}}
+
+<style>
+
+/* ---- SPITE SITE Typography overrides ---- */
+
+.kg-toggle-card {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    }
+.kg-image-card img {
+    margin-left: 0;
+    width: 150px;
+    margin-bottom: -50px;
+    margin-top: 50px;
+    }
+
+#icon {
+    margin-bottom: 10px !important;
+    }
+
+h1 {
+    margin-top: 20px;
+    color: var(--color-hover);
+    }
+
+h2 {
+color: #000;
+margin-top: 60px;
+font-size: 40px;
+margin-bottom: 10px;
+    }
+
+h3 {
+    font-size: 20px;
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 700 !important;
+    margin-top: 50px;
+    }
+
+h4 {
+    font-size: var(--type-body);
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 700 !important;
+    margin-top: 20px;
+    }
+
+h5 + h2 {
+    margin-top: 0px;
+    }
+
+h3:first-of-type {
+    margin-top: 0;
+    }
+
+blockquote {
+    padding-left: 0;
+    margin-top: 50px;
+    border-left: none;
+    }
+
+blockquote h1 {
+    font-size: 60px;
+    line-height: .9;
+    color: #222;
+    }
+
+blockquote cite {
+    color: #333;
+    }
+
+.comments-area.inner {
+    max-width: 700px;
+    }
+
+p {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    }
+
+ul, ol {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    }
+
+li {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: var(--type-body);
+    font-family: var(--font-sans) !important;
+    }
+
+ul li::marker {
+    color: #444;
+    }
+
+.post-content ol li, .post-content ul li {
+    font-family: var(--font-sans);
+    padding-bottom: 8px;
+    }
+
+li::marker {
+    font-size: 13px;
+    }
+
+a, a:hover {
+    background-image: none;
+    }
+
+li a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.5px;
+    }
+
+li.site-footer-toc-item a {
+    text-decoration: none;
+}
+
+h3 + ol, h3 + ul, h4 + ul {
+    margin-top: 25px !important;
+    }
+
+p + ul {
+    margin-top: -15px !important;
+    }
+
+strong {
+    color: var(--color-hover);
+    font-weight: 700;
+    }
+
+h6 {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.7;
+    padding-left: 20px;
+    border-left: 3px solid var(--color-text);
+    }
+
+h6 a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.5px;
+    font-size: 13px;
+    font-weight: 400;
+    }
+
+h5.kg-toggle-heading-text {
+    font-size: 16px !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-weight: 600;
+}
+
+.kg-toggle-card-icon svg {
+    color: #fff;
+    }
+
+/* ---- Hide default post header ---- */
+
+.post-header-content {
+    text-align: left;
+    display: none;
+    }
+
+.post-header-content + .post-content > p:first-child {
+    display: none;
+    }
+
+.footer-tags {
+    display: none;
+    }
+
+/* ---- Hero ---- */
+
+.spite-hero {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 40px;
+    text-align: center;
+    padding: 60px 5% 0;
+    box-sizing: border-box;
+    }
+
+.spite-hero-header {
+    margin-bottom: 80px;
+    }
+
+.spite-hero-header h1 {
+    font-family: var(--font-big);
+    font-size: 9rem;
+    padding-top: 50px;
+    text-transform: uppercase;
+    }
+
+.spite-subhead {
+    font-size: 2rem;
+    font-family: var(--font-sans);
+    color: var(--color-hover);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    }
+
+/* Download buttons (outline style) */
+
+.spite-download-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    }
+
+.spite-download-buttons a {
+    display: inline-block;
+    padding: 8px 24px 10px 24px;
+    border: 1px solid var(--color-hover);
+    background-color: var(--color-hover);
+    font-weight: 700;
+    font-family: var(--font-sans);
+    color: var(--color-inverse) !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    line-height: 1;
+    letter-spacing: -.2px;
+    border-radius: 5px;
+    }
+
+.spite-download-buttons a:hover {
+    border: 1px solid var(--color-hover);
+    background: var(--color-inverse);
+    color: var(--color-hover) !important;
+    }
+
+/* Screenshot carousel */
+
+.spite-screenshot-mobile {
+    display: none;
+    width: 100%;
+    }
+
+.spite-screenshot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 300 / 135;
+    overflow: hidden;
+    }
+
+.spite-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    }
+
+.spite-screenshot img:first-child {
+    position: relative;
+    opacity: 1;
+    }
+
+.spite-screenshot img.active {
+    opacity: 1;
+    }
+
+/* Price line */
+
+.spite-price {
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--color-text-hover);
+    margin-top: 30px;
+    font-family: var(--font-sans);
+    }
+
+/* ---- Nav (pill buttons) ---- */
+
+.app-nav {
+    display: flex;
+    gap: 5px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: none;
+    padding: 0;
+    width: 100%;
+    }
+
+.app-nav a {
+    flex: auto;
+    text-align: center;
+    padding: 7px 20px 8px 20px;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    color: var(--color-inverse);
+    text-decoration: none;
+    border: 1px solid var(--color-hover);
+    background-color: var(--color-hover);
+    transition: all 0.2s ease;
+    font-size: 15px;
+    border-radius: 5px;
+    }
+
+.app-nav a:hover {
+    color: var(--color-hover) !important;
+    text-decoration: none;
+    background-size: 0;
+    background-color: transparent;
+    border: 1px solid var(--color-hover);
+    }
+
+.app-nav a.active {
+    color: var(--color-hover) !important;
+    text-decoration: none;
+    background-size: 0;
+    background-color: transparent;
+    border: 1px solid var(--color-hover);
+    }
+
+/* ---- Content (single centered column) ---- */
+
+.spite-content {
+    max-width: 650px;
+    margin: 0 auto;
+    padding-top: 20px;
+    scroll-margin-top: 30px;
+    }
+
+html {
+    scroll-behavior: smooth;
+    }
+
+.spite-credits {
+    margin-top: 60px;
+    }
+
+.meta {
+    margin-top: 0;
+    margin-bottom: 60px;
+    }
+/* Bottom download section */
+
+.spite-bottom-download {
+    text-align: center;
+    margin-top: 50px;
+    }
+
+.spite-bottom-download .spite-download-buttons {
+    justify-content: flex-start;
+    }
+
+.icon .icon-img {
+    width: 80px;
+    margin-top: 40px;
+    border-radius: 12px;
+}
+
+.icon h3 {
+    padding-top: 10px;
+    }
+
+
+/* ---- Responsive ---- */
+
+@media (max-width: 700px) {
+    .spite-hero {
+        padding: 40px 5% 0;
+        margin-bottom: 20px;
+        }
+
+    .spite-hero-header h1 {
+        font-size: 4.5rem;
+        width: 100%;
+        }
+
+    .spite-subhead {
+        font-size: 1.1rem;
+        }
+
+    .spite-download-buttons {
+        align-items: center;
+        }
+
+    .spite-download-buttons a {
+        font-size: 14px;
+        text-align: center;
+        }
+
+    .spite-screenshot {
+        display: none;
+        }
+
+    .spite-screenshot-mobile {
+        display: block;
+        }
+
+    .spite-screenshot img {
+        position: relative !important;
+        }
+
+    .app-nav {
+        gap: 8px;
+        }
+
+    .app-nav a {
+        font-size: 12px;
+        padding: 5px 16px 6px;
+        }
+
+    ul, ol {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 20px;
+        }
+
+    p, ul li, ol li { font-size: 14px; }
+
+     ul li, ol li { padding-left: 5px; }
+
+
+    p { margin-bottom: 10px; }
+
+    h2 { font-size: 36px; margin-top: 50px; }
+
+    blockquote h1 { font-size: 30px; }
+    blockquote { padding-left: 0; border-left: none; }
+
+    .spite-hero-header {
+        margin-bottom: 20px;
+        }
+
+    .spite-price {
+        text-align: left;
+        font-size: 14px;
+        font-weight: 500 !important;
+        color: var(--color-text-hover);
+        margin-top: 20px;
+        font-family: var(--font-sans);
+        }
+
+    .spite-content {
+        padding-top: 0px;  
+        }
+
+    .mob-hide {
+        display: none;
+        }
+
+    .kg-card {
+        margin-top: 0px;
+}
+
+/* Hide strip + features block on non-features pages */
+body.page-spite-terms-privacy .spite-features-only {
+    display: none;
+    }
+}
+</style>
+
+<script>document.body.classList.add('page-{{slug}}');</script>
+
+<main id="main" class="content outer radio-page">
+
+    {{> "site-wordmark"}}
+
+    {{#post}}
+
+    <!-- Hero: title, subhead, buttons, screenshots -->
+    <div class="spite-hero">
+        <div class="spite-hero-header">
+            <h1>Spite</h1>
+            <p class="spite-subhead">A dignified music player.</p>
+            <div class="spite-download-buttons mob-hide">
+                <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
+            </div>
+        </div>
+
+        <div class="spite-screenshot">
+            <img src="{{asset "spite/spite1.webp"}}" alt="Spite" class="active">
+            <img src="{{asset "spite/spite2.webp"}}" alt="Spite">
+            <img src="{{asset "spite/spite3.webp"}}" alt="Spite">
+            <img src="{{asset "spite/spite4.webp"}}" alt="Spite">
+        </div>
+        <img src="{{asset "spite/spite-mobile.webp"}}" alt="Spite" class="spite-screenshot-mobile">
+
+    </div>
+
+    <div class="radio-content-wrapper">
+
+        <div class="inner-wide">
+            <div class="spite-content" id="spite-content">
+
+                <p class="spite-price">Free for 30 days, then buy it for $10 for Mac + iOS. No subscriptions. No freemium bullshit.</p>
+
+                <!-- Pill navigation -->
+                <nav class="app-nav">
+                    <a href="/spite/#spite-content" data-slug="spite">Features</a>
+                   <!-- <a href="/spite-test-center/" data-slug="spite-test-center">Updates + Support</a> -->
+                    <a href="/spite-terms-privacy/#spite-content" data-slug="spite-terms-privacy">Terms + Privacy</a>
+                    <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
+                </nav>
+                <script>
+                // Highlight active nav item
+                (function() {
+                    const currentSlug = '{{slug}}';
+                    const links = document.querySelectorAll('.app-nav a[data-slug]');
+                    links.forEach(link => {
+                        if (link.getAttribute('data-slug') === currentSlug) {
+                            link.classList.add('active');
+                        }
+                    });
+                })();
+                </script>
+
+                {{content}}
+            </div>
+
+        </div>            
+
+    </div>
+
+
+
+
+</main>
+
+<style>
+  :root {
+    --strip-height: 460px;
+    --strip-height-mobile: 260px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  /* ── Strip wrapper ── */
+
+  .spite-strip-outer {
+    width: 100%;
+    overflow: hidden;         /* hides scrollbar chrome */
+    position: relative;
+    padding-top: 60px;
+  }
+
+  .spite-strip {
+    display: flex;
+    gap: 30px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;           /* Firefox */
+    padding: 0;
+    padding-right: calc(5% + 80px); /* extra right so last card isn't hidden by fade */
+  }
+
+  .spite-strip::-webkit-scrollbar { display: none; }
+  .spite-strip.is-grabbing { cursor: grabbing; }
+
+  /* Left indent spacer — flex item so it scrolls with the strip */
+  .spite-strip-spacer {
+    flex-shrink: 0;
+    width: 10vw;
+    scroll-snap-align: start;
+  }
+
+  /* ── Cards ── */
+
+  .spite-strip-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .spite-strip-image {
+    height: var(--strip-height);
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Card width is driven by the image's natural aspect ratio */
+  .spite-strip-image img {
+    height: 100%;
+    width: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .spite-strip-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+    padding-left: 2px;
+    text-align: center;
+  }
+
+  /* ── Scrollbar indicator ── */
+
+  .spite-strip-scrollbar {
+    position: relative;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    max-width: 60%;
+    margin: 30px auto 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .spite-strip-scrollbar-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 5px;
+    border-radius: 6px;
+    background: var(--color-text);
+    transition: background 0.2s ease;
+    cursor: grab;
+    left: 0;
+    min-width: 40px;
+  }
+
+  .spite-strip-scrollbar-thumb:hover,
+  .spite-strip-scrollbar-thumb.is-dragging {
+    background: var(--color-hover);
+  }
+
+  .spite-strip-scrollbar-thumb.is-dragging {
+    cursor: grabbing;
+  }
+
+  /* ── Responsive ── */
+
+  @media (max-width: 700px) {
+    :root { --strip-height: 320px; }
+
+    .spite-strip-scrollbar {
+      margin: 20px auto;
+    }
+
+    .spite-strip-outer::after {
+      width: 50px;
+      height: calc(var(--strip-height) + 36px);
+    }
+
+    .kg-image-card img {
+        width: 80px;
+        }
+
+    .comments-area .kg-card {
+        margin-top: 20px;
+     }
+
+    .spite-strip-outer {
+        padding-top: 0;
+    }
+  }
+</style>
+
+<div class="spite-strip-outer spite-features-only">
+  <div class="spite-strip" id="spiteStrip">
+
+    <!-- Spacer to indent the first card -->
+    <div class="spite-strip-spacer"></div>
+
+    <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-custom.webp"}}" alt="Spite Custom">
+      </div>
+      <p class="spite-strip-label">Customize your mixtapes with your own artwork. Or <a href="https://www.artic.edu/artworks/120172/penitent-saint-peter">Jusepe de Ribera's</a>.</p>
+    </div>
+
+       <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-labels.webp"}}" alt="RecordLabels">
+      </div>
+      <p class="spite-strip-label">Organize by record label</p>
+    </div>
+
+       <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-seasonal.webp"}}" alt="RecordLabels">
+      </div>
+      <p class="spite-strip-label">Monthly updates and delightful seasonal artwork</p>
+    </div>
+
+       <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-seasonal-mobile.webp"}}" alt="RecordLabels">
+      </div>
+    </div>
+
+            <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite6.webp"}}" alt="Spite iPad">
+      </div>
+      <p class="spite-strip-label">Looks smart on an iPad</p>
+    </div>
+
+        <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-carplay.webp"}}" alt="Spite CarPlay">
+      </div>
+      <p class="spite-strip-label">CarPlay</p>
+    </div>
+
+     <div class="spite-strip-card">
+      <div class="spite-strip-image">
+        <img src="{{asset "spite/spite-ipad.webp"}}" alt="Spite iPad">
+      </div>
+      <p class="spite-strip-label">Customize the background across devices</p>
+    </div>
+
+  </div>
+  <div class="spite-strip-scrollbar">
+    <div class="spite-strip-scrollbar-thumb" id="spiteStripThumb"></div>
+  </div>
+</div>
+
+
+<script>
+// Mouse drag to scroll
+(function () {
+  const strip = document.getElementById('spiteStrip');
+  let isDown = false, startX, scrollLeft;
+
+  strip.addEventListener('mousedown', e => {
+    isDown = true;
+    strip.classList.add('is-grabbing');
+    startX = e.pageX;    
+    scrollLeft = strip.scrollLeft;
+  });
+
+  strip.addEventListener('mouseleave', () => {
+    isDown = false;
+    strip.classList.remove('is-grabbing');
+  });
+
+  strip.addEventListener('mouseup', () => {
+    isDown = false;
+    strip.classList.remove('is-grabbing');
+  });
+
+  strip.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const walk = (x - startX) * 1.5;
+    strip.scrollLeft = scrollLeft - walk;
+  });
+})();
+</script>
+
+<script>
+// Scrollbar indicator
+(function () {
+  const strip = document.getElementById('spiteStrip');
+  const thumb = document.getElementById('spiteStripThumb');
+  const track = thumb.parentElement;
+
+  function updateThumb() {
+    const scrollW = strip.scrollWidth - strip.clientWidth;
+    if (scrollW <= 0) { track.style.display = 'none'; return; }
+    track.style.display = '';
+    const ratio = strip.clientWidth / strip.scrollWidth;
+    const thumbW = Math.max(40, track.clientWidth * ratio);
+    const maxLeft = track.clientWidth - thumbW;
+    const progress = strip.scrollLeft / scrollW;
+    thumb.style.width = thumbW + 'px';
+    thumb.style.left = (maxLeft * progress) + 'px';
+  }
+
+  strip.addEventListener('scroll', updateThumb);
+  window.addEventListener('resize', updateThumb);
+  updateThumb();
+
+  // Recalculate once images load (scrollWidth changes)
+  strip.querySelectorAll('img').forEach(function (img) {
+    img.addEventListener('load', updateThumb);
+  });
+
+  // Click on track to jump
+  track.addEventListener('click', function (e) {
+    if (e.target === thumb) return;
+    const rect = track.getBoundingClientRect();
+    const clickRatio = (e.clientX - rect.left) / rect.width;
+    const scrollW = strip.scrollWidth - strip.clientWidth;
+    strip.scrollTo({ left: scrollW * clickRatio, behavior: 'smooth' });
+  });
+
+  // Drag the thumb
+  let isDragging = false, dragStartX, dragStartScroll;
+
+  thumb.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartScroll = strip.scrollLeft;
+    thumb.classList.add('is-dragging');
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    const trackW = track.clientWidth;
+    const ratio = strip.scrollWidth / trackW;
+    strip.scrollLeft = dragStartScroll + dx * ratio;
+  });
+
+  document.addEventListener('mouseup', function () {
+    if (isDragging) {
+      isDragging = false;
+      thumb.classList.remove('is-dragging');
+    }
+  });
+
+  // Touch drag on thumb
+  thumb.addEventListener('touchstart', function (e) {
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartScroll = strip.scrollLeft;
+    thumb.classList.add('is-dragging');
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function (e) {
+    if (!isDragging) return;
+    const dx = e.touches[0].clientX - dragStartX;
+    const trackW = track.clientWidth;
+    const ratio = strip.scrollWidth / trackW;
+    strip.scrollLeft = dragStartScroll + dx * ratio;
+  });
+
+  document.addEventListener('touchend', function () {
+    if (isDragging) {
+      isDragging = false;
+      thumb.classList.remove('is-dragging');
+    }
+  });
+})();
+</script>
+
+
+<main class="content outer radio-page spite-features-only">
+
+
+    <div class="radio-content-wrapper">
+
+        <div class="inner-wide">
+            <div class="spite-content">
+
+                <h3 id="features-conditions">Philosophy</h3>
+                <ol>
+                    <li>No subscriptions, user accounts, creepy data harvesting, or upsells. Ever.</li>
+                    <li>No recommendations or algorithms. Taste is your problem.</li>
+                    <li>Monthly updates with continual improvements and seasonal artwork.</li>
+                    <li>All proceeds are used to buy more mp3s from artists on Boomkat and Bandcamp because that's the circle of life.</li>
+                </ol>
+                <h3 id="features-conditions">Features</h3>
+                <ul>
+                    <li>Apple only. MacOS + iOS 26+</li>
+                    <li>Requires iCloud or Dropbox for telephone sync.</li>
+                    <li>Supports all the good extensions: mp3, flac, wav, aiff, aac, m4a, and opus.</li>
+                    <li>A streamlined interface that keeps artwork big and playlists central.</li>
+                    <li>Add custom artwork for your playlists and dig the harmonious accent colors.</li>
+                    <li>Everything you like is fantastic, so there's no need for hearts or stars—just a delete button to ruthlessly clear out the cruft.</li>
+                    <li>XML is the way. Playlists live in a folder you can see.</li>
+                    <li>Works with CarPlay.</li>
+                    <li>Looks nice on an iPad.</li>
+                    <li>Last.FM integration like it's 2006. Wire it up under 'Settings' and set your scrobbles for the heart of the sun.&nbsp;</li>
+                    <li>Deepen your relationships (or destroy them) by sharing your music library. Everything the other person adds or deletes will affect you and vice versa. It's a good conversation starter.</li>
+                    <li>Spite has been tested for up to 20,000 songs. It should perform admirably with more than that, but really, if your library has over 20,000 songs that’s too many songs. That’s like three months of music not including sleep. But there's a 30-day trial period for you to decide if Spite will satisfy your digital hoarding.</li>
+                    <li>Built by a tremendous music nerd who wants to organize albums by record label, quickly shuffle new acquisitions, and easily access a metadata editor. You're welcome.</li>
+                    <li>After a 30-day trial, Spite costs $10—then it's unlocked on your desktop, iPhone, and iPad, free forever and ever with ongoing updates from a compulsive tinkerer.</li>
+                    <li>Practice equanimity in the face of a chaotic universe: Spite selects ten random songs from your library for a special zen mixtape. Changes at midnight because nothing is permanent.</li>
+                    <li>Keep your latest acquisitions with you at all times thanks to the Superfresh playlist.</li>
+                </ul>
+                <h3 id="features-conditions">v7.0 • June 27, 2026</h3>
+                <ul>
+                    <li>Browse your entire library from the comfort of your telephone.</li> 
+                    <li>Make new mixtapes on your telephone.</li>
+                    <li>Is your music library cannibalizing your telephone's memory? Good. But if you think this is a problem, you can set a storage cap under Settings.</li>
+                    <li>Nicer mixtape management—deal with multiple playlists at once!</li>
+                    <li>Ghosts exorcised, freezes fixed, and performance enhanced.</li>
+                    <li>Smarter file management, better deletion, and more satisfying clicks.</li>
+                    <li>New library organization possibilities. Find them under Settings.</li>
+                    <li>In a hurry? Drag your songs directly into the Spite app.</li>
+		            <li>Barely perceptible design tweaks that will nonetheless be *felt*</li>
+                    <li>Shuffle your most recent acquisitions. Adjust the threshold in Settings.</li>
+                    <li>New seasonal artwork for high summer from <a href="https://www.metmuseum.org/art/collection/search/853219">Suzuki Kiitsu ca. 1850</a></li>
+                </ul>
+                <p>If you have questions, complaints, revelations, or other psychic upheavels, leave a comment below or <a href="mailto:james@jamesreeves.co">email me</a>.</p>
+                
+
+
+                    <div class="icon">
+                        <img src="{{asset "spite/spite-icon.webp"}}" alt="Spite" class="icon-img" alt="" loading="lazy" width="100" height="100">            
+                        <h3 id="icon">About the icon</h3>
+                        <p>This fragmented head of a colossal boy from two thousand years ago captures today’s psychic shred and shear better than anything I’ve seen.</p>
+                    </div>
+
+                    <div class="spite-bottom-download">
+                        <div class="spite-download-buttons">
+                            <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964">Download Mac + iOS</a>
+                        </div>
+                    </div>
+
+
+                        <div class="spite-credits">
+                            <h6>Heavy duty thanks to <a href="http://candychang.com">Candy Chang</a>, <a href="https://timbornholdt.com">Tim Bornholdt</a>, <a href="https://www.thetonearm.com">Michael Donaldson</a>, <a href="http://oliverfarshi.com">Oliver Farshi</a>, <a href="https://hicks.design">Jon Hicks</a>, <a href="http://davidmead.com">David Mead</a>, <a href="https://danparham.com">Dan Parham</a>, and <a href="http://ruk.ca">Peter Rukavina</a></h6>
+                        </div>
+
+                        <div class="meta inner">
+                            <div class="comment-box">
+                                {{> comments}}
+                            </div>
+                        </div>
+
+            </div>
+
+        </div>            
+
+    </div>
+
+
+
+
+        {{/post}}
+
+<br>
+</main>
+
+
+<script>
+(function() {
+    const container = document.querySelector('.spite-screenshot');
+    const images = Array.from(container.querySelectorAll('img'));
+
+    // Shuffle images randomly
+    for (let i = images.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [images[i], images[j]] = [images[j], images[i]];
+    }
+
+    // Re-append in shuffled order
+    images.forEach(img => container.appendChild(img));
+
+    // Reset active state to first (now random) image
+    container.querySelectorAll('img').forEach((img, i) => {
+        img.classList.toggle('active', i === 0);
+    });
+
+    let imageIndex = 0;
+    const shuffledImages = container.querySelectorAll('img');
+
+    function cycleImages() {
+        if (shuffledImages.length <= 1) return;
+        shuffledImages[imageIndex].classList.remove('active');
+        imageIndex = (imageIndex + 1) % shuffledImages.length;
+        shuffledImages[imageIndex].classList.add('active');
+    }
+
+    setInterval(cycleImages, 7000); // Cycle every 7 seconds
+})();
+</script>
