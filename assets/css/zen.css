@@ -40,6 +40,32 @@ body {
   line-height: 1.6;
 }
 
+/* --- Sliding underline (reverb lineage) ------------------------------------
+   Left-to-right 1px underline on hover for links that aren't already
+   statically underlined (nav columns, footer links, meta, marginalia).
+   Body-copy links keep their static underline. --- */
+
+.site-nav-col a,
+.site-footer-links a,
+.post-meta a,
+.marginalia a,
+.marginalia-subscribe {
+  background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.25s ease-in-out, color 0.2s ease;
+}
+
+.site-nav-col a:hover,
+.site-footer-links a:hover,
+.post-meta a:hover,
+.marginalia a:hover,
+.marginalia-subscribe:hover {
+  background-size: 100% 1px;
+}
+
 /* --- Shared column helpers ------------------------------------------------- */
 
 .post-body-col {
@@ -55,8 +81,10 @@ body {
    ========================================================================== */
 
 .site-top {
-  padding: 60px 0 0;
-  margin-bottom: 120px;
+  /* The whole strip above the content — full width, from the page top
+     down to just shy of the hero — is the hover zone. */
+  padding: 60px 0 110px;
+  margin-bottom: 10px;
   position: relative;
   z-index: 10;
 }
@@ -70,13 +98,13 @@ body {
 .wordmark {
   font-family: var(--display-x);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 28px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--faint);
-  transition: color 0.25s ease;
+  transition: color 0.5s ease;
 }
 
 .site-top:hover .wordmark,
@@ -93,13 +121,20 @@ body {
   align-items: flex-start;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
+  /* Gentle reveal: slow fade with a slight rise. The 80ms delay keeps
+     the nav from flickering on incidental mouse pass-throughs. */
+  transform: translateY(8px);
+  transition:
+    opacity 0.5s ease 0.08s,
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s,
+    visibility 0.5s ease 0.08s;
 }
 
 .site-top:hover .site-nav,
 .site-top.is-open .site-nav {
   opacity: 1;
   visibility: visible;
+  transform: translateY(0);
 }
 
 .site-nav-col {
@@ -116,10 +151,7 @@ body {
   text-decoration: none;
 }
 
-.site-nav-col a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+
 
 .site-nav-cta {
   max-width: 320px;
@@ -128,7 +160,7 @@ body {
 .site-nav-cta-title {
   font-family: var(--display-x);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
   line-height: 1.4;
@@ -158,9 +190,15 @@ body {
    ========================================================================== */
 
 .mr-hero {
+  position: relative;
   display: block;
   width: min(var(--img-max), 92vw);
   margin: 0 auto;
+  /* Always a square: the artwork covers the full block, text overlays
+     the top. MR feature images are the clean art (titles live in the
+     HTML overlay, not baked in — the baked-title versions are the
+     grid covers in /assets/mr/). */
+  aspect-ratio: 1 / 1;
   background: #000;
   overflow: hidden;
   padding-top: 58px;
@@ -168,6 +206,8 @@ body {
 }
 
 .mr-hero-eyebrow {
+  position: relative;
+  z-index: 2;
   font-family: var(--sans);
   font-size: clamp(14px, 2.9vw, 26.4px);
   letter-spacing: 0.12em;
@@ -178,6 +218,8 @@ body {
 }
 
 .mr-hero-title {
+  position: relative;
+  z-index: 2;
   font-family: var(--display);
   font-weight: 700;
   font-size: clamp(52px, 16vw, 150px);
@@ -189,8 +231,12 @@ body {
 }
 
 .mr-hero-art {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  margin-top: 44px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* ==========================================================================
@@ -348,10 +394,7 @@ body {
   text-decoration: none;
 }
 
-.post-meta a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+
 
 .post-meta-sep { color: var(--dim); }
 
@@ -379,7 +422,12 @@ body {
   height: 60vh;
   width: 280px;
   z-index: 5;
+  transition: opacity 0.35s ease;
 }
+
+/* zen.js fades the dial while the MR grid / footer is in view so the
+   fixed rail never sits on top of them. */
+.dial.is-hidden { opacity: 0; pointer-events: none; }
 
 .dial-window {
   height: 100%;
@@ -430,13 +478,21 @@ body {
   transition: opacity 0.35s ease;
 }
 
+/* The cloned Download/Podcast anchors arrive as inline <a>s — stack
+   them one per line like the rest of the rail. */
+.marginalia #marginaliaLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .marginalia.is-hidden { opacity: 0; pointer-events: none; }
 
 .marginalia a,
 .marginalia-subscribe {
   font-family: var(--display-x);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 28px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
@@ -617,10 +673,7 @@ body {
   text-decoration: none;
 }
 
-.site-footer-links a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+
 
 .site-footer-icons {
   margin-left: auto;
@@ -743,7 +796,7 @@ body {
 }
 
 @media (max-width: 700px) {
-  .site-top { margin-bottom: 64px; }
+  .site-top { padding-bottom: 56px; margin-bottom: 8px; }
 
   /* Touch nav: revealed columns flow below the wordmark instead of
      sitting beside it. zen.js toggles .is-open on tap. */

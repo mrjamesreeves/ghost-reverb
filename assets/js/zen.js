@@ -109,6 +109,17 @@
     if (older) prev.href = older.href; else prev.hidden = true;
     if (newer) next.href = newer.href; else next.hidden = true;
     if (older || newer) wrap.hidden = false;
+
+    // The dial is fixed; the MR cover grid scrolls up underneath it.
+    // Fade the dial out while the grid (or footer) is on screen so
+    // they never visually collide.
+    var dialEl = document.getElementById('dial');
+    var below = document.querySelector('.mr-grid') || document.querySelector('.site-footer');
+    if (dialEl && below && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        dialEl.classList.toggle('is-hidden', entries[0].isIntersecting);
+      }, { threshold: 0.05 }).observe(below);
+    }
   })();
 
   // ---- 5a. Signup modal ----------------------------------------------------

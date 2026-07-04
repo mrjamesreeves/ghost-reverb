@@ -3,27 +3,45 @@
 {{!-- Canonical post URL: /{slug}/.
 
      Renders the post (post-view picks the MR or standard variant),
-     then fetches the full sibling list for the post's primary tag to
-     drive the dial + prev/next arrows (+ the cover grid on MR posts).
+     then the dial (+ cover grid on MR) for the post's section.
 
-     The `tags:[{{primary_tag.slug}}]` filter interpolation is the
-     documented Ghost related-posts pattern — it resolves because we're
-     inside a {{#post}} block where primary_tag is a concrete value.
-     (Interpolating route-level context like tag.slug does NOT work;
-     that burned us in reverb. Post-scope attributes are fine.) --}}
+     TWO HARD RULES learned the slow way:
+     1. {{#get}} does NOT interpolate handlebars inside its filter
+        param — not route context, not post-scope attributes. Fails
+        silently. Literal filters only.
+     2. primary_tag is EMPTY when a post's first tag is internal
+        (e.g. #mr-45 sorted before midnight-radio) — so dispatch on
+        {{#has tag="..."}}, which checks all tags order-independently.
+        And {{#has}} matches tag NAMES (case-insensitive), not slugs —
+        so these use the display names from Ghost admin ("Art", not
+        "art-diary"). Renaming a tag in admin breaks its dispatch.
+     A post in none of the five sections gets no dial. --}}
 
 {{#post}}
 
   {{> "post-view"}}
 
-  {{#if primary_tag}}
-    {{#get "posts" filter="tags:[{{primary_tag.slug}}]" limit="all" order="published_at desc" include="tags"}}
+  {{#has tag="Midnight Radio"}}
+    {{#get "posts" filter="tag:midnight-radio" limit="all" order="published_at desc" include="tags"}}
       {{> "dial"}}
-      {{!-- ../ climbs out of the #get frame back to the post context --}}
-      {{#match ../primary_tag.slug "midnight-radio"}}
-        {{> "mr-grid"}}
-      {{/match}}
+      {{> "mr-grid"}}
     {{/get}}
-  {{/if}}
+  {{else}}{{#has tag="Dreams"}}
+    {{#get "posts" filter="tag:dreams" limit="all" order="published_at desc"}}
+      {{> "dial"}}
+    {{/get}}
+  {{else}}{{#has tag="Art"}}
+    {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc"}}
+      {{> "dial"}}
+    {{/get}}
+  {{else}}{{#has tag="favorites"}}
+    {{#get "posts" filter="tag:favorites" limit="all" order="published_at desc"}}
+      {{> "dial"}}
+    {{/get}}
+  {{else}}{{#has tag="Public Works"}}
+    {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc"}}
+      {{> "dial"}}
+    {{/get}}
+  {{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
 
 {{/post}}

@@ -13,7 +13,7 @@
      they need the full sibling post list, which comes from a separate
      {{#get}} in post.hbs / channel templates. --}}
 
-{{#match primary_tag.slug "midnight-radio"}}
+{{#has tag="Midnight Radio"}}
 
   <article class="post post--mr" data-slug="{{slug}}">
 
@@ -77,9 +77,9 @@
     {{/if}}
 
     <div class="post-body-col">
-      {{#if primary_tag}}
-        <p class="post-label">{{primary_tag.name}}</p>
-      {{/if}}
+      {{!-- First PUBLIC tag as the label — primary_tag is empty when
+           an internal tag sorts first, so use the tags helper. --}}
+      <p class="post-label">{{tags visibility="public" limit="1" autolink="false"}}</p>
       <h1 class="post-title">{{title}}</h1>
       <div class="post-content">
         {{content}}
@@ -98,4 +98,4 @@
 
   </article>
 
-{{/match}}
+{{/has}}
