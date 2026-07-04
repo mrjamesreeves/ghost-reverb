@@ -1,57 +1,50 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}"{{#match @custom.color_scheme "Dark"}} class="dark-mode"{{/match}}>
-    <head>
-        {{!-- Document Settings --}}
-        <meta charset="utf-8">
-        {{!-- Page Meta --}}
-        {{!-- `block "title"` lets individual page templates override the
-             <title> via {{#contentFor "title"}}...{{/contentFor}}. The
-             default fallback is Ghost's auto-computed meta_title — used
-             everywhere except templates that explicitly override. Mostly
-             this exists to strip "(Page N)" off routes.yaml collection
-             pages where it adds no value. --}}
-        <title>{{#block "title"}}{{meta_title}}{{/block}}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {{!-- Styles --}}
-        {{> custom-fonts}}
-        <link rel="preload" as="style" href="{{asset "css/style.css"}}">
-        <link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}">
-        {{!-- Outputs SEO meta+structured data and other important settings --}}
-        {{ghost_head}}
-        <link rel="stylesheet" href="https://use.typekit.net/eer6kbs.css">
-    </head>
-    <!-- Google tag (gtag.js) -->
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    {{!-- `block "title"` lets individual templates override the <title>
+         via {{#contentFor "title"}} — used by channel routes so they
+         don't fall back to a bare site title. --}}
+    <title>{{#block "title"}}{{meta_title}}{{/block}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{!-- Typekit serves all three families: Bebas Neue Pro (+ SemiExpanded),
+         IBM Plex Serif, IBM Plex Sans. --}}
+    <link rel="stylesheet" href="https://use.typekit.net/eer6kbs.css">
+    <link rel="preload" as="style" href="{{asset "css/zen.css"}}">
+    <link rel="stylesheet" type="text/css" href="{{asset "css/zen.css"}}">
+
+    {{ghost_head}}
+</head>
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W142JN2JXB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-W142JN2JXB');
 </script>
-    <body class="{{body_class}} bg">
 
-        <div id="page" class="site bg">
-            {{!-- Includes the theme header - partials/header.hbs --}}
-            {{> header}}
-            {{!-- Inserts the main content. The "James A. Reeves" home
-                 link lives inside each page's header/watermark
-                 container via partials/site-wordmark.hbs, so it stacks
-                 above the section title without colliding. Homepage
-                 omits it; all other pages include the partial in
-                 their watermark area. --}}
-            {{{body}}}
-            {{!-- Includes the theme footer - partials/footer.hbs --}}
-            {{> footer}}
-        </div>
+<body class="{{body_class}}">
 
-        {{#is "post, page"}}
-            <script src="{{asset "js/post.js"}}"></script>
-        {{/is}}
-        {{{block "featured-carousel-script"}}}
+    {{!-- Wordmark + hover-reveal nav. Sits at the top of every page.
+         Resting state: faint wordmark only. Hover (desktop) or tap
+         (touch) reveals the full nav row. --}}
+    {{> "nav"}}
 
-        {{!-- Outputs important scripts and data --}}
-        {{ghost_foot}}
+    <main id="main" class="site-main">
+        {{{body}}}
+    </main>
 
-    </body>
+    {{> "footer"}}
+
+    {{!-- Smart quotes across all rendered content --}}
+    <script src="{{asset "js/smartquotes.js"}}"></script>
+    <script>smartquotes(); document.addEventListener('DOMContentLoaded', function () { smartquotes(document.body); });</script>
+
+    <script src="{{asset "js/zen.js"}}"></script>
+
+    {{ghost_foot}}
+</body>
 </html>

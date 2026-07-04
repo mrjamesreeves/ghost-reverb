@@ -1,0 +1,14 @@
+{{!< default}}
+
+{{!-- /public-works/ — Public Works channel. No landing page: renders the LATEST
+     post in the tag as a full post, with the dial for everything else.
+     Literal tag filter — {{#get}} can't interpolate route context. --}}
+
+{{#contentFor "title"}}Public Works — {{@site.title}}{{/contentFor}}
+
+{{#get "posts" filter="tag:public-works" limit="all" order="published_at desc" include="tags"}}
+  {{#foreach posts limit="1"}}
+    {{> "post-view"}}
+  {{/foreach}}
+  {{> "dial"}}
+{{/get}}

@@ -1,8 +1,8 @@
 {
-  "name": "headlights",
+  "name": "zen",
   "description": "The journal of James A. Reeves",
   "demo": "https://jamesreeves.co/",
-  "version": "4.2.1",
+  "version": "1.0.0",
   "engines": {
     "ghost": ">=5.0.0"
   },
@@ -21,7 +21,7 @@
     "ghost-theme"
   ],
   "config": {
-    "posts_per_page": 12,
+    "posts_per_page": 25,
     "card_assets": {
       "exclude": [
         "blockquote",
@@ -50,20 +50,6 @@
       "xxl": {
         "width": 2000
       }
-    },
-    "custom": {
-      "color_scheme": {
-        "type": "select",
-        "options": [
-          "Light",
-          "Dark"
-        ],
-        "default": "Light"
-      }
     }
-  },
-  "dependencies": {
-    "better-sqlite3": "^12.4.1",
-    "node-fetch": "^3.3.2"
   }
 }

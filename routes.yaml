@@ -1,30 +1,34 @@
-routes:
-  /tag/midnight-radio/:
-    template: page-radio
-    redirect: /radio
-  /dreams/:
-    template: page-dreams
-  /favorites/:
-    template: page-favorites
-  /art-diary/:
-    template: page-art-diary
+# Zen routes.
+#
+# No landing pages: each section URL renders a "channel" template that
+# shows the LATEST post of that tag as a full post, with the dial nav
+# for moving through the rest. Channel templates live at the theme root
+# (channel-*.hbs) and use literal tag filters — Ghost's {{#get}} helper
+# doesn't reliably interpolate handlebars inside its filter param, so
+# one small template per section beats one clever broken one.
+#
+# NOTE: routes.yaml is NOT deployed by the GitHub Action. After changing
+# this file, upload it manually: Ghost admin → Settings → Labs → Routes.
 
+routes:
+  /radio/:
+    template: channel-midnight-radio
+  /dreams/:
+    template: channel-dreams
+  /art-diary/:
+    template: channel-art-diary
+  /favorites/:
+    template: channel-favorites
+  /public-works/:
+    template: channel-public-works
 
 collections:
-  # Public Works: posts tagged 'public-works' get nested URLs.
-  # The collection index renders page-public-works.hbs at /public-works/.
-  # Individual posts use partials/public-works/_deck.hbs via post.hbs dispatch.
-  /public-works/:
-    permalink: /public-works/{slug}/
-    template: page-public-works
-    filter: tag:public-works
-    order: published_at desc
-
-  # Root collection (everything not in /public-works/).
+  # Everything lives at root: /{slug}/. Public Works posts lose their
+  # nested /public-works/{slug}/ URLs — redirects.json maps the old
+  # nested URLs back to the bare slugs.
   /:
     permalink: /{slug}/
-    template: home
-    filter: tag:-public-works
+    template: index
 
 taxonomies:
   tag: /tag/{slug}/

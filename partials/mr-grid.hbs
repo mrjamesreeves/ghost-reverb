@@ -1,0 +1,19 @@
+{{!-- Midnight Radio cover grid — every episode as a square tile of pure
+     album artwork (titles are baked into the art). Rendered at the
+     bottom of MR posts and the /radio/ channel.
+
+     Expects `posts` in scope (full midnight-radio list, incl. tags).
+     Each tile carries hidden internal-tag spans; zen.js parses the
+     hash-mr-N tag and sets the cover src to /assets/mr/MR{NN}.webp
+     (zero-padded, suffixed reruns uppercased). Same resolver lineage
+     as reverb's filmstrip — Ghost's match helper can't regex-anchor
+     and has no zero-pad, so this stays client-side. --}}
+
+<nav class="mr-grid" aria-label="All Midnight Radio episodes">
+  {{#foreach posts}}
+    <a href="{{url}}" class="mr-grid-tile" data-slug="{{slug}}" aria-label="{{title}}">
+      <img class="mr-grid-cover" alt="" loading="lazy">
+      <span hidden>{{#foreach tags visibility="internal"}}<span data-ep="{{slug}}"></span>{{/foreach}}</span>
+    </a>
+  {{/foreach}}
+</nav>

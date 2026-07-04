@@ -12,7 +12,7 @@ When something renders wrong in the browser, **inspect the actual computed state
 
 - Run `getComputedStyle(el)` on the affected element and compare to expected values.
 - Check `getBoundingClientRect()`, computed font-size, computed display, computed width — whatever's relevant.
-- Look at the cascade. Global rules in `style.css` (especially link rules) often override inherited values inside new components.
+- Look at the cascade. Check the cascade in `assets/css/zen.css` before adding overrides.
 
 Do not reason from screenshots about pixel math, character widths, font metrics, or viewport sizes. Query the DOM. One `getComputedStyle` call beats five paragraphs of estimation.
 
@@ -35,7 +35,11 @@ Do not add gradient overlays, dark scrims, shadow layers on top of images, or **
 
 ## Project context
 
-- Ghost CMS theme called `reverb` at `/Users/jamesreeves/Desktop/reverb/`.
-- Local dev server runs at `http://localhost:2371/`.
-- The homepage uses `home.hbs` (NOT `index.hbs`) because a static page is configured as the home route in Ghost.
-- The theme is single-mode (light only) — all `[data-theme]` rules and dark-mode CSS have been removed. Do not reintroduce them.
+- Ghost CMS theme called `zen` at `/Users/jamesreeves/Dev/Zen/` (repo: ghost-reverb — main is now zen; the old reverb theme is archived at the `reverb` branch and `reverb-final` tag, and stays installed in Ghost admin as rollback).
+- Local dev: Ghost install at `/Users/jamesreeves/Desktop/fresh`, serving `http://localhost:2371/`. This folder is symlinked in as a theme named `zen`.
+- Design source: the "Zen" page of the jamesreeves.co-2026 Figma file.
+- One centered column, typography-led: Bebas Neue Pro (display), IBM Plex Serif (19px/1.6 body), IBM Plex Sans (12px labels). All via Typekit (`use.typekit.net/eer6kbs.css`).
+- No landing pages: section URLs (/radio/, /dreams/, /art-diary/, /favorites/, /public-works/) are routes.yaml routes rendering channel-*.hbs — the latest post of the tag, full-post style, with the left dial nav for siblings.
+- Ghost gotchas learned the hard way: `{{#get}}` does NOT interpolate route-level context in filters (post-scope attributes like `{{primary_tag.slug}}` DO work — documented related-posts pattern); `kg-*` classes are emitted at runtime by the Ghost editor and must stay styled; routes.yaml + redirects.json are NOT auto-deployed (upload via Settings → Labs); MR episode numbers resolve client-side from internal `#mr-N` tags.
+- Legacy self-contained pages kept as-is, pending polish: custom-spite.hbs, custom-metal.hbs, page-static.hbs (each mostly inline-styled).
+- The theme is single-mode (light only). Do not add dark-mode CSS.

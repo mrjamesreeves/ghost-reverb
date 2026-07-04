@@ -1,0 +1,18 @@
+{{!-- The dial: left-rail list of every post in the current category.
+     Expects to be rendered inside a block where `posts` holds the
+     FULL ordered list (a {{#get}} in post.hbs / channel templates).
+
+     Dumb list by design — zen.js marks the entry matching the current
+     URL (.is-current), vertically centers it in the 60vh window, and
+     wires the prev/next arrows from its neighbors. White fade
+     gradients at both ends come from CSS. --}}
+
+<nav class="dial" id="dial" aria-label="More in this category">
+  <div class="dial-window">
+    <div class="dial-list" id="dialList">
+      {{#foreach posts}}
+        <a href="{{url}}" data-slug="{{slug}}">{{title}}</a>
+      {{/foreach}}
+    </div>
+  </div>
+</nav>

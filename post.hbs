@@ -1,77 +1,29 @@
 {{!< default}}
 
+{{!-- Canonical post URL: /{slug}/.
+
+     Renders the post (post-view picks the MR or standard variant),
+     then fetches the full sibling list for the post's primary tag to
+     drive the dial + prev/next arrows (+ the cover grid on MR posts).
+
+     The `tags:[{{primary_tag.slug}}]` filter interpolation is the
+     documented Ghost related-posts pattern — it resolves because we're
+     inside a {{#post}} block where primary_tag is a concrete value.
+     (Interpolating route-level context like tag.slug does NOT work;
+     that burned us in reverb. Post-scope attributes are fine.) --}}
+
 {{#post}}
 
-{{!-- ── DISPATCH BY PRIMARY TAG ─────────────────────────────────────────
-     The reader sections (Dreams, Art Diary, Installations) all have
-     dedicated experiences instead of the standard long-read post layout.
-     Each is a partial; canonical post URLs route here, primary_tag picks
-     the right one. Anything else falls through to the default layout.
-─────────────────────────────────────────────────────────────────────── --}}
-{{#match primary_tag.slug "dreams"}}
-  {{> "dreams/_reader"}}
-{{else}}{{#match primary_tag.slug "art-diary"}}
-  {{> "art-diary/_reader"}}
-{{else}}{{#match primary_tag.slug "favorites"}}
-  {{> "favorites/_reader"}}
-{{else}}{{#match primary_tag.slug "public-works"}}
-  {{> "public-works/_deck"}}
-{{else}}{{#match primary_tag.slug "midnight-radio"}}
-  {{> "midnight-radio/_episode"}}
-{{else}}
+  {{> "post-view"}}
 
-{{!-- ── DEFAULT: SINGLE-POST READER ──────────────────────────────────────
-     Any post that isn't part of one of the dispatched collections
-     (dreams, art-diary, favorites, public-works) renders in a stripped
-     reader — image left, scrollable text right, no prev/next, no TOC.
-     Book-like single artifact. The collection readers stay distinct
-     because they have sibling navigation; this one has no nav by design.
-─────────────────────────────────────────────────────────────────────── --}}
-<script>document.body.classList.add('has-archive-reader');</script>
-
-<main id="main" class="archive-page archive-page--single">
-
-  <div class="archive-reader archive-reader--single" id="archiveReader">
-
-    {{#if primary_tag}}
-    <div class="archive-watermark archive-watermark--static">
-      {{> "site-wordmark"}}
-      <h1 class="archive-watermark-text">{{primary_tag.name}}</h1>
-    </div>
-    {{/if}}
-
-    <article class="archive-entry is-active" data-index="0" data-slug="{{slug}}">
-
-      <div class="archive-entry-image">
-        {{#if feature_image}}
-          <img
-            srcset="{{img_url feature_image size="s"}} 600w, {{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w"
-            sizes="50vw"
-            src="{{img_url feature_image size="l"}}"
-            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-            loading="eager"
-          />
-        {{else}}
-          <div class="archive-entry-no-image"></div>
-        {{/if}}
-        {{> "feature-image-caption"}}
-      </div>
-
-      <div class="archive-entry-content">
-        <div class="archive-entry-text">
-          <h2 class="archive-entry-title">{{title}}</h2>
-          <div class="archive-entry-body">
-            {{content}}
-          </div>
-        </div>
-      </div>
-
-    </article>
-
-  </div>{{!-- end .archive-reader --}}
-
-</main>
-
-{{/match}}{{/match}}{{/match}}{{/match}}{{/match}}
+  {{#if primary_tag}}
+    {{#get "posts" filter="tags:[{{primary_tag.slug}}]" limit="all" order="published_at desc" include="tags"}}
+      {{> "dial"}}
+      {{!-- ../ climbs out of the #get frame back to the post context --}}
+      {{#match ../primary_tag.slug "midnight-radio"}}
+        {{> "mr-grid"}}
+      {{/match}}
+    {{/get}}
+  {{/if}}
 
 {{/post}}
