@@ -111,6 +111,41 @@
     if (older || newer) wrap.hidden = false;
   })();
 
+  // ---- 5a. Signup modal ----------------------------------------------------
+  // Every [data-signup] trigger opens the modal; Esc or clicking the
+  // blurred overlay closes it. The form itself is Ghost's members API.
+
+  (function signupModal() {
+    var overlay = document.getElementById('signupOverlay');
+    if (!overlay) return;   // member — modal not rendered
+
+    function open() {
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      var input = overlay.querySelector('.signup-input');
+      if (input) setTimeout(function () { input.focus(); }, 300);
+    }
+    function close() {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('[data-signup]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        open();
+      });
+    });
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+    });
+  })();
+
   // ---- 5. Marginalia -------------------------------------------------------
 
   (function marginalia() {

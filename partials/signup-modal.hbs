@@ -1,0 +1,24 @@
+{{!-- Signup modal — the ONLY subscribe UI on the site. Every
+     "Subscribe" trigger ([data-signup] buttons in the nav CTA and MR
+     marginalia) opens this instead of inline forms or Ghost Portal.
+     Page blurs behind it (25px backdrop blur at 10% white).
+
+     The form uses Ghost's members API (data-members-form +
+     data-members-email) — Ghost's bundled script handles submission
+     and toggles .success / .error on the form. Never rendered for
+     members. zen.js owns open/close (Esc, click-outside). --}}
+
+{{#unless @member}}
+<div class="signup-overlay" id="signupOverlay" aria-hidden="true">
+  <div class="signup-card" role="dialog" aria-modal="true" aria-label="Join Midnight Radio">
+    <p class="signup-title">Join Midnight Radio</p>
+    <p class="signup-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+    <form class="signup-form" data-members-form="signup">
+      <input class="signup-input" type="email" data-members-email placeholder="Enter your email..." required aria-label="Email address">
+      <button class="signup-button" type="submit">Subscribe</button>
+    </form>
+    <p class="signup-success">Hell yeah&mdash;thank you for tuning in! Now check your inbox.</p>
+    <p class="signup-error" data-members-error></p>
+  </div>
+</div>
+{{/unless}}
