@@ -73,6 +73,11 @@ body {
   margin: 0 auto;
 }
 
+/* Positioned ancestor for the document-anchored dial spanner. */
+.site-main {
+  position: relative;
+}
+
 /* ==========================================================================
    WORDMARK + HOVER NAV
    Resting: faint wordmark only. Hover over the top strip (or tap on
@@ -416,32 +421,49 @@ body {
    ========================================================================== */
 
 .dial {
-  position: fixed;
+  /* Spanner: anchored at the first paragraph of copy (top set by
+     zen.js) and stretching to the bottom of <main>, so the sticky
+     window inside can travel with the reader. */
+  position: absolute;
   left: 50px;
-  top: 20vh;
-  height: 60vh;
+  top: 0;      /* real value set by zen.js: top of .post-content */
+  bottom: 0;
   width: 280px;
   z-index: 5;
+  pointer-events: none;   /* the spanner is invisible; window opts in */
   transition: opacity 0.35s ease;
 }
 
 /* zen.js fades the dial while the MR grid / footer is in view so the
-   fixed rail never sits on top of them. */
-.dial.is-hidden { opacity: 0; pointer-events: none; }
+   rail never sits on top of them. */
+.dial.is-hidden { opacity: 0; }
+.dial.is-hidden .dial-window { pointer-events: none; }
 
 .dial-window {
-  height: 100%;
-  overflow: hidden;
+  /* Starts aligned to the copy top, sticks 48px from the viewport
+     top once the reader scrolls past. Scrollable when the list is
+     taller than the window (scrollbar hidden — the edge fades are
+     the affordance). */
+  position: sticky;
+  top: 48px;
+  height: min(60vh, calc(100vh - 96px));
+  overflow-y: auto;
+  scrollbar-width: none;
+  pointer-events: auto;
   /* Soft white fades at both ends — stands in for the comp's gradient
      overlays without extra elements. */
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 72px, #000 calc(100% - 96px), transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 72px, #000 calc(100% - 96px), transparent);
 }
 
+.dial-window::-webkit-scrollbar { display: none; }
+
 .dial-list {
   display: flex;
   flex-direction: column;
-  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Half-window breathing at both ends lets any entry — including
+     the first and last — sit centered in the window. */
+  padding: 28vh 0;
 }
 
 .dial-list a {
@@ -467,15 +489,30 @@ body {
    Subscribe). zen.js populates the links and fades the rail on scroll.
    ========================================================================== */
 
+/* The post--mr article hosts the absolutely-anchored rail. */
+.post--mr {
+  position: relative;
+}
+
 .marginalia {
-  position: fixed;
+  /* Spanner: top set by zen.js to the first paragraph of copy;
+     stretches to the article's end so the sticky inner can travel. */
+  position: absolute;
   right: 50px;
-  top: 20vh;
+  top: 0;
+  bottom: 0;
   z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.marginalia-inner {
+  position: sticky;
+  top: 48px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  transition: opacity 0.35s ease;
+  pointer-events: auto;
 }
 
 /* The cloned Download/Podcast anchors arrive as inline <a>s — stack

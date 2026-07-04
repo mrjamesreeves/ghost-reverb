@@ -88,11 +88,12 @@
     var current = links[idx];
     current.classList.add('is-current');
 
-    // Center the current entry in the dial window.
+    // Center the current entry by scrolling the window (not a CSS
+    // transform) — long lists stay natively wheel-scrollable, with
+    // the edge fades as the affordance.
     var win = list.parentElement;
     function center() {
-      var offset = (win.clientHeight / 2) - (current.offsetTop + current.offsetHeight / 2);
-      list.style.transform = 'translateY(' + offset + 'px)';
+      win.scrollTop = current.offsetTop + (current.offsetHeight / 2) - (win.clientHeight / 2);
     }
     center();
     window.addEventListener('resize', center);
@@ -120,6 +121,47 @@
         dialEl.classList.toggle('is-hidden', entries[0].isIntersecting);
       }, { threshold: 0.05 }).observe(below);
     }
+  })();
+
+  // ---- 4a. Rail alignment --------------------------------------------------
+  // The dial + marginalia are absolute spanners whose TOP must sit
+  // exactly at the first paragraph of copy. Layout shifts as images
+  // load, so align now, again on full load, and on resize.
+
+  (function alignRails() {
+    var content = document.querySelector('.post-content');
+    if (!content) return;
+
+    function align() {
+      var contentTop = content.getBoundingClientRect().top;
+
+      var dialEl = document.getElementById('dial');
+      if (dialEl) {
+        var mainEl = document.querySelector('.site-main');
+        // The CURRENT dial entry aligns with the copy top (per the
+        // comp — earlier titles float above it, fading out). The
+        // current sits at the window's vertical center after the
+        // centering scroll, so pull the spanner up by half the
+        // window height. Clamped so short headers don't push the
+        // rail above the page.
+        var win = dialEl.querySelector('.dial-window');
+        var offset = win ? (win.clientHeight / 2) - 14 : 0;
+        var top = contentTop - mainEl.getBoundingClientRect().top - offset;
+        dialEl.style.top = Math.max(0, top) + 'px';
+      }
+
+      var rail = document.getElementById('marginalia');
+      if (rail) {
+        var article = rail.closest('article');
+        if (article) {
+          rail.style.top = (contentTop - article.getBoundingClientRect().top) + 'px';
+        }
+      }
+    }
+
+    align();
+    window.addEventListener('load', align);
+    window.addEventListener('resize', align);
   })();
 
   // ---- 5a. Signup modal ----------------------------------------------------

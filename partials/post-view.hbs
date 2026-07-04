@@ -37,10 +37,12 @@
          anchor when the post has an <ol>, and fades the rail out on
          scroll-down / in on scroll-up. --}}
     <aside class="marginalia" id="marginalia" aria-label="Episode links">
-      <div id="marginaliaLinks"></div>
-      {{#unless @member}}
-        <button class="marginalia-subscribe" data-signup>Subscribe</button>
-      {{/unless}}
+      <div class="marginalia-inner">
+        <div id="marginaliaLinks"></div>
+        {{#unless @member}}
+          <button class="marginalia-subscribe" data-signup>Subscribe</button>
+        {{/unless}}
+      </div>
     </aside>
 
     <div class="post-body-col">
