@@ -22,12 +22,7 @@
   ],
   "config": {
     "posts_per_page": 25,
-    "card_assets": {
-      "exclude": [
-        "blockquote",
-        "gallery"
-      ]
-    },
+    "card_assets": true,
     "image_sizes": {
       "xxs": {
         "width": 150
