@@ -496,14 +496,15 @@ body {
 
 .marginalia {
   /* Spanner: top set by zen.js to the first paragraph of copy;
-     stretches to the article's end so the sticky inner can travel. */
+     stretches to the article's end so the sticky inner can travel.
+     Horizontally anchored to the RIGHT EDGE of the 900px hero:
+     50% + half the hero width + a breath. */
   position: absolute;
-  right: 50px;
+  left: calc(50% + min(calc(var(--img-max) / 2), 46vw) + 14px);
   top: 0;
   bottom: 0;
   z-index: 5;
   pointer-events: none;
-  transition: opacity 0.35s ease;
 }
 
 .marginalia-inner {
@@ -523,7 +524,6 @@ body {
   align-items: flex-start;
 }
 
-.marginalia.is-hidden { opacity: 0; pointer-events: none; }
 
 .marginalia a,
 .marginalia-subscribe {
@@ -534,15 +534,24 @@ body {
   letter-spacing: 0.56px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--dim);
+  color: var(--ink);
   background: none;
   border: 0;
   padding: 0;
-  transition: color 0.2s ease;
+  transition: color 0.4s ease;
+}
+
+/* Scrolled state: links dim to 15% but never leave (zen.js toggles
+   .is-dimmed past the first stretch of reading). Hover restores ink. */
+.marginalia.is-dimmed a,
+.marginalia.is-dimmed .marginalia-subscribe {
+  color: var(--faint);
 }
 
 .marginalia a:hover,
-.marginalia-subscribe:hover { color: var(--ink); }
+.marginalia-subscribe:hover,
+.marginalia.is-dimmed a:hover,
+.marginalia.is-dimmed .marginalia-subscribe:hover { color: var(--ink); }
 
 /* ==========================================================================
    MR GRID — every episode cover, 12 per row, 90vw / max 1600

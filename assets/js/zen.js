@@ -228,14 +228,13 @@
       }
     }
 
-    // Fade out on scroll down, back in on scroll up.
-    var lastY = window.scrollY;
-    window.addEventListener('scroll', function () {
-      var y = window.scrollY;
-      if (y > lastY + 5 && y > 120) rail.classList.add('is-hidden');
-      else if (y < lastY - 5) rail.classList.remove('is-hidden');
-      lastY = y;
-    }, { passive: true });
+    // Ink at the top of the page; dim to 15% once reading is under
+    // way. Never hidden — the rail stays put (sticky) throughout.
+    function shade() {
+      rail.classList.toggle('is-dimmed', window.scrollY > 160);
+    }
+    shade();
+    window.addEventListener('scroll', shade, { passive: true });
   })();
 
 })();
