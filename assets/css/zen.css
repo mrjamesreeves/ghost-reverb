@@ -618,7 +618,7 @@ body.menu-open .nav-burger span:last-child {
      the affordance). */
   position: sticky;
   top: 48px;
-  height: min(60vh, calc(100vh - 96px));
+  height: min(80vh, calc(100vh - 96px));
   overflow-y: auto;
   scrollbar-width: none;
   pointer-events: auto;
@@ -653,7 +653,7 @@ body.menu-open .nav-burger span:last-child {
   transition: color 0.2s ease;
 }
 
-.dial-list a:hover { color: var(--dim); }
+.dial-list a:hover { color: var(--ink); }
 .dial-list a.is-current { color: var(--ink); }
 
 /* ==========================================================================
