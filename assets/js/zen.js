@@ -92,11 +92,52 @@
     // transform) — long lists stay natively wheel-scrollable, with
     // the edge fades as the affordance.
     var win = list.parentElement;
-    function center() {
-      win.scrollTop = current.offsetTop + (current.offsetHeight / 2) - (win.clientHeight / 2);
+    function center(smooth) {
+      var top = current.offsetTop + (current.offsetHeight / 2) - (win.clientHeight / 2);
+      if (smooth) win.scrollTo({ top: top, behavior: 'smooth' });
+      else win.scrollTop = top;
     }
     center();
-    window.addEventListener('resize', center);
+    window.addEventListener('resize', function () { center(); });
+
+    // ── Scrollspy (stacked channel pages) ─────────────────────────
+    // When several articles share the page, the dial highlights the
+    // one crossing the reading line. Dial clicks smooth-scroll to
+    // the in-page article instead of navigating.
+    var articles = Array.from(document.querySelectorAll('article.post[data-slug]'));
+    if (articles.length > 1) {
+      var bySlug = {};
+      links.forEach(function (a) { bySlug[a.getAttribute('data-slug')] = a; });
+
+      function setCurrent(link) {
+        if (!link || link === current) return;
+        current.classList.remove('is-current');
+        current = link;
+        current.classList.add('is-current');
+        center(true);
+      }
+
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            setCurrent(bySlug[entry.target.getAttribute('data-slug')]);
+          }
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      articles.forEach(function (a) { spy.observe(a); });
+
+      links.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var target = articles.find(function (art) {
+            return art.getAttribute('data-slug') === a.getAttribute('data-slug');
+          });
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
 
     // Prev/next arrows: list is newest-first, so ← (rev) goes older
     // (down the list) and → (fwd) goes newer (up the list).

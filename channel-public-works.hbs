@@ -7,8 +7,8 @@
 {{#contentFor "title"}}Public Works — {{@site.title}}{{/contentFor}}
 
 {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc" include="tags"}}
-  {{#foreach posts limit="1"}}
-    {{> "post-view"}}
+  {{#foreach posts}}
+    {{> "post-view" stacked=true}}
   {{/foreach}}
   {{> "dial"}}
 {{/get}}

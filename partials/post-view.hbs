@@ -80,7 +80,7 @@
           sizes="(max-width: 960px) 100vw, 900px"
           src="{{img_url feature_image size="l"}}"
           alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-          loading="eager">
+          loading="{{#if stacked}}{{#if @first}}eager{{else}}lazy{{/if}}{{else}}eager{{/if}}">
       </div>
     {{/if}}
 
@@ -94,20 +94,24 @@
       </div>
       <div class="post-meta">
         <span>{{date format="MMMM D, YYYY"}}</span>
-        <span class="post-meta-sep">&bull;</span>
-        {{#if @site.comments_enabled}}
-          <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
-        {{/if}}
-        <span class="post-arrows" id="postArrows" hidden>
-          <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
-          <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
-        </span>
+        {{#unless stacked}}
+          <span class="post-meta-sep">&bull;</span>
+          {{#if @site.comments_enabled}}
+            <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
+          {{/if}}
+          <span class="post-arrows" id="postArrows" hidden>
+            <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
+            <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
+          </span>
+        {{/unless}}
       </div>
-      {{#if @site.comments_enabled}}
-        <div class="comments-body" data-comments-body hidden>
-          {{comments title="" count=false}}
-        </div>
-      {{/if}}
+      {{#unless stacked}}
+        {{#if @site.comments_enabled}}
+          <div class="comments-body" data-comments-body hidden>
+            {{comments title="" count=false}}
+          </div>
+        {{/if}}
+      {{/unless}}
     </div>
 
   </article>
