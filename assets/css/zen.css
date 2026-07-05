@@ -88,7 +88,7 @@ body {
 .site-top {
   /* Per comp: wordmark sits 100px from the top with 100px below it
      to the content's top edge. The whole strip is the hover zone. */
-  padding: 100px 0;
+  padding: 65px 0;
   margin-bottom: 0;
   position: relative;
   z-index: 10;
@@ -214,7 +214,7 @@ body {
   font-family: var(--sans);
   font-weight: 500;
   font-size: 12px;
-  line-height: 24px;
+  line-height: 22px;
   color: var(--ink);
   text-decoration: none;
 }
@@ -397,8 +397,15 @@ body.menu-open .nav-burger span:last-child {
 .post-content a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration-color: #C5C5C5;
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+  text-decoration-color: #000000;
+  text-underline-offset: 2px;
 }
 
 .post-content h2 {
@@ -426,6 +433,18 @@ body.menu-open .nav-burger span:last-child {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 2em 0 0.8em;
+}
+
+.post-content h5 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin: 2em 0 0.8em;
+}
+
+.post-content h5 a {
+  text-decoration: none;
 }
 
 .post-content blockquote {
