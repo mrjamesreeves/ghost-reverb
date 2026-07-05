@@ -190,6 +190,49 @@ body {
   padding: 5px 14px;
 }
 
+/* Mobile-menu-only elements — hidden on desktop. */
+.site-nav-signup-form,
+.site-nav-signup-success,
+.site-nav-icons {
+  display: none;
+}
+
+/* ── Burger (mobile only; hidden on desktop) ──────────────────────────
+   34×20, two 1px black lines. body.menu-open morphs it into an X. */
+.nav-burger {
+  display: none;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 34px;
+  height: 20px;
+  background: none;
+  border: 0;
+  padding: 0;
+  z-index: 100;
+}
+
+.nav-burger span {
+  position: absolute;
+  left: 0;
+  width: 34px;
+  height: 1px;
+  background: var(--ink);
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.2s ease;
+}
+
+.nav-burger span:first-child { top: 0; }
+.nav-burger span:last-child  { bottom: 0; }
+
+body.menu-open { overflow: hidden; }
+
+body.menu-open .nav-burger span:first-child {
+  transform: translateY(9.5px) rotate(45deg);
+}
+body.menu-open .nav-burger span:last-child {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
 /* ==========================================================================
    MR HERO — black cover block (homepage + Midnight Radio posts)
    ========================================================================== */
@@ -863,18 +906,125 @@ body {
 }
 
 @media (max-width: 700px) {
-  .site-top { padding-bottom: 56px; margin-bottom: 8px; }
-
-  /* Touch nav: revealed columns flow below the wordmark instead of
-     sitting beside it. zen.js toggles .is-open on tap. */
-  .site-nav {
-    position: static;
-    flex-direction: column;
-    gap: 20px;
-    display: none;
-    padding-top: 16px;
+  .site-top {
+    padding: 28px 25px 20px;
+    margin-bottom: 28px;
   }
-  .site-top.is-open .site-nav { display: flex; }
+
+  .site-top-inner { width: 100%; }
+
+  /* Full-ink 24px wordmark (no faint state on mobile). */
+  .wordmark,
+  .site-top:hover .wordmark {
+    font-size: 24px;
+    letter-spacing: 0.96px;
+    color: var(--ink);
+  }
+
+  .nav-burger { display: block; }
+
+  /* The nav becomes a full-screen white menu, opened by the burger
+     (body.menu-open, set by zen.js). Desktop hover must not trigger
+     it — hence gating on body class only. */
+  .site-nav,
+  .site-top:hover .site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 96px 25px 36px;
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+  }
+
+  /* The open state must beat the mobile hidden rule ABOVE, whose
+     `.site-top:hover .site-nav` variant carries (0,3,0) specificity —
+     and touch browsers emulate sticky :hover on tap, so the hover
+     path is live on phones too. Match it on both selectors. */
+  body.menu-open .site-nav,
+  body.menu-open .site-top:hover .site-nav {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-nav-col { gap: 0; }
+
+  .site-nav-col a {
+    font-size: 17px;
+    line-height: 38px;
+  }
+
+  .site-nav-cta {
+    margin-top: 56px;
+    max-width: none;
+  }
+
+  .site-nav-cta-title { font-size: 17px; }
+
+  .site-nav-cta-blurb {
+    font-size: 12px;
+    max-width: 340px;
+  }
+
+  /* Mobile menu: inline members form instead of the modal button. */
+  .site-nav-subscribe { display: none; }
+
+  .site-nav-signup-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: 18px;
+    max-width: 380px;
+  }
+
+  .site-nav-signup-input {
+    flex: 1;
+    border: 0;
+    border-bottom: 1px solid var(--ink);
+    border-radius: 0;
+    background: none;
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 6px 0;
+    outline: none;
+  }
+
+  .site-nav-signup-input::placeholder { color: var(--dim); }
+
+  .site-nav-signup-go {
+    background: var(--ink);
+    color: var(--paper);
+    border: 0;
+    border-radius: 5px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1;
+    padding: 9px 22px;
+  }
+
+  .site-nav-signup-form.success { display: none; }
+  .site-nav-signup-form.success ~ .site-nav-signup-success {
+    display: block;
+    font-family: var(--sans);
+    font-size: 14px;
+    margin-top: 18px;
+  }
+
+  .site-nav-icons {
+    display: flex;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 48px;
+  }
+
+  .site-nav-icons img { height: 28px; width: auto; }
 
   .post-image { width: 100%; }
   .post-title { margin-bottom: 14px; }
@@ -883,10 +1033,18 @@ body {
   .home-tiles-row--split { grid-template-columns: 1fr; }
   .home-tile--wide { aspect-ratio: 631 / 320; }
 
+  /* Footer collapses to wordmark + burger, mirroring the header. */
   .site-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    width: 100%;
+    padding: 28px 25px 36px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
   }
-  .site-footer-icons { margin-left: 0; }
+  .site-footer-links,
+  .site-footer-icons { display: none; }
+  .nav-burger--footer {
+    position: static;
+    flex-shrink: 0;
+  }
 }

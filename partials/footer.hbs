@@ -4,6 +4,11 @@
 <footer class="site-footer">
   <a class="wordmark wordmark--footer" href="{{@site.url}}/">James A. Reeves</a>
 
+  {{!-- Mobile only: same burger as the header, opens the same menu. --}}
+  <button class="nav-burger nav-burger--footer" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+
   <nav class="site-footer-links" aria-label="Sections">
     <a href="{{@site.url}}/radio/">Midnight Radio</a>
     <a href="{{@site.url}}/art-diary/">Art Diary</a>

@@ -1,9 +1,9 @@
 /**
  * Zen — all client behavior in one place.
  *
- * 1. Touch nav toggle  — hover has no meaning on touch; tapping the
- *    wordmark toggles the nav instead of navigating home. Desktop
- *    hover stays pure CSS.
+ * 1. Mobile menu       — header + footer burgers toggle body.menu-open
+ *    (full-screen menu, burger→X morph, scroll lock). Desktop
+ *    hover-nav stays pure CSS.
  * 2. Episode numbers   — spans[data-ep] carry internal tag slugs
  *    (hash-mr-N); the matching span gets its number as text.
  * 3. MR grid covers    — each tile resolves /assets/mr/MR{NN}.webp
@@ -23,25 +23,32 @@
 
   var MR_TAG_RE = /^hash-mr-([0-9a-z]+)$/i;
 
-  // ---- 1. Touch nav toggle ------------------------------------------------
+  // ---- 1. Mobile menu (burger) ---------------------------------------------
+  // Both burgers (header + footer) toggle body.menu-open, which shows
+  // the full-screen menu and morphs the burger into an X. Scrolling
+  // locks while open; Esc closes. Desktop hover-nav is pure CSS and
+  // ignores all of this.
 
-  (function navToggle() {
-    var top = document.getElementById('siteTop');
-    var mark = document.getElementById('wordmark');
-    if (!top || !mark) return;
+  (function menuToggle() {
+    var burgers = document.querySelectorAll('.nav-burger');
+    if (!burgers.length) return;
 
-    var touch = window.matchMedia('(hover: none)').matches;
-    if (!touch) return;
+    function setOpen(open) {
+      document.body.classList.toggle('menu-open', open);
+      burgers.forEach(function (b) {
+        b.setAttribute('aria-expanded', String(open));
+      });
+      if (open) window.scrollTo({ top: 0 });
+    }
 
-    mark.addEventListener('click', function (e) {
-      if (!top.classList.contains('is-open')) {
-        e.preventDefault();          // first tap opens the nav
-        top.classList.add('is-open');
-      }                              // second tap on the wordmark goes home
+    burgers.forEach(function (b) {
+      b.addEventListener('click', function () {
+        setOpen(!document.body.classList.contains('menu-open'));
+      });
     });
 
-    document.addEventListener('click', function (e) {
-      if (!top.contains(e.target)) top.classList.remove('is-open');
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
     });
   })();
 

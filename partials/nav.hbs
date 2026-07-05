@@ -1,18 +1,25 @@
-{{!-- Wordmark + hover-reveal nav.
+{{!-- Wordmark + nav.
 
-     Resting: only the wordmark, at 15% black. Hovering the header zone
-     (desktop) or tapping the wordmark (touch) adds .is-open, which
-     fades in the link columns + Midnight Radio CTA and darkens the
-     wordmark to full black. zen.js owns the touch toggle; the :hover
-     path is pure CSS so it works without JS.
+     Desktop: faint wordmark; hovering the top strip reveals the link
+     columns + Midnight Radio CTA (pure CSS) and darkens the wordmark.
+     The CTA's Subscribe button opens the signup modal.
 
-     The subscribe CTA renders only for non-members — members see
-     nothing in that slot. Button opens Ghost Portal signup. --}}
+     Mobile (≤700px): full-ink 24px wordmark opposite a 34×20 burger.
+     Tapping the burger opens a full-screen white menu — stacked
+     links, inline signup form (per comp; no modal on mobile), and
+     social icons — while the burger animates into an X. zen.js owns
+     the toggle; scrolling locks while open.
+
+     The subscribe CTA renders only for non-members. --}}
 
 <header class="site-top" id="siteTop">
   <div class="site-top-inner">
 
     <a class="wordmark" id="wordmark" href="{{@site.url}}/">James A. Reeves</a>
+
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
 
     <nav class="site-nav" id="siteNav" aria-label="Site">
       <div class="site-nav-col">
@@ -32,9 +39,25 @@
       <div class="site-nav-cta">
         <p class="site-nav-cta-title">Join Midnight Radio</p>
         <p class="site-nav-cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+        {{!-- Desktop: button → signup modal. Mobile: inline members
+             form (CSS swaps which is visible). --}}
         <button class="site-nav-subscribe" data-signup>Subscribe</button>
+        <form class="site-nav-signup-form" data-members-form="signup">
+          <input class="site-nav-signup-input" type="email" data-members-email placeholder="Enter your email..." required aria-label="Email address">
+          <button class="site-nav-signup-go" type="submit">Subscribe</button>
+        </form>
+        <p class="site-nav-signup-success">Hell yeah&mdash;thank you for tuning in! Now check your inbox.</p>
       </div>
       {{/unless}}
+
+      {{!-- Social icons — mobile menu only (desktop keeps them in the
+           footer). --}}
+      <div class="site-nav-icons">
+        <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" aria-label="RSS feed"><img src="{{asset "img/icon-rss.webp"}}" alt="" loading="lazy"></a>
+        <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964" aria-label="Spite on the App Store"><img src="{{asset "img/icon-app-store.svg"}}" alt="" loading="lazy"></a>
+        <a href="https://midnightradio.bandcamp.com" aria-label="Bandcamp"><img src="{{asset "img/icon-bandcamp.webp"}}" alt="" loading="lazy"></a>
+        <a href="https://bsky.app/profile/jamesreeves.co" aria-label="Bluesky"><img src="{{asset "img/icon-bsky.webp"}}" alt="" loading="lazy"></a>
+      </div>
     </nav>
 
   </div>
