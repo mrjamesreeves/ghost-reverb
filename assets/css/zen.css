@@ -401,18 +401,24 @@ body.menu-open .nav-burger span:last-child {
   text-underline-offset: 3px;
 }
 
-.post-content h2,
-.post-content h3 {
+.post-content h2 {
+  font-size: 32px;
   font-family: var(--display);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   line-height: 1;
   margin: 1.8em 0 0.6em;
 }
 
-.post-content h2 { font-size: 32px; }
-.post-content h3 { font-size: 24px; }
+.post-content h3 { 
+  font-size: 27px;
+  font-family: var(--sans);
+  font-weight: 700;
+  /* text-transform: uppercase; */
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 1.8em 0 0.6em; 
+}
 
 .post-content h4 {
   font-family: var(--sans);
