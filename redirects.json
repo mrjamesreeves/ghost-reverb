@@ -1,73 +1,77 @@
 [
-    {
-      "from": "^/notebook/?$",
-      "to": "/",
-      "permanent": true
-    },
-    {
-      "from": "^/tag/journal/?$",
-      "to": "/tag/notebook/",
-      "permanent": true
-    },
-    {
-      "from": "^/tag/journal/page/(\\d+)/?$",
-      "to": "/tag/notebook/page/$1/",
-      "permanent": true
-    },
-    {
-      "from": "^/journal/(.*)",
-      "to": "/notebook/$1",
-      "permanent": true
-    },
-        {
-      "from": "^/the-first-two-miles-are-always-murder",
-      "to": "/music-for-running",
-      "permanent": true
-    },
-    {
-      "from": "^/tag/midnight-radio/",
-      "to": "/radio",
-      "permanent": true
-    },
-    {
-      "from": "^/tag/reading",
-      "to": "/reading",
-      "permanent": true
-    },
-    {
-      "from": "^/tag/midnight-radio",
-      "to": "/radio",
-      "permanent": true
-    },
-    {
-      "from": "^/38",
-      "to": "/darkly-euphoric",
-      "permanent": true
-    },
-    {
-      "from": "^/40",
-      "to": "/bodies-without-organs",
-      "permanent": true
-    }
-    ,
-    {
-      "from": "^/43",
-      "to": "/neglected-utopian-energy",
-      "permanent": true
-    },
-    {
-      "from": "^/installations/(.*)",
-      "to": "/public-works/$1",
-      "permanent": true
-    },
-    {
-      "from": "^/installations/?$",
-      "to": "/public-works/",
-      "permanent": true
-    },
-    {
-      "from": "^/art-installations/?$",
-      "to": "/public-works/",
-      "permanent": true
-    }
-  ]
+  {
+    "from": "^/notebook/?$",
+    "to": "/",
+    "permanent": true
+  },
+  {
+    "from": "^/tag/journal/?$",
+    "to": "/tag/notebook/",
+    "permanent": true
+  },
+  {
+    "from": "^/tag/journal/page/(\\d+)/?$",
+    "to": "/tag/notebook/page/$1/",
+    "permanent": true
+  },
+  {
+    "from": "^/journal/(.*)",
+    "to": "/notebook/$1",
+    "permanent": true
+  },
+  {
+    "from": "^/the-first-two-miles-are-always-murder",
+    "to": "/music-for-running",
+    "permanent": true
+  },
+  {
+    "from": "^/tag/midnight-radio/",
+    "to": "/radio",
+    "permanent": true
+  },
+  {
+    "from": "^/tag/reading",
+    "to": "/reading",
+    "permanent": true
+  },
+  {
+    "from": "^/tag/midnight-radio",
+    "to": "/radio",
+    "permanent": true
+  },
+  {
+    "from": "^/38",
+    "to": "/darkly-euphoric",
+    "permanent": true
+  },
+  {
+    "from": "^/40",
+    "to": "/bodies-without-organs",
+    "permanent": true
+  },
+  {
+    "from": "^/43",
+    "to": "/neglected-utopian-energy",
+    "permanent": true
+  },
+  {
+    "from": "^/installations/(.*)",
+    "to": "/$1",
+    "permanent": true
+  },
+  {
+    "from": "^/installations/?$",
+    "to": "/public-works/",
+    "permanent": true
+  },
+  {
+    "from": "^/art-installations/?$",
+    "to": "/public-works/",
+    "permanent": true
+  },
+  {
+    "from": "^/public-works/(.+)",
+    "to": "/$1",
+    "permanent": true
+  }
+]
