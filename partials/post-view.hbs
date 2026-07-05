@@ -31,6 +31,9 @@
           alt="{{title}}" loading="eager">
       {{/if}}
     </div>
+    {{#if feature_image_caption}}
+      <div class="post-image-caption mr-hero-caption">{{{feature_image_caption}}}</div>
+    {{/if}}
 
     {{!-- Marginalia rail. zen.js clones the Download/Podcast anchors out
          of the post's first h4 into #marginaliaLinks, adds a Tracklist
@@ -74,14 +77,17 @@
   <article class="post" data-slug="{{slug}}">
 
     {{#if feature_image}}
-      <div class="post-image">
+      <figure class="post-image">
         <img
           srcset="{{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w, {{img_url feature_image size="xl"}} 1600w"
           sizes="(max-width: 960px) 100vw, 900px"
           src="{{img_url feature_image size="l"}}"
           alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
           loading="{{#if stacked}}{{#if @first}}eager{{else}}lazy{{/if}}{{else}}eager{{/if}}">
-      </div>
+        {{#if feature_image_caption}}
+          <figcaption class="post-image-caption">{{{feature_image_caption}}}</figcaption>
+        {{/if}}
+      </figure>
     {{/if}}
 
     <div class="post-body-col">

@@ -245,12 +245,18 @@ body {
 .site-nav-subscribe {
   background: var(--ink);
   color: var(--paper);
-  border: 0;
+  border: 1px solid var(--ink);
   font-family: var(--sans);
   font-weight: 600;
   font-size: 12px;
   line-height: 1;
-  padding: 5px 14px;
+  padding: 4px 13px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.site-nav-subscribe:hover {
+  background: var(--paper);
+  color: var(--ink);
 }
 
 /* Mobile-menu-only elements — hidden on desktop. */
@@ -481,12 +487,31 @@ body.menu-open .nav-burger span:last-child {
 
 .post-content figure { margin: 2em 0; }
 
-.post-content figcaption {
+/* Captions — in-content Koenig cards AND feature images share one
+   treatment: right-aligned under the image, sans, #999, black links. */
+.post-content figcaption,
+.post-image-caption {
   font-family: var(--sans);
   font-size: 12px;
-  color: var(--dim);
+  line-height: 1.5;
+  color: #999;
   margin-top: 10px;
-  text-align: center;
+  text-align: right;
+}
+
+.post-content figcaption a,
+.post-image-caption a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--ink);
+  text-underline-offset: 2px;
+}
+
+/* MR hero caption sits below the 1:1 block (the art fills it edge to
+   edge), matching the hero's width. */
+.mr-hero-caption {
+  width: min(var(--img-max), 92vw);
+  margin: 10px auto 0;
 }
 
 /* Wide + full Koenig cards break out of the text column up to img-max.
@@ -878,6 +903,21 @@ body.menu-open .nav-burger span:last-child {
 .site-footer-icons a { opacity: 0.9; transition: opacity 0.15s ease; }
 .site-footer-icons a:hover { opacity: 1; }
 
+/* Icon buttons invert on hover like the text buttons: the source art
+   is white-on-black, so flip it and draw the black keyline on the
+   ANCHOR — on the img the filter would invert the keyline to white. */
+.site-footer-icons a:hover img,
+.site-nav-icons a:hover img {
+  filter: invert(1);
+}
+
+.site-footer-icons a:hover,
+.site-nav-icons a:hover {
+  /* offset 0 keeps the keyline just OUTSIDE the img — inset, the
+     inverted (white-edged) art would paint over it. */
+  outline: 1px solid var(--ink);
+}
+
 /* ==========================================================================
    SIGNUP MODAL — the only subscribe UI on the site.
    Page blurs behind a white card. Opened by any [data-signup] trigger
@@ -953,13 +993,19 @@ body.menu-open .nav-burger span:last-child {
 .signup-button {
   background: var(--ink);
   color: var(--paper);
-  border: 0;
+  border: 1px solid var(--ink);
   border-radius: 5px;
   font-family: var(--sans);
   font-weight: 600;
   font-size: 16px;
   line-height: 1;
-  padding: 10px 34px;
+  padding: 9px 33px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.signup-button:hover {
+  background: var(--paper);
+  color: var(--ink);
 }
 
 /* Ghost's members script sets .success / .error on the FORM.
@@ -1094,13 +1140,19 @@ body.menu-open .nav-burger span:last-child {
   .site-nav-signup-go {
     background: var(--ink);
     color: var(--paper);
-    border: 0;
+    border: 1px solid var(--ink);
     border-radius: 5px;
     font-family: var(--sans);
     font-weight: 600;
     font-size: 13px;
     line-height: 1;
-    padding: 9px 22px;
+    padding: 8px 21px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .site-nav-signup-go:hover {
+    background: var(--paper);
+    color: var(--ink);
   }
 
   .site-nav-signup-form.success { display: none; }
