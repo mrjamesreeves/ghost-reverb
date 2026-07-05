@@ -1,6 +1,43 @@
 {{!< default}}
 
 <style>
+/* ── Zen compatibility layer ─────────────────────────────────────────
+   This page was authored against reverb's global CSS. Zen's stylesheet
+   is intentionally minimal, so the reverb tokens + layout wrappers this
+   template leans on are provided here, scoped to this page only.
+   (Values lifted from the archived reverb branch.) */
+:root {
+  --font-big: "bebas-neue-pro", sans-serif;
+  --font-sans: "ibm-plex-sans", sans-serif;
+  --font-serif: "ibm-plex-serif", serif;
+  --color-text: #000;
+  --color-text-muted: #979797;
+  --color-text-hover: #000;
+  --color-hover: #000;
+  --color-inverse: #fff;
+  --type-body: 19px;
+  --max-w: 1300px;
+}
+
+.content.outer {
+  margin: 0 auto;
+  width: 85%;
+  max-width: var(--max-w);
+}
+
+.inner-wide {
+  margin: 0 auto 40px;
+  width: 100%;
+  max-width: var(--max-w);
+}
+
+.radio-content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+/* ── end compatibility layer ─────────────────────────────────────── */
+
+
 
 /* ---- SPITE SITE Typography overrides ---- */
 
