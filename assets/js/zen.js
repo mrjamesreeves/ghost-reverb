@@ -83,6 +83,16 @@
     var links = Array.from(list.querySelectorAll('a'));
     if (!links.length) return;
 
+    // MR: prefix each entry with its episode number — "49. The Shimmer".
+    // The hidden data-ep spans only exist when the caller's #get
+    // included tags (the Midnight Radio queries do).
+    links.forEach(function (a) {
+      var span = a.querySelector('[data-ep]');
+      if (!span) return;
+      var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
+      if (m) a.insertBefore(document.createTextNode(m[1].toUpperCase() + '. '), a.firstChild);
+    });
+
     // Current = the link whose pathname matches the page URL. Channel
     // pages (/radio/ etc.) match nothing → the first (latest) entry is
     // the one being shown.
@@ -293,16 +303,26 @@
       }
     }
 
-    // Ink when the rail first appears at its start position; dim to
-    // 15% once the reader scrolls meaningfully past it. Threshold is
-    // relative to the rail's own position (NOT the page top — on MR
-    // posts the rail starts ~900px down, below the hero).
-    function shade() {
-      var stick = 34 + Math.min(window.innerHeight * 0.6, window.innerHeight - 96) / 2;
-      rail.classList.toggle('is-dimmed', rail.getBoundingClientRect().top < stick - 140);
+    // Not sticky: the rail sits at its anchored spot and scrolls with
+    // the page. Fade OUT the moment the reader scrolls down; fade back
+    // IN when they scroll up AND the rail's block is on screen again.
+    var inner = rail.querySelector('.marginalia-inner');
+    var lastY = window.scrollY;
+    function fade() {
+      var y = window.scrollY;
+      var down = y > lastY + 2;
+      var up = y < lastY - 2;
+      if (down) {
+        rail.classList.add('is-hidden');
+      } else if (up && inner) {
+        var r = inner.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          rail.classList.remove('is-hidden');
+        }
+      }
+      lastY = y;
     }
-    shade();
-    window.addEventListener('scroll', shade, { passive: true });
+    window.addEventListener('scroll', fade, { passive: true });
   })();
 
 })();

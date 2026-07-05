@@ -11,7 +11,10 @@
   <div class="dial-window">
     <div class="dial-list" id="dialList">
       {{#foreach posts}}
-        <a href="{{url}}" data-slug="{{slug}}">{{title}}</a>
+        {{!-- Internal-tag spans only render when the caller's #get
+             included tags (the MR queries do). zen.js reads hash-mr-N
+             and prefixes the title: "49. The Shimmer". --}}
+        <a href="{{url}}" data-slug="{{slug}}">{{#foreach tags visibility="internal"}}<span data-ep="{{slug}}" hidden></span>{{/foreach}}{{title}}</a>
       {{/foreach}}
     </div>
   </div>

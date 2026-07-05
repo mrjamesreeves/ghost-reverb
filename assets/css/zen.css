@@ -414,7 +414,6 @@ body.menu-open .nav-burger span:last-child {
   font-size: 27px;
   font-family: var(--sans);
   font-weight: 700;
-  /* text-transform: uppercase; */
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin: 1.8em 0 0.6em; 
@@ -624,25 +623,29 @@ body.menu-open .nav-burger span:last-child {
 }
 
 .marginalia {
-  /* Spanner: top set by zen.js to the first paragraph of copy;
-     stretches to the article's end so the sticky inner can travel.
-     Horizontally anchored to the RIGHT EDGE of the 900px hero:
-     50% + half the hero width + a breath. */
+  /* Anchored at the first paragraph of copy (top set by zen.js),
+     horizontally at the RIGHT EDGE of the 900px hero: 50% + half the
+     hero width + a breath. Fades via .is-hidden (zen.js). */
   position: absolute;
   left: calc(50% + min(calc(var(--img-max) / 2), 46vw) + 14px);
   top: 0;
-  bottom: 0;
   z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.marginalia.is-hidden {
+  opacity: 0;
+}
+
+.marginalia.is-hidden .marginalia-inner {
   pointer-events: none;
 }
 
 .marginalia-inner {
-  position: sticky;
-  /* Pin at the same viewport height as the dial's CURRENT entry:
-     the dial window sticks at 48px and its current line rests at
-     its vertical center — 48 + winH/2 - half a line. Keep the two
-     expressions in sync with .dial-window height. */
-  top: calc(34px + (min(60vh, 100vh - 96px) / 2));
+  /* Not sticky: the rail lives at its anchored spot (copy top) and
+     scrolls with the page. zen.js fades it out on scroll-down and
+     back in when this block re-enters the viewport on scroll-up. */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -674,17 +677,8 @@ body.menu-open .nav-burger span:last-child {
   transition: color 0.4s ease;
 }
 
-/* Scrolled state: links dim to 15% but never leave (zen.js toggles
-   .is-dimmed past the first stretch of reading). Hover restores ink. */
-.marginalia.is-dimmed a,
-.marginalia.is-dimmed .marginalia-subscribe {
-  color: var(--faint);
-}
-
 .marginalia a:hover,
-.marginalia-subscribe:hover,
-.marginalia.is-dimmed a:hover,
-.marginalia.is-dimmed .marginalia-subscribe:hover { color: var(--ink); }
+.marginalia-subscribe:hover { color: var(--ink); }
 
 /* ==========================================================================
    MR GRID — every episode cover, 12 per row, 90vw / max 1600
