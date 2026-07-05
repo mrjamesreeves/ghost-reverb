@@ -164,6 +164,23 @@
     window.addEventListener('resize', align);
   })();
 
+  // ---- 4b. Comments fold ---------------------------------------------------
+  // Comments stay collapsed behind the meta-line toggle; clicking
+  // expands them in place (and scrolls them into view).
+
+  (function commentsFold() {
+    var btn = document.querySelector('[data-comments-toggle]');
+    var body = document.querySelector('[data-comments-body]');
+    if (!btn || !body) return;
+    btn.addEventListener('click', function () {
+      body.hidden = !body.hidden;
+      btn.setAttribute('aria-expanded', String(!body.hidden));
+      if (!body.hidden) {
+        body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  })();
+
   // ---- 5a. Signup modal ----------------------------------------------------
   // Every [data-signup] trigger opens the modal; Esc or clicking the
   // blurred overlay closes it. The form itself is Ghost's members API.
@@ -228,10 +245,13 @@
       }
     }
 
-    // Ink at the top of the page; dim to 15% once reading is under
-    // way. Never hidden — the rail stays put (sticky) throughout.
+    // Ink when the rail first appears at its start position; dim to
+    // 15% once the reader scrolls meaningfully past it. Threshold is
+    // relative to the rail's own position (NOT the page top — on MR
+    // posts the rail starts ~900px down, below the hero).
     function shade() {
-      rail.classList.toggle('is-dimmed', window.scrollY > 160);
+      var stick = 34 + Math.min(window.innerHeight * 0.6, window.innerHeight - 96) / 2;
+      rail.classList.toggle('is-dimmed', rail.getBoundingClientRect().top < stick - 140);
     }
     shade();
     window.addEventListener('scroll', shade, { passive: true });

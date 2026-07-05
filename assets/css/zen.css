@@ -415,6 +415,23 @@ body {
 .post-arrows a:hover { opacity: 1; }
 .post-arrows a[hidden] { display: none; }
 
+/* --- Comments: collapsed behind the meta-line toggle ----------------------- */
+
+.post-meta-comments {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.comments-body {
+  margin-top: 12px;
+}
+
+.comments-body[hidden] { display: none; }
+
 /* ==========================================================================
    DIAL — left rail, siblings within the current category
    60vh window, current entry centered (zen.js), fades at both ends.
@@ -509,7 +526,11 @@ body {
 
 .marginalia-inner {
   position: sticky;
-  top: 48px;
+  /* Pin at the same viewport height as the dial's CURRENT entry:
+     the dial window sticks at 48px and its current line rests at
+     its vertical center — 48 + winH/2 - half a line. Keep the two
+     expressions in sync with .dial-window height. */
+  top: calc(34px + (min(60vh, 100vh - 96px) / 2));
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -529,9 +550,9 @@ body {
 .marginalia-subscribe {
   font-family: var(--display-x);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 28px;
-  letter-spacing: 0.56px;
+  letter-spacing: 0.72px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
