@@ -450,10 +450,8 @@ body.menu-open .nav-burger span:last-child {
 
 .post-content h4 {
   font-family: var(--sans);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
   margin: 2em 0 0.8em;
 }
 
