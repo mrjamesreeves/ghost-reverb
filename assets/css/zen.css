@@ -682,6 +682,15 @@ body.menu-open .nav-burger span:last-child {
   position: relative;
 }
 
+#tracklist ol li {
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+#tracklist ol li strong {
+  font-family: var(--serif);
+}
+
 .marginalia {
   /* Anchored at the first paragraph of copy (top set by zen.js),
      horizontally at the RIGHT EDGE of the 900px hero: 50% + half the
