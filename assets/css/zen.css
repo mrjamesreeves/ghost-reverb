@@ -655,14 +655,14 @@ margin: 0 0 20px;
    scrolls away with the list. Clickable — back to the section index.
    Its top margin carries the list's breathing room. */
 .dial-title {
-  display: inline-block;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--ink);
-  text-decoration: none;
-  margin: 38vh 0 20px;
+display: inline-block;
+font-family: var(--display-x);
+font-weight: 500;
+font-size: 18px;
+line-height: 20px;
+color: var(--ink);
+text-decoration: none;
+margin: 38vh 0 20px;
 }
 
 .dial-title::after {
