@@ -435,9 +435,15 @@ margin: 0 0 20px;
   text-underline-offset: 2px;
 }
 
-/* Links carrying the sliding hairline (h5 links etc.) must not get
-   the static hover underline back on top of it — the rule above
-   outranks `.post-content h5 a`, hence the one-time double line. */
+/* Links carrying the sliding hairline (h4/h5 links etc.): no static
+   hover underline on top of it (the a:hover rule above outranks
+   `.post-content h5 a`), and restore the background-size transition —
+   `.post-content a`'s text-decoration-color transition outranks
+   .u-slide's, which froze the slide. */
+.post-content a.u-slide {
+  transition: background-size 0.25s ease-in-out, color 0.2s ease;
+}
+
 .post-content a.u-slide:hover {
   text-decoration: none;
 }
