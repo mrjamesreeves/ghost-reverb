@@ -210,6 +210,24 @@ body {
 .site-top:hover .site-nav > :nth-child(4),
 .site-top.is-open .site-nav > :nth-child(4) { transition-delay: 0.6s; }
 
+/* Keyboard access: TABBING into the header unfurls the nav like
+   hover. :focus-visible (unlike the :focus-within attempt this
+   replaces) only matches keyboard-driven focus — mouse clicks and
+   restored click-focus can't trigger it, so pointer users never see
+   the nav open unbidden. Desktop-scoped: mobile's burger button is
+   already keyboard-operable. */
+@media (min-width: 900px) {
+  .site-top:has(:focus-visible) .wordmark { color: var(--ink); }
+  .site-top:has(:focus-visible) .site-nav { visibility: visible; transition-delay: 0s; }
+  .site-top:has(:focus-visible) .site-nav::before { transform: scaleX(1); transition-delay: 0.06s; }
+  .site-top:has(:focus-visible) .site-nav::after { transform: scaleY(1); transition-delay: 0.2s; }
+  .site-top:has(:focus-visible) .site-nav > * { opacity: 1; transform: translateX(0); }
+  .site-top:has(:focus-visible) .site-nav > :nth-child(1) { transition-delay: 0.28s; }
+  .site-top:has(:focus-visible) .site-nav > :nth-child(2) { transition-delay: 0.4s; }
+  .site-top:has(:focus-visible) .site-nav > :nth-child(3) { transition-delay: 0.52s; }
+  .site-top:has(:focus-visible) .site-nav > :nth-child(4) { transition-delay: 0.6s; }
+}
+
 
 .site-nav-col {
   display: flex;
