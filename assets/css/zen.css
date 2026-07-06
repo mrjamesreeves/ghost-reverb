@@ -102,8 +102,8 @@ body {
 
 .wordmark {
   font-family: var(--display-x);
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
@@ -227,8 +227,8 @@ body {
 
 .site-nav-cta-title {
   font-family: var(--display-x);
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 16px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
   line-height: 1.4;
@@ -627,7 +627,7 @@ body.menu-open .nav-burger span:last-child {
      the affordance). */
   position: sticky;
   top: 48px;
-  height: min(80vh, calc(100vh - 96px));
+  height: min(60vh, calc(100vh - 96px));
   overflow-y: auto;
   scrollbar-width: none;
   pointer-events: auto;
@@ -649,7 +649,7 @@ body.menu-open .nav-burger span:last-child {
 
 .dial-list a {
   font-family: var(--display-x);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
   letter-spacing: 0.72px;
@@ -717,7 +717,7 @@ body.menu-open .nav-burger span:last-child {
 .marginalia a,
 .marginalia-subscribe {
   font-family: var(--display-x);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
   letter-spacing: 0.72px;
@@ -852,7 +852,7 @@ body.menu-open .nav-burger span:last-child {
 
 .index-list-title {
   font-family: var(--display-x);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
   letter-spacing: 0.72px;
   text-transform: uppercase;
