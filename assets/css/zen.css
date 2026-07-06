@@ -634,7 +634,7 @@ body.menu-open .nav-burger span:last-child {
      the affordance). */
   position: sticky;
   top: 48px;
-  height: min(60vh, calc(100vh - 96px));
+  height: min(80vh, calc(100vh - 96px));
   overflow-y: auto;
   scrollbar-width: none;
   pointer-events: auto;
@@ -651,7 +651,7 @@ body.menu-open .nav-burger span:last-child {
   flex-direction: column;
   /* Half-window breathing at both ends lets any entry — including
      the first and last — sit centered in the window. */
-  padding: 28vh 0;
+  padding: 38vh 0;
 }
 
 .dial-list a {
