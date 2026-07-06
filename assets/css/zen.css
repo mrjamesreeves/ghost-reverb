@@ -1089,7 +1089,7 @@ margin: 38vh 0 20px;
   .marginalia { display: none; }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 899px) {
   .site-top {
     padding: 28px 25px 20px;
     margin-bottom: 28px;
