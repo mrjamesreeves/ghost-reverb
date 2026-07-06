@@ -94,7 +94,9 @@
       {{!-- First PUBLIC tag as the label — primary_tag is empty when
            an internal tag sorts first, so use the tags helper. --}}
       <p class="post-label">{{tags visibility="public" limit="1" autolink="false"}}</p>
-      <h1 class="post-title">{{title}}</h1>
+      {{!-- Stacked (category index): the title is a permalink to the
+           individual post. Single post: plain text. --}}
+      <h1 class="post-title">{{#if stacked}}<a href="{{url}}">{{title}}</a>{{else}}{{title}}{{/if}}</h1>
       <div class="post-content">
         {{content}}
       </div>
