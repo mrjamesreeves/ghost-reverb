@@ -650,8 +650,8 @@ body.menu-open .nav-burger span:last-child {
 .dial-list a {
   font-family: var(--display-x);
   font-weight: 600;
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 24px;
   letter-spacing: 0.72px;
   text-transform: uppercase;
   text-decoration: none;
@@ -718,8 +718,8 @@ body.menu-open .nav-burger span:last-child {
 .marginalia-subscribe {
   font-family: var(--display-x);
   font-weight: 600;
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 24px;
   letter-spacing: 0.72px;
   text-transform: uppercase;
   text-decoration: none;
