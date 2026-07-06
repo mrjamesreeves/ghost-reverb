@@ -617,10 +617,10 @@ margin: 0 0 20px;
      zen.js) and stretching to the bottom of <main>, so the sticky
      window inside can travel with the reader. */
   position: absolute;
-  left: 50px;
+  left: 30px;
   top: 0;      /* real value set by zen.js: top of .post-content */
   bottom: 0;
-  width: 280px;
+  width: 240px;
   z-index: 5;
   pointer-events: none;   /* the spanner is invisible; window opts in */
   transition: opacity 0.35s ease;
