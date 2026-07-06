@@ -497,11 +497,11 @@ blockquote strong {
 }
 
 .page-about .post-content blockquote {
-  font-style: italic;
-  padding-left: none;
+  font-style: normal;
+  padding-left: 0;
   border-left: none;
   margin: 1.8em 0;
-  text-indent: -10px;
+  text-indent: -9px;
 }
 
 .post-content ul,
