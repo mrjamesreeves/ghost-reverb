@@ -93,6 +93,14 @@
       if (m) a.insertBefore(document.createTextNode(m[1].toUpperCase() + '. '), a.firstChild);
     });
 
+    // Numbered sections (dreams / art / favorites): positional prefix,
+    // oldest = 1 — the list arrives newest-first.
+    if (list.hasAttribute('data-numbered')) {
+      links.forEach(function (a, i) {
+        a.insertBefore(document.createTextNode((links.length - i) + '. '), a.firstChild);
+      });
+    }
+
     // Current = the link whose pathname matches the page URL. Channel
     // pages (/radio/ etc.) match nothing → the first (latest) entry is
     // the one being shown.
@@ -200,10 +208,15 @@
         // comp — earlier titles float above it, fading out). The
         // current sits at the window's vertical center after the
         // centering scroll, so pull the spanner up by half the
-        // window height. Clamped so short headers don't push the
-        // rail above the page.
+        // window height — plus whatever sits above the window inside
+        // the sticky block (the section title). Clamped so short
+        // headers don't push the rail above the page.
         var win = dialEl.querySelector('.dial-window');
-        var offset = win ? (win.clientHeight / 2) - 14 : 0;
+        var sticky = dialEl.querySelector('.dial-sticky');
+        var headH = (win && sticky)
+          ? win.getBoundingClientRect().top - sticky.getBoundingClientRect().top
+          : 0;
+        var offset = win ? headH + (win.clientHeight / 2) - 14 : 0;
         var top = contentTop - mainEl.getBoundingClientRect().top - offset;
         dialEl.style.top = Math.max(0, top) + 'px';
       }
@@ -304,21 +317,30 @@
     }
 
     // Not sticky: the rail sits at its anchored spot and scrolls with
-    // the page. Fade OUT the moment the reader scrolls down; fade back
-    // IN when they scroll up AND the rail's block is on screen again.
+    // the page. Fade OUT once the reader has scrolled ~200px past the
+    // point where the rail was last at rest (so a small nudge doesn't
+    // dismiss it); fade back IN when they scroll up AND the rail's
+    // block is on screen again.
+    var GRACE = 200;
     var inner = rail.querySelector('.marginalia-inner');
     var lastY = window.scrollY;
+    var restY = window.scrollY;   // where the rail last sat visible
     function fade() {
       var y = window.scrollY;
       var down = y > lastY + 2;
       var up = y < lastY - 2;
       if (down) {
-        rail.classList.add('is-hidden');
-      } else if (up && inner) {
-        var r = inner.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          rail.classList.remove('is-hidden');
+        if (y > restY + GRACE) rail.classList.add('is-hidden');
+      } else if (up) {
+        if (inner) {
+          var r = inner.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) {
+            rail.classList.remove('is-hidden');
+          }
         }
+        // While visible, the rest point follows the reader up so the
+        // next down-scroll gets a fresh grace distance.
+        if (!rail.classList.contains('is-hidden')) restY = y;
       }
       lastY = y;
     }

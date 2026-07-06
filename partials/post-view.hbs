@@ -92,8 +92,14 @@
 
     <div class="post-body-col">
       {{!-- First PUBLIC tag as the label — primary_tag is empty when
-           an internal tag sorts first, so use the tags helper. --}}
-      <p class="post-label">{{tags visibility="public" limit="1" autolink="false"}}</p>
+           an internal tag sorts first, so use the tags helper.
+           Stacked (category index): omitted — the dial's section title
+           carries the category, so it doesn't repeat with every post.
+           On desktop the dial title also covers single posts; CSS
+           hides the label whenever a .dial-title is on the page. --}}
+      {{#unless stacked}}
+        <p class="post-label">{{tags visibility="public" limit="1" autolink="false"}}</p>
+      {{/unless}}
       {{!-- Stacked (category index): the title is a permalink to the
            individual post. Single post: plain text. --}}
       <h1 class="post-title">{{#if stacked}}<a href="{{url}}">{{title}}</a>{{else}}{{title}}{{/if}}</h1>

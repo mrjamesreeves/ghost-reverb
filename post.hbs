@@ -28,19 +28,19 @@
     {{/get}}
   {{else}}{{#has tag="Dreams"}}
     {{#get "posts" filter="tag:dreams" limit="all" order="published_at desc"}}
-      {{> "dial"}}
+      {{> "dial" sectionTitle="Dream Inventory" sectionUrl="/dreams/" numbered=true}}
     {{/get}}
   {{else}}{{#has tag="Art"}}
     {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc"}}
-      {{> "dial"}}
+      {{> "dial" sectionTitle="Art Diary" sectionUrl="/art-diary/" numbered=true}}
     {{/get}}
   {{else}}{{#has tag="favorites"}}
     {{#get "posts" filter="tag:favorites" limit="all" order="published_at desc"}}
-      {{> "dial"}}
+      {{> "dial" sectionTitle="Favorite Things" sectionUrl="/favorites/" numbered=true}}
     {{/get}}
   {{else}}{{#has tag="Public Works"}}
     {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc"}}
-      {{> "dial"}}
+      {{> "dial" sectionTitle="Public Works" sectionUrl="/public-works/"}}
     {{/get}}
   {{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
 

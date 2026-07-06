@@ -2,20 +2,31 @@
      Expects to be rendered inside a block where `posts` holds the
      FULL ordered list (a {{#get}} in post.hbs / channel templates).
 
+     Params (all optional):
+       sectionTitle / sectionUrl — clickable header above the window
+         (black, 25px rule) linking back to the section index.
+       numbered=true — zen.js prefixes each entry with its position,
+         oldest = 1 (used by dreams / art / favorites).
+
      Dumb list by design — zen.js marks the entry matching the current
-     URL (.is-current), vertically centers it in the 60vh window, and
+     URL (.is-current), vertically centers it in the window, and
      wires the prev/next arrows from its neighbors. White fade
      gradients at both ends come from CSS. --}}
 
 <nav class="dial" id="dial" aria-label="More in this category">
-  <div class="dial-window">
-    <div class="dial-list" id="dialList">
-      {{#foreach posts}}
-        {{!-- Internal-tag spans only render when the caller's #get
-             included tags (the MR queries do). zen.js reads hash-mr-N
-             and prefixes the title: "49. The Shimmer". --}}
-        <a href="{{url}}" data-slug="{{slug}}">{{#foreach tags visibility="internal"}}<span data-ep="{{slug}}" hidden></span>{{/foreach}}{{title}}</a>
-      {{/foreach}}
+  <div class="dial-sticky">
+    {{#if sectionTitle}}
+      <a class="dial-title" href="{{@site.url}}{{sectionUrl}}">{{sectionTitle}}</a>
+    {{/if}}
+    <div class="dial-window">
+      <div class="dial-list" id="dialList"{{#if numbered}} data-numbered{{/if}}>
+        {{#foreach posts}}
+          {{!-- Internal-tag spans only render when the caller's #get
+               included tags (the MR queries do). zen.js reads hash-mr-N
+               and prefixes the title: "49. The Shimmer". --}}
+          <a href="{{url}}" data-slug="{{slug}}">{{#foreach tags visibility="internal"}}<span data-ep="{{slug}}" hidden></span>{{/foreach}}{{title}}</a>
+        {{/foreach}}
+      </div>
     </div>
   </div>
 </nav>
