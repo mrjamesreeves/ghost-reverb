@@ -208,15 +208,10 @@
         // comp — earlier titles float above it, fading out). The
         // current sits at the window's vertical center after the
         // centering scroll, so pull the spanner up by half the
-        // window height — plus whatever sits above the window inside
-        // the sticky block (the section title). Clamped so short
-        // headers don't push the rail above the page.
+        // window height. Clamped so short headers don't push the
+        // rail above the page.
         var win = dialEl.querySelector('.dial-window');
-        var sticky = dialEl.querySelector('.dial-sticky');
-        var headH = (win && sticky)
-          ? win.getBoundingClientRect().top - sticky.getBoundingClientRect().top
-          : 0;
-        var offset = win ? headH + (win.clientHeight / 2) - 14 : 0;
+        var offset = win ? (win.clientHeight / 2) - 14 : 0;
         var top = contentTop - mainEl.getBoundingClientRect().top - offset;
         dialEl.style.top = Math.max(0, top) + 'px';
       }
