@@ -423,6 +423,15 @@ body.menu-open .nav-burger span:last-child {
   margin: 1.8em 0 0.6em;
 }
 
+.page-about .post-content h2 {
+  font-size: 27px;
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 1.8em 0 0.6em; 
+}
+
 .post-content h3 { 
   font-size: 27px;
   font-family: var(--sans);
