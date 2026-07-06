@@ -773,9 +773,9 @@ blockquote strong {
   display: inline-block;
   font-family: var(--display-x);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 20px;
-  color: var(--dim);
+  color: var(--faint);
   text-decoration: none;
   letter-spacing: 0.5px;
   /* Top buffer = the window's 72px fade-in zone, so the title is fully
@@ -789,7 +789,7 @@ blockquote strong {
   display: block;
   width: 25px;
   height: 1px;
-  background: var(--dim);
+  background: var(--faint);
   margin-top: 20px;
 }
 
