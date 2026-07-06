@@ -532,7 +532,8 @@ margin: 0 0 20px;
 }
 
 .post-content blockquote {
-  font-style: italic;
+  font-style: normal;
+  font-size: 17px;
   padding-left: 28px;
   border-left: 1px solid var(--ink);
   margin: 1.8em 0;
