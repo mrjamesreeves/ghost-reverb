@@ -1095,6 +1095,9 @@ margin: 38vh 0 20px;
     margin-bottom: 28px;
   }
 
+  .post-content h3:first-of-type { margin: 0 0 0.3em}
+  .post-content p { font-size: 17px; line-height: 1.5; margin-bottom: 1em; }
+
   .site-top-inner { width: 100%; }
 
   /* Full-ink 24px wordmark (no faint state on mobile). */
