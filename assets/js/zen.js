@@ -383,7 +383,10 @@
       var down = y > lastY + 2;
       var up = y < lastY - 2;
       if (down) {
-        if (y > restY + GRACE) rail.classList.add('is-hidden');
+        // Same anchor-relative grace as the dial: count from where
+        // the rail settles near the viewport top, never the page top.
+        var anchor = rail.getBoundingClientRect().top + y - 48;
+        if (y > Math.max(restY, anchor) + GRACE) rail.classList.add('is-hidden');
       } else if (up) {
         if (inner) {
           var r = inner.getBoundingClientRect();
@@ -418,7 +421,13 @@
       var down = y > lastY + 2;
       var up = y < lastY - 2;
       if (down) {
-        if (y > restY + GRACE) dialEl.classList.add('is-asleep');
+        // Grace counts from where the dial SETTLES (its anchor
+        // reaching the 48px pin), never from the page top — measured
+        // live because alignment shifts as images load. Without this
+        // a dial far down the page uses up its grace before it has
+        // even scrolled into view.
+        var anchor = dialEl.getBoundingClientRect().top + y - 48;
+        if (y > Math.max(restY, anchor) + GRACE) dialEl.classList.add('is-asleep');
       } else if (up) {
         dialEl.classList.remove('is-asleep');
         restY = y;
