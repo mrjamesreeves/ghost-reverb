@@ -755,18 +755,18 @@ blockquote strong {
    scrolls away with the list. Clickable — back to the section index.
    Its top margin carries the list's breathing room. */
 .dial-title {
-display: inline-block;
-font-family: var(--display-x);
-font-weight: 500;
-font-size: 20px;
-line-height: 20px;
-color: var(--ink);
-text-decoration: none;
-letter-spacing: 0.5px;
-/* Top buffer = the window's 72px fade-in zone, so the title is fully
-   legible at rest. zen.js aligns the rail by MEASURING where the
-   current entry lands, so no half-window padding is needed here. */
-margin: 72px 0 20px;
+  display: inline-block;
+  font-family: var(--display-x);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--dim);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  /* Top buffer = the window's 72px fade-in zone, so the title is fully
+    legible at rest. zen.js aligns the rail by MEASURING where the
+    current entry lands, so no half-window padding is needed here. */
+  margin: 72px 0 20px;
 }
 
 .dial-title::after {
@@ -774,7 +774,7 @@ margin: 72px 0 20px;
   display: block;
   width: 25px;
   height: 1px;
-  background: var(--ink);
+  background: var(--dim);
   margin-top: 20px;
 }
 
