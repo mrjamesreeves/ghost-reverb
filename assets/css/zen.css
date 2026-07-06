@@ -99,7 +99,8 @@ body {
 }
 
 .site-top-inner {
-  width: min(var(--img-max), 92vw);
+  width: 100%;
+  max-width: var(--img-max);
   margin: 0 auto;
   position: relative;
 }
@@ -317,7 +318,8 @@ body.menu-open .nav-burger span:last-child {
 .mr-hero {
   position: relative;
   display: block;
-  width: min(var(--img-max), 92vw);
+  width: 100%;
+  max-width: var(--img-max);
   margin: 0 auto;
   /* Always a square: the artwork covers the full block, text overlays
      the top. MR feature images are the clean art (titles live in the
@@ -536,7 +538,7 @@ margin: 0 0 20px;
 
 .page-about .post-content ul li {
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   margin-bottom: 1em;
   }
@@ -1212,6 +1214,9 @@ blockquote strong {
     margin-bottom: 28px;
   }
 
+  .mr-hero {
+    padding-top: 20px;
+  }
   .post-content h3:first-of-type { margin: 0 0 0.3em}
   .post-content p, .post-content li { font-size: 17px; line-height: 1.5; margin-bottom: 1em; }
   #tracklist li strong { font-size: 15px; line-height: 1.5; }
@@ -1362,7 +1367,7 @@ blockquote strong {
   .home-tiles-row--split { grid-template-columns: 1fr; }
   .home-tile--wide { aspect-ratio: 631 / 320; }
 
-  .post-content figcaption, .post-image-caption { margin-left: 10px; }
+  .page-about .post-content figcaption { margin-left: 10px; }
 
   .page-about .post-content h2 {
     font-size: 20px;
