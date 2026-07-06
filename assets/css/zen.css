@@ -410,21 +410,12 @@ body.menu-open .nav-burger span:last-child {
   .channel-heading {
     display: block;
     width: min(var(--col), 88vw);
-    margin: 0 auto 48px;
+    margin: 0 auto 24px;
     font-family: var(--display-x);
     font-weight: 500;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 20px;
     color: var(--ink);
-  }
-
-  .channel-heading::after {
-    content: "";
-    display: block;
-    width: 25px;
-    height: 1px;
-    background: var(--ink);
-    margin-top: 20px;
   }
 }
 
@@ -1222,8 +1213,8 @@ blockquote strong {
   }
 
   .post-content h3:first-of-type { margin: 0 0 0.3em}
-  .post-content p { font-size: 17px; line-height: 1.5; margin-bottom: 1em; }
-  .post-content li, li strong { font-size: 15px; line-height: 1.5; }
+  .post-content p, .post-content li { font-size: 17px; line-height: 1.5; margin-bottom: 1em; }
+  #tracklist li strong { font-size: 15px; line-height: 1.5; }
 
   .site-top-inner { width: 100%; }
 
