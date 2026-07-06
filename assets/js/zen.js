@@ -374,4 +374,26 @@
     window.addEventListener('scroll', fade, { passive: true });
   })();
 
+  // ---- 6. Auto hairline underline ------------------------------------------
+  // Any TEXT link whose computed text-decoration is none gets the
+  // sliding hairline on hover (.u-slide, styled in zen.css) — so new
+  // no-underline links (marginalia, h5 links, etc.) pick it up
+  // without being enumerated. Skips links that already carry a
+  // background effect (the class-based sliding underlines), links
+  // wrapping images, and contexts with their own hover language
+  // (dial, wordmark, title permalinks, Ghost kg-* cards).
+
+  (function autoUnderline() {
+    var SKIP = '.dial, .wordmark, .post-title, [class*="kg-"]';
+    document.querySelectorAll('a').forEach(function (a) {
+      if (a.closest(SKIP)) return;
+      if (a.querySelector('img, svg')) return;
+      if (!a.textContent.trim()) return;
+      var cs = getComputedStyle(a);
+      if (cs.textDecorationLine !== 'none') return;
+      if (cs.backgroundImage !== 'none') return;
+      a.classList.add('u-slide');
+    });
+  })();
+
 })();

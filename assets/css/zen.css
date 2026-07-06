@@ -41,16 +41,19 @@ body {
 }
 
 /* --- Sliding underline (reverb lineage) ------------------------------------
-   Left-to-right 1px underline on hover for links that aren't already
-   statically underlined (nav columns, footer links, meta, marginalia).
-   Body-copy links keep their static underline. --- */
+   Left-to-right hairline (1px, 30% ink — same weight as the nav
+   dash/rule) on hover for links that aren't statically underlined.
+   Body-copy links keep their static underline. .u-slide is added by
+   zen.js to ANY text link whose computed text-decoration is none, so
+   new no-underline links pick this up automatically. --- */
 
 .site-nav-col a,
 .site-footer-links a,
 .post-meta a,
 .marginalia a,
-.marginalia-subscribe {
-  background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+.marginalia-subscribe,
+.u-slide {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
   background-repeat: no-repeat;
   background-position: left 100%;
   background-size: 0% 1px;
@@ -62,7 +65,8 @@ body {
 .site-footer-links a:hover,
 .post-meta a:hover,
 .marginalia a:hover,
-.marginalia-subscribe:hover {
+.marginalia-subscribe:hover,
+.u-slide:hover {
   background-size: 100% 1px;
 }
 
@@ -220,9 +224,6 @@ body {
   line-height: 22px;
   color: var(--ink);
   text-decoration: none;
-  /* Hover underline matches the nav linework: 1px at 30% ink
-     (overrides the shared currentColor gradient). */
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 
@@ -782,10 +783,14 @@ margin: 72px 0 20px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
-  background: none;
+  /* Button reset via background-COLOR — the `background` shorthand
+     would wipe the sliding-underline gradient. Keep the 2px bottom
+     padding the underline rides on, and transition background-size
+     so it slides rather than snaps. */
+  background-color: transparent;
   border: 0;
-  padding: 0;
-  transition: color 0.4s ease;
+  padding: 0 0 2px;
+  transition: background-size 0.25s ease-in-out, color 0.4s ease;
 }
 
 .marginalia a:hover,
