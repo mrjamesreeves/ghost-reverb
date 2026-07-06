@@ -208,6 +208,9 @@ body {
 .site-nav-col {
   display: flex;
   flex-direction: column;
+  /* Links hug their text so the hover underline spans the word,
+     not the column. */
+  align-items: flex-start;
 }
 
 .site-nav-col a {
@@ -217,6 +220,9 @@ body {
   line-height: 22px;
   color: var(--ink);
   text-decoration: none;
+  /* Hover underline matches the nav linework: 1px at 30% ink
+     (overrides the shared currentColor gradient). */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 
