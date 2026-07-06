@@ -260,6 +260,25 @@
     align();
     window.addEventListener('load', align);
     window.addEventListener('resize', align);
+
+    // The dial stays invisible (CSS: opacity 0 until .is-ready) until
+    // the first feature image has laid out — it's the only thing
+    // above the copy top whose height arrives late, so aligning
+    // before it loads flashes the dial at the wrong spot.
+    var dialEl = document.getElementById('dial');
+    if (dialEl) {
+      var reveal = function () {
+        align();
+        dialEl.classList.add('is-ready');
+      };
+      var firstImg = document.querySelector('.post-image img, .mr-hero-art');
+      if (firstImg && !firstImg.complete) {
+        firstImg.addEventListener('load', reveal);
+        firstImg.addEventListener('error', reveal);
+      } else {
+        reveal();
+      }
+    }
   })();
 
   // ---- 4b. Comments fold ---------------------------------------------------
