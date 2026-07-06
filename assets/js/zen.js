@@ -115,11 +115,37 @@
 
     // Center the current entry by scrolling the window (not a CSS
     // transform) — long lists stay natively wheel-scrollable, with
-    // the edge fades as the affordance.
+    // the edge fades as the affordance. The slim end buffers mean the
+    // target clamps near the list's ends — first/last entries rest
+    // just clear of the fades rather than dead center.
     var win = list.parentElement;
+
+    // Unhurried glide with ease-in-out — the native smooth scroll is
+    // too zippy and its curve isn't tunable.
+    var glideId = null;
+    function glide(to) {
+      cancelAnimationFrame(glideId);
+      var from = win.scrollTop;
+      var delta = to - from;
+      if (Math.abs(delta) < 1) return;
+      var DURATION = 700;
+      var start = null;
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min(1, (ts - start) / DURATION);
+        win.scrollTop = from + delta * easeInOutCubic(p);
+        if (p < 1) glideId = requestAnimationFrame(step);
+      }
+      glideId = requestAnimationFrame(step);
+    }
+
     function center(smooth) {
       var top = current.offsetTop + (current.offsetHeight / 2) - (win.clientHeight / 2);
-      if (smooth) win.scrollTo({ top: top, behavior: 'smooth' });
+      top = Math.max(0, Math.min(top, win.scrollHeight - win.clientHeight));
+      if (smooth) glide(top);
       else win.scrollTop = top;
     }
     center();
@@ -205,13 +231,19 @@
       if (dialEl) {
         var mainEl = document.querySelector('.site-main');
         // The CURRENT dial entry aligns with the copy top (per the
-        // comp — earlier titles float above it, fading out). The
-        // current sits at the window's vertical center after the
-        // centering scroll, so pull the spanner up by half the
-        // window height. Clamped so short headers don't push the
-        // rail above the page.
+        // comp — earlier titles float above it, fading out). With the
+        // slim end buffers the centering scroll CLAMPS near the
+        // list's ends, so measure where the entry actually sits in
+        // the window instead of assuming dead center. Clamped so
+        // short headers don't push the rail above the page.
         var win = dialEl.querySelector('.dial-window');
-        var offset = win ? (win.clientHeight / 2) - 14 : 0;
+        var cur = dialEl.querySelector('.dial-list a.is-current');
+        var offset = 0;
+        if (win && cur) {
+          offset = cur.offsetTop + (cur.offsetHeight / 2) - win.scrollTop - 14;
+        } else if (win) {
+          offset = (win.clientHeight / 2) - 14;
+        }
         var top = contentTop - mainEl.getBoundingClientRect().top - offset;
         dialEl.style.top = Math.max(0, top) + 'px';
       }

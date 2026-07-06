@@ -662,7 +662,10 @@ font-size: 18px;
 line-height: 20px;
 color: var(--ink);
 text-decoration: none;
-margin: 38vh 0 20px;
+/* Top buffer = the window's 72px fade-in zone, so the title is fully
+   legible at rest. zen.js aligns the rail by MEASURING where the
+   current entry lands, so no half-window padding is needed here. */
+margin: 72px 0 20px;
 }
 
 .dial-title::after {
@@ -677,9 +680,11 @@ margin: 38vh 0 20px;
 .dial-list {
   display: flex;
   flex-direction: column;
-  /* Half-window breathing at both ends lets any entry — including
-     the first and last — sit centered in the window. */
-  padding: 38vh 0;
+  /* End buffers match the mask fade zones (72px top / 96px bottom):
+     scrolling stops with the first/last entry just clear of the
+     fades — no dead space beyond. Centering clamps at the ends;
+     zen.js measures the clamped position when aligning the rail. */
+  padding: 72px 0 96px;
 }
 
 /* When the title is present it carries the top breathing room. */
