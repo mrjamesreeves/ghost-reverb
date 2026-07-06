@@ -573,7 +573,6 @@ margin: 0 0 20px;
   font-weight: 500;
   font-size: 12px;
   line-height: 24px;
-  margin-top: 40px;
 }
 
 .post-meta a {
@@ -670,10 +669,11 @@ margin: 0 0 20px;
 display: inline-block;
 font-family: var(--display-x);
 font-weight: 500;
-font-size: 18px;
+font-size: 20px;
 line-height: 20px;
 color: var(--ink);
 text-decoration: none;
+letter-spacing: 0.5px;
 /* Top buffer = the window's 72px fade-in zone, so the title is fully
    legible at rest. zen.js aligns the rail by MEASURING where the
    current entry lands, so no half-window padding is needed here. */
