@@ -336,8 +336,7 @@ body.menu-open .nav-burger span:last-child {
 .mr-hero {
   position: relative;
   display: block;
-  width: 100%;
-  max-width: var(--img-max);
+  width: min(var(--img-max), 92vw);
   margin: 0 auto;
   /* Always a square: the artwork covers the full block, text overlays
      the top. MR feature images are the clean art (titles live in the
