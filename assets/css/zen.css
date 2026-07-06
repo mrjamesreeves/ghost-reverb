@@ -1386,7 +1386,11 @@ blockquote strong {
   .site-footer-links,
   .site-footer-icons { display: none; }
   .nav-burger--footer {
-    position: static;
+    /* In the footer's flex row (not absolute like the header), but
+       must stay POSITIONED — the burger's line spans are absolute
+       within it; static flings them to the next positioned ancestor
+       (they landed above/below the wordmark). */
+    position: relative;
     flex-shrink: 0;
   }
 }
