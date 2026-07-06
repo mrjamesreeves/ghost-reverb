@@ -435,6 +435,13 @@ margin: 0 0 20px;
   text-underline-offset: 2px;
 }
 
+/* Links carrying the sliding hairline (h5 links etc.) must not get
+   the static hover underline back on top of it — the rule above
+   outranks `.post-content h5 a`, hence the one-time double line. */
+.post-content a.u-slide:hover {
+  text-decoration: none;
+}
+
 .post-content h2 {
   font-size: 32px;
   font-family: var(--display);
