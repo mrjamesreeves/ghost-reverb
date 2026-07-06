@@ -348,7 +348,7 @@
     // point where the rail was last at rest (so a small nudge doesn't
     // dismiss it); fade back IN when they scroll up AND the rail's
     // block is on screen again.
-    var GRACE = 200;
+    var GRACE = 400;
     var inner = rail.querySelector('.marginalia-inner');
     var lastY = window.scrollY;
     var restY = window.scrollY;   // where the rail last sat visible
@@ -368,6 +368,34 @@
         // While visible, the rest point follows the reader up so the
         // next down-scroll gets a fresh grace distance.
         if (!rail.classList.contains('is-hidden')) restY = y;
+      }
+      lastY = y;
+    }
+    window.addEventListener('scroll', fade, { passive: true });
+  })();
+
+  // ---- 5b. Dial scroll fade (experiment) -----------------------------------
+  // Mirror of the marginalia fade: the dial sleeps after ~400px of
+  // downward travel and wakes on any scroll-up (it's sticky, so it's
+  // always "in view"). Uses .is-asleep — .is-hidden belongs to the
+  // grid/footer observer. To retire the experiment, delete this IIFE
+  // and the .is-asleep rules in zen.css.
+
+  (function dialFade() {
+    var dialEl = document.getElementById('dial');
+    if (!dialEl) return;
+    var GRACE = 400;
+    var lastY = window.scrollY;
+    var restY = window.scrollY;
+    function fade() {
+      var y = window.scrollY;
+      var down = y > lastY + 2;
+      var up = y < lastY - 2;
+      if (down) {
+        if (y > restY + GRACE) dialEl.classList.add('is-asleep');
+      } else if (up) {
+        dialEl.classList.remove('is-asleep');
+        restY = y;
       }
       lastY = y;
     }

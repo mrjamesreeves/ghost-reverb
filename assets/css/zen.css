@@ -638,6 +638,11 @@ margin: 0 0 20px;
 .dial.is-hidden { opacity: 0; }
 .dial.is-hidden .dial-window { pointer-events: none; }
 
+/* Scroll-direction fade (zen.js dialFade) — separate class from
+   .is-hidden so it can't fight the grid/footer observer. */
+.dial.is-asleep { opacity: 0; }
+.dial.is-asleep .dial-window { pointer-events: none; }
+
 .dial-window {
   /* Starts aligned to the copy top, sticks 48px from the viewport
      top once the reader scrolls past. Scrollable when the list is
