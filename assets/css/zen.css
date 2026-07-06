@@ -209,6 +209,23 @@ body {
 .site-top:hover .site-nav > :nth-child(4),
 .site-top.is-open .site-nav > :nth-child(4) { transition-delay: 0.6s; }
 
+/* Keyboard access: tabbing into the header (wordmark first) unfurls
+   the nav exactly like hover — links inside visibility:hidden can't
+   take focus, so without this the nav is unreachable by keyboard.
+   Desktop only: on mobile the focused burger would otherwise hold
+   the menu open after closing it. */
+@media (min-width: 900px) {
+  .site-top:focus-within .wordmark { color: var(--ink); }
+  .site-top:focus-within .site-nav { visibility: visible; transition-delay: 0s; }
+  .site-top:focus-within .site-nav::before { transform: scaleX(1); transition-delay: 0.06s; }
+  .site-top:focus-within .site-nav::after { transform: scaleY(1); transition-delay: 0.2s; }
+  .site-top:focus-within .site-nav > * { opacity: 1; transform: translateX(0); }
+  .site-top:focus-within .site-nav > :nth-child(1) { transition-delay: 0.28s; }
+  .site-top:focus-within .site-nav > :nth-child(2) { transition-delay: 0.4s; }
+  .site-top:focus-within .site-nav > :nth-child(3) { transition-delay: 0.52s; }
+  .site-top:focus-within .site-nav > :nth-child(4) { transition-delay: 0.6s; }
+}
+
 .site-nav-col {
   display: flex;
   flex-direction: column;
@@ -389,6 +406,42 @@ body.menu-open .nav-burger span:last-child {
   font-weight: 500;
   font-size: 12px;
   line-height: 24px;
+}
+
+/* The label is a link back to its section index — looks like the
+   plain label (zen.js gives it the hairline hover). */
+.post-label a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Mobile section heading on channel pages: the dial (which carries
+   the section title on desktop) is hidden below 1200px, so the
+   stream names itself in the same voice. */
+.channel-heading {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .channel-heading {
+    display: block;
+    width: min(var(--col), 88vw);
+    margin: 0 auto 48px;
+    font-family: var(--display-x);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--ink);
+  }
+
+  .channel-heading::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 1px;
+    background: var(--ink);
+    margin-top: 20px;
+  }
 }
 
 /* When the dial carries the section title (desktop), the per-post
@@ -1329,5 +1382,20 @@ margin: 72px 0 20px;
   .nav-burger--footer {
     position: static;
     flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   All movement collapses to instant for visitors who ask for it —
+   the unfurl, glides, and fades land in their final state. (zen.js
+   also skips its scripted scrolls when this media query matches.)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    animation-duration: 0.01ms !important;
   }
 }

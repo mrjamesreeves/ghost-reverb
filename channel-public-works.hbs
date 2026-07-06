@@ -6,6 +6,10 @@
 
 {{#contentFor "title"}}Public Works — {{@site.title}}{{/contentFor}}
 
+{{!-- Mobile-only section heading — the dial (which carries the
+     section title on desktop) is hidden below 1200px. --}}
+<h1 class="channel-heading">Public Works</h1>
+
 {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc" include="tags"}}
   {{#foreach posts}}
     {{> "post-view" stacked=true}}

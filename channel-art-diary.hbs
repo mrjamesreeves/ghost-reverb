@@ -6,6 +6,10 @@
 
 {{#contentFor "title"}}Art Diary — {{@site.title}}{{/contentFor}}
 
+{{!-- Mobile-only section heading — the dial (which carries the
+     section title on desktop) is hidden below 1200px. --}}
+<h1 class="channel-heading">Art Diary</h1>
+
 {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc" include="tags"}}
   {{#foreach posts}}
     {{> "post-view" stacked=true}}

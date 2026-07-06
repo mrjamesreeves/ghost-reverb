@@ -98,7 +98,16 @@
            On desktop the dial title also covers single posts; CSS
            hides the label whenever a .dial-title is on the page. --}}
       {{#unless stacked}}
-        <p class="post-label">{{tags visibility="public" limit="1" autolink="false"}}</p>
+        {{!-- The label links to its section index — mobile's back-to-
+             index affordance (desktop hides the label; the dial title
+             covers it there). Same name-based dispatch as post.hbs. --}}
+        <p class="post-label">
+          {{#has tag="Dreams"}}<a href="{{@site.url}}/dreams/">{{tags visibility="public" limit="1" autolink="false"}}</a>
+          {{else}}{{#has tag="Art"}}<a href="{{@site.url}}/art-diary/">{{tags visibility="public" limit="1" autolink="false"}}</a>
+          {{else}}{{#has tag="favorites"}}<a href="{{@site.url}}/favorites/">{{tags visibility="public" limit="1" autolink="false"}}</a>
+          {{else}}{{#has tag="Public Works"}}<a href="{{@site.url}}/public-works/">{{tags visibility="public" limit="1" autolink="false"}}</a>
+          {{else}}{{tags visibility="public" limit="1" autolink="false"}}{{/has}}{{/has}}{{/has}}{{/has}}
+        </p>
       {{/unless}}
       {{!-- Stacked (category index): the title is a permalink to the
            individual post. Single post: plain text. --}}

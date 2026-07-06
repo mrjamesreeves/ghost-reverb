@@ -23,6 +23,11 @@
 
   var MR_TAG_RE = /^hash-mr-([0-9a-z]+)$/i;
 
+  // Scripted scrolls (dial glide, smooth scrollIntoView) jump
+  // instantly for visitors who prefer reduced motion; CSS handles
+  // the transitions.
+  var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ---- 1. Mobile menu (burger) ---------------------------------------------
   // Both burgers (header + footer) toggle body.menu-open, which shows
   // the full-screen menu and morphs the burger into an X. Scrolling
@@ -38,7 +43,8 @@
       burgers.forEach(function (b) {
         b.setAttribute('aria-expanded', String(open));
       });
-      if (open) window.scrollTo({ top: 0 });
+      // No scrollTo: the menu is a fixed overlay and body.menu-open's
+      // overflow:hidden freezes the page where the reader left it.
     }
 
     burgers.forEach(function (b) {
@@ -125,6 +131,7 @@
     var glideId = null;
     function glide(to) {
       cancelAnimationFrame(glideId);
+      if (REDUCED_MOTION) { win.scrollTop = to; return; }
       var from = win.scrollTop;
       var delta = to - from;
       if (Math.abs(delta) < 1) return;
@@ -184,7 +191,7 @@
           });
           if (target) {
             e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
           }
         });
       });
@@ -293,7 +300,7 @@
       body.hidden = !body.hidden;
       btn.setAttribute('aria-expanded', String(!body.hidden));
       if (!body.hidden) {
-        body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        body.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
       }
     });
   })();
