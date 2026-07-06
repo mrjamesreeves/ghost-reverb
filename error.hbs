@@ -1,0 +1,11 @@
+{{!< default}}
+
+{{!-- 404 / error page. The copy is the point. --}}
+
+{{#contentFor "title"}}{{statusCode}} — {{@site.title}}{{/contentFor}}
+
+<section class="error-page">
+  <p class="error-code">{{statusCode}}</p>
+  <h1 class="error-message">This no longer exists. Perhaps it was too good for this world.</h1>
+  <a class="error-home" href="{{@site.url}}/">Return home</a>
+</section>

@@ -77,7 +77,9 @@
     });
     if (!part) { tile.remove(); return; }
     if (/^\d+$/.test(part)) part = part.padStart(2, '0');
-    img.src = '/assets/mr/MR' + part.toUpperCase() + '.webp';
+    // 300px thumbs — the grid renders tiles at ~130px; full covers
+    // live in /assets/mr/ for the hero.
+    img.src = '/assets/mr/thumb/MR' + part.toUpperCase() + '.webp';
   });
 
   // ---- 4. Dial -------------------------------------------------------------
@@ -118,6 +120,7 @@
 
     var current = links[idx];
     current.classList.add('is-current');
+    current.setAttribute('aria-current', 'page');
 
     // Center the current entry by scrolling the window (not a CSS
     // transform) — long lists stay natively wheel-scrollable, with
@@ -170,8 +173,10 @@
       function setCurrent(link) {
         if (!link || link === current) return;
         current.classList.remove('is-current');
+        current.removeAttribute('aria-current');
         current = link;
         current.classList.add('is-current');
+        current.setAttribute('aria-current', 'page');
         center(true);
       }
 
@@ -313,7 +318,9 @@
     var overlay = document.getElementById('signupOverlay');
     if (!overlay) return;   // member — modal not rendered
 
+    var lastTrigger = null;
     function open() {
+      lastTrigger = document.activeElement;
       overlay.classList.add('is-open');
       overlay.setAttribute('aria-hidden', 'false');
       var input = overlay.querySelector('.signup-input');
@@ -322,6 +329,9 @@
     function close() {
       overlay.classList.remove('is-open');
       overlay.setAttribute('aria-hidden', 'true');
+      // Hand focus back to the button that opened the modal.
+      if (lastTrigger && lastTrigger.focus) lastTrigger.focus();
+      lastTrigger = null;
     }
 
     document.querySelectorAll('[data-signup]').forEach(function (btn) {

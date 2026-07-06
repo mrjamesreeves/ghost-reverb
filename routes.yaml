@@ -11,16 +11,25 @@
 # this file, upload it manually: Ghost admin → Settings → Labs → Routes.
 
 routes:
+  # data: binds each route to its tag — the page inherits the tag's
+  # metadata (title/description/OG from Ghost admin → tag settings),
+  # and Ghost 301s the old /tag/{slug}/ URL here, killing the
+  # duplicate taxonomy pages.
   /radio/:
     template: channel-midnight-radio
+    data: tag.midnight-radio
   /dreams/:
     template: channel-dreams
+    data: tag.dreams
   /art-diary/:
     template: channel-art-diary
+    data: tag.art-diary
   /favorites/:
     template: channel-favorites
+    data: tag.favorites
   /public-works/:
     template: channel-public-works
+    data: tag.public-works
 
 collections:
   # Everything lives at root: /{slug}/. Public Works posts lose their

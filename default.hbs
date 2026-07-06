@@ -9,22 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{!-- Typekit serves all three families: Bebas Neue Pro (+ SemiExpanded),
-         IBM Plex Serif, IBM Plex Sans. --}}
+         IBM Plex Serif, IBM Plex Sans. Preconnect starts the TLS
+         handshake before the render-blocking stylesheet is requested. --}}
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
     <link rel="stylesheet" href="https://use.typekit.net/eer6kbs.css">
-    <link rel="preload" as="style" href="{{asset "css/zen.css"}}">
     <link rel="stylesheet" type="text/css" href="{{asset "css/zen.css"}}">
 
     {{ghost_head}}
 </head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W142JN2JXB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-W142JN2JXB');
-</script>
 
 <body class="{{body_class}}">
 

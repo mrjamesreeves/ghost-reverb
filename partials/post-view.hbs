@@ -109,9 +109,15 @@
           {{else}}{{tags visibility="public" limit="1" autolink="false"}}{{/has}}{{/has}}{{/has}}{{/has}}
         </p>
       {{/unless}}
-      {{!-- Stacked (category index): the title is a permalink to the
-           individual post. Single post: plain text. --}}
-      <h1 class="post-title">{{#if stacked}}<a href="{{url}}">{{title}}</a>{{else}}{{title}}{{/if}}</h1>
+      {{!-- Stacked (category index): the title is an h2 permalink —
+           one h1 per page (the channel heading); a stream of h1s
+           reads as a flat outline to assistive tech. Single post:
+           plain h1 text. --}}
+      {{#if stacked}}
+        <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
+      {{else}}
+        <h1 class="post-title">{{title}}</h1>
+      {{/if}}
       <div class="post-content">
         {{content}}
       </div>
