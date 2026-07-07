@@ -250,14 +250,39 @@
         // short headers don't push the rail above the page.
         var win = dialEl.querySelector('.dial-window');
         var cur = dialEl.querySelector('.dial-list a.is-current');
-        var offset = 0;
-        if (win && cur) {
-          offset = cur.offsetTop + (cur.offsetHeight / 2) - win.scrollTop - 14;
-        } else if (win) {
-          offset = (win.clientHeight / 2) - 14;
+        var mainRect = mainEl.getBoundingClientRect();
+
+        // Start from the natural (80vh) window on every pass.
+        if (win) win.style.maxHeight = '';
+
+        function railTop() {
+          var offset = 0;
+          if (win && cur) {
+            offset = cur.offsetTop + (cur.offsetHeight / 2) - win.scrollTop - 14;
+          } else if (win) {
+            offset = (win.clientHeight / 2) - 14;
+          }
+          return Math.max(0, contentTop - mainRect.top - offset);
         }
-        var top = contentTop - mainEl.getBoundingClientRect().top - offset;
-        dialEl.style.top = Math.max(0, top) + 'px';
+
+        var top = railTop();
+
+        // SHORT POSTS: the window must not outgrow its runway (rail
+        // top → end of main) — the overflow is invisible but adds
+        // phantom scroll space below the footer. Cap the window,
+        // re-center, re-measure; capping moves the anchor a touch,
+        // so iterate until it fits.
+        if (win && cur) {
+          for (var pass = 0; pass < 3; pass++) {
+            var avail = Math.floor(mainRect.height - top);
+            if (win.clientHeight <= avail) break;
+            win.style.maxHeight = Math.max(160, avail) + 'px';
+            win.scrollTop = cur.offsetTop + (cur.offsetHeight / 2) - (win.clientHeight / 2);
+            top = railTop();
+          }
+        }
+
+        dialEl.style.top = top + 'px';
       }
 
       var rail = document.getElementById('marginalia');
