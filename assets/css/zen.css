@@ -757,9 +757,13 @@ blockquote strong {
   scrollbar-width: none;
   pointer-events: auto;
   /* Soft white fades at both ends — stands in for the comp's gradient
-     overlays without extra elements. */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 72px, #000 calc(100% - 96px), transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 72px, #000 calc(100% - 96px), transparent);
+     overlays without extra elements. The TOP fade is scroll-aware:
+     zen.js grows --fade-top with the amount of list above the window,
+     so a deep episode's ghost stack dissolves gradually instead of
+     hard-starting at the window edge. Bottom stays fixed. */
+  --fade-top: 72px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade-top, 72px), #000 calc(100% - 96px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade-top, 72px), #000 calc(100% - 96px), transparent);
 }
 
 .dial-window::-webkit-scrollbar { display: none; }

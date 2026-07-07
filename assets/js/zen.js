@@ -158,8 +158,20 @@
       if (smooth) glide(top);
       else win.scrollTop = top;
     }
+
+    // Scroll-aware top fade: --fade-top (the mask's dissolve height)
+    // grows with the amount of list above the window, capped short of
+    // the current entry's centered position so it never dims the
+    // entry itself. Rides the scroll event, so the glide animates it.
+    function updateFade() {
+      var f = Math.min(72 + win.scrollTop, win.clientHeight * 0.5 - 40);
+      win.style.setProperty('--fade-top', Math.max(72, f) + 'px');
+    }
+    win.addEventListener('scroll', updateFade, { passive: true });
+
     center();
-    window.addEventListener('resize', function () { center(); });
+    updateFade();
+    window.addEventListener('resize', function () { center(); updateFade(); });
 
     // ── Scrollspy (stacked channel pages) ─────────────────────────
     // When several articles share the page, the dial highlights the
