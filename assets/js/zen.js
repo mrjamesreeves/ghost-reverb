@@ -309,6 +309,12 @@
     align();
     window.addEventListener('load', align);
     window.addEventListener('resize', align);
+    // Typekit swap can reflow the layout above the copy (a title that
+    // wraps in the fallback font but not in condensed Bebas moves
+    // everything up) — re-align once fonts settle.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { align(); });
+    }
 
     // The dial stays invisible (CSS: opacity 0 until .is-ready) until
     // the first feature image has laid out — it's the only thing

@@ -42,6 +42,12 @@
     {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc"}}
       {{> "dial" sectionTitle="Public Works" sectionUrl="/public-works/"}}
     {{/get}}
+  {{else}}
+    {{!-- Everything else lives in the Archive — same negated filter
+         as channel-archive.hbs. --}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="all" order="published_at desc"}}
+      {{> "dial" sectionTitle="Archive" sectionUrl="/archive/" numbered=true}}
+    {{/get}}
   {{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
 
 {{/post}}

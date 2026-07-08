@@ -128,10 +128,10 @@
       <div class="post-meta">
         <span>{{date format="MMMM D, YYYY"}}</span>
         <span class="post-meta-sep">&bull;</span>
-        {{#if @site.comments_enabled}}
+        {{#if @site.comments_enabled}}{{#unless hideComments}}
           <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
           <span class="post-meta-sep">&bull;</span>
-        {{/if}}
+        {{/unless}}{{/if}}
         {{!-- Ghost's native share modal (Ghost 6+). Single post: bare
              #/share shares this page. Stacked: #/share alone would
              share the CHANNEL url, so link to the post with the hash —
@@ -144,11 +144,11 @@
           </span>
         {{/unless}}
       </div>
-      {{#if @site.comments_enabled}}
+      {{#if @site.comments_enabled}}{{#unless hideComments}}
         <div class="comments-body" data-comments-body hidden>
           {{comments title="" count=false}}
         </div>
-      {{/if}}
+      {{/unless}}{{/if}}
     </div>
 
   </article>
