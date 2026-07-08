@@ -127,28 +127,28 @@
       </div>
       <div class="post-meta">
         <span>{{date format="MMMM D, YYYY"}}</span>
-        {{#unless stacked}}
+        <span class="post-meta-sep">&bull;</span>
+        {{#if @site.comments_enabled}}
+          <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
           <span class="post-meta-sep">&bull;</span>
-          {{#if @site.comments_enabled}}
-            <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
-            <span class="post-meta-sep">&bull;</span>
-          {{/if}}
-          {{!-- Ghost's native share modal — a plain #/share link opens
-               it (Ghost 6+; older versions ignore the hash harmlessly). --}}
-          <a class="post-meta-share" href="#/share">Share</a>
+        {{/if}}
+        {{!-- Ghost's native share modal (Ghost 6+). Single post: bare
+             #/share shares this page. Stacked: #/share alone would
+             share the CHANNEL url, so link to the post with the hash —
+             it opens with the modal already up. --}}
+        <a class="post-meta-share" href="{{#if stacked}}{{url}}{{/if}}#/share">Share</a>
+        {{#unless stacked}}
           <span class="post-arrows" id="postArrows" hidden>
             <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
             <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
           </span>
         {{/unless}}
       </div>
-      {{#unless stacked}}
-        {{#if @site.comments_enabled}}
-          <div class="comments-body" data-comments-body hidden>
-            {{comments title="" count=false}}
-          </div>
-        {{/if}}
-      {{/unless}}
+      {{#if @site.comments_enabled}}
+        <div class="comments-body" data-comments-body hidden>
+          {{comments title="" count=false}}
+        </div>
+      {{/if}}
     </div>
 
   </article>

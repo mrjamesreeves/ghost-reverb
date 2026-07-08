@@ -335,15 +335,19 @@
   // expands them in place (and scrolls them into view).
 
   (function commentsFold() {
-    var btn = document.querySelector('[data-comments-toggle]');
-    var body = document.querySelector('[data-comments-body]');
-    if (!btn || !body) return;
-    btn.addEventListener('click', function () {
-      body.hidden = !body.hidden;
-      btn.setAttribute('aria-expanded', String(!body.hidden));
-      if (!body.hidden) {
-        body.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
-      }
+    // Bind every toggle to ITS OWN post's fold — stacked category
+    // pages carry one per article.
+    document.querySelectorAll('[data-comments-toggle]').forEach(function (btn) {
+      var article = btn.closest('article');
+      var body = article && article.querySelector('[data-comments-body]');
+      if (!body) return;
+      btn.addEventListener('click', function () {
+        body.hidden = !body.hidden;
+        btn.setAttribute('aria-expanded', String(!body.hidden));
+        if (!body.hidden) {
+          body.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
     });
   })();
 
