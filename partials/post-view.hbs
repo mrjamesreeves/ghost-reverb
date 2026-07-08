@@ -57,7 +57,11 @@
         <span class="post-meta-sep">&bull;</span>
         {{#if @site.comments_enabled}}
           <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
+          <span class="post-meta-sep">&bull;</span>
         {{/if}}
+        {{!-- Ghost's native share modal — a plain #/share link opens it
+             (Ghost 6+; older versions ignore the hash harmlessly). --}}
+        <a class="post-meta-share" href="#/share">Share</a>
         <span class="post-arrows" id="postArrows" hidden>
           <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
           <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
@@ -127,7 +131,11 @@
           <span class="post-meta-sep">&bull;</span>
           {{#if @site.comments_enabled}}
             <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
+            <span class="post-meta-sep">&bull;</span>
           {{/if}}
+          {{!-- Ghost's native share modal — a plain #/share link opens
+               it (Ghost 6+; older versions ignore the hash harmlessly). --}}
+          <a class="post-meta-share" href="#/share">Share</a>
           <span class="post-arrows" id="postArrows" hidden>
             <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
             <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
