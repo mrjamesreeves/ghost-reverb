@@ -1422,8 +1422,8 @@ blockquote strong {
    ========================================================================== */
 
 .archive-list {
-  width: min(var(--col), 88vw);
-  margin: 0 auto;
+  width: min(900px, 88vw);
+  margin: 100px auto 0;
   display: flex;
   flex-direction: column;
   gap: 44px;
@@ -1464,7 +1464,7 @@ blockquote strong {
   font-weight: 700;
   font-size: 24px;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   margin: 2px 0 2px;
   /* Sliding hairline rides the row hover. */
