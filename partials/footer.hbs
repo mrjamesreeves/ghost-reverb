@@ -18,9 +18,14 @@
     <a href="{{@site.url}}/favorites/">Favorite Things</a>
     <a href="{{@site.url}}/instructions/">Instructions for Myself</a>
     <a href="{{@site.url}}/about/">About</a>
+    <a href="{{@site.url}}/archive/">Archive</a>
   </nav>
 
   <div class="site-footer-icons">
+    {{!-- Ghost's native search — the #/search hash opens it. --}}
+    <a href="#/search" aria-label="Search">
+      <img src="{{asset "img/icon-search.svg"}}" alt="" loading="lazy">
+    </a>
     <a href="https://www.jamesreeves.co/rss/" aria-label="RSS feed">
       <img src="{{asset "img/icon-rss.webp"}}" alt="" loading="lazy">
     </a>

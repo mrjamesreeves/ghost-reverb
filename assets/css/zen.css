@@ -1422,11 +1422,11 @@ blockquote strong {
    ========================================================================== */
 
 .archive-list {
-width: min(var(--img-max), 88vw);  
-margin: 100px auto 0;
+  width: min(var(--img-max), 88vw);  
+  margin: 100px auto 0;
   display: flex;
   flex-direction: column;
-  gap: 44px;
+  gap: 24px;
 }
 
 .archive-item {
