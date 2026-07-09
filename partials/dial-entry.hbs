@@ -1,0 +1,3 @@
+{{!-- One dial entry — expects a post context. Internal-tag spans
+     feed the MR episode-number prefix in zen.js when present. --}}
+<a href="{{url}}" data-slug="{{slug}}">{{#foreach tags visibility="internal"}}<span data-ep="{{slug}}" hidden></span>{{/foreach}}{{title}}</a>

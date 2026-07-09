@@ -43,11 +43,10 @@
       {{> "dial" sectionTitle="Public Works" sectionUrl="/public-works/"}}
     {{/get}}
   {{else}}
-    {{!-- Everything else lives in the Archive — same negated filter
-         as channel-archive.hbs. --}}
-    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="all" order="published_at desc"}}
-      {{> "dial" sectionTitle="Archive" sectionUrl="/archive/" numbered=true}}
-    {{/get}}
+    {{!-- Everything else lives in the Archive. Its entries come from
+         paged queries inside the dial (archiveEntries) — Ghost 6
+         caps {{#get}} at 100 posts. --}}
+    {{> "dial" sectionTitle="Archive" sectionUrl="/archive/" numbered=true archiveEntries=true}}
   {{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
 
 {{/post}}

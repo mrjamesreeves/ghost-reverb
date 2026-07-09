@@ -2,9 +2,10 @@
 
 {{!-- /archive/ — everything OUTSIDE the five sections (~650 posts) as
      a light index list: thumbnail, number, title, one-line excerpt.
-     (The full-post stacking pattern melts at this scale.) No dial —
-     the list is its own navigation; single archive posts still get
-     the Archive dial via post.hbs. zen.js fills the numbers
+     Ghost 6 caps {{#get}} at 100 posts (limit="all" is gone), so the
+     full set comes from stacked paged queries — 8 pages = 800-post
+     capacity; pages beyond the real total render nothing. ADD
+     page="9" when the archive nears 800. zen.js fills the numbers
      (oldest = 1, newest highest). Literal negated tag filter —
      {{#get}} can't interpolate. --}}
 
@@ -13,25 +14,13 @@
 {{!-- Mobile-only section heading (desktop stays bare, per comp). --}}
 <h1 class="channel-heading">Archive</h1>
 
-{{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="all" order="published_at desc"}}
-  <div class="archive-list" data-archive-count>
-    {{#foreach posts}}
-      <a class="archive-item" href="{{url}}">
-        {{#if feature_image}}
-          <img class="archive-thumb"
-            src="{{img_url feature_image size="xxs"}}"
-            srcset="{{img_url feature_image size="xxs"}} 150w, {{img_url feature_image size="xs"}} 300w"
-            sizes="100px"
-            alt="" loading="lazy">
-        {{else}}
-          <span class="archive-thumb archive-thumb--empty"></span>
-        {{/if}}
-        <span class="archive-text">
-          <span class="archive-num"></span>
-          <span class="archive-title">{{title}}</span>
-          <span class="archive-excerpt">{{excerpt words="20"}}</span>
-        </span>
-      </a>
-    {{/foreach}}
-  </div>
-{{/get}}
+<div class="archive-list" data-archive-count>
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="1" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="2" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="3" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="4" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="5" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="6" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="7" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="100" page="8" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
+</div>

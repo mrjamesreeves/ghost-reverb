@@ -20,12 +20,15 @@
       <a class="dial-title" href="{{@site.url}}{{sectionUrl}}">{{sectionTitle}}</a>
     {{/if}}
     <div class="dial-list" id="dialList"{{#if numbered}} data-numbered{{/if}}>
-      {{#foreach posts}}
-        {{!-- Internal-tag spans only render when the caller's #get
-             included tags (the MR queries do). zen.js reads hash-mr-N
-             and prefixes the title: "49. The Shimmer". --}}
-        <a href="{{url}}" data-slug="{{slug}}">{{#foreach tags visibility="internal"}}<span data-ep="{{slug}}" hidden></span>{{/foreach}}{{title}}</a>
-      {{/foreach}}
+      {{#if archiveEntries}}
+        {{!-- Archive: >100 posts — paged queries live in the entries
+             partial (Ghost 6 caps #get at 100). --}}
+        {{> "dial-archive-entries"}}
+      {{else}}
+        {{#foreach posts}}
+          {{> "dial-entry"}}
+        {{/foreach}}
+      {{/if}}
     </div>
   </div>
 </nav>

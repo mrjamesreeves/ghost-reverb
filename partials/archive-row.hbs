@@ -1,0 +1,18 @@
+{{!-- One /archive/ index row — expects a post context. Numbers are
+     filled client-side (newest = N … oldest = 1). --}}
+<a class="archive-item" href="{{url}}">
+  {{#if feature_image}}
+    <img class="archive-thumb"
+      src="{{img_url feature_image size="xxs"}}"
+      srcset="{{img_url feature_image size="xxs"}} 150w, {{img_url feature_image size="xs"}} 300w"
+      sizes="100px"
+      alt="" loading="lazy">
+  {{else}}
+    <span class="archive-thumb archive-thumb--empty"></span>
+  {{/if}}
+  <span class="archive-text">
+    <span class="archive-num"></span>
+    <span class="archive-title">{{title}}</span>
+    <span class="archive-excerpt">{{excerpt words="20"}}</span>
+  </span>
+</a>
