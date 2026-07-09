@@ -1417,6 +1417,81 @@ blockquote strong {
 }
 
 /* ==========================================================================
+   ARCHIVE LIST — /archive/ index: thumb, number, title, one-line
+   excerpt per row. Light by design (~650 rows).
+   ========================================================================== */
+
+.archive-list {
+  width: min(var(--col), 88vw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.archive-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 24px;
+  align-items: start;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.archive-thumb {
+  width: 100px;
+  height: 67px;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.06);   /* placeholder while lazy/missing */
+}
+
+.archive-thumb--empty { display: block; }
+
+/* min-width:0 lets the nowrap excerpt actually truncate — grid items
+   otherwise refuse to shrink below their content. */
+.archive-text { min-width: 0; }
+
+.archive-num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.archive-title {
+  display: block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 5px 0 6px;
+  /* Sliding hairline rides the row hover. */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.25s ease-in-out;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.archive-item:hover .archive-title {
+  background-size: 100% 1px;
+}
+
+.archive-excerpt {
+  display: block;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;   /* natural … only when it truncates */
+}
+
+/* ==========================================================================
    ERROR PAGE (404 etc.) — the copy is the point.
    ========================================================================== */
 

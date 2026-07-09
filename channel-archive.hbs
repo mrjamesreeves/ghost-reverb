@@ -1,20 +1,37 @@
 {{!< default}}
 
-{{!-- /archive/ — everything OUTSIDE the five sections (~650 posts),
-     stacked like the other channels with the numbered dial. Comments
-     are suppressed (hideComments): hundreds of comment containers
-     would sink the page — readers comment on the single-post view.
-     Literal negated tag filter — {{#get}} can't interpolate. --}}
+{{!-- /archive/ — everything OUTSIDE the five sections (~650 posts) as
+     a light index list: thumbnail, number, title, one-line excerpt.
+     (The full-post stacking pattern melts at this scale.) No dial —
+     the list is its own navigation; single archive posts still get
+     the Archive dial via post.hbs. zen.js fills the numbers
+     (oldest = 1, newest highest). Literal negated tag filter —
+     {{#get}} can't interpolate. --}}
 
 {{#contentFor "title"}}Archive — {{@site.title}}{{/contentFor}}
 
-{{!-- Mobile-only section heading — the dial (which carries the
-     section title on desktop) is hidden below 1200px. --}}
+{{!-- Mobile-only section heading (desktop stays bare, per comp). --}}
 <h1 class="channel-heading">Archive</h1>
 
-{{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="all" order="published_at desc" include="tags"}}
-  {{#foreach posts}}
-    {{> "post-view" stacked=true hideComments=true}}
-  {{/foreach}}
-  {{> "dial" sectionTitle="Archive" sectionUrl="/archive/" numbered=true}}
+{{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works]" limit="all" order="published_at desc"}}
+  <div class="archive-list" data-archive-count>
+    {{#foreach posts}}
+      <a class="archive-item" href="{{url}}">
+        {{#if feature_image}}
+          <img class="archive-thumb"
+            src="{{img_url feature_image size="xxs"}}"
+            srcset="{{img_url feature_image size="xxs"}} 150w, {{img_url feature_image size="xs"}} 300w"
+            sizes="100px"
+            alt="" loading="lazy">
+        {{else}}
+          <span class="archive-thumb archive-thumb--empty"></span>
+        {{/if}}
+        <span class="archive-text">
+          <span class="archive-num"></span>
+          <span class="archive-title">{{title}}</span>
+          <span class="archive-excerpt">{{excerpt words="20"}}</span>
+        </span>
+      </a>
+    {{/foreach}}
+  </div>
 {{/get}}

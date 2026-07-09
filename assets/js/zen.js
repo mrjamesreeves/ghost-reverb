@@ -82,6 +82,15 @@
     img.src = '/assets/mr/thumb/MR' + part.toUpperCase() + '.webp';
   });
 
+  // ---- 3b. Archive list numbering ------------------------------------------
+  // The archive index numbers its rows newest = N … oldest = 1, same
+  // scheme as the numbered dials (no arithmetic in handlebars).
+
+  document.querySelectorAll('[data-archive-count]').forEach(function (list) {
+    var nums = list.querySelectorAll('.archive-num');
+    nums.forEach(function (el, i) { el.textContent = nums.length - i; });
+  });
+
   // ---- 4. Dial -------------------------------------------------------------
 
   (function dial() {
