@@ -22,17 +22,21 @@
     </button>
 
     <nav class="site-nav" id="siteNav" aria-label="Site">
+      {{!-- 3×3, loosely: streams / works / self. --}}
       <div class="site-nav-col">
         <a href="{{@site.url}}/radio/">Midnight Radio</a>
         <a href="{{@site.url}}/dreams/">Dream Inventory</a>
         <a href="{{@site.url}}/art-diary/">Art Diary</a>
-        <a href="{{@site.url}}/spite/">Spite</a>
       </div>
       <div class="site-nav-col">
         <a href="{{@site.url}}/public-works/">Public Works</a>
-        <a href="{{@site.url}}/favorites/">Favorite Things</a>
+        <a href="{{@site.url}}/spite/">Spite</a>
         <a href="{{@site.url}}/instructions/">Instructions for Myself</a>
+      </div>
+      <div class="site-nav-col">
+        <a href="{{@site.url}}/favorites/">Favorite Things</a>
         <a href="{{@site.url}}/about/">About</a>
+        <a href="{{@site.url}}/archive/">Archive</a>
       </div>
 
       {{#unless @member}}

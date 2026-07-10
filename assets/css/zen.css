@@ -244,6 +244,9 @@ body {
   line-height: 22px;
   color: var(--ink);
   text-decoration: none;
+  /* Names never break mid-word — the absolute nav shrink-to-fits its
+     900px container and would otherwise wrap "Midnight / Radio". */
+  white-space: nowrap;
 }
 
 
