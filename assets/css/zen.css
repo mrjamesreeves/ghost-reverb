@@ -840,6 +840,15 @@ blockquote strong {
   position: relative;
 }
 
+/* EMAIL COVER convention (reverb lineage): when an MR post's very
+   first card is an image card, it's the baked-title cover that leads
+   the NEWSLETTER. The website already shows the hero, so hide it
+   here — emails ignore site CSS, so it renders there (and in RSS).
+   Must be the FIRST card: anything above it (embed, h4) voids this. */
+.post--mr .post-content > .kg-image-card:first-child {
+  display: none;
+}
+
 #tracklist li {
   font-family: var(--sans);
   font-size: 12px;
