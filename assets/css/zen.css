@@ -840,12 +840,13 @@ blockquote strong {
   position: relative;
 }
 
-/* EMAIL COVER convention (reverb lineage): when an MR post's very
-   first card is an image card, it's the baked-title cover that leads
-   the NEWSLETTER. The website already shows the hero, so hide it
-   here — emails ignore site CSS, so it renders there (and in RSS).
-   Must be the FIRST card: anything above it (embed, h4) voids this. */
-.post--mr .post-content > .kg-image-card:first-child {
+/* EMAIL COVER convention (reverb lineage), OPT-IN: tag a post with
+   the internal tag #email-cover and its FIRST image card — the
+   baked-title cover that leads the NEWSLETTER — hides on the web
+   (emails ignore site CSS, so it renders there, and in RSS). Opt-in
+   via tag so posts that legitimately open with an image are never
+   swallowed. */
+.tag-hash-email-cover .post-content > .kg-image-card:first-child {
   display: none;
 }
 
