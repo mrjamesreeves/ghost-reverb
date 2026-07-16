@@ -544,12 +544,29 @@ margin: 0 0 20px;
   text-decoration: none;
 }
 
+/* Blockquote per Figma: a large quote mark hangs left of the
+   indented quote — no border. */
 .post-content blockquote {
   font-style: normal;
   font-size: 17px;
-  padding-left: 28px;
-  border-left: 1px solid var(--ink);
+  position: relative;
+  padding-left: 90px;
   margin: 1.8em 0;
+}
+
+.post-content blockquote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 56px;
+  height: 42px;
+  background: url(../img/quotes.svg) no-repeat center / contain;
+}
+
+@media (max-width: 899px) {
+  .post-content blockquote { padding-left: 56px; }
+  .post-content blockquote::before { width: 36px; height: 27px; }
 }
 
 .page-about .post-content blockquote:first-of-type {
@@ -584,6 +601,11 @@ blockquote strong {
   border-left: none;
   margin: 1.8em 0;
   text-indent: -9px;
+}
+
+/* About's blockquotes are a credits list, not quotations — no mark. */
+.page-about .post-content blockquote::before {
+  display: none;
 }
 
 .post-content ul,
