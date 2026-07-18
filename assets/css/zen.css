@@ -262,6 +262,7 @@ body {
   letter-spacing: 0.56px;
   text-transform: uppercase;
   line-height: 1.4;
+  margin-bottom: 0;
 }
 
 .site-nav-cta-blurb {
