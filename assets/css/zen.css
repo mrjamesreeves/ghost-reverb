@@ -1446,12 +1446,17 @@ blockquote strong {
   }
   .site-footer-links,
   .site-footer-icons { display: none; }
+  /* True vertical centering against the wordmark: cancel the base
+     rule's absolute-context offset (top: 4px would shift a RELATIVE
+     element down) and the wordmark's desktop baseline nudge. */
+  .site-footer .wordmark--footer { margin-bottom: 0; }
   .nav-burger--footer {
     /* In the footer's flex row (not absolute like the header), but
        must stay POSITIONED — the burger's line spans are absolute
        within it; static flings them to the next positioned ancestor
        (they landed above/below the wordmark). */
     position: relative;
+    top: 0;
     flex-shrink: 0;
   }
 }
