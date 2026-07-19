@@ -551,7 +551,7 @@ margin: 0 0 20px;
   font-style: normal;
   font-size: 17px;
   position: relative;
-  padding-left: 90px;
+  padding-left: 60px;
   margin: 1.8em 0;
 }
 
@@ -559,9 +559,9 @@ margin: 0 0 20px;
   content: "";
   position: absolute;
   left: 0;
-  top: 2px;
-  width: 56px;
-  height: 42px;
+  top: 8px;
+  width: 40px;
+  height: 32px;
   background: url(../img/quotes.svg) no-repeat center / contain;
 }
 
