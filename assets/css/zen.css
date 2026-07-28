@@ -868,8 +868,10 @@ blockquote strong {
    baked-title cover that leads the NEWSLETTER — hides on the web
    (emails ignore site CSS, so it renders there, and in RSS). Opt-in
    via tag so posts that legitimately open with an image are never
-   swallowed. */
-.tag-hash-email-cover .post-content > .kg-image-card:first-child {
+   swallowed. Scoped to the ARTICLE (post_class), not the body — the
+   body class on channel pages carries the route's tag, not the
+   post's, which left /radio/ showing hero + cover. */
+.post.tag-hash-email-cover .post-content > .kg-image-card:first-child {
   display: none;
 }
 

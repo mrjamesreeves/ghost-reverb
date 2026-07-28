@@ -15,7 +15,10 @@
 
 {{#has tag="Midnight Radio"}}
 
-  <article class="post post--mr" data-slug="{{slug}}">
+  {{!-- post_class carries the post's tag classes (incl. internal
+       tag-hash-*) on every surface — single, channel, stacked — so
+       tag-scoped CSS like the email-cover rule works everywhere. --}}
+  <article class="post--mr {{post_class}}" data-slug="{{slug}}">
 
     <div class="mr-hero">
       <p class="mr-hero-eyebrow">
@@ -78,7 +81,7 @@
 
 {{else}}
 
-  <article class="post" data-slug="{{slug}}">
+  <article class="{{post_class}}" data-slug="{{slug}}">
 
     {{#if feature_image}}
       <figure class="post-image">
