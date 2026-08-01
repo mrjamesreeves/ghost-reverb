@@ -1,6 +1,23 @@
 {{!-- One-line site footer: wordmark, section links, social icons.
      Spans 90% of the viewport, max 1600px, centered. --}}
 
+{{!-- Non-members get the full signup CTA above the footer — same
+     copy/design as the hover-nav's (which stays hidden until
+     discovered). Desktop: button → modal. Mobile: inline members
+     form, mirroring the menu. --}}
+{{#unless @member}}
+<section class="signup-footer" aria-label="Subscribe">
+  <p class="signup-footer-title">Join Midnight Radio</p>
+  <p class="signup-footer-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+  <button class="site-nav-subscribe signup-footer-button" data-signup>Subscribe</button>
+  <form class="signup-footer-form" data-members-form="signup">
+    <input class="signup-footer-input" type="email" data-members-email placeholder="Enter your email..." required aria-label="Email address">
+    <button class="signup-footer-go" type="submit">Subscribe</button>
+  </form>
+  <p class="signup-footer-success">Hell yeah&mdash;thank you for tuning in! Now check your inbox.</p>
+</section>
+{{/unless}}
+
 <footer class="site-footer">
   <a class="wordmark wordmark--footer" href="{{@site.url}}/">James A. Reeves</a>
 

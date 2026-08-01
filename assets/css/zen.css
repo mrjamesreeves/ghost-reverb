@@ -1539,6 +1539,99 @@ blockquote strong {
 }
 
 /* ==========================================================================
+   SIGNUP FOOTER — non-members get the full CTA above the footer,
+   mirroring the hover-nav's (title/blurb/button verbatim). Desktop:
+   button → modal. Mobile: inline members form, like the menu.
+   Self-contained classes so menu media rules can't leak in.
+   ========================================================================== */
+
+.signup-footer {
+  width: min(var(--col), 88vw);
+  margin: 110px auto 0;
+}
+
+.signup-footer-title {
+  font-family: var(--display-x);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.signup-footer-blurb {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  max-width: 320px;
+}
+
+/* Mobile-only pieces, hidden on desktop. */
+.signup-footer-form,
+.signup-footer-success {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .signup-footer-button { display: none; }
+
+  .signup-footer-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: 18px;
+    max-width: 380px;
+  }
+
+  .signup-footer-input {
+    flex: 1;
+    border: 0;
+    border-bottom: 1px solid var(--ink);
+    border-radius: 0;
+    background: none;
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 6px 0;
+    outline: none;
+  }
+
+  .signup-footer-input:focus {
+    box-shadow: inset 0 -1px 0 var(--ink);
+  }
+
+  .signup-footer-input::placeholder { color: var(--dim); }
+
+  .signup-footer-go {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 5px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1;
+    padding: 8px 21px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .signup-footer-go:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  /* Ghost's members script sets .success on the form. */
+  .signup-footer-form.success { display: none; }
+  .signup-footer:has(.signup-footer-form.success) .signup-footer-success {
+    display: block;
+    font-family: var(--sans);
+    font-size: 14px;
+    margin-top: 18px;
+  }
+}
+
+/* ==========================================================================
    ERROR PAGE (404 etc.) — the copy is the point.
    ========================================================================== */
 
@@ -1583,7 +1676,8 @@ blockquote strong {
 
 @media (pointer: coarse) {
   .signup-input,
-  .site-nav-signup-input {
+  .site-nav-signup-input,
+  .signup-footer-input {
     font-size: 16px;
   }
 }
