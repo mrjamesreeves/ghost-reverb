@@ -1,5 +1,10 @@
 [
   {
+    "from": "^/tag/podcast/rss/?$",
+    "to": "https://feeds.buzzsprout.com/2541955.rss",
+    "permanent": true
+  },
+  {
     "from": "^/notebook/?$",
     "to": "/",
     "permanent": true
