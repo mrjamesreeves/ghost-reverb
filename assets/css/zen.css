@@ -1021,22 +1021,15 @@ blockquote strong {
   position: static;
   display: block;
   line-height: 1.2;
-  margin-bottom: 3px;
 }
 
 .home-tile-tagline {
   display: block;
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.25;
   color: #d5d5d5;
   margin-bottom: 8px;
-}
-
-/* Dream Club's tagline runs a step smaller in the comp. */
-.home-tile--dream .home-tile-tagline {
-  font-size: 18px;
-  line-height: 1.2;
 }
 
 .home-tile-platform {
