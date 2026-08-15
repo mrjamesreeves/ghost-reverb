@@ -25,25 +25,32 @@
   {{/foreach}}
 {{/get}}
 
+{{!-- Four square tiles, 2×2. The app tiles (Spite / Dream Club) are
+     external links; their artwork is baked into the images — the
+     text overlays live here. --}}
 <div class="home-tiles">
-  <div class="home-tiles-row home-tiles-row--halves">
-    <a class="home-tile home-tile--tall" href="{{@site.url}}/art-diary/">
-      <img src="{{asset "img/home-art-diary.webp"}}" alt="" loading="lazy">
-      <span class="home-tile-title">Art Diary</span>
-    </a>
-    <a class="home-tile home-tile--tall" href="{{@site.url}}/dreams/">
-      <img src="{{asset "img/home-dream-inventory.webp"}}" alt="" loading="lazy">
-      <span class="home-tile-title">Dream<br>Inventory</span>
-    </a>
-  </div>
-  <div class="home-tiles-row home-tiles-row--split">
-    <a class="home-tile home-tile--wide" href="{{@site.url}}/favorites/">
-      <img src="{{asset "img/home-favorites.webp"}}" alt="" loading="lazy">
-      <span class="home-tile-title">Favorite<br>Things</span>
-    </a>
-    <a class="home-tile home-tile--square" href="{{@site.url}}/radio/">
-      <img src="{{asset "img/home-midnight-radio.webp"}}" alt="" loading="lazy">
-      <span class="home-tile-title">Midnight<br>Radio</span>
-    </a>
-  </div>
+  <a class="home-tile" href="{{@site.url}}/art-diary/">
+    <img src="{{asset "img/home-art-diary.webp"}}" alt="" loading="lazy">
+    <span class="home-tile-title">Art Diary</span>
+  </a>
+  <a class="home-tile" href="{{@site.url}}/favorites/">
+    <img src="{{asset "img/home-favorites.webp"}}" alt="" loading="lazy">
+    <span class="home-tile-title">Favorite<br>Things</span>
+  </a>
+  <a class="home-tile" href="https://spite.jamesreeves.co">
+    <img src="{{asset "img/home-spite.webp"}}" alt="" loading="lazy">
+    <span class="home-tile-text">
+      <span class="home-tile-title">Spite</span>
+      <span class="home-tile-tagline">A streamlined music player.<br>No algorithms. Taste is your problem.</span>
+      <span class="home-tile-platform">For iOS + Mac</span>
+    </span>
+  </a>
+  <a class="home-tile home-tile--dream" href="https://thedream.club">
+    <img src="{{asset "img/home-dream-club.webp"}}" alt="" loading="lazy">
+    <span class="home-tile-text">
+      <span class="home-tile-title">Dream Club</span>
+      <span class="home-tile-tagline">A dignified home for your dreams.</span>
+      <span class="home-tile-platform">For iOS + Mac</span>
+    </span>
+  </a>
 </div>

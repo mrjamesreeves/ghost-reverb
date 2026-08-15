@@ -993,30 +993,58 @@ blockquote strong {
 
 .home-tiles {
   width: min(var(--img-max), 92vw);
-  margin: 50px auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
-
-.home-tiles-row {
+  margin: 52px auto 0;
   display: grid;
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px 20px;   /* Figma: 52 between rows, 20 between columns */
 }
-
-.home-tiles-row--halves { grid-template-columns: 1fr 1fr; }
-.home-tiles-row--split  { grid-template-columns: 631fr 250fr; }
 
 .home-tile {
   position: relative;
   display: block;
   overflow: hidden;
   background: #000;
+  aspect-ratio: 1 / 1;
 }
 
-.home-tile--tall   { aspect-ratio: 440 / 500; }
-.home-tile--wide   { aspect-ratio: 631 / 250; }
-.home-tile--square { aspect-ratio: 1 / 1; }
+/* App tiles (Spite / Dream Club): title, tagline, platform stacked
+   top-left; the artwork is baked into the tile image. Values from
+   the Figma comp (node 267-4). */
+.home-tile-text {
+  position: absolute;
+  top: 14px;
+  left: 25px;
+  right: 25px;
+}
+
+.home-tile-text .home-tile-title {
+  position: static;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.home-tile-tagline {
+  display: block;
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.25;
+  color: #d5d5d5;
+  margin-bottom: 8px;
+}
+
+/* Dream Club's tagline runs a step smaller in the comp. */
+.home-tile--dream .home-tile-tagline {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.home-tile-platform {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: #999;
+}
 
 .home-tile img {
   position: absolute;
@@ -1034,8 +1062,8 @@ blockquote strong {
 
 .home-tile-title {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 23px;
+  left: 25px;
   font-family: var(--display);
   font-weight: 700;
   font-size: 48px;
@@ -1425,10 +1453,11 @@ blockquote strong {
   .post-image { width: 100%; }
   .post-title { margin-bottom: 14px; }
 
-  .home-tiles { margin: 20px auto; gap: 20px; }
-  .home-tiles-row--halves,
-  .home-tiles-row--split { grid-template-columns: 1fr; }
-  .home-tile--wide { aspect-ratio: 631 / 320; }
+  .home-tiles {
+    margin: 20px auto;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
 
   .page-about .post-content figcaption { margin-left: 10px; }
 
