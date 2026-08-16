@@ -50,6 +50,11 @@
     "permanent": true
   },
   {
+    "from": "^/52",
+    "to": "/a-torchlight-shining-at-the-bastards/",
+    "permanent": true
+  },
+  {
     "from": "^/40",
     "to": "/bodies-without-organs",
     "permanent": true
