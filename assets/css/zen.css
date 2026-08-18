@@ -1313,12 +1313,11 @@ blockquote strong {
   .post-content blockquote { font-size: 18px; }
 }
 
-/* Phone (≤ 599): 19px/1.55 body — was forced to 17px, the source of
-   the "too small" feel (NYT runs 18–19 on phones). 84vw column ≈
-   33px margins at 390 → ~55–60 char measure. */
+/* Phone (≤ 599): 18px/1.5 body — matched side-by-side against NYT
+   on device (19 read too big). 84vw column ≈ 30px margins at 375. */
 @media (max-width: 599px) {
   :root { --col: 84vw; }
-  body { font-size: 19px; line-height: 1.55; }
+  body { font-size: 18px; line-height: 1.5; }
   .post-content blockquote { font-size: 17px; }
 }
 
