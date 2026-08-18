@@ -21,11 +21,13 @@
   <article class="post--mr {{post_class}}" data-slug="{{slug}}">
 
     <div class="mr-hero">
-      <p class="mr-hero-eyebrow">
-        Midnight Radio
-        {{#foreach tags visibility="internal"}}<span class="episode-number" data-ep="{{slug}}"></span>{{/foreach}}
-      </p>
-      <h1 class="mr-hero-title">{{title}}</h1>
+      <div class="mr-hero-text">
+        <p class="mr-hero-eyebrow">
+          Midnight Radio
+          {{#foreach tags visibility="internal"}}<span class="episode-number" data-ep="{{slug}}"></span>{{/foreach}}
+        </p>
+        <h1 class="mr-hero-title">{{title}}</h1>
+      </div>
       {{#if feature_image}}
         <img class="mr-hero-art"
           srcset="{{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w, {{img_url feature_image size="xl"}} 1600w"

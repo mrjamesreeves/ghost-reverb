@@ -353,21 +353,24 @@ body.menu-open .nav-burger span:last-child {
   text-decoration: none;
 }
 
-.mr-hero-eyebrow {
+/* Eyebrow + title share ONE container that owns the horizontal
+   inset — no per-element padding logic. 6% (was 7.3% on each). */
+.mr-hero-text {
   position: relative;
   z-index: 2;
+  padding: 0 6%;
+}
+
+.mr-hero-eyebrow {
   font-family: var(--sans);
   font-size: clamp(12px, 2.9vw, 20px);
   letter-spacing: 0.12em;
   line-height: 1.3;
   text-transform: uppercase;
   color: var(--paper);
-  padding: 0 7.3%;
 }
 
 .mr-hero-title {
-  position: relative;
-  z-index: 2;
   font-family: var(--display);
   font-weight: 700;
   font-size: clamp(52px, 16vw, 150px);
@@ -375,7 +378,7 @@ body.menu-open .nav-burger span:last-child {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--paper);
-  padding: 6px 7.3% 0;
+  margin-top: 6px;   /* eyebrow → title gap (was a stray padding-top) */
 }
 
 .mr-hero-art {
