@@ -7,9 +7,19 @@
    template leans on are provided here, scoped to this page only.
    (Values lifted from the archived reverb branch.) */
 :root {
-  --font-big: "bebas-neue-pro", sans-serif;
-  --font-sans: "ibm-plex-sans", sans-serif;
-  --font-serif: "ibm-plex-serif", serif;
+  --sans:      "ibm-plex-sans", sans-serif;
+  --serif:     "ibm-plex-serif", serif;
+  --display:   "bebas-neue-pro", sans-serif;
+  --display-x: "bebas-neue-pro-semiexpanded", sans-serif;
+
+  --ink:   #000;
+  --paper: #fff;
+  --faint: rgba(0, 0, 0, 0.15);   /* resting wordmark + dial entries */
+  --dim:   #767676;   /* marginalia resting */
+
+  --col:      645px;    /* body text column */
+  --img-max:  900px;    /* post images + hero + home tiles */
+  --wide-max: 1600px;   /* footer + MR grid, at 90vw */
   --color-text: #000;
   --color-text-muted: #979797;
   --color-text-hover: #000;
@@ -63,11 +73,13 @@ h1 {
     }
 
 h2 {
-color: #000;
-margin-top: 60px;
-font-size: 40px;
-margin-bottom: 10px;
-    }
+  font-size: 32px;
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin: 1.8em 0 0.6em;
+}
 
 h3 {
     font-size: 20px;
