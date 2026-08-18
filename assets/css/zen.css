@@ -349,7 +349,12 @@ body.menu-open .nav-burger span:last-child {
   aspect-ratio: 1 / 1;
   background: #000;
   overflow: hidden;
-  padding-top: 58px;
+  /* Top inset = the same 6% as the sides, so the text block sits in a
+     square-cornered margin at every hero size, no per-breakpoint
+     overrides. Computed from the hero's OWN width (6% of
+     min(900px, 92vw)) — a bare percentage would resolve against the
+     containing block, which is the full page on desktop. */
+  padding-top: calc(min(var(--img-max), 92vw) * 0.06);
   text-decoration: none;
 }
 
@@ -1330,9 +1335,6 @@ blockquote strong {
     margin-bottom: 28px;
   }
 
-  .mr-hero {
-    padding-top: 20px;
-  }
   .post-content h3:first-of-type { margin: 0 0 0.3em}
   .post-content p, .post-content li { margin-bottom: 1em; }
   #tracklist li strong { font-size: 15px; line-height: 1.5; }
