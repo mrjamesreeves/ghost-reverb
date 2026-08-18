@@ -1292,6 +1292,36 @@ blockquote strong {
   .marginalia { display: none; }
 }
 
+/* ==========================================================================
+   READING MEASURE — tablet + phone (NYT-calibrated)
+   Desktop: 645px column at 19px. Below 1024 the column shrinks with
+   the viewport, so iPad portrait was running the full 645 with only
+   ~62px margins and desktop-sized type — wide, small, and squashed.
+   Tablet: 20px/1.6 in a 600px column (≈84px margins at 768, like the
+   Times). Phone: 20px/1.55, 8vw margins (~31px at 390).
+   Type-nerd note: the column narrows exactly as the type grows, so
+   the measure holds at ~62–66 characters throughout.
+   ========================================================================== */
+
+/* The column is a token, so headings, captions, the archive list,
+   the signup block and the 404 all narrow with the body copy.
+   Applies across the whole rail-less tablet band (≤1199, where the
+   dial/marginalia hide) — iPad landscape at 1024 included. */
+@media (max-width: 1199px) {
+  :root { --col: min(600px, 82vw); }
+  body { font-size: 20px; }
+  .post-content blockquote { font-size: 18px; }
+}
+
+/* Phone (≤ 599): 19px/1.55 body — was forced to 17px, the source of
+   the "too small" feel (NYT runs 18–19 on phones). 84vw column ≈
+   33px margins at 390 → ~55–60 char measure. */
+@media (max-width: 599px) {
+  :root { --col: 84vw; }
+  body { font-size: 19px; line-height: 1.55; }
+  .post-content blockquote { font-size: 17px; }
+}
+
 @media (max-width: 899px) {
   .site-top {
     padding: 28px 25px 20px;
@@ -1302,7 +1332,7 @@ blockquote strong {
     padding-top: 20px;
   }
   .post-content h3:first-of-type { margin: 0 0 0.3em}
-  .post-content p, .post-content li { font-size: 17px; line-height: 1.5; margin-bottom: 1em; }
+  .post-content p, .post-content li { margin-bottom: 1em; }
   #tracklist li strong { font-size: 15px; line-height: 1.5; }
 
   .site-top-inner { width: 100%; }
