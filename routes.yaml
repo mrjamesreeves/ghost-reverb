@@ -30,11 +30,11 @@ routes:
   /public-works/:
     template: channel-public-works
     data: tag.public-works
-  # No data binding — the Archive is a negation (everything untagged
+  # No data binding — the Notebook is a negation (everything untagged
   # by the five sections), so there's no tag entity to inherit
-  # metadata from.
-  /archive/:
-    template: channel-archive
+  # metadata from. (/archive/ 301s here via redirects.json.)
+  /notebook/:
+    template: channel-notebook
 
 collections:
   # Everything lives at root: /{slug}/. Public Works posts lose their

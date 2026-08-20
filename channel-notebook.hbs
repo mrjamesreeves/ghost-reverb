@@ -1,18 +1,20 @@
 {{!< default}}
 
-{{!-- /archive/ — everything OUTSIDE the five sections (~650 posts) as
-     a light index list: thumbnail, number, title, one-line excerpt.
+{{!-- /notebook/ — everything OUTSIDE the five sections (~650 posts)
+     as a light index list: thumbnail, number, title, one-line
+     excerpt. (Formerly /archive/; the .archive-* classes and
+     partials keep their names — internal only.)
      Ghost 6 caps {{#get}} at 100 posts (limit="all" is gone), so the
      full set comes from stacked paged queries — 8 pages = 800-post
      capacity; pages beyond the real total render nothing. ADD
-     page="9" when the archive nears 800. zen.js fills the numbers
+     page="9" when the list nears 800. zen.js fills the numbers
      (oldest = 1, newest highest). Literal negated tag filter —
      {{#get}} can't interpolate. --}}
 
-{{#contentFor "title"}}Archive — {{@site.title}}{{/contentFor}}
+{{#contentFor "title"}}Notebook — {{@site.title}}{{/contentFor}}
 
 {{!-- Mobile-only section heading (desktop stays bare, per comp). --}}
-<h1 class="channel-heading">Archive</h1>
+<h1 class="channel-heading">Notebook</h1>
 
 <div class="archive-list" data-archive-count>
   {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="1" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}

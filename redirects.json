@@ -5,8 +5,8 @@
     "permanent": true
   },
   {
-    "from": "^/notebook/?$",
-    "to": "/",
+    "from": "^/archive/?$",
+    "to": "/notebook/",
     "permanent": true
   },
   {
