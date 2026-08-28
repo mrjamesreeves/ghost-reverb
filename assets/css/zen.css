@@ -689,6 +689,17 @@ blockquote strong {
   margin: 2em 0;
 }
 
+/* Video embeds arrive from oEmbed with fixed pixel dimensions (the
+   tiny-player problem) — stretch them to the column at 16:9.
+   Non-video embeds (Spotify, Bandcamp…) keep their intrinsic size. */
+.post-content .kg-embed-card iframe[src*="youtube.com"],
+.post-content .kg-embed-card iframe[src*="youtube-nocookie.com"],
+.post-content .kg-embed-card iframe[src*="vimeo.com"] {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
 .post-content .kg-embed-card,
 .post-content .kg-gallery-card {
   margin: 2em 0;
