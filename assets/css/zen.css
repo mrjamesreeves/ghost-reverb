@@ -887,9 +887,10 @@ blockquote strong {
 .dial-thumb {
   position: relative;
   display: block;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.05);
+  transition: background 0.25s ease;
 }
 
 .dial-thumb img {
@@ -901,39 +902,46 @@ blockquote strong {
   transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
-.dial-thumb:hover img,
-.dial-thumb:focus-visible img,
+/* Current = the position marker: full-color artwork. */
 .dial-thumb.is-current img {
   filter: none;
   opacity: 1;
 }
 
+/* Hover / keyboard focus = the name card: artwork yields to a solid
+   black tile with the artist's name, vertically centered, wrapping. */
+.dial-thumb:hover,
+.dial-thumb:focus-visible {
+  background: var(--ink);
+}
+
+.dial-thumb:hover img,
+.dial-thumb:focus-visible img {
+  opacity: 0;
+}
+
 .dial-thumb-name {
   position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 100%;
-  background: var(--ink);
+  inset: 0;
+  display: flex;
+  align-items: center;
   color: var(--paper);
   font-family: var(--sans);
   font-weight: 600;
-  font-size: 10px;
-  line-height: 1.25;
-  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 1.3;
+  padding: 4px 8px;
   opacity: 0;
   transition: opacity 0.25s ease;
   pointer-events: none;
 }
 
 .dial-thumb:hover .dial-thumb-name,
-.dial-thumb:focus-visible .dial-thumb-name,
-.dial-thumb.is-current .dial-thumb-name {
+.dial-thumb:focus-visible .dial-thumb-name {
   opacity: 1;
 }
 
-/* Imageless posts: gray tile, name always faintly present. */
 .dial-thumb-empty { display: block; width: 100%; height: 100%; }
-.dial-thumb:has(.dial-thumb-empty) .dial-thumb-name { opacity: 0.5; }
 
 /* ── Touch-world Art Diary index ─────────────────────────────────
    The dial (and hover) don't exist below 1200px — the channel page
