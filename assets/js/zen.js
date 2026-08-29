@@ -279,7 +279,13 @@
         function railTop() {
           var offset = 0;
           if (win && cur) {
-            offset = cur.offsetTop + (cur.offsetHeight / 2) - win.scrollTop - 14;
+            if (cur.classList.contains('dial-thumb')) {
+              // Thumb tiles TOP-align to the copy; the half-height
+              // centering fudge is a text-line concept.
+              offset = cur.offsetTop - win.scrollTop;
+            } else {
+              offset = cur.offsetTop + (cur.offsetHeight / 2) - win.scrollTop - 14;
+            }
           } else if (win) {
             offset = (win.clientHeight / 2) - 14;
           }
@@ -321,6 +327,14 @@
     // Typekit swap can reflow the layout above the copy (a title that
     // wraps in the fallback font but not in condensed Bebas moves
     // everything up) — re-align once fonts settle.
+    // Any layout change inside <main> (lazy images, embeds, font
+    // swaps, injected players) can move the copy top after our
+    // event-based aligns have fired — re-align on every size change.
+    // align() is cheap and idempotent; RO batches per frame.
+    if ('ResizeObserver' in window) {
+      var mainEl = document.querySelector('.site-main');
+      if (mainEl) new ResizeObserver(function () { align(); }).observe(mainEl);
+    }
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () { align(); });
     }

@@ -11,8 +11,16 @@
 <h1 class="channel-heading">Art Diary</h1>
 
 {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc" include="tags"}}
+  {{!-- Touch-world index: the dial is hidden below 1200px and hover
+       doesn't exist there, so phones/iPads get the thumbnail grid
+       at the top of the stream instead — full color, tap to open. --}}
+  <nav class="art-index" aria-label="Art Diary index">
+    {{#foreach posts}}
+      {{> "dial-entry-thumb"}}
+    {{/foreach}}
+  </nav>
   {{#foreach posts}}
     {{> "post-view" stacked=true}}
   {{/foreach}}
-  {{> "dial" sectionTitle="Art Diary" sectionUrl="/art-diary/" numbered=true}}
+  {{> "dial" sectionTitle="Art Diary" sectionUrl="/art-diary/" thumbs=true}}
 {{/get}}

@@ -7,7 +7,9 @@
          sitting directly above the first entry (black, 25px rule),
          linking back to the section index. It scrolls with the list.
        numbered=true — zen.js prefixes each entry with its position,
-         oldest = 1 (used by dreams / art / favorites).
+         oldest = 1 (used by dreams / favorites).
+       thumbs=true — entries render as a 3-up grid of feature-image
+         tiles, ghosted until hover/current (Art Diary).
 
      Dumb list by design — zen.js marks the entry matching the current
      URL (.is-current), vertically centers it in the window, and
@@ -19,16 +21,20 @@
     {{#if sectionTitle}}
       <a class="dial-title" href="{{@site.url}}{{sectionUrl}}">{{sectionTitle}}</a>
     {{/if}}
-    <div class="dial-list" id="dialList"{{#if numbered}} data-numbered{{/if}}>
+    <div class="dial-list{{#if thumbs}} dial-list--thumbs{{/if}}" id="dialList"{{#if numbered}} data-numbered{{/if}}>
       {{#if archiveEntries}}
         {{!-- Archive: >100 posts — paged queries live in the entries
              partial (Ghost 6 caps #get at 100). --}}
         {{> "dial-archive-entries"}}
+      {{else}}{{#if thumbs}}
+        {{#foreach posts}}
+          {{> "dial-entry-thumb"}}
+        {{/foreach}}
       {{else}}
         {{#foreach posts}}
           {{> "dial-entry"}}
         {{/foreach}}
-      {{/if}}
+      {{/if}}{{/if}}
     </div>
   </div>
 </nav>
