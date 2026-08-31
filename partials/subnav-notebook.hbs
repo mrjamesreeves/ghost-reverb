@@ -1,0 +1,20 @@
+{{!-- Notes subnav: section header + 3-column numbered list of ALL
+     unsectioned posts. Ghost 6 caps {{#get}} at 100, so the full set
+     comes from stacked paged queries — 8 pages = 800-post capacity;
+     pages beyond the real total render nothing. ADD page="9" when
+     the list nears 800. Literal filters — {{#get}} can't
+     interpolate. --}}
+
+<nav class="subnav" aria-label="More in Notes">
+  <a class="subnav-title" href="{{@site.url}}/notebook/">Notes</a>
+  <div class="subnav-list" data-archive-count>
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="1" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="2" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="3" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="4" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="5" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="6" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="7" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+    {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="8" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
+  </div>
+</nav>

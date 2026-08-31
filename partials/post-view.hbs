@@ -1,23 +1,16 @@
-{{!-- Full post view. Expects a post context (from {{#post}} in post.hbs
-     or {{#foreach posts limit="1"}} in a channel template).
+{{!-- Full post view. Expects a post context — used by post.hbs and,
+     for the latest post, by every channel template (one item per
+     page; the channel's subnav renders below, by the CALLER).
 
      Two variants:
-       - Midnight Radio: black hero block (eyebrow + huge title + cover
-         art), marginalia rail on the right (Download / Podcast /
-         Tracklist / Subscribe — populated by zen.js from the post's
-         first h4 + first ol), body column.
-       - Everything else: feature image (80%, max 900px), category
-         label, Bebas title, body column.
-
-     The dial and (for MR) the cover grid are rendered by the CALLER —
-     they need the full sibling post list, which comes from a separate
-     {{#get}} in post.hbs / channel templates. --}}
+       - Midnight Radio: black 1:1 hero (eyebrow + huge title + cover
+         art), right marginalia rail (Download / Podcast / Tracklist —
+         populated by zen.js — plus the signup CTA), body column.
+       - Everything else: feature image (900px, 577 crop), Bebas
+         title, body column. --}}
 
 {{#has tag="Midnight Radio"}}
 
-  {{!-- post_class carries the post's tag classes (incl. internal
-       tag-hash-*) on every surface — single, channel, stacked — so
-       tag-scoped CSS like the email-cover rule works everywhere. --}}
   <article class="post--mr {{post_class}}" data-slug="{{slug}}">
 
     <div class="mr-hero">
@@ -40,15 +33,19 @@
       <div class="post-image-caption mr-hero-caption">{{{feature_image_caption}}}</div>
     {{/if}}
 
-    {{!-- Marginalia rail. zen.js clones the Download/Podcast anchors out
-         of the post's first h4 into #marginaliaLinks, adds a Tracklist
-         anchor when the post has an <ol>, and fades the rail out on
-         scroll-down / in on scroll-up. --}}
+    {{!-- Marginalia rail: zen.js clones the Download/Podcast anchors
+         out of the post's first h4, adds a Tracklist anchor when the
+         post has an <ol>, and fades the rail on scroll. Non-members
+         get the signup CTA beneath the links. --}}
     <aside class="marginalia" id="marginalia" aria-label="Episode links">
       <div class="marginalia-inner">
         <div id="marginaliaLinks"></div>
         {{#unless @member}}
-          <button class="marginalia-subscribe" data-signup>Subscribe</button>
+          <div class="marginalia-cta">
+            <p class="cta-title">Join Midnight Radio</p>
+            <p class="cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+            <button class="cta-button" data-signup>Subscribe</button>
+          </div>
         {{/unless}}
       </div>
     </aside>
@@ -64,8 +61,6 @@
           <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
           <span class="post-meta-sep">&bull;</span>
         {{/if}}
-        {{!-- Ghost's native share modal — a plain #/share link opens it
-             (Ghost 6+; older versions ignore the hash harmlessly). --}}
         <a class="post-meta-share" href="#/share">Share</a>
         <span class="post-arrows" id="postArrows" hidden>
           <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
@@ -92,7 +87,7 @@
           sizes="(max-width: 960px) 100vw, 900px"
           src="{{img_url feature_image size="l"}}"
           alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-          loading="{{#if stacked}}{{#if @first}}eager{{else}}lazy{{/if}}{{else}}eager{{/if}}">
+          loading="eager">
         {{#if feature_image_caption}}
           <figcaption class="post-image-caption">{{{feature_image_caption}}}</figcaption>
         {{/if}}
@@ -100,60 +95,28 @@
     {{/if}}
 
     <div class="post-body-col">
-      {{!-- First PUBLIC tag as the label — primary_tag is empty when
-           an internal tag sorts first, so use the tags helper.
-           Stacked (category index): omitted — the dial's section title
-           carries the category, so it doesn't repeat with every post.
-           On desktop the dial title also covers single posts; CSS
-           hides the label whenever a .dial-title is on the page. --}}
-      {{#unless stacked}}
-        {{!-- The label links to its section index — mobile's back-to-
-             index affordance (desktop hides the label; the dial title
-             covers it there). Same name-based dispatch as post.hbs. --}}
-        <p class="post-label">
-          {{#has tag="Dreams"}}<a href="{{@site.url}}/dreams/">{{tags visibility="public" limit="1" autolink="false"}}</a>
-          {{else}}{{#has tag="Art"}}<a href="{{@site.url}}/art-diary/">{{tags visibility="public" limit="1" autolink="false"}}</a>
-          {{else}}{{#has tag="favorites"}}<a href="{{@site.url}}/favorites/">{{tags visibility="public" limit="1" autolink="false"}}</a>
-          {{else}}{{#has tag="Public Works"}}<a href="{{@site.url}}/public-works/">{{tags visibility="public" limit="1" autolink="false"}}</a>
-          {{else}}{{tags visibility="public" limit="1" autolink="false"}}{{/has}}{{/has}}{{/has}}{{/has}}
-        </p>
-      {{/unless}}
-      {{!-- Stacked (category index): the title is an h2 permalink —
-           one h1 per page (the channel heading); a stream of h1s
-           reads as a flat outline to assistive tech. Single post:
-           plain h1 text. --}}
-      {{#if stacked}}
-        <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
-      {{else}}
-        <h1 class="post-title">{{title}}</h1>
-      {{/if}}
+      <h1 class="post-title">{{title}}</h1>
       <div class="post-content">
         {{content}}
       </div>
       <div class="post-meta">
         <span>{{date format="MMMM D, YYYY"}}</span>
         <span class="post-meta-sep">&bull;</span>
-        {{#if @site.comments_enabled}}{{#unless hideComments}}
+        {{#if @site.comments_enabled}}
           <button class="post-meta-comments" data-comments-toggle aria-expanded="false">{{comment_count empty="Comments" singular="comment" plural="comments"}}</button>
           <span class="post-meta-sep">&bull;</span>
-        {{/unless}}{{/if}}
-        {{!-- Ghost's native share modal (Ghost 6+). Single post: bare
-             #/share shares this page. Stacked: #/share alone would
-             share the CHANNEL url, so link to the post with the hash —
-             it opens with the modal already up. --}}
-        <a class="post-meta-share" href="{{#if stacked}}{{url}}{{/if}}#/share">Share</a>
-        {{#unless stacked}}
-          <span class="post-arrows" id="postArrows" hidden>
-            <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
-            <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
-          </span>
-        {{/unless}}
+        {{/if}}
+        <a class="post-meta-share" href="#/share">Share</a>
+        <span class="post-arrows" id="postArrows" hidden>
+          <a class="post-arrow-prev" id="arrowPrev" aria-label="Previous"><img src="{{asset "img/arrow-rev.svg"}}" alt=""></a>
+          <a class="post-arrow-next" id="arrowNext" aria-label="Next"><img src="{{asset "img/arrow-fwd.svg"}}" alt=""></a>
+        </span>
       </div>
-      {{#if @site.comments_enabled}}{{#unless hideComments}}
+      {{#if @site.comments_enabled}}
         <div class="comments-body" data-comments-body hidden>
           {{comments title="" count=false}}
         </div>
-      {{/unless}}{{/if}}
+      {{/if}}
     </div>
 
   </article>

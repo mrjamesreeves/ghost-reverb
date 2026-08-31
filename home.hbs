@@ -1,35 +1,45 @@
 {{!< default}}
 
 {{!-- Homepage. Hero = the latest Midnight Radio episode as a black
-     cover block (eyebrow + title + artwork), linking to the post.
-     Below: four section tiles. Footer comes from default.hbs. --}}
+     cover block linking to the post, with the signup CTA as
+     marginalia to its right (non-members, wide screens only).
+     Below: two section tiles + three app tiles. --}}
 
 {{#contentFor "title"}}{{@site.title}} — {{@site.description}}{{/contentFor}}
 
-{{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
-  {{#foreach posts}}
-  <a class="mr-hero mr-hero--link" href="{{url}}">
-    <div class="mr-hero-text">
-      <p class="mr-hero-eyebrow">
-        Midnight Radio
-        {{#foreach tags visibility="internal"}}<span class="episode-number" data-ep="{{slug}}"></span>{{/foreach}}
-      </p>
-      <h1 class="mr-hero-title">{{title}}</h1>
-    </div>
-    {{#if feature_image}}
-      <img class="mr-hero-art"
-        srcset="{{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w, {{img_url feature_image size="xl"}} 1600w"
-        sizes="(max-width: 960px) 100vw, 900px"
-        src="{{img_url feature_image size="l"}}"
-        alt="{{title}}" loading="eager">
-    {{/if}}
-  </a>
-  {{/foreach}}
-{{/get}}
+<div class="home-hero-wrap">
+  {{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
+    {{#foreach posts}}
+    <a class="mr-hero mr-hero--link" href="{{url}}">
+      <div class="mr-hero-text">
+        <p class="mr-hero-eyebrow">
+          Midnight Radio
+          {{#foreach tags visibility="internal"}}<span class="episode-number" data-ep="{{slug}}"></span>{{/foreach}}
+        </p>
+        <h1 class="mr-hero-title">{{title}}</h1>
+      </div>
+      {{#if feature_image}}
+        <img class="mr-hero-art"
+          srcset="{{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w, {{img_url feature_image size="xl"}} 1600w"
+          sizes="(max-width: 960px) 100vw, 900px"
+          src="{{img_url feature_image size="l"}}"
+          alt="{{title}}" loading="eager">
+      {{/if}}
+    </a>
+    {{/foreach}}
+  {{/get}}
 
-{{!-- Four square tiles, 2×2. The app tiles (Spite / Dream Club) are
-     external links; their artwork is baked into the images — the
-     text overlays live here. --}}
+  {{#unless @member}}
+  <aside class="home-cta" aria-label="Subscribe">
+    <p class="cta-title">Join Midnight Radio</p>
+    <p class="cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+    <button class="cta-button" data-signup>Subscribe</button>
+  </aside>
+  {{/unless}}
+</div>
+
+{{!-- Two section tiles + three app tiles. App artwork is baked into
+     the images; text overlays live here. --}}
 <div class="home-tiles">
   <a class="home-tile" href="{{@site.url}}/art-diary/">
     <img src="{{asset "img/home-art-diary.webp"}}" alt="" loading="lazy">
@@ -39,7 +49,9 @@
     <img src="{{asset "img/home-favorites.webp"}}" alt="" loading="lazy">
     <span class="home-tile-title">Favorite<br>Things</span>
   </a>
-  <a class="home-tile" href="https://spite.jamesreeves.co">
+</div>
+<div class="home-tiles home-tiles--apps">
+  <a class="home-tile home-tile--small" href="https://spite.jamesreeves.co">
     <img src="{{asset "img/home-spite.webp"}}" alt="" loading="lazy">
     <span class="home-tile-text">
       <span class="home-tile-title">Spite</span>
@@ -47,12 +59,20 @@
       <span class="home-tile-platform">For iOS + Mac</span>
     </span>
   </a>
-  <a class="home-tile home-tile--dream" href="https://thedream.club">
+  <a class="home-tile home-tile--small" href="https://thedream.club">
     <img src="{{asset "img/home-dream-club.webp"}}" alt="" loading="lazy">
     <span class="home-tile-text">
       <span class="home-tile-title">Dream Club</span>
       <span class="home-tile-tagline">A dignified home for your dreams.</span>
       <span class="home-tile-platform">For iOS + Mac</span>
+    </span>
+  </a>
+  {{!-- TODO: swap href for the God Is All Mouth channel URL. --}}
+  <a class="home-tile home-tile--small" href="{{@site.url}}/return-of-the-gods/">
+    <img src="{{asset "img/home-god.webp"}}" alt="" loading="lazy">
+    <span class="home-tile-text">
+      <span class="home-tile-title">God Is All Mouth</span>
+      <span class="home-tile-tagline">Audio. Visual. Mystical.</span>
     </span>
   </a>
 </div>

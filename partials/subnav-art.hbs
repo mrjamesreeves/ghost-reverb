@@ -1,0 +1,12 @@
+{{!-- Bottom-of-page subnav for Art Diary: section header + 8-column
+     grid of feature-image tiles (3:2). Hover/focus turns a tile into
+     a black name card. Expects `posts` in scope. --}}
+
+<nav class="subnav" aria-label="More in Art Diary">
+  <a class="subnav-title" href="{{@site.url}}/art-diary/">Art Diary</a>
+  <div class="subnav-grid">
+    {{#foreach posts}}
+      {{> "dial-entry-thumb"}}
+    {{/foreach}}
+  </div>
+</nav>

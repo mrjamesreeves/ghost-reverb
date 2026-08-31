@@ -1,8 +1,7 @@
 {{!< default}}
 
-{{!-- /radio/ — Midnight Radio channel. No landing page: renders the LATEST
-     post in the tag as a full post, with the dial for everything else.
-     Literal tag filter — {{#get}} can't interpolate route context. --}}
+{{!-- /radio/ — latest episode as a full post; the cover grid below
+     is the subnav. Literal tag filter — {{#get}} can't interpolate. --}}
 
 {{#contentFor "title"}}Midnight Radio — {{@site.title}}{{/contentFor}}
 
@@ -10,6 +9,5 @@
   {{#foreach posts limit="1"}}
     {{> "post-view"}}
   {{/foreach}}
-  {{> "dial"}}
   {{> "mr-grid"}}
 {{/get}}

@@ -1,26 +1,13 @@
 {{!< default}}
 
-{{!-- /art-diary/ — Art Diary channel. No landing page: renders the LATEST
-     post in the tag as a full post, with the dial for everything else.
-     Literal tag filter — {{#get}} can't interpolate route context. --}}
+{{!-- /art-diary/ — latest post as a full post; thumbnail-grid subnav
+     below. Literal tag filter — {{#get}} can't interpolate. --}}
 
 {{#contentFor "title"}}Art Diary — {{@site.title}}{{/contentFor}}
 
-{{!-- Mobile-only section heading — the dial (which carries the
-     section title on desktop) is hidden below 1200px. --}}
-<h1 class="channel-heading">Art Diary</h1>
-
 {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc" include="tags"}}
-  {{!-- Touch-world index: the dial is hidden below 1200px and hover
-       doesn't exist there, so phones/iPads get the thumbnail grid
-       at the top of the stream instead — full color, tap to open. --}}
-  <nav class="art-index" aria-label="Art Diary index">
-    {{#foreach posts}}
-      {{> "dial-entry-thumb"}}
-    {{/foreach}}
-  </nav>
-  {{#foreach posts}}
-    {{> "post-view" stacked=true}}
+  {{#foreach posts limit="1"}}
+    {{> "post-view"}}
   {{/foreach}}
-  {{> "dial" sectionTitle="Art Diary" sectionUrl="/art-diary/" thumbs=true}}
+  {{> "subnav-art"}}
 {{/get}}

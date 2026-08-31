@@ -3,7 +3,9 @@
 {{!-- Canonical post URL: /{slug}/.
 
      Renders the post (post-view picks the MR or standard variant),
-     then the dial (+ cover grid on MR) for the post's section.
+     then the section's subnav — MR cover grid, Art thumbnail grid,
+     or the 3-column numbered list. zen.js wires the meta-line
+     prev/next arrows from the subnav's entries.
 
      TWO HARD RULES learned the slow way:
      1. {{#get}} does NOT interpolate handlebars inside its filter
@@ -15,7 +17,7 @@
         And {{#has}} matches tag NAMES (case-insensitive), not slugs —
         so these use the display names from Ghost admin ("Art", not
         "art-diary"). Renaming a tag in admin breaks its dispatch.
-     A post in none of the five sections gets no dial. --}}
+     Design posts get no subnav. --}}
 
 {{#post}}
 
@@ -23,33 +25,28 @@
 
   {{#has tag="Midnight Radio"}}
     {{#get "posts" filter="tag:midnight-radio" limit="all" order="published_at desc" include="tags"}}
-      {{> "dial"}}
       {{> "mr-grid"}}
     {{/get}}
   {{else}}{{#has tag="Dreams"}}
     {{#get "posts" filter="tag:dreams" limit="all" order="published_at desc"}}
-      {{> "dial" sectionTitle="Dream Inventory" sectionUrl="/dreams/" numbered=true}}
+      {{> "subnav-list" sectionTitle="Dream Inventory" sectionUrl="/dreams/"}}
     {{/get}}
   {{else}}{{#has tag="Art"}}
     {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc"}}
-      {{> "dial" sectionTitle="Art Diary" sectionUrl="/art-diary/" thumbs=true}}
+      {{> "subnav-art"}}
     {{/get}}
   {{else}}{{#has tag="favorites"}}
     {{#get "posts" filter="tag:favorites" limit="all" order="published_at desc"}}
-      {{> "dial" sectionTitle="Favorite Things" sectionUrl="/favorites/" numbered=true}}
+      {{> "subnav-list" sectionTitle="Favorite Things" sectionUrl="/favorites/"}}
     {{/get}}
   {{else}}{{#has tag="Public Works"}}
     {{#get "posts" filter="tag:public-works" limit="all" order="published_at desc"}}
-      {{> "dial" sectionTitle="Public Works" sectionUrl="/public-works/"}}
+      {{> "subnav-list" sectionTitle="Public Works" sectionUrl="/public-works/"}}
     {{/get}}
   {{else}}{{#has tag="Design"}}
-    {{!-- Design posts are excluded from the Archive, so no dial —
-         it would mark the wrong entry current. --}}
+    {{!-- Design posts are unlisted — no subnav. --}}
   {{else}}
-    {{!-- Everything else lives in the Archive. Its entries come from
-         paged queries inside the dial (archiveEntries) — Ghost 6
-         caps {{#get}} at 100 posts. --}}
-    {{> "dial" sectionTitle="Notebook" sectionUrl="/notebook/" numbered=true archiveEntries=true}}
+    {{> "subnav-notebook"}}
   {{/has}}{{/has}}{{/has}}{{/has}}{{/has}}{{/has}}
 
 {{/post}}

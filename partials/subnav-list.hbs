@@ -1,0 +1,14 @@
+{{!-- Bottom-of-page subnav: section header + 3-column numbered text
+     list of every post in the section. Expects `posts` in scope and
+     sectionTitle / sectionUrl params. zen.js fills the numbers
+     (oldest = 1, newest highest — the .archive-num convention) and
+     wires the meta-line prev/next arrows from these entries. --}}
+
+<nav class="subnav" aria-label="More in {{sectionTitle}}">
+  <a class="subnav-title" href="{{@site.url}}{{sectionUrl}}">{{sectionTitle}}</a>
+  <div class="subnav-list" data-archive-count>
+    {{#foreach posts}}
+      <a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>
+    {{/foreach}}
+  </div>
+</nav>

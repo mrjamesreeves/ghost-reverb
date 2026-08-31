@@ -1,28 +1,15 @@
 {{!< default}}
 
-{{!-- /notebook/ — everything OUTSIDE the five sections (~650 posts)
-     as a light index list: thumbnail, number, title, one-line
-     excerpt. (Formerly /archive/; the .archive-* classes and
-     partials keep their names — internal only.)
-     Ghost 6 caps {{#get}} at 100 posts (limit="all" is gone), so the
-     full set comes from stacked paged queries — 8 pages = 800-post
-     capacity; pages beyond the real total render nothing. ADD
-     page="9" when the list nears 800. zen.js fills the numbers
-     (oldest = 1, newest highest). Literal negated tag filter —
-     {{#get}} can't interpolate. --}}
+{{!-- /notebook/ ("Notes") — latest unsectioned post as a full post;
+     3-column numbered list of everything below (paged queries live
+     in the subnav partial — Ghost 6 caps #get at 100). Literal
+     negated filter — {{#get}} can't interpolate. --}}
 
-{{#contentFor "title"}}Notebook — {{@site.title}}{{/contentFor}}
+{{#contentFor "title"}}Notes — {{@site.title}}{{/contentFor}}
 
-{{!-- Mobile-only section heading (desktop stays bare, per comp). --}}
-<h1 class="channel-heading">Notebook</h1>
-
-<div class="archive-list" data-archive-count>
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="1" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="2" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="3" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="4" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="5" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="6" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="7" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-  {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="8" order="published_at desc"}}{{#foreach posts}}{{> "archive-row"}}{{/foreach}}{{/get}}
-</div>
+{{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="1" order="published_at desc"}}
+  {{#foreach posts}}
+    {{> "post-view"}}
+  {{/foreach}}
+{{/get}}
+{{> "subnav-notebook"}}

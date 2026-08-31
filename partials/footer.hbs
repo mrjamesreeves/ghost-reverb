@@ -1,15 +1,17 @@
-{{!-- One-line site footer: wordmark, section links, social icons.
-     Spans 90% of the viewport, max 1600px, centered. --}}
+{{!-- Footer: name left, section links centered, social right — one
+     line, 90vw / max 1600. (Links set in Franklin like the top nav;
+     the Figma file shows Bebas Expanded there — flip .site-footer-links
+     to a Bebas face if that was intentional.)
 
-{{!-- Non-members get the full signup CTA above the footer — same
-     copy/design as the hover-nav's (which stays hidden until
-     discovered). Desktop: button → modal. Mobile: inline members
-     form, mirroring the menu. --}}
+     Above it: the full signup CTA for non-members, left-aligned to
+     the footer's edge. Desktop button opens the modal; mobile swaps
+     to the inline members form. --}}
+
 {{#unless @member}}
 <section class="signup-footer" aria-label="Subscribe">
-  <p class="signup-footer-title">Join Midnight Radio</p>
-  <p class="signup-footer-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
-  <button class="site-nav-subscribe signup-footer-button" data-signup>Subscribe</button>
+  <p class="cta-title">Join Midnight Radio</p>
+  <p class="cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+  <button class="cta-button signup-footer-button" data-signup>Subscribe</button>
   <form class="signup-footer-form" data-members-form="signup">
     <input class="signup-footer-input" type="email" data-members-email placeholder="Enter your email..." required aria-label="Email address">
     <button class="signup-footer-go" type="submit">Subscribe</button>
@@ -30,26 +32,23 @@
     <a href="{{@site.url}}/radio/">Midnight Radio</a>
     <a href="{{@site.url}}/art-diary/">Art Diary</a>
     <a href="{{@site.url}}/dreams/">Dream Inventory</a>
-    <a href="{{@site.url}}/spite/">Spite</a>
-    <a href="{{@site.url}}/public-works/">Public Works</a>
     <a href="{{@site.url}}/favorites/">Favorite Things</a>
-    <a href="{{@site.url}}/instructions/">Instructions for Myself</a>
+    <a href="{{@site.url}}/public-works/">Public Works</a>
+    <a href="{{@site.url}}/notebook/">Notes</a>
     <a href="{{@site.url}}/about/">About</a>
-    <a href="{{@site.url}}/notebook/">Notebook</a>
   </nav>
 
   <div class="site-footer-icons">
-    {{!-- Ghost's native search — the #/search hash opens it. --}}
     <a href="#/search" aria-label="Search">
       <img src="{{asset "img/icon-search.svg"}}" alt="" loading="lazy">
     </a>
-    <a href="https://www.jamesreeves.co/rss/" aria-label="RSS feed">
+    <a href="{{@site.url}}/rss/" aria-label="RSS feed">
       <img src="{{asset "img/icon-rss.svg"}}" alt="" loading="lazy">
     </a>
     <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964" aria-label="Spite on the App Store">
       <img src="{{asset "img/icon-app-store.svg"}}" alt="" loading="lazy">
     </a>
-    <a href="https://bandcamp.com/jamesreeves" aria-label="Bandcamp">
+    <a href="https://midnightradio.bandcamp.com" aria-label="Bandcamp">
       <img src="{{asset "img/icon-bandcamp.svg"}}" alt="" loading="lazy">
     </a>
     <a href="https://bsky.app/profile/jamesreeves.co" aria-label="Bluesky">

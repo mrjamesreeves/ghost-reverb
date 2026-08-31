@@ -21,11 +21,13 @@ p, h1, h2, h3, h4, h5, h6, figure, blockquote { margin: 0; }
   --serif:     "ibm-plex-serif", serif;
   --display:   "bebas-neue-pro", sans-serif;
   --display-x: "bebas-neue-pro-semiexpanded", sans-serif;
+  --cond:      "franklin-gothic-urw-cond", sans-serif;   /* nav + section labels */
 
   --ink:   #000;
   --paper: #fff;
-  --faint: rgba(0, 0, 0, 0.15);   /* resting wordmark + dial entries */
+  --faint: rgba(0, 0, 0, 0.15);
   --dim:   #767676;   /* marginalia resting */
+  --nav:   #999;      /* resting nav links */
 
   --col:      645px;    /* body text column */
   --img-max:  900px;    /* post images + hero + home tiles */
@@ -47,11 +49,9 @@ body {
    zen.js to ANY text link whose computed text-decoration is none, so
    new no-underline links pick this up automatically. --- */
 
-.site-nav-col a,
 .site-footer-links a,
 .post-meta a,
 .marginalia a,
-.marginalia-subscribe,
 .u-slide {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
   background-repeat: no-repeat;
@@ -61,11 +61,9 @@ body {
   transition: background-size 0.25s ease-in-out, color 0.2s ease;
 }
 
-.site-nav-col a:hover,
 .site-footer-links a:hover,
 .post-meta a:hover,
 .marginalia a:hover,
-.marginalia-subscribe:hover,
 .u-slide:hover {
   background-size: 100% 1px;
 }
@@ -77,184 +75,77 @@ body {
   margin: 0 auto;
 }
 
-/* Positioned ancestor for the document-anchored dial spanner. */
+/* Positioned ancestor for the document-anchored marginalia rail. */
 .site-main {
   position: relative;
 }
 
 /* ==========================================================================
-   WORDMARK + HOVER NAV
-   Resting: faint wordmark only. Hover over the top strip (or tap on
-   touch — zen.js adds .is-open) reveals the nav columns + CTA and
-   darkens the wordmark.
+   WORDMARK + NAV — a plain, always-visible row (per Figma 285-612):
+   black wordmark left, Franklin links right at #999; the current
+   section runs black with an underline (zen.js sets .is-active).
    ========================================================================== */
 
 .site-top {
-  /* Per comp: wordmark sits 100px from the top with 100px below it
-     to the content's top edge. The whole strip is the hover zone. */
-  padding: 65px 0;
-  margin-bottom: 0;
+  /* Figma: row at 100px from the top, content begins at 218. */
+  padding: 100px 0 90px;
   position: relative;
   z-index: 10;
 }
 
 .site-top-inner {
-  width: 100%;
-  max-width: var(--img-max);
+  width: min(var(--img-max), 92vw);
   margin: 0 auto;
   position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 32px;
 }
 
 .wordmark {
   font-family: var(--display-x);
   font-weight: 600;
   font-size: 16px;
-  line-height: 28px;
+  line-height: 24px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--faint);
-  transition: color 0.5s ease;
-}
-
-.site-top:hover .wordmark,
-.site-top.is-open .wordmark {
   color: var(--ink);
-}
-
-.site-nav {
-  /* Vertically centered against the wordmark line; anchored past the
-     name's widest extent. Decorations: a horizontal dash (::before)
-     connecting the name to a vertical hairline (::after) at the
-     columns' left edge. */
-  position: absolute;
-  top: 50%;
-  left: 118px;
-  transform: translateY(-50%);
-  display: flex;
-  gap: 64px;
-  align-items: center;
-  padding-left: 42px;   /* dash (24px) meets the rule, + 18px to columns */
-  visibility: hidden;
-  transition: visibility 0s linear 0.6s;
-}
-
-/* Dash: draws left→right first. */
-.site-nav::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 24px;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.3);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.25s ease 0.25s;   /* reverse: waits for columns */
-}
-
-/* Vertical hairline: grows from center once the dash lands —
-   flush against the dash's end, no gap. */
-.site-nav::after {
-  content: "";
-  position: absolute;
-  left: 24px;
-  top: -8px;
-  bottom: -8px;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.18);
-  transform: scaleY(0);
-  transform-origin: center;
-  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0.12s;
-}
-
-/* Columns + CTA: cascade in left→right — the unfurl. */
-.site-nav > * {
-  opacity: 0;
-  transform: translateX(-14px);
-  transition:
-    opacity 0.4s ease,
-    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.site-top:hover .site-nav,
-.site-top.is-open .site-nav {
-  visibility: visible;
-  transition-delay: 0s;
-}
-
-.site-top:hover .site-nav::before,
-.site-top.is-open .site-nav::before {
-  transform: scaleX(1);
-  transition-delay: 0.06s;
-}
-
-.site-top:hover .site-nav::after,
-.site-top.is-open .site-nav::after {
-  transform: scaleY(1);
-  transition-delay: 0.2s;
-}
-
-.site-top:hover .site-nav > *,
-.site-top.is-open .site-nav > * {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.site-top:hover .site-nav > :nth-child(1),
-.site-top.is-open .site-nav > :nth-child(1) { transition-delay: 0.28s; }
-.site-top:hover .site-nav > :nth-child(2),
-.site-top.is-open .site-nav > :nth-child(2) { transition-delay: 0.4s; }
-.site-top:hover .site-nav > :nth-child(3),
-.site-top.is-open .site-nav > :nth-child(3) { transition-delay: 0.52s; }
-.site-top:hover .site-nav > :nth-child(4),
-.site-top.is-open .site-nav > :nth-child(4) { transition-delay: 0.6s; }
-
-/* Keyboard access: TABBING into the header unfurls the nav like
-   hover. :focus-visible (unlike the :focus-within attempt this
-   replaces) only matches keyboard-driven focus — mouse clicks and
-   restored click-focus can't trigger it, so pointer users never see
-   the nav open unbidden. Desktop-scoped: mobile's burger button is
-   already keyboard-operable. */
-@media (min-width: 900px) {
-  .site-top:has(:focus-visible) .wordmark { color: var(--ink); }
-  .site-top:has(:focus-visible) .site-nav { visibility: visible; transition-delay: 0s; }
-  .site-top:has(:focus-visible) .site-nav::before { transform: scaleX(1); transition-delay: 0.06s; }
-  .site-top:has(:focus-visible) .site-nav::after { transform: scaleY(1); transition-delay: 0.2s; }
-  .site-top:has(:focus-visible) .site-nav > * { opacity: 1; transform: translateX(0); }
-  .site-top:has(:focus-visible) .site-nav > :nth-child(1) { transition-delay: 0.28s; }
-  .site-top:has(:focus-visible) .site-nav > :nth-child(2) { transition-delay: 0.4s; }
-  .site-top:has(:focus-visible) .site-nav > :nth-child(3) { transition-delay: 0.52s; }
-  .site-top:has(:focus-visible) .site-nav > :nth-child(4) { transition-delay: 0.6s; }
-}
-
-
-.site-nav-col {
-  display: flex;
-  flex-direction: column;
-  /* Links hug their text so the hover underline spans the word,
-     not the column. */
-  align-items: flex-start;
-}
-
-.site-nav-col a {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 22px;
-  color: var(--ink);
-  text-decoration: none;
-  /* Names never break mid-word — the absolute nav shrink-to-fits its
-     900px container and would otherwise wrap "Midnight / Radio". */
   white-space: nowrap;
 }
 
-
-
-.site-nav-cta {
-  max-width: 320px;
+.site-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
 }
 
+.site-nav-link {
+  font-family: var(--cond);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--nav);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.site-nav-link:hover {
+  color: var(--ink);
+}
+
+.site-nav-link.is-active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+/* CTA copy shared by the mobile menu, home marginalia, MR rail, and
+   the footer block. */
+.cta-title,
 .site-nav-cta-title {
   font-family: var(--display-x);
   font-weight: 600;
@@ -265,32 +156,37 @@ body {
   margin-bottom: 0;
 }
 
+.cta-blurb,
 .site-nav-cta-blurb {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-style: italic;
   font-size: 12px;
   line-height: 1.4;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.site-nav-subscribe {
+/* Figma: 75×21 black block, Bebas 11px caps. */
+.cta-button {
   background: var(--ink);
   color: var(--paper);
   border: 1px solid var(--ink);
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: 12px;
+  font-family: var(--display-x);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.88px;
+  text-transform: uppercase;
   line-height: 1;
-  padding: 6px 12px 8px;
-  transition: all 0.15s ease;
+  padding: 5px 14px 6px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.site-nav-subscribe:hover {
+.cta-button:hover {
   background: var(--paper);
   color: var(--ink);
 }
 
 /* Mobile-menu-only elements — hidden on desktop. */
+.site-nav-cta,
 .site-nav-signup-form,
 .site-nav-signup-success,
 .site-nav-icons {
@@ -403,8 +299,10 @@ body.menu-open .nav-burger span:last-child {
   margin-bottom: 96px;
 }
 
+/* Feature image at the hero width, cropped to Figma's 900×577.
+   Pages (About's portrait) keep their intrinsic ratio. */
 .post-image {
-  width: min(80%, var(--img-max));
+  width: min(var(--img-max), 92vw);
   margin: 0 auto;
 }
 
@@ -412,63 +310,26 @@ body.menu-open .nav-burger span:last-child {
   width: 100%;
 }
 
+.post:not(.post--page) .post-image img {
+  aspect-ratio: 900 / 577;
+  object-fit: cover;
+  object-position: center;
+}
+
 .post-body-col {
   padding-top: 56px;
-}
-
-.post-label {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 24px;
-}
-
-/* The label is a link back to its section index — looks like the
-   plain label (zen.js gives it the hairline hover). */
-.post-label a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Mobile section heading on channel pages: the dial (which carries
-   the section title on desktop) is hidden below 1200px, so the
-   stream names itself in the same voice. */
-.channel-heading {
-  display: none;
-}
-
-@media (max-width: 1199px) {
-  .channel-heading {
-    display: block;
-    width: min(var(--col), 88vw);
-    margin: 0 auto 24px;
-    font-family: var(--display-x);
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 20px;
-    color: var(--ink);
-  }
-}
-
-/* When the dial carries the section title (desktop), the per-post
-   label is redundant — hide it. Below 1200px the dial is gone, so
-   the label keeps providing context on single posts. */
-@media (min-width: 1200px) {
-  .site-main:has(.dial-title) .post-label { display: none; }
 }
 
 .post-title {
 font-family: var(--display);
 font-weight: 700;
-font-size: clamp(36px, 7vw, 88px);
+font-size: clamp(36px, 7vw, 72px);   /* Figma 2.0: 72px cap */
 line-height: 0.85;
 letter-spacing: 0;
 text-transform: uppercase;
 margin: 0 0 20px;
 }
 
-/* Stacked category indexes wrap the title in a permalink — keep it
-   looking like the plain title. */
 .post-title a {
   color: inherit;
   text-decoration: none;
@@ -756,134 +617,92 @@ blockquote strong {
 .comments-body[hidden] { display: none; }
 
 /* ==========================================================================
-   DIAL — left rail, siblings within the current category
-   60vh window, current entry centered (zen.js), fades at both ends.
+   SUBNAV — the section's full index at the bottom of every post and
+   channel page (per Figma 285-612 / 280-72): a Franklin section-title
+   link with a short rule, then either the 3-column numbered list or
+   the Art Diary thumbnail grid.
    ========================================================================== */
 
-.dial {
-  /* Spanner: anchored at the first paragraph of copy (top set by
-     zen.js) and stretching to the bottom of <main>, so the sticky
-     window inside can travel with the reader. */
-  position: absolute;
-  left: 30px;
-  top: 0;      /* real value set by zen.js: top of .post-content */
-  bottom: 0;
-  width: 240px;
-  z-index: 5;
-  pointer-events: none;   /* the spanner is invisible; window opts in */
-  transition: opacity 0.35s ease;
+.subnav {
+  width: min(var(--img-max), 92vw);
+  margin: 90px auto 0;
 }
 
-/* Hidden until zen.js has aligned it against the loaded feature
-   image — otherwise it flashes at the wrong spot on first paint.
-   (.is-ready comes BEFORE the hide states so they still win.) */
-.dial { opacity: 0; }
-.dial.is-ready { opacity: 1; }
-
-/* zen.js fades the dial while the MR grid / footer is in view so the
-   rail never sits on top of them. */
-.dial.is-hidden { opacity: 0; }
-.dial.is-hidden .dial-window { pointer-events: none; }
-
-/* Scroll-direction fade (zen.js dialFade) — separate class from
-   .is-hidden so it can't fight the grid/footer observer. */
-.dial.is-asleep { opacity: 0; }
-.dial.is-asleep .dial-window { pointer-events: none; }
-
-.dial-window {
-  /* Starts aligned to the copy top, sticks 48px from the viewport
-     top once the reader scrolls past. Scrollable when the list is
-     taller than the window (scrollbar hidden — the edge fades are
-     the affordance). */
-  position: sticky;
-  top: 48px;
-  height: min(80vh, calc(100vh - 96px));
-  overflow-y: auto;
-  scrollbar-width: none;
-  pointer-events: auto;
-  /* Soft white fades at both ends — stands in for the comp's gradient
-     overlays without extra elements. The TOP fade is scroll-aware:
-     zen.js grows --fade-top with the amount of list above the window,
-     so a deep episode's ghost stack dissolves gradually instead of
-     hard-starting at the window edge. Bottom stays fixed. */
-  --fade-top: 72px;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade-top, 72px), #000 calc(100% - 96px), transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade-top, 72px), #000 calc(100% - 96px), transparent);
-}
-
-.dial-window::-webkit-scrollbar { display: none; }
-
-/* Section title: sits INSIDE the scroll content, directly above the
-   first entry (20px to the rule, 20px to the entry — per comp), so it
-   scrolls away with the list. Clickable — back to the section index.
-   Its top margin carries the list's breathing room. */
-.dial-title {
+.subnav-title {
   display: inline-block;
-  font-family: var(--display-x);
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 20px;
-  color: var(--faint);
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  /* Top buffer = the window's 72px fade-in zone, so the title is fully
-    legible at rest. zen.js aligns the rail by MEASURING where the
-    current entry lands, so no half-window padding is needed here. */
-  margin: 72px 0 20px;
-}
-
-.dial-title::after {
-  content: "";
-  display: block;
-  width: 25px;
-  height: 1px;
-  background: var(--faint);
-  margin-top: 20px;
-}
-
-.dial-list {
-  display: flex;
-  flex-direction: column;
-  /* End buffers match the mask fade zones (72px top / 96px bottom):
-     scrolling stops with the first/last entry just clear of the
-     fades — no dead space beyond. Centering clamps at the ends;
-     zen.js measures the clamped position when aligning the rail. */
-  padding: 72px 0 96px;
-}
-
-/* When the title is present it carries the top breathing room. */
-.dial-title + .dial-list { padding-top: 0; }
-
-.dial-list a {
-  font-family: var(--display-x);
-  font-weight: 600;
+  font-family: var(--cond);
+  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0.72px;
-  text-transform: uppercase;
+  letter-spacing: 0.32px;
+  color: var(--ink);
   text-decoration: none;
-  color: var(--faint);
+  margin-bottom: 25px;
+}
+
+.subnav-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: var(--ink);
+  margin-top: 14px;
+}
+
+/* 3-column enumerated list (Dreams, Favorites, Public Works, Notes). */
+.subnav-list {
+  columns: 3;
+  column-gap: 20px;
+}
+
+.subnav-list a {
+  display: block;
+  /* fit-content keeps the hover hairline at text width; max-width
+     lets long titles still truncate with an ellipsis. */
+  width: fit-content;
+  max-width: 100%;
+  font-family: var(--cond);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--ink);
+  text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 0.2s ease;
 }
 
-.dial-list a:hover { color: var(--ink); }
-.dial-list a.is-current { color: var(--ink); }
+.subnav-list .archive-num {
+  color: var(--dim);
+  margin-right: 4px;
+}
 
-/* ── Thumbnail dial (Art Diary) ──────────────────────────────────
-   3-up grid of feature-image tiles, ghosted until they matter — the
-   text dial's faint-to-ink gesture, translated to image. Hover,
-   keyboard focus, or being current blooms the tile to full color
-   and reveals the name chip. --- */
+@media (max-width: 899px) {
+  .subnav-list { columns: 2; }
+}
 
-.dial-list--thumbs {
+@media (max-width: 599px) {
+  .subnav-list { columns: 1; }
+}
+
+/* Art Diary thumbnail grid — 8-up, 3:2 tiles, tight gaps. */
+.subnav-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
 }
 
+@media (max-width: 899px) {
+  .subnav-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (max-width: 599px) {
+  .subnav-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Tiles run full color at rest; hover / keyboard focus swaps the
+   artwork for a black card carrying the artist's name. */
 .dial-thumb {
   position: relative;
   display: block;
@@ -897,19 +716,9 @@ blockquote strong {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1);
-  opacity: 0.3;
-  transition: filter 0.35s ease, opacity 0.35s ease;
+  transition: opacity 0.25s ease;
 }
 
-/* Current = the position marker: full-color artwork. */
-.dial-thumb.is-current img {
-  filter: none;
-  opacity: 1;
-}
-
-/* Hover / keyboard focus = the name card: artwork yields to a solid
-   black tile with the artist's name, vertically centered, wrapping. */
 .dial-thumb:hover,
 .dial-thumb:focus-visible {
   background: var(--ink);
@@ -925,11 +734,15 @@ blockquote strong {
   inset: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   color: var(--paper);
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 1.3;
+  font-family: var(--display-x);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   padding: 4px 8px;
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -942,27 +755,6 @@ blockquote strong {
 }
 
 .dial-thumb-empty { display: block; width: 100%; height: 100%; }
-
-/* ── Touch-world Art Diary index ─────────────────────────────────
-   The dial (and hover) don't exist below 1200px — the channel page
-   opens with the same tiles as a tappable full-color grid. --- */
-
-.art-index { display: none; }
-
-@media (max-width: 1199px) {
-  .art-index {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-    gap: 5px;
-    width: var(--col);
-    margin: 0 auto 56px;
-  }
-
-  .art-index .dial-thumb img {
-    filter: none;
-    opacity: 1;
-  }
-}
 
 /* ==========================================================================
    MARGINALIA — right rail on MR posts (Download / Podcast / Tracklist /
@@ -1039,8 +831,7 @@ blockquote strong {
 }
 
 
-.marginalia a,
-.marginalia-subscribe {
+.marginalia a {
   font-family: var(--display-x);
   font-weight: 600;
   font-size: 16px;
@@ -1049,18 +840,17 @@ blockquote strong {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
-  /* Button reset via background-COLOR — the `background` shorthand
-     would wipe the sliding-underline gradient. Keep the 2px bottom
-     padding the underline rides on, and transition background-size
-     so it slides rather than snaps. */
-  background-color: transparent;
-  border: 0;
   padding: 0 0 2px;
   transition: background-size 0.25s ease-in-out, color 0.4s ease;
 }
 
-.marginalia a:hover,
-.marginalia-subscribe:hover { color: var(--ink); }
+.marginalia a:hover { color: var(--ink); }
+
+/* Signup CTA beneath the episode links (non-members). */
+.marginalia-cta {
+  margin-top: 28px;
+  max-width: 205px;
+}
 
 /* ==========================================================================
    MR GRID — every episode cover, 12 per row, 90vw / max 1600
@@ -1099,8 +889,29 @@ blockquote strong {
 .mr-grid-tile:hover img { opacity: 0.82; }
 
 /* ==========================================================================
-   HOMEPAGE TILES
+   HOMEPAGE — hero CTA marginalia + tiles
    ========================================================================== */
+
+/* Positioned ancestor for the signup CTA beside the hero. */
+.home-hero-wrap {
+  position: relative;
+}
+
+/* CTA sits 35px right of the hero's edge, vertically centered to it.
+   Only where it fits — below ~1380px it would crowd the viewport
+   edge, so it's hidden (the footer CTA still catches everyone). */
+.home-cta {
+  display: none;
+  position: absolute;
+  left: calc(50% + min(var(--img-max), 92vw) / 2 + 35px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 205px;
+}
+
+@media (min-width: 1380px) {
+  .home-cta { display: block; }
+}
 
 .home-tiles {
   width: min(var(--img-max), 92vw);
@@ -1178,6 +989,34 @@ blockquote strong {
   z-index: 2;
 }
 
+/* App row: three small squares (Spite / Dream Club / God Is All
+   Mouth). Text values are the big-tile app treatment scaled ×0.66,
+   per Figma 283-335. */
+.home-tiles--apps {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.home-tile--small .home-tile-text {
+  top: 9px;
+  left: 16px;
+  right: 16px;
+}
+
+.home-tile--small .home-tile-title {
+  font-size: 32px;
+  line-height: 28px;
+}
+
+.home-tile--small .home-tile-tagline {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.home-tile--small .home-tile-platform {
+  font-size: 9px;
+}
+
 /* ==========================================================================
    INDEX FALLBACK LIST (rarely seen — /page/N/ of the root collection)
    ========================================================================== */
@@ -1219,44 +1058,45 @@ blockquote strong {
    FOOTER — one line: wordmark, links, icons. 90vw / max 1600.
    ========================================================================== */
 
+/* Three zones: wordmark left, section links centered as a group,
+   icons right. 1fr auto 1fr keeps the link group truly centered. */
 .site-footer {
   width: min(90vw, var(--wide-max));
   margin: 110px auto 0;
   padding: 40px 0 44px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 40px;
-  flex-wrap: wrap;
-}
-
-.wordmark--footer,
-.site-top:hover ~ * .wordmark--footer {
-  color: var(--ink);
 }
 
 .wordmark--footer {
+  color: var(--ink);
   margin-bottom: 3px;
+  justify-self: start;
 }
 
 .site-footer-links {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px 28px;
 }
 
+/* Figma drew these in Bebas Expanded — Franklin keeps footer + nav
+   + subnav in one voice (flagged to James). */
 .site-footer-links a {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 12px;
+  font-family: var(--cond);
+  font-weight: 400;
+  font-size: 16px;
   line-height: 24px;
+  letter-spacing: 0.32px;
   color: var(--ink);
   text-decoration: none;
 }
 
-
-
 .site-footer-icons {
-  margin-left: auto;
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -1396,10 +1236,9 @@ blockquote strong {
    RESPONSIVE
    ========================================================================== */
 
-/* Rails need room: below 1200px the dial + marginalia would collide
-   with the content column. */
+/* The marginalia rail needs room: below 1200px it would collide with
+   the content column. */
 @media (max-width: 1199px) {
-  .dial { display: none; }
   .marginalia { display: none; }
 }
 
@@ -1414,10 +1253,10 @@ blockquote strong {
    the measure holds at ~62–66 characters throughout.
    ========================================================================== */
 
-/* The column is a token, so headings, captions, the archive list,
-   the signup block and the 404 all narrow with the body copy.
-   Applies across the whole rail-less tablet band (≤1199, where the
-   dial/marginalia hide) — iPad landscape at 1024 included. */
+/* The column is a token, so headings, captions, the signup block and
+   the 404 all narrow with the body copy. Applies across the whole
+   rail-less tablet band (≤1199, where the marginalia hides) — iPad
+   landscape at 1024 included. */
 @media (max-width: 1199px) {
   :root { --col: min(600px, 82vw); }
   body { font-size: 20px; }
@@ -1444,68 +1283,50 @@ blockquote strong {
 
   .site-top-inner { width: 100%; }
 
-  /* Full-ink 24px wordmark (no faint state on mobile). */
-  .wordmark,
-  .site-top:hover .wordmark {
+  /* Full-ink 24px wordmark. */
+  .wordmark {
     font-size: 24px;
     letter-spacing: 0.96px;
-    color: var(--ink);
   }
 
   .nav-burger { display: block; }
 
-  /* The nav becomes a full-screen white menu, opened by the burger
-     (body.menu-open, set by zen.js). Desktop hover must not trigger
-     it — hence gating on body class only. */
-  .site-nav,
-  .site-top:hover .site-nav {
+  /* The nav row becomes a full-screen white menu, opened by the
+     burger (body.menu-open, set by zen.js). */
+  .site-nav {
     position: fixed;
     inset: 0;
     z-index: 90;
     background: var(--paper);
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0;
     padding: 96px 25px 36px;
-    transform: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     overflow-y: auto;
   }
 
-  /* The open state must beat the mobile hidden rule ABOVE, whose
-     `.site-top:hover .site-nav` variant carries (0,3,0) specificity —
-     and touch browsers emulate sticky :hover on tap, so the hover
-     path is live on phones too. Match it on both selectors. */
-  body.menu-open .site-nav,
-  body.menu-open .site-top:hover .site-nav {
+  body.menu-open .site-nav {
     opacity: 1;
     visibility: visible;
   }
 
-  /* Neutralize the desktop unfurl inside the mobile menu: no
-     linework, children fully visible with no stagger. */
-  .site-nav { align-items: flex-start; }
-  .site-nav::before,
-  .site-nav::after { display: none; }
-  .site-nav > *,
-  .site-top:hover .site-nav > * {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .site-nav-link {
+    font-size: 20px;
+    line-height: 44px;
+    color: var(--ink);
+    padding-bottom: 0;
   }
 
-  .site-nav-col { gap: 0; }
-
-  .site-nav-col a {
-    font-size: 17px;
-    line-height: 38px;
-  }
+  /* The active underline reads as clutter in the stacked menu. */
+  .site-nav-link.is-active { border-bottom: none; }
 
   .site-nav-cta {
+    display: block;
     margin-top: 56px;
-    max-width: none;
   }
 
   .site-nav-cta-title { font-size: 17px; }
@@ -1516,8 +1337,6 @@ blockquote strong {
   }
 
   /* Mobile menu: inline members form instead of the modal button. */
-  .site-nav-subscribe { display: none; }
-
   .site-nav-signup-form {
     display: flex;
     align-items: flex-end;
@@ -1602,6 +1421,7 @@ blockquote strong {
     width: 100%;
     padding: 28px 25px 36px;
     position: relative;
+    display: flex;
     align-items: center;
     justify-content: space-between;
   }
@@ -1623,108 +1443,18 @@ blockquote strong {
 }
 
 /* ==========================================================================
-   ARCHIVE LIST — /archive/ index: thumb, number, title, one-line
-   excerpt per row. Light by design (~650 rows).
-   ========================================================================== */
-
-.archive-list {
-  width: min(var(--img-max), 88vw);  
-  margin: 100px auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.archive-item {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 24px;
-  align-items: start;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.archive-thumb {
-  width: 100px;
-  height: 67px;
-  object-fit: cover;
-  background: rgba(0, 0, 0, 0.06);   /* placeholder while lazy/missing */
-}
-
-.archive-thumb--empty { display: block; }
-
-/* min-width:0 lets the nowrap excerpt actually truncate — grid items
-   otherwise refuse to shrink below their content. */
-.archive-text { min-width: 0; }
-
-.archive-num {
-  display: block;
-  font-family: var(--serif);
-  font-size: 12px;
-  line-height: 1.2;
-}
-
-.archive-title {
-  display: block;
-  font-family: var(--display-x);
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  margin: 4px 0 2px;
-  /* Sliding hairline rides the row hover. */
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
-  background-repeat: no-repeat;
-  background-position: left 100%;
-  background-size: 0% 1px;
-  transition: background-size 0.25s ease-in-out;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.archive-item:hover .archive-title {
-  background-size: 100% 1px;
-}
-
-.archive-excerpt {
-  display: block;
-  font-family: var(--serif);
-  font-size: 14px;
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;   /* natural … only when it truncates */
-}
-
-/* ==========================================================================
    SIGNUP FOOTER — non-members get the full CTA above the footer,
-   mirroring the hover-nav's (title/blurb/button verbatim). Desktop:
-   button → modal. Mobile: inline members form, like the menu.
-   Self-contained classes so menu media rules can't leak in.
+   left-aligned to the footer's edge (cta-* carries the type).
+   Desktop: button → modal. Mobile: inline members form, like the menu.
    ========================================================================== */
 
 .signup-footer {
-  width: min(var(--col), 88vw);
+  width: min(90vw, var(--wide-max));
   margin: 110px auto 0;
 }
 
-.signup-footer-title {
-  font-family: var(--display-x);
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.56px;
-  text-transform: uppercase;
-  line-height: 1.4;
-}
-
-.signup-footer-blurb {
-  font-family: var(--sans);
-  font-style: italic;
-  font-size: 12px;
-  line-height: 1.4;
-  margin-bottom: 10px;
-  max-width: 320px;
+.signup-footer .cta-blurb {
+  max-width: 314px;
 }
 
 /* Mobile-only pieces, hidden on desktop. */

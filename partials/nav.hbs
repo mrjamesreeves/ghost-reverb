@@ -1,16 +1,11 @@
-{{!-- Wordmark + nav.
+{{!-- Wordmark + nav: a plain, always-visible row (Franklin Gothic
+     Cond, #999 resting, black + underline on the current section —
+     zen.js sets .is-active from the path or the article's tags).
 
-     Desktop: faint wordmark; hovering the top strip reveals the link
-     columns + Midnight Radio CTA (pure CSS) and darkens the wordmark.
-     The CTA's Subscribe button opens the signup modal.
-
-     Mobile (<900px): full-ink 24px wordmark opposite a 34×20 burger.
-     Tapping the burger opens a full-screen white menu — stacked
-     links, inline signup form (per comp; no modal on mobile), and
-     social icons — while the burger animates into an X. zen.js owns
-     the toggle; scrolling locks while open.
-
-     The subscribe CTA renders only for non-members. --}}
+     Mobile (<900px): the row hides behind the 34×20 burger; tapping
+     opens the full-screen menu (same .site-nav element, restyled)
+     with stacked links, inline signup form, and social icons.
+     zen.js owns the toggle; scrolling locks while open. --}}
 
 <header class="site-top" id="siteTop">
   <div class="site-top-inner">
@@ -22,30 +17,19 @@
     </button>
 
     <nav class="site-nav" id="siteNav" aria-label="Site">
-      {{!-- 3×3, loosely: streams / works / self. --}}
-      <div class="site-nav-col">
-        <a href="{{@site.url}}/radio/">Midnight Radio</a>
-        <a href="{{@site.url}}/dreams/">Dream Inventory</a>
-        <a href="{{@site.url}}/art-diary/">Art Diary</a>
-      </div>
-      <div class="site-nav-col">
-        <a href="{{@site.url}}/public-works/">Public Works</a>
-        <a href="{{@site.url}}/spite/">Spite</a>
-        <a href="{{@site.url}}/instructions/">Instructions for Myself</a>
-      </div>
-      <div class="site-nav-col">
-        <a href="{{@site.url}}/favorites/">Favorite Things</a>
-        <a href="{{@site.url}}/about/">About</a>
-        <a href="{{@site.url}}/notebook/">Notebook</a>
-      </div>
+      <a class="site-nav-link" href="{{@site.url}}/radio/" data-tag="tag-midnight-radio">Midnight Radio</a>
+      <a class="site-nav-link" href="{{@site.url}}/art-diary/" data-tag="tag-art-diary">Art Diary</a>
+      <a class="site-nav-link" href="{{@site.url}}/dreams/" data-tag="tag-dreams">Dream Inventory</a>
+      <a class="site-nav-link" href="{{@site.url}}/favorites/" data-tag="tag-favorites">Favorite Things</a>
+      <a class="site-nav-link" href="{{@site.url}}/public-works/" data-tag="tag-public-works">Public Works</a>
+      <a class="site-nav-link" href="{{@site.url}}/notebook/" data-tag="">Notes</a>
+      <a class="site-nav-link" href="{{@site.url}}/about/" data-tag="">About</a>
 
+      {{!-- Mobile-menu-only: inline signup + social icons. --}}
       {{#unless @member}}
       <div class="site-nav-cta">
         <p class="site-nav-cta-title">Join Midnight Radio</p>
         <p class="site-nav-cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
-        {{!-- Desktop: button → signup modal. Mobile: inline members
-             form (CSS swaps which is visible). --}}
-        <button class="site-nav-subscribe" data-signup>Subscribe</button>
         <form class="site-nav-signup-form" data-members-form="signup">
           <input class="site-nav-signup-input" type="email" data-members-email placeholder="Enter your email..." required aria-label="Email address">
           <button class="site-nav-signup-go" type="submit">Subscribe</button>
@@ -54,10 +38,7 @@
       </div>
       {{/unless}}
 
-      {{!-- Social icons — mobile menu only (desktop keeps them in the
-           footer). --}}
       <div class="site-nav-icons">
-        {{!-- Ghost's native search — the #/search hash opens it. --}}
         <a href="#/search" aria-label="Search"><img src="{{asset "img/icon-search.svg"}}" alt="" loading="lazy"></a>
         <a href="{{@site.url}}/rss/" aria-label="RSS feed"><img src="{{asset "img/icon-rss.svg"}}" alt="" loading="lazy"></a>
         <a href="https://apps.apple.com/us/app/spite-music-player/id6757397964" aria-label="Spite on the App Store"><img src="{{asset "img/icon-app-store.svg"}}" alt="" loading="lazy"></a>

@@ -20,9 +20,8 @@
 
 <body class="{{body_class}}">
 
-    {{!-- Wordmark + hover-reveal nav. Sits at the top of every page.
-         Resting state: faint wordmark only. Hover (desktop) or tap
-         (touch) reveals the full nav row. --}}
+    {{!-- Wordmark + always-visible nav row. Sits at the top of every
+         page; below 900px the row hides behind the burger. --}}
     {{> "nav"}}
 
     <main id="main" class="site-main">
