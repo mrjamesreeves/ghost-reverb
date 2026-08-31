@@ -631,6 +631,12 @@ blockquote strong {
   margin: 90px auto 0;
 }
 
+/* Notes: the list spans the footer's width instead of the hero's —
+   the 300px columns fill it with as many columns as fit. */
+.subnav--wide {
+  width: min(90vw, var(--wide-max));
+}
+
 .subnav-title {
   display: inline-block;
   font-family: var(--cond);
@@ -640,26 +646,19 @@ blockquote strong {
   letter-spacing: 0.32px;
   color: var(--ink);
   text-decoration: none;
-  margin-bottom: 25px;
+  margin-bottom: 16px;
 }
 
-.subnav-title::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 1px;
-  background: var(--ink);
-  margin-top: 14px;
-}
-
-/* 3-column enumerated list (Dreams, Favorites, Public Works, Notes). */
+/* Enumerated list (Dreams, Favorites, Public Works, Notes) — per
+   Figma 300-828: ~300px column pitch (260 + 40 gap), as many columns
+   as the container fits. */
 .subnav-list {
-  columns: 3;
-  column-gap: 20px;
+  columns: 260px;
+  column-gap: 40px;
 }
 
-/* Entries: caps Bebas Expanded (the marginalia/index voice), led by
-   a small zero-padded number (zen.js — "01", "02", …). */
+/* Entries: caps Bebas Expanded titles led by a smaller gray number
+   in a fixed 30px column (zero-padded by zen.js — "01", "02", …). */
 .subnav-list a {
   display: block;
   /* fit-content keeps the hover hairline at text width; max-width
@@ -669,8 +668,8 @@ blockquote strong {
   font-family: var(--display-x);
   font-weight: 600;
   font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.72px;
+  line-height: 28px;
+  letter-spacing: 0.64px;
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
@@ -680,19 +679,13 @@ blockquote strong {
 }
 
 .subnav-list .archive-num {
-  font-family: var(--sans);
+  display: inline-block;
+  width: 30px;
+  font-family: var(--display-x);
   font-weight: 500;
-  font-size: 10px;
-  color: var(--dim);
-  margin-right: 4px;
-}
-
-@media (max-width: 899px) {
-  .subnav-list { columns: 2; }
-}
-
-@media (max-width: 599px) {
-  .subnav-list { columns: 1; }
+  font-size: 14px;
+  letter-spacing: 0.56px;
+  color: var(--nav);
 }
 
 /* Art Diary thumbnail grid — 8-up, 3:2 tiles, tight gaps. */

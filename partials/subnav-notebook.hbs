@@ -5,7 +5,7 @@
      the list nears 800. Literal filters — {{#get}} can't
      interpolate. --}}
 
-<nav class="subnav" aria-label="More in Notes">
+<nav class="subnav subnav--wide" aria-label="More in Notes">
   <a class="subnav-title" href="{{@site.url}}/notebook/">Notes</a>
   <div class="subnav-list" data-archive-count>
     {{#get "posts" filter="tag:-[midnight-radio,dreams,art-diary,favorites,public-works,design]" limit="100" page="1" order="published_at desc"}}{{#foreach posts}}<a href="{{url}}" data-slug="{{slug}}"><span class="archive-num"></span> {{title}}</a>{{/foreach}}{{/get}}
