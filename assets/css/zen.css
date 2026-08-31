@@ -20,7 +20,7 @@ p, h1, h2, h3, h4, h5, h6, figure, blockquote { margin: 0; }
   --sans:      "ibm-plex-sans", sans-serif;
   --serif:     "ibm-plex-serif", serif;
   --display:   "bebas-neue-pro", sans-serif;
-  --display-x: "bebas-neue-pro-semiexpanded", sans-serif;
+  --display-x: "bebas-neue-pro-expanded", sans-serif;
   --cond:      "franklin-gothic-urw-cond", sans-serif;   /* nav + section labels */
 
   --ink:   #000;
@@ -171,7 +171,7 @@ body {
   color: var(--paper);
   border: 1px solid var(--ink);
   font-family: var(--display-x);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.88px;
   text-transform: uppercase;
@@ -738,7 +738,7 @@ blockquote strong {
   text-align: center;
   color: var(--paper);
   font-family: var(--display-x);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
   line-height: 1.1;
   text-transform: uppercase;
@@ -998,7 +998,8 @@ blockquote strong {
 }
 
 .home-tile--small .home-tile-text {
-  top: 9px;
+  /* Even 16px top/left inset (all breakpoints). */
+  top: 16px;
   left: 16px;
   right: 16px;
 }
