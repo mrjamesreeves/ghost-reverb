@@ -49,6 +49,7 @@ body {
    zen.js to ANY text link whose computed text-decoration is none, so
    new no-underline links pick this up automatically. --- */
 
+.site-nav-link:not(.is-active),
 .site-footer-links a,
 .post-meta a,
 .marginalia a,
@@ -61,6 +62,7 @@ body {
   transition: background-size 0.25s ease-in-out, color 0.2s ease;
 }
 
+.site-nav-link:not(.is-active):hover,
 .site-footer-links a:hover,
 .post-meta a:hover,
 .marginalia a:hover,
@@ -131,7 +133,8 @@ body {
   text-decoration: none;
   white-space: nowrap;
   padding-bottom: 2px;
-  transition: color 0.2s ease;
+  /* transition comes from the sliding-underline group above — a
+     transition here would REPLACE that list and freeze the slide. */
 }
 
 .site-nav-link:hover {
@@ -655,17 +658,20 @@ blockquote strong {
   column-gap: 20px;
 }
 
+/* Entries: caps Bebas Expanded (the marginalia/index voice), led by
+   a small zero-padded number (zen.js — "01", "02", …). */
 .subnav-list a {
   display: block;
   /* fit-content keeps the hover hairline at text width; max-width
      lets long titles still truncate with an ellipsis. */
   width: fit-content;
   max-width: 100%;
-  font-family: var(--cond);
-  font-weight: 400;
+  font-family: var(--display-x);
+  font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
@@ -674,6 +680,9 @@ blockquote strong {
 }
 
 .subnav-list .archive-num {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
   color: var(--dim);
   margin-right: 4px;
 }

@@ -84,12 +84,14 @@
   });
 
   // ---- 3b. Subnav list numbering -------------------------------------------
-  // Numbered lists count newest = N … oldest = 1 (no arithmetic in
-  // handlebars).
+  // Numbered lists count newest = N … oldest = 1, zero-padded to two
+  // digits (no arithmetic in handlebars).
 
   document.querySelectorAll('[data-archive-count]').forEach(function (list) {
     var nums = list.querySelectorAll('.archive-num');
-    nums.forEach(function (el, i) { el.textContent = nums.length - i; });
+    nums.forEach(function (el, i) {
+      el.textContent = String(nums.length - i).padStart(2, '0');
+    });
   });
 
   // ---- 4. Subnav: current entry + prev/next arrows -------------------------
