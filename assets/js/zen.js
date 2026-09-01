@@ -226,6 +226,32 @@
     });
   })();
 
+  // ---- 4c. Hi-quality download links ---------------------------------------
+  // Buzzsprout (the podcast host) recompresses episode audio — even
+  // its ?download=true links. Rewrite each MR post's Download anchor
+  // to the 320kbps stereo master on midnightradio.jamesreeves.co.
+  // ?dl makes that server send Content-Disposition: attachment (the
+  // `download` attribute is ignored cross-origin). Runs BEFORE the
+  // marginalia clone so the rail inherits the rewritten href —
+  // data-rail-label keeps the rail's terse voice.
+
+  (function hiFiDownloads() {
+    document.querySelectorAll('article[data-slug]').forEach(function (article) {
+      var link = article.querySelector('.post-content h4 a[href*="buzzsprout.com"][href*=".mp3"]');
+      if (!link) return;
+      var part = null;
+      article.querySelectorAll('.episode-number[data-ep]').forEach(function (span) {
+        var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
+        if (m && !part) part = m[1];
+      });
+      if (!part) return;
+      if (/^\d+$/.test(part)) part = part.padStart(2, '0');
+      link.href = 'https://midnightradio.jamesreeves.co/audio/mr' + part.toLowerCase() + '.mp3?dl';
+      link.textContent = 'Download Hi-Quality MP3';
+      link.setAttribute('data-rail-label', 'Download');
+    });
+  })();
+
   // ---- 5. Marginalia -------------------------------------------------------
 
   (function marginalia() {
@@ -241,6 +267,10 @@
       if (h4) {
         h4.querySelectorAll('a').forEach(function (a) {
           var clone = a.cloneNode(true);
+          // The long in-body label would overflow the narrow rail.
+          if (clone.hasAttribute('data-rail-label')) {
+            clone.textContent = clone.getAttribute('data-rail-label');
+          }
           slot.appendChild(clone);
         });
       }
