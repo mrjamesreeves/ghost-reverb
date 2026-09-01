@@ -230,10 +230,12 @@
   // Buzzsprout (the podcast host) recompresses episode audio — even
   // its ?download=true links. Rewrite each MR post's Download anchor
   // to the 320kbps stereo master on midnightradio.jamesreeves.co.
-  // ?dl makes that server send Content-Disposition: attachment (the
-  // `download` attribute is ignored cross-origin). Runs BEFORE the
-  // marginalia clone so the rail inherits the rewritten href —
-  // data-rail-label keeps the rail's terse voice.
+  // The /dl/ route serves Content-Disposition: attachment with a
+  // titled filename (the `download` attribute is ignored
+  // cross-origin, and nginx's static cache skips .htaccess headers
+  // on the raw /audio/ URLs). Runs BEFORE the marginalia clone so
+  // the rail inherits the rewritten href — data-rail-label keeps the
+  // rail's terse voice.
 
   (function hiFiDownloads() {
     document.querySelectorAll('article[data-slug]').forEach(function (article) {
@@ -246,7 +248,7 @@
       });
       if (!part) return;
       if (/^\d+$/.test(part)) part = part.padStart(2, '0');
-      link.href = 'https://midnightradio.jamesreeves.co/audio/mr' + part.toLowerCase() + '.mp3?dl';
+      link.href = 'https://midnightradio.jamesreeves.co/dl/mr' + part.toLowerCase() + '.mp3';
       link.textContent = 'Download Hi-Quality MP3';
       link.setAttribute('data-rail-label', 'Download');
     });
