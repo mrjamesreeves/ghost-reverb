@@ -1,7 +1,7 @@
 [
   {
     "from": "^/tag/podcast/rss/?$",
-    "to": "https://feeds.buzzsprout.com/2541955.rss",
+    "to": "https://feeds.transistor.fm/midnightradio",
     "permanent": true
   },
   {
