@@ -27,7 +27,7 @@ p, h1, h2, h3, h4, h5, h6, figure, blockquote { margin: 0; }
   --paper: #fff;
   --faint: rgba(0, 0, 0, 0.15);
   --dim:   #767676;   /* marginalia resting */
-  --nav:   #999;      /* resting nav links */
+  --nav:   #999;      /* light gray accents (subnav list numbers) */
 
   --col:      645px;    /* body text column */
   --img-max:  900px;    /* post images + hero + home tiles */
@@ -128,16 +128,12 @@ body {
   font-weight: 500;
   font-size: 14px;   /* Figma 307-5 */
   line-height: 24px;
-  color: var(--nav);
+  color: var(--ink);   /* all-black resting; active = underline */
   text-decoration: none;
   white-space: nowrap;
   padding-bottom: 2px;
   /* transition comes from the sliding-underline group above — a
      transition here would REPLACE that list and freeze the slide. */
-}
-
-.site-nav-link:hover {
-  color: var(--ink);
 }
 
 .site-nav-link.is-active {
