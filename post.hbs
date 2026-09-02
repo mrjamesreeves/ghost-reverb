@@ -29,7 +29,7 @@
     {{/get}}
   {{else}}{{#has tag="Dreams"}}
     {{#get "posts" filter="tag:dreams" limit="all" order="published_at desc"}}
-      {{> "subnav-list" sectionTitle="Dream Inventory" sectionUrl="/dreams/"}}
+      {{> "subnav-list" sectionTitle="Dreams" sectionUrl="/dreams/"}}
     {{/get}}
   {{else}}{{#has tag="Art"}}
     {{#get "posts" filter="tag:art-diary" limit="all" order="published_at desc"}}

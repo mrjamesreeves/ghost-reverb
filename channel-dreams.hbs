@@ -3,11 +3,11 @@
 {{!-- /dreams/ — latest post as a full post; 3-column numbered list
      subnav below. Literal tag filter — {{#get}} can't interpolate. --}}
 
-{{#contentFor "title"}}Dream Inventory — {{@site.title}}{{/contentFor}}
+{{#contentFor "title"}}Dreams — {{@site.title}}{{/contentFor}}
 
 {{#get "posts" filter="tag:dreams" limit="all" order="published_at desc" include="tags"}}
   {{#foreach posts limit="1"}}
     {{> "post-view"}}
   {{/foreach}}
-  {{> "subnav-list" sectionTitle="Dream Inventory" sectionUrl="/dreams/"}}
+  {{> "subnav-list" sectionTitle="Dreams" sectionUrl="/dreams/"}}
 {{/get}}
