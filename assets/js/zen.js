@@ -260,6 +260,12 @@
       }
       link.textContent = 'Download Hi-Quality MP3';
       link.setAttribute('data-rail-label', 'Download');
+
+      // The Podcast link beside it: a bare Apple link dead-ends
+      // non-Apple listeners — route everyone through the universal
+      // subscribe page instead (label unchanged).
+      var pod = article.querySelector('.post-content h4 a[href*="podcasts.apple.com"]');
+      if (pod) pod.href = 'https://midnightradio.transistor.fm/subscribe';
     });
   })();
 
