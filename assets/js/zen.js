@@ -254,6 +254,44 @@
     });
   })();
 
+  // ---- 4d. Transistor players ----------------------------------------------
+  // Posts embedded Buzzsprout's player (crunched audio, dead host).
+  // Swap each for the Transistor player of the same episode. The
+  // number->embed-id map lives at midnightradio/embeds.php (rebuilt
+  // whenever a new episode drops — same pipeline as /traxx). If the
+  // fetch fails, the Buzzsprout player stays — degrade, don't break.
+
+  (function transistorPlayers() {
+    if (!document.querySelector('div[id^="buzzsprout-player-"]')) return;
+    fetch('https://midnightradio.jamesreeves.co/embeds.php')
+      .then(function (r) { return r.json(); })
+      .then(function (map) {
+        document.querySelectorAll('article[data-slug]').forEach(function (article) {
+          var holder = article.querySelector('div[id^="buzzsprout-player-"]');
+          if (!holder) return;
+          var part = null;
+          article.querySelectorAll('.episode-number[data-ep]').forEach(function (span) {
+            var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
+            if (m && !part) part = m[1];
+          });
+          if (!part) return;
+          if (/^\d+$/.test(part)) part = part.padStart(2, '0');
+          var id = map['mr' + part.toLowerCase()];
+          if (!id) return;
+          var f = document.createElement('iframe');
+          f.src = 'https://share.transistor.fm/e/' + id;
+          f.width = '100%';
+          f.height = '180';
+          f.setAttribute('frameborder', 'no');
+          f.setAttribute('scrolling', 'no');
+          f.title = 'Midnight Radio player';
+          f.loading = 'lazy';
+          holder.replaceWith(f);
+        });
+      })
+      .catch(function () {});
+  })();
+
   // ---- 5. Marginalia -------------------------------------------------------
 
   (function marginalia() {
