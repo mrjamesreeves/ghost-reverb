@@ -132,6 +132,11 @@ body {
   text-decoration: none;
   white-space: nowrap;
   padding-bottom: 2px;
+  /* macOS browsers render webfonts heavier than Figma's rasterizer —
+     thin the nav back to the comp's weight. (Nav-scoped: applied
+     globally this would lighten the serif body copy too.) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* transition comes from the sliding-underline group above — a
      transition here would REPLACE that list and freeze the slide. */
 }
@@ -1081,16 +1086,16 @@ blockquote strong {
   gap: 8px 28px;
 }
 
-/* Figma drew these in Bebas Expanded — Franklin keeps footer + nav
-   + subnav in one voice (flagged to James). */
+/* Mirrors the header nav exactly: same face, size, and smoothing. */
 .site-footer-links a {
   font-family: var(--cond);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  letter-spacing: 0.32px;
   color: var(--ink);
   text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .site-footer-icons {
