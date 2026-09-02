@@ -320,13 +320,10 @@ body.menu-open .nav-burger span:last-child {
   object-position: center;
 }
 
-/* Art Diary posts show the artwork uncropped at its own ratio,
-   centered, never wider than the 900 column. */
-.post.tag-art-diary .post-image img {
-  width: auto;
-  max-width: 100%;
-  margin: 0 auto;
-}
+/* Art Diary posts show the artwork uncropped: full 900 column width,
+   height follows the image's own ratio (the base .post-image img
+   width:100% does exactly that — the crop exemption above is all
+   the special-casing art needs). */
 
 .post-body-col {
   padding-top: 56px;
