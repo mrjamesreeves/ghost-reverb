@@ -21,7 +21,7 @@ p, h1, h2, h3, h4, h5, h6, figure, blockquote { margin: 0; }
   --serif:     "ibm-plex-serif", serif;
   --display:   "bebas-neue-pro", sans-serif;
   --display-x: "bebas-neue-pro-expanded", sans-serif;
-  --cond:      "franklin-gothic-urw-cond", sans-serif;   /* nav + section labels */
+  --cond:      "franklin-gothic-urw", sans-serif;   /* nav + section labels (regular width, medium) */
 
   --ink:   #000;
   --paper: #fff;
@@ -125,10 +125,9 @@ body {
 
 .site-nav-link {
   font-family: var(--cond);
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 14px;   /* Figma 307-5 */
   line-height: 24px;
-  letter-spacing: 0.32px;
   color: var(--nav);
   text-decoration: none;
   white-space: nowrap;
@@ -640,7 +639,7 @@ blockquote strong {
 .subnav-title {
   display: inline-block;
   font-family: var(--cond);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
@@ -1090,7 +1089,7 @@ blockquote strong {
    + subnav in one voice (flagged to James). */
 .site-footer-links a {
   font-family: var(--cond);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
