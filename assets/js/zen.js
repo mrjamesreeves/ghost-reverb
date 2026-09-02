@@ -239,31 +239,36 @@
 
   (function hiFiDownloads() {
     document.querySelectorAll('article[data-slug]').forEach(function (article) {
-      // Legacy posts carry a Buzzsprout link (href gets rewritten);
-      // hand-edited and new posts may already link /dl/ directly
-      // (href kept — but text + rail label still normalized, so the
-      // marginalia clone stays terse either way).
+      // Legacy posts carry a Buzzsprout link (href gets rewritten to
+      // the /dl/ master route); hand-edited and new posts may link
+      // /dl/ or Transistor's media?download=true directly (href kept
+      // — Transistor media links also count in its analytics). All
+      // three get text + rail label normalized so the marginalia
+      // clone stays terse.
       var link = article.querySelector(
         '.post-content h4 a[href*="buzzsprout.com"][href*=".mp3"],' +
-        '.post-content h4 a[href*="midnightradio.jamesreeves.co/dl/"]'
+        '.post-content h4 a[href*="midnightradio.jamesreeves.co/dl/"],' +
+        '.post-content h4 a[href*="media.transistor.fm"][href*="download"]'
       );
-      if (!link) return;
-      if (link.href.indexOf('buzzsprout.com') !== -1) {
-        var part = null;
-        article.querySelectorAll('.episode-number[data-ep]').forEach(function (span) {
-          var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
-          if (m && !part) part = m[1];
-        });
-        if (!part) return;
-        if (/^\d+$/.test(part)) part = part.padStart(2, '0');
-        link.href = 'https://midnightradio.jamesreeves.co/dl/mr' + part.toLowerCase() + '.mp3';
+      if (link) {
+        if (link.href.indexOf('buzzsprout.com') !== -1) {
+          var part = null;
+          article.querySelectorAll('.episode-number[data-ep]').forEach(function (span) {
+            var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
+            if (m && !part) part = m[1];
+          });
+          if (part) {
+            if (/^\d+$/.test(part)) part = part.padStart(2, '0');
+            link.href = 'https://midnightradio.jamesreeves.co/dl/mr' + part.toLowerCase() + '.mp3';
+          }
+        }
+        link.textContent = 'Download Hi-Quality MP3';
+        link.setAttribute('data-rail-label', 'Download');
       }
-      link.textContent = 'Download Hi-Quality MP3';
-      link.setAttribute('data-rail-label', 'Download');
 
-      // The Podcast link beside it: a bare Apple link dead-ends
-      // non-Apple listeners — route everyone through the universal
-      // subscribe page instead (label unchanged).
+      // The Podcast link beside it (independent of the download
+      // link): a bare Apple link dead-ends non-Apple listeners —
+      // route everyone through the universal subscribe page.
       var pod = article.querySelector('.post-content h4 a[href*="podcasts.apple.com"]');
       if (pod) pod.href = 'https://midnightradio.transistor.fm/subscribe';
     });
