@@ -239,16 +239,25 @@
 
   (function hiFiDownloads() {
     document.querySelectorAll('article[data-slug]').forEach(function (article) {
-      var link = article.querySelector('.post-content h4 a[href*="buzzsprout.com"][href*=".mp3"]');
+      // Legacy posts carry a Buzzsprout link (href gets rewritten);
+      // hand-edited and new posts may already link /dl/ directly
+      // (href kept — but text + rail label still normalized, so the
+      // marginalia clone stays terse either way).
+      var link = article.querySelector(
+        '.post-content h4 a[href*="buzzsprout.com"][href*=".mp3"],' +
+        '.post-content h4 a[href*="midnightradio.jamesreeves.co/dl/"]'
+      );
       if (!link) return;
-      var part = null;
-      article.querySelectorAll('.episode-number[data-ep]').forEach(function (span) {
-        var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
-        if (m && !part) part = m[1];
-      });
-      if (!part) return;
-      if (/^\d+$/.test(part)) part = part.padStart(2, '0');
-      link.href = 'https://midnightradio.jamesreeves.co/dl/mr' + part.toLowerCase() + '.mp3';
+      if (link.href.indexOf('buzzsprout.com') !== -1) {
+        var part = null;
+        article.querySelectorAll('.episode-number[data-ep]').forEach(function (span) {
+          var m = (span.getAttribute('data-ep') || '').match(MR_TAG_RE);
+          if (m && !part) part = m[1];
+        });
+        if (!part) return;
+        if (/^\d+$/.test(part)) part = part.padStart(2, '0');
+        link.href = 'https://midnightradio.jamesreeves.co/dl/mr' + part.toLowerCase() + '.mp3';
+      }
       link.textContent = 'Download Hi-Quality MP3';
       link.setAttribute('data-rail-label', 'Download');
     });
