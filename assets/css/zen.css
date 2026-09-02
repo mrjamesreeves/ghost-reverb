@@ -277,7 +277,7 @@ body.menu-open .nav-burger span:last-child {
 
 .mr-hero-title {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 600;   /* Adobe maps Bebas Bold to 600 — 700 faux-bolds */
   font-size: clamp(52px, 16vw, 150px);
   line-height: 0.84;
   letter-spacing: 0.02em;
@@ -331,7 +331,7 @@ body.menu-open .nav-burger span:last-child {
 
 .post-title {
 font-family: var(--display);
-font-weight: 700;
+font-weight: 600;   /* Adobe maps Bebas Bold to 600 — 700 faux-bolds */
 font-size: clamp(36px, 7vw, 72px);   /* Figma 2.0: 72px cap */
 line-height: 0.85;
 letter-spacing: 0;
@@ -380,7 +380,7 @@ margin: 0 0 20px;
 .post-content h2 {
   font-size: 32px;
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 600;   /* Adobe maps Bebas Bold to 600 — 700 faux-bolds */
   letter-spacing: 0.05em;
   line-height: 1;
   margin: 1.8em 0 0.6em;
@@ -992,7 +992,7 @@ blockquote strong {
   top: 23px;
   left: 25px;
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 600;   /* Adobe maps Bebas Bold to 600 — 700 faux-bolds */
   font-size: 48px;
   line-height: 42px;
   letter-spacing: 0.03em;
@@ -1170,7 +1170,7 @@ blockquote strong {
 
 .signup-title {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 600;   /* Adobe maps Bebas Bold to 600 — 700 faux-bolds */
   font-size: clamp(36px, 6vw, 50px);
   line-height: 1.4;
   letter-spacing: 0.02em;
@@ -1552,7 +1552,7 @@ blockquote strong {
 
 .error-message {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 600;   /* Adobe maps Bebas Bold to 600 — 700 faux-bolds */
   font-size: clamp(36px, 6vw, 64px);
   line-height: 0.95;
   letter-spacing: 0.02em;
