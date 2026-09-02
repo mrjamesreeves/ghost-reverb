@@ -54,7 +54,8 @@ body {
 .post-meta a,
 .marginalia a,
 .u-slide {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+  /* Full #000 — matches the active nav item's underline. */
+  background-image: linear-gradient(to right, #000 0%, #000 100%);
   background-repeat: no-repeat;
   background-position: left 100%;
   background-size: 0% 1px;
@@ -313,10 +314,18 @@ body.menu-open .nav-burger span:last-child {
   width: 100%;
 }
 
-.post:not(.post--page) .post-image img {
+.post:not(.post--page):not(.tag-art-diary) .post-image img {
   aspect-ratio: 900 / 577;
   object-fit: cover;
   object-position: center;
+}
+
+/* Art Diary posts show the artwork uncropped at its own ratio,
+   centered, never wider than the 900 column. */
+.post.tag-art-diary .post-image img {
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .post-body-col {
@@ -637,13 +646,15 @@ blockquote strong {
   width: min(90vw, var(--wide-max));
 }
 
+/* Same voice as the wordmark. */
 .subnav-title {
   display: inline-block;
-  font-family: var(--cond);
-  font-weight: 500;
+  font-family: var(--display-x);
+  font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
   margin-bottom: 16px;
@@ -731,21 +742,23 @@ blockquote strong {
   opacity: 0;
 }
 
+/* Per comp: 16px Bebas Expanded, white, left-aligned, vertically
+   centered, 10px in from the left edge. */
 .dial-thumb-name {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: flex-start;
+  text-align: left;
   color: var(--paper);
   font-family: var(--display-x);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  padding: 4px 8px;
+  padding: 4px 8px 4px 10px;
   opacity: 0;
   transition: opacity 0.25s ease;
   pointer-events: none;
