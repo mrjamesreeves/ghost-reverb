@@ -353,7 +353,7 @@ margin: 0 0 20px;
 .post-content a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: #C5C5C5;
+  text-decoration-color: #999;
   text-underline-offset: 2px;
   transition: text-decoration-color 0.2s ease;
 }
@@ -490,7 +490,7 @@ blockquote strong {
 .post-content ul,
 .post-content ol {
   margin: 0 0 1.55em;
-  padding-left: 0.8em;
+  padding-left: 1em;
 }
 
 .post-content li { margin-bottom: 0.5em; }
@@ -801,7 +801,8 @@ blockquote strong {
 #tracklist li strong {
   font-family: var(--serif);
   color: var(--ink);
-  font-size: 17px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .marginalia {
