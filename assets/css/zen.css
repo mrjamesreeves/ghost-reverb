@@ -1599,3 +1599,6 @@ blockquote strong {
     animation-duration: 0.01ms !important;
   }
 }
+
+
+.home-hero-wrap .mr-hero-text { padding: 0 25% 0 65%; !important; }

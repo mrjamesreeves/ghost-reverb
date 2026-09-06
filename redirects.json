@@ -55,6 +55,11 @@
     "permanent": true
   },
   {
+    "from": "^/53",
+    "to": "/how-to-think-about-dreams/",
+    "permanent": true
+  },
+  {
     "from": "^/40",
     "to": "/bodies-without-organs",
     "permanent": true
