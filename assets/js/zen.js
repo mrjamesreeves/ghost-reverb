@@ -324,13 +324,23 @@
           slot.appendChild(clone);
         });
       }
-      // Tracklist: first ol in the post gets an anchor.
+      // Tracklist: first ol in the post gets an anchor. Clicking it
+      // glides down (48px of breathing room above the list) instead
+      // of teleporting.
       var ol = content.querySelector('ol');
       if (ol) {
         ol.id = 'tracklist';
         var t = document.createElement('a');
         t.href = '#tracklist';
         t.textContent = 'Tracklist';
+        t.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: ol.getBoundingClientRect().top + window.scrollY - 48,
+            behavior: REDUCED_MOTION ? 'auto' : 'smooth'
+          });
+          history.replaceState(null, '', '#tracklist');
+        });
         slot.appendChild(t);
       }
     }
