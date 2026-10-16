@@ -10,7 +10,9 @@
 <div class="home-hero-wrap">
   {{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
     {{#foreach posts}}
-    <a class="mr-hero mr-hero--link" href="{{url}}">
+    {{!-- Tag classes make per-episode CSS scopes (tag-hash-mr-NN)
+         work on the homepage hero too. --}}
+    <a class="mr-hero mr-hero--link{{#foreach tags visibility="all"}} tag-{{slug}}{{/foreach}}" href="{{url}}">
       <div class="mr-hero-text">
         <p class="mr-hero-eyebrow">
           Midnight Radio
