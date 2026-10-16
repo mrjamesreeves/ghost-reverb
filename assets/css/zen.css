@@ -538,8 +538,11 @@ blockquote strong {
 /* MR hero caption sits below the 1:1 block (the art fills it edge to
    edge), matching the hero's width. */
 .mr-hero-caption {
-  width: min(var(--img-max), 92vw);
-  margin: 10px auto 0;
+  /* Caption measure caps at 600px for readability, but the left edge
+     stays pinned to the hero: margin-left = half the leftover space,
+     the same math the hero's auto-centering resolves to. */
+  max-width: 600px;
+  margin: 10px 0 0 calc(50% - min(var(--img-max), 92vw) / 2);
 }
 
 /* Wide + full Koenig cards break out of the text column up to img-max.
