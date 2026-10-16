@@ -60,6 +60,11 @@
     "permanent": true
   },
   {
+    "from": "^/55",
+    "to": "/lost-futures-new-spirituals/",
+    "permanent": true
+  },
+  {
     "from": "^/40",
     "to": "/bodies-without-organs",
     "permanent": true
