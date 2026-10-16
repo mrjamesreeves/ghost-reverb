@@ -545,6 +545,22 @@ blockquote strong {
   margin: 10px 0 0 calc(50% - min(var(--img-max), 92vw) / 2);
 }
 
+/* ── Per-episode one-offs ────────────────────────────────────────
+   The internal episode tag (#mr-NN) lands on the article as
+   tag-hash-mr-NN via post_class — a built-in single-episode scope
+   that works on both the post URL and the /radio/ channel. --- */
+
+/* MR56 "4:56 AM": second eyebrow line + text block dropped to match
+   the episode artwork. */
+.tag-hash-mr-56 .mr-hero-eyebrow::after {
+  content: "Deb Chachra Edition";
+  display: block;
+}
+
+.tag-hash-mr-56 .mr-hero-text {
+  padding-top: 40%;
+}
+
 /* Wide + full Koenig cards break out of the text column up to img-max.
    kg-* classes are emitted by the Ghost editor at runtime — style them
    even though no template references them. */
