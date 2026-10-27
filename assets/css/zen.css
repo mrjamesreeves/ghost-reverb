@@ -925,24 +925,139 @@ blockquote strong {
    ========================================================================== */
 
 /* Positioned ancestor for the signup CTA beside the hero. */
-.home-hero-wrap {
-  position: relative;
+/* ── Home lead (Figma 321-106) ───────────────────────────────────
+   Hero bleeds to the LEFT viewport edge at ~half the viewport
+   (capped 900); the right rail holds Recently + the signup CTA,
+   inset 8vw from the right. Hero type scales with the hero itself
+   (49.7vw-tied clamps — the node's values are today's 900-hero
+   specs × 745/900, so the caps land on the familiar numbers).
+   Below 1100px everything stacks and the hero reverts to the
+   default centered treatment. --- */
+
+.home-lead {
+  margin-top: 71px;   /* Figma: home hero at 289, not the usual 218 */
 }
 
-/* CTA sits 35px right of the hero's edge, vertically centered to it.
-   Only where it fits — below ~1380px it would crowd the viewport
-   edge, so it's hidden (the footer CTA still catches everyone). */
-.home-cta {
-  display: none;
-  position: absolute;
-  left: calc(50% + min(var(--img-max), 92vw) / 2 + 35px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 205px;
+@media (min-width: 1100px) {
+  .home-lead {
+    display: grid;
+    grid-template-columns: min(49.7vw, 900px) minmax(380px, 534px);
+    justify-content: space-between;
+    align-items: start;
+    gap: 40px;
+    padding-right: 8vw;
+  }
+
+  .home-lead .mr-hero {
+    width: 100%;
+    margin: 0;
+    padding-top: calc(min(49.7vw, 900px) * 0.06);
+  }
+
+  .home-lead .mr-hero-eyebrow {
+    font-size: clamp(12px, 1.46vw, 26.4px);
+  }
+
+  .home-lead .mr-hero-title {
+    font-size: clamp(52px, 8.25vw, 150px);
+  }
+
+  /* Rail text starts 120px below the hero's top edge. */
+  .home-rail {
+    margin-top: 120px;
+    min-width: 0;
+  }
 }
 
-@media (min-width: 1380px) {
-  .home-cta { display: block; }
+.home-recent-title {
+  font-family: var(--display-x);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 11px;
+}
+
+/* Six rows: title | section | date on a 40px rhythm, hairlines
+   between (top and bottom included). Fixed middle/right columns
+   keep the table aligned across rows. */
+.home-recent-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 136px 95px;
+  align-items: baseline;
+  line-height: 39px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.home-recent-row:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.home-recent-post {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 16px;
+}
+
+.home-recent-row:hover .home-recent-post {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.home-recent-section,
+.home-recent-date {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* Rail CTA: the upsized variant from the node (title 20, sans 14
+   blurb, 109×24 button), 64px under the list. */
+.home-rail-cta {
+  margin-top: 64px;
+}
+
+.home-rail-cta .cta-title {
+  font-size: 20px;
+  letter-spacing: 0.8px;
+}
+
+.home-rail-cta .cta-blurb {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 14px;
+  max-width: 390px;
+}
+
+.home-rail-cta .cta-button {
+  font-size: 13px;
+  letter-spacing: 1.04px;
+  padding: 6px 17px;
+}
+
+/* Stacked (below 1100): hero keeps its default centered treatment;
+   the rail becomes a centered block beneath it. */
+@media (max-width: 1099px) {
+  .home-lead { margin-top: 0; }
+
+  .home-rail {
+    width: min(534px, 88vw);
+    margin: 56px auto 0;
+  }
+}
+
+/* Phone: the section column is the expendable one. */
+@media (max-width: 599px) {
+  .home-recent-row { grid-template-columns: minmax(0, 1fr) 95px; }
+  .home-recent-section { display: none; }
 }
 
 .home-tiles {
@@ -1618,6 +1733,3 @@ blockquote strong {
     animation-duration: 0.01ms !important;
   }
 }
-
-
-.home-hero-wrap .mr-hero-text { padding: 0 6% 0 6%; !important; }

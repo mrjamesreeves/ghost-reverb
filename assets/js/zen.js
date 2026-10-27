@@ -132,6 +132,42 @@
     if (older || newer) wrap.hidden = false;
   })();
 
+  // ---- 4e. Home "Recently" list --------------------------------------------
+  // The template fetches SEVEN posts ({{#get}} can't interpolate the
+  // hero's id into a filter): drop the row duplicating the hero,
+  // trim to six, and swap raw tag names ("Art", "favorites") for the
+  // nav's display labels (matched via data-tag). Unsectioned posts
+  // read as Notes.
+
+  (function homeRecent() {
+    var list = document.getElementById('homeRecent');
+    if (!list) return;
+
+    var rows = Array.from(list.querySelectorAll('.home-recent-row'));
+    var hero = document.querySelector('.mr-hero--link');
+    if (hero) {
+      var heroPath = new URL(hero.href).pathname;
+      rows = rows.filter(function (row) {
+        if (new URL(row.href).pathname === heroPath) {
+          row.remove();
+          return false;
+        }
+        return true;
+      });
+    }
+    rows.slice(6).forEach(function (row) { row.remove(); });
+
+    var labels = {};
+    document.querySelectorAll('.site-nav-link[data-tag]').forEach(function (a) {
+      var tag = a.getAttribute('data-tag');
+      if (tag) labels[tag] = a.textContent.trim();
+    });
+    list.querySelectorAll('.home-recent-section').forEach(function (cell) {
+      var tag = cell.getAttribute('data-tag');
+      cell.textContent = (tag && labels[tag]) || cell.textContent.trim() || 'Notes';
+    });
+  })();
+
   // ---- 4a. Marginalia alignment --------------------------------------------
   // The rail is an absolute spanner whose TOP must sit exactly at the
   // first paragraph of copy. Layout shifts as images load, so align
@@ -448,7 +484,7 @@
   // (top nav, image grids, wordmark, title, Ghost kg-* cards).
 
   (function autoUnderline() {
-    var SKIP = '.site-nav, .subnav-grid, .mr-grid, .wordmark, .post-title, [class*="kg-"]';
+    var SKIP = '.site-nav, .subnav-grid, .mr-grid, .home-recent, .wordmark, .post-title, [class*="kg-"]';
     document.querySelectorAll('a').forEach(function (a) {
       if (a.closest(SKIP)) return;
       if (a.querySelector('img, svg')) return;

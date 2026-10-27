@@ -1,13 +1,21 @@
 {{!< default}}
 
-{{!-- Homepage. Hero = the latest Midnight Radio episode as a black
-     cover block linking to the post, with the signup CTA as
-     marginalia to its right (non-members, wide screens only).
-     Below: two section tiles + three app tiles. --}}
+{{!-- Homepage (per Figma 321-106). Lead = the latest Midnight Radio
+     episode as a left-bleed black cover block, with a right rail:
+     the six most recent posts across sections ("Recently") and the
+     signup CTA. Below: two section tiles + three app tiles.
+
+     Recently fetches SEVEN posts (Design excluded — unlisted):
+     {{#get}} can't interpolate the hero's id into a filter (hard
+     rule), so zen.js drops the row duplicating the hero and trims
+     the list to six. Section labels come from the first PUBLIC tag
+     (primary_tag is empty when an internal tag sorts first — hard
+     rule); zen.js swaps raw tag names ("Art", "favorites") for the
+     nav's display labels via the data-tag attributes. --}}
 
 {{#contentFor "title"}}{{@site.title}} — {{@site.description}}{{/contentFor}}
 
-<div class="home-hero-wrap">
+<div class="home-lead">
   {{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
     {{#foreach posts}}
     {{!-- Tag classes make per-episode CSS scopes (tag-hash-mr-NN)
@@ -23,7 +31,7 @@
       {{#if feature_image}}
         <img class="mr-hero-art"
           srcset="{{img_url feature_image size="m"}} 800w, {{img_url feature_image size="l"}} 1200w, {{img_url feature_image size="xl"}} 1600w"
-          sizes="(max-width: 960px) 100vw, 900px"
+          sizes="(max-width: 1099px) 100vw, 50vw"
           src="{{img_url feature_image size="l"}}"
           alt="{{title}}" loading="eager">
       {{/if}}
@@ -31,13 +39,30 @@
     {{/foreach}}
   {{/get}}
 
-  {{#unless @member}}
-  <aside class="home-cta" aria-label="Subscribe">
-    <p class="cta-title">Join Midnight Radio</p>
-    <p class="cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
-    <button class="cta-button" data-signup>Subscribe</button>
+  <aside class="home-rail">
+    <section class="home-recent" aria-label="Recent posts">
+      <h2 class="home-recent-title">Recently</h2>
+      <div class="home-recent-list" id="homeRecent">
+        {{#get "posts" filter="tag:-design" limit="7" order="published_at desc" include="tags"}}
+          {{#foreach posts}}
+            <a class="home-recent-row" href="{{url}}">
+              <span class="home-recent-post">{{title}}</span>
+              <span class="home-recent-section"{{#foreach tags visibility="public" limit="1"}} data-tag="tag-{{slug}}"{{/foreach}}>{{#foreach tags visibility="public" limit="1"}}{{name}}{{/foreach}}</span>
+              <span class="home-recent-date">{{date format="MMMM D"}}</span>
+            </a>
+          {{/foreach}}
+        {{/get}}
+      </div>
+    </section>
+
+    {{#unless @member}}
+    <div class="home-rail-cta" aria-label="Subscribe">
+      <p class="cta-title">Join Midnight Radio</p>
+      <p class="cta-blurb">Notes on surviving the 21st century and a mixtape delivered &rsquo;round midnight on the 1st and 15th of the month.</p>
+      <button class="cta-button" data-signup>Subscribe</button>
+    </div>
+    {{/unless}}
   </aside>
-  {{/unless}}
 </div>
 
 {{!-- Two section tiles + three app tiles. App artwork is baked into
