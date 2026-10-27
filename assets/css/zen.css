@@ -941,11 +941,13 @@ blockquote strong {
 @media (min-width: 1260px) {
   /* Hero + rail are CENTERED AS A UNIT (sharing the page's center
      axis with the tiles below) with a fixed 120px gutter. The rail
-     is a fixed 534; the hero takes what the viewport leaves —
-     clamped 600–900 — so on tight viewports the unit runs flush to
-     the browser edges, and on wide ones it floats centered. */
+     is a fixed 534; the hero takes the SMALLEST of: what the
+     viewport width leaves, the 900 cap, and what the WINDOW HEIGHT
+     allows (hero top ≈ 248 from page top + a breath) — so the full
+     square is always in view without scrolling. Tight widths run
+     the unit flush to the browser edges; wide ones float centered. */
   .home-lead {
-    --hero-w: clamp(600px, calc(100vw - 654px), 900px);
+    --hero-w: min(900px, calc(100vw - 654px), calc(100vh - 270px));
     display: grid;
     grid-template-columns: var(--hero-w) 534px;
     column-gap: 120px;
