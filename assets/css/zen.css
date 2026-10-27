@@ -952,7 +952,7 @@ blockquote strong {
     grid-template-columns: var(--hero-w) 534px;
     column-gap: 120px;
     justify-content: center;
-    align-items: start;
+    align-items: center;   /* rail vertically centered to the hero */
   }
 
   .home-lead .mr-hero {
@@ -971,9 +971,7 @@ blockquote strong {
     font-size: calc(var(--hero-w) * 0.166);
   }
 
-  /* Rail text starts 120px below the hero's top edge. */
   .home-rail {
-    margin-top: 120px;
     min-width: 0;
   }
 }
