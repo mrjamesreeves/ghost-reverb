@@ -935,51 +935,38 @@ blockquote strong {
    default centered treatment. --- */
 
 .home-lead {
-  margin-top: 71px;   /* Figma: home hero at 289, not the usual 218 */
+  margin-top: 30px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1260px) {
+  /* Hero + rail are CENTERED AS A UNIT (sharing the page's center
+     axis with the tiles below) with a fixed 120px gutter. The rail
+     is a fixed 534; the hero takes what the viewport leaves —
+     clamped 600–900 — so on tight viewports the unit runs flush to
+     the browser edges, and on wide ones it floats centered. */
   .home-lead {
-    /* Hero width: ~half the viewport, capped at 900 — and capped by
-       the WINDOW HEIGHT so the whole square cover sits in view
-       without scrolling (hero top ≈ 289px from the page top, plus a
-       breath; floored at 520 so short windows don't crush it). */
-    --hero-w: min(49.7vw, 900px, max(480px, calc(100vh - 310px)));
+    --hero-w: clamp(600px, calc(100vw - 654px), 900px);
     display: grid;
-    grid-template-columns: var(--hero-w) minmax(380px, 534px);
-    justify-content: space-between;
+    grid-template-columns: var(--hero-w) 534px;
+    column-gap: 120px;
+    justify-content: center;
     align-items: start;
-    gap: 40px;
-    padding-right: 8vw;
   }
 
   .home-lead .mr-hero {
     width: 100%;
     margin: 0;
     padding-top: calc(var(--hero-w) * 0.06);
-    container-type: inline-size;
   }
 
-  /* Fallback type (tracks the 49.7vw case only). */
+  /* Hero type rides the hero's width (node specs = the 900-hero
+     values × hero/900). */
   .home-lead .mr-hero-eyebrow {
-    font-size: clamp(12px, 1.46vw, 26.4px);
+    font-size: calc(var(--hero-w) * 0.0293);
   }
 
   .home-lead .mr-hero-title {
-    font-size: clamp(52px, 8.25vw, 150px);
-  }
-
-  /* Container-query type: scales with the hero's ACTUAL width, so
-     the vh cap and the 900 cap both keep proportions (node specs =
-     900-hero values × hero/900). */
-  @supports (container-type: inline-size) {
-    .home-lead .mr-hero-eyebrow {
-      font-size: clamp(12px, 2.93cqw, 26.4px);
-    }
-
-    .home-lead .mr-hero-title {
-      font-size: clamp(42px, 16.6cqw, 150px);
-    }
+    font-size: calc(var(--hero-w) * 0.166);
   }
 
   /* Rail text starts 120px below the hero's top edge. */
@@ -1063,9 +1050,10 @@ blockquote strong {
   padding: 6px 17px;
 }
 
-/* Stacked (below 1100): hero keeps its default centered treatment;
-   the rail becomes a centered block beneath it. */
-@media (max-width: 1099px) {
+/* Stacked (below 1260, where a 600 hero + 120 gutter + 534 rail no
+   longer fits): hero keeps its default centered treatment; the rail
+   becomes a centered block beneath it. */
+@media (max-width: 1259px) {
   .home-lead { margin-top: 0; }
 
   .home-rail {
