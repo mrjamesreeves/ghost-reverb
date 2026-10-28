@@ -100,6 +100,13 @@ body {
   background: rgba(255, 255, 255, 0.82);
   -webkit-backdrop-filter: blur(18px) saturate(1.8);
   backdrop-filter: blur(18px) saturate(1.8);
+  transition: padding 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Scrolled: the bar tightens (zen.js toggles .is-shrunk with
+   hysteresis — the 60px reflow would flutter a single threshold). */
+.site-top.is-shrunk {
+  padding: 10px 0;
 }
 
 .site-top-inner {
@@ -1444,6 +1451,10 @@ blockquote strong {
     margin-bottom: 28px;
   }
 
+  .site-top.is-shrunk {
+    padding: 10px 25px;
+  }
+
   .post-content h3:first-of-type { margin: 0 0 0.3em}
   .post-content p, .post-content li { margin-bottom: 1em; }
   #tracklist li strong { font-size: 15px; line-height: 1.5; }
@@ -1617,7 +1628,7 @@ blockquote strong {
    ========================================================================== */
 
 .signup-footer {
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .signup-footer .cta-blurb {

@@ -59,6 +59,27 @@
     });
   })();
 
+  // ---- 1b. Shrinking header --------------------------------------------------
+  // The sticky bar tightens (40px -> 10px padding, CSS transition)
+  // once the reader is underway. Hysteresis: the shrink itself
+  // reflows the page by ~60px, so one shared threshold would
+  // oscillate at the boundary.
+
+  (function shrinkNav() {
+    var top = document.getElementById('siteTop');
+    if (!top) return;
+    var shrunk = false;
+    function onScroll() {
+      var next = shrunk ? window.scrollY > 30 : window.scrollY > 90;
+      if (next !== shrunk) {
+        shrunk = next;
+        top.classList.toggle('is-shrunk', shrunk);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
   // ---- 2. Episode numbers ------------------------------------------------
 
   document.querySelectorAll('.episode-number').forEach(function (el) {
