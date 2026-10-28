@@ -13,7 +13,7 @@
      rule); zen.js swaps raw tag names ("Art", "favorites") for the
      nav's display labels via the data-tag attributes. --}}
 
-{{#contentFor "title"}}{{@site.title}} — {{@site.description}}{{/contentFor}}
+{{#contentFor "title"}}{{@site.title}}{{/contentFor}}
 
 <div class="home-lead">
   {{#get "posts" filter="tag:midnight-radio" limit="1" order="published_at desc" include="tags"}}
