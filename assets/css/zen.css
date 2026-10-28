@@ -951,20 +951,22 @@ blockquote strong {
   margin-top: 30px;
 }
 
-@media (min-width: 1260px) {
-  /* Hero + rail are CENTERED AS A UNIT (sharing the page's center
-     axis with the tiles below) with a fixed 120px gutter. The rail
-     is a fixed 534; the hero takes the SMALLEST of: what the
-     viewport width leaves, the 900 cap, and what the WINDOW HEIGHT
-     allows (hero top ≈ 248 from page top + a breath) — so the full
-     square is always in view without scrolling. Tight widths run
-     the unit flush to the browser edges; wide ones float centered. */
+@media (min-width: 1290px) {
+  /* The hero's RIGHT edge anchors to the first tile's right edge
+     below (10px left of page center — half the tiles' gap), so the
+     lead and the tile grid read as one composition. Size is still
+     the smallest of: the 900 cap, the WINDOW HEIGHT (full square
+     always in view, hero top ≈ 134), and the distance from that
+     anchor to the left browser edge — growth pushes the hero
+     leftward, never past the edge. The rail starts a fixed 120
+     gutter after the anchor. */
   .home-lead {
-    --hero-w: min(900px, calc(100vw - 654px), calc(100vh - 160px));   /* hero top ≈ 134 with the tighter nav */
+    --hero-w: min(900px, calc(50vw - 10px), calc(100vh - 160px));
     display: grid;
     grid-template-columns: var(--hero-w) 534px;
     column-gap: 120px;
-    justify-content: center;
+    justify-content: start;
+    margin-left: calc(50% - 10px - var(--hero-w));
     align-items: center;   /* rail vertically centered to the hero */
   }
 
@@ -1063,10 +1065,10 @@ blockquote strong {
   padding: 6px 17px;
 }
 
-/* Stacked (below 1260, where a 600 hero + 120 gutter + 534 rail no
-   longer fits): hero keeps its default centered treatment; the rail
+/* Stacked (below 1290, where the anchored rail would run off the
+   right edge): hero keeps its default centered treatment; the rail
    becomes a centered block beneath it. */
-@media (max-width: 1259px) {
+@media (max-width: 1289px) {
   .home-lead { margin-top: 0; }
 
   .home-rail {
