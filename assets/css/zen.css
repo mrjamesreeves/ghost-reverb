@@ -1028,10 +1028,20 @@ blockquote strong {
   padding-right: 16px;
 }
 
-.home-recent-row:hover .home-recent-post {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+/* The sliding hairline rides an INNER inline span — the grid cell
+   itself is blockified, so a gradient on it would draw at the 40px
+   row's bottom instead of under the text. */
+.home-recent-label {
+  background-image: linear-gradient(to right, #000 0%, #000 100%);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.home-recent-row:hover .home-recent-label {
+  background-size: 100% 1px;
 }
 
 .home-recent-section,

@@ -46,7 +46,7 @@
         {{#get "posts" filter="tag:-design" limit="7" order="published_at desc" include="tags"}}
           {{#foreach posts}}
             <a class="home-recent-row" href="{{url}}">
-              <span class="home-recent-post">{{title}}</span>
+              <span class="home-recent-post"><span class="home-recent-label">{{title}}</span></span>
               <span class="home-recent-section"{{#foreach tags visibility="public" limit="1"}} data-tag="tag-{{slug}}"{{/foreach}}>{{#foreach tags visibility="public" limit="1"}}{{name}}{{/foreach}}</span>
               <span class="home-recent-date">{{date format="MMMM D"}}</span>
             </a>
