@@ -65,6 +65,11 @@
     "permanent": true
   },
   {
+    "from": "^/57",
+    "to": "/moonlight/",
+    "permanent": true
+  },
+  {
     "from": "^/40",
     "to": "/bodies-without-organs",
     "permanent": true
