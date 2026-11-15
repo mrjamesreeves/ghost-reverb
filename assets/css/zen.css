@@ -697,7 +697,8 @@ blockquote strong {
   column-gap: 40px;
 }
 
-/* Entries: caps Bebas Expanded titles led by a smaller gray number
+/* Entries: mixed-case Franklin — the nav voice; caps Bebas is for
+   titles, not inventories this long — led by a smaller gray number
    in a fixed 30px column (zero-padded by zen.js — "01", "02", …). */
 .subnav-list a {
   display: block;
@@ -705,17 +706,18 @@ blockquote strong {
      lets long titles still truncate with an ellipsis. */
   width: fit-content;
   max-width: 100%;
-  font-family: var(--display-x);
-  font-weight: 600;
+  font-family: var(--cond);
+  font-weight: 500;
   font-size: 16px;
   line-height: 28px;
-  letter-spacing: 0.64px;
-  text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* Same macOS webfont-weight correction as .site-nav-link. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .subnav-list .archive-num {
