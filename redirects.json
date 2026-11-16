@@ -70,6 +70,11 @@
     "permanent": true
   },
   {
+    "from": "^/58",
+    "to": "/the-accidental-image/",
+    "permanent": true
+  },
+  {
     "from": "^/40",
     "to": "/bodies-without-organs",
     "permanent": true
