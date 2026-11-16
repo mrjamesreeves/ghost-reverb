@@ -402,38 +402,8 @@
       }
     }
 
-    // Not sticky: the rail sits at its anchored spot and scrolls with
-    // the page. Fade OUT once the reader has scrolled well past the
-    // point where the rail was last at rest (so a small nudge doesn't
-    // dismiss it); fade back IN when they scroll up AND the rail's
-    // block is on screen again.
-    var GRACE = 400;
-    var inner = rail.querySelector('.marginalia-inner');
-    var lastY = window.scrollY;
-    var restY = window.scrollY;   // where the rail last sat visible
-    function fade() {
-      var y = window.scrollY;
-      var down = y > lastY + 2;
-      var up = y < lastY - 2;
-      if (down) {
-        // Anchor-relative grace: count from where the rail settles
-        // near the viewport top, never the page top.
-        var anchor = rail.getBoundingClientRect().top + y - 48;
-        if (y > Math.max(restY, anchor) + GRACE) rail.classList.add('is-hidden');
-      } else if (up) {
-        if (inner) {
-          var r = inner.getBoundingClientRect();
-          if (r.top < window.innerHeight && r.bottom > 0) {
-            rail.classList.remove('is-hidden');
-          }
-        }
-        // While visible, the rest point follows the reader up so the
-        // next down-scroll gets a fresh grace distance.
-        if (!rail.classList.contains('is-hidden')) restY = y;
-      }
-      lastY = y;
-    }
-    window.addEventListener('scroll', fade, { passive: true });
+    // Stickiness is pure CSS: .marginalia-inner rides below the nav
+    // and the absolute spanner releases it at the article's end.
   })();
 
   // ---- 6. Nav active state -------------------------------------------------

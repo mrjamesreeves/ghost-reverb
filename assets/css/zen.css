@@ -840,29 +840,23 @@ blockquote strong {
 }
 
 .marginalia {
-  /* Anchored at the first paragraph of copy (top set by zen.js),
-     horizontally at the RIGHT EDGE of the 900px hero: 50% + half the
-     hero width + a breath. Fades via .is-hidden (zen.js). */
+  /* Spanner: anchored at the first paragraph of copy (top set by
+     zen.js), stretching to the article's end so the sticky inner
+     can travel. Horizontally at the RIGHT EDGE of the 900px hero:
+     50% + half the hero width + a breath. */
   position: absolute;
   left: calc(50% + min(calc(var(--img-max) / 2), 46vw) + 14px);
   top: 0;
+  bottom: 0;
   z-index: 5;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.marginalia.is-hidden {
-  opacity: 0;
-}
-
-.marginalia.is-hidden .marginalia-inner {
   pointer-events: none;
 }
 
 .marginalia-inner {
-  /* Not sticky: the rail lives at its anchored spot (copy top) and
-     scrolls with the page. zen.js fades it out on scroll-down and
-     back in when this block re-enters the viewport on scroll-up. */
+  /* Rides with the reader: pinned below the shrunk nav (48px tall)
+     and released at the article's end by the spanner above. */
+  position: sticky;
+  top: 72px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -957,13 +951,13 @@ blockquote strong {
   /* The hero's RIGHT edge anchors to the first tile's right edge
      below (10px left of page center — half the tiles' gap), so the
      lead and the tile grid read as one composition. Size is still
-     the smallest of: the 900 cap, the WINDOW HEIGHT (full square
+     the smallest of: the 750 cap, the WINDOW HEIGHT (full square
      always in view, hero top ≈ 134), and the distance from that
      anchor to the left browser edge — growth pushes the hero
      leftward, never past the edge. The rail starts a fixed 120
      gutter after the anchor. */
   .home-lead {
-    --hero-w: min(900px, calc(50vw - 10px), calc(100vh - 160px));
+    --hero-w: min(750px, calc(50vw - 10px), calc(100vh - 160px));
     display: grid;
     grid-template-columns: var(--hero-w) 534px;
     column-gap: 120px;
@@ -978,14 +972,14 @@ blockquote strong {
     padding-top: calc(var(--hero-w) * 0.06);
   }
 
-  /* Hero type rides the hero's width (node specs = the 900-hero
-     values × hero/900). */
+  /* Hero type rides the hero's width: title at 15% of it, eyebrow
+     at 20% of the title. */
   .home-lead .mr-hero-eyebrow {
-    font-size: calc(var(--hero-w) * 0.0293);
+    font-size: calc(var(--hero-w) * 0.15 * 0.2);
   }
 
   .home-lead .mr-hero-title {
-    font-size: calc(var(--hero-w) * 0.166);
+    font-size: calc(var(--hero-w) * 0.15);
   }
 
   .home-rail {
