@@ -973,9 +973,9 @@ blockquote strong {
   }
 
   /* Hero type rides the hero's width: title at 15% of it, eyebrow
-     at 20% of the title. */
+     at 2.5%. */
   .home-lead .mr-hero-eyebrow {
-    font-size: calc(var(--hero-w) * 0.15 * 0.2);
+    font-size: calc(var(--hero-w) * 0.025);
   }
 
   .home-lead .mr-hero-title {
